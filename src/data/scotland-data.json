@@ -1,0 +1,2534 @@
+{
+  "title": "Schottland 2026",
+  "dates": "13.–23. August 2026",
+  "nights": 10,
+  "people": [
+    "Clemens",
+    "Florian",
+    "Carina"
+  ],
+  "itemCount": 106,
+  "catalogCount": 631,
+  "items": [
+    {
+      "id": "S001",
+      "catalogItemId": "G0046",
+      "category": "Dokumente & Finanzen",
+      "name": "Reisepass",
+      "unit": "Stk",
+      "activity": "Flug",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Für den gesamten Aufenthalt gültig; keine erfundene 6-Monats-Regel",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S002",
+      "catalogItemId": "G0052",
+      "category": "Dokumente & Finanzen",
+      "name": "UK-ETA – Bestätigung/Status",
+      "unit": "digital",
+      "activity": "Flug",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Claude + geprüft",
+      "notes": "ETA vor Reise je Person beantragen; Status am Reisepass hinterlegt",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S003",
+      "catalogItemId": "G0018",
+      "category": "Dokumente & Finanzen",
+      "name": "E-Card / EKVK",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S004",
+      "catalogItemId": "G0006",
+      "category": "Dokumente & Finanzen",
+      "name": "Bankomatkarte",
+      "unit": "Stk",
+      "activity": "Stadt; Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Auslandsgebühren prüfen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S005",
+      "catalogItemId": "G0033",
+      "category": "Dokumente & Finanzen",
+      "name": "Kreditkarte",
+      "unit": "Stk",
+      "activity": "Mietwagen; Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Fahrer braucht passende Karte für Kaution",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S006",
+      "catalogItemId": "G0023",
+      "category": "Dokumente & Finanzen",
+      "name": "Führerschein",
+      "unit": "Stk",
+      "activity": "Mietwagen",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Nur vorgesehene Fahrer; Mietwagenbedingungen prüfen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S007",
+      "catalogItemId": "G0022",
+      "category": "Dokumente & Finanzen",
+      "name": "Flugtickets / Boardingpässe",
+      "unit": "Set",
+      "activity": "Flug",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "digital, optional Papierbackup",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S008",
+      "catalogItemId": "G0013",
+      "category": "Dokumente & Finanzen",
+      "name": "Unterkunftsreservierungen",
+      "unit": "Set",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "offline verfügbar; Ausdruck nur als Backup",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S009",
+      "catalogItemId": "G0038",
+      "category": "Dokumente & Finanzen",
+      "name": "Mietwagenbuchung und Versicherungsunterlagen",
+      "unit": "Set",
+      "activity": "Mietwagen",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Abholort, Fahrer, Kaution, Deckung und Notfallnummer",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S010",
+      "catalogItemId": "G0014",
+      "category": "Dokumente & Finanzen",
+      "name": "Buchungsbestätigungen Führungen/Ausflüge",
+      "unit": "Set",
+      "activity": "Museum; Führung",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "inkl. Glenfiddich und Zeitfenster",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S011",
+      "catalogItemId": "G0049",
+      "category": "Dokumente & Finanzen",
+      "name": "Reiseversicherungsdaten",
+      "unit": "Set",
+      "activity": "Alle",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Polizzennummer und Notfallnummer",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S012",
+      "catalogItemId": "G0016",
+      "category": "Dokumente & Finanzen",
+      "name": "Dokumentenkopien / Notfallkontakte",
+      "unit": "Set",
+      "activity": "Alle",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "getrennt",
+      "source": "Beide",
+      "notes": "digital und getrennt von Originalen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S013",
+      "catalogItemId": "G0009",
+      "category": "Dokumente & Finanzen",
+      "name": "Bargeld GBP",
+      "unit": "Betrag",
+      "activity": "Stadt; Autofahrt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "kleiner Notfallbetrag/Parkschein",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S014",
+      "catalogItemId": "G0031",
+      "category": "Dokumente & Finanzen",
+      "name": "Kleine Geldbörse",
+      "unit": "Stk",
+      "activity": "Stadt; Autofahrt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S015",
+      "catalogItemId": "G0151",
+      "category": "Kleidung",
+      "name": "Unterhosen",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "bei geplanter Wäsche reduzierbar",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 10
+        },
+        {
+          "person": "Florian",
+          "intended": 10
+        },
+        {
+          "person": "Carina",
+          "intended": 10
+        }
+      ]
+    },
+    {
+      "id": "S016",
+      "catalogItemId": "G0129",
+      "category": "Kleidung",
+      "name": "Alltagssocken",
+      "unit": "Paar",
+      "activity": "Stadt; Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 7
+        },
+        {
+          "person": "Florian",
+          "intended": 7
+        },
+        {
+          "person": "Carina",
+          "intended": 7
+        }
+      ]
+    },
+    {
+      "id": "S017",
+      "catalogItemId": "G0616",
+      "category": "Kleidung",
+      "name": "Lange Wandersocken (Merino)",
+      "unit": "Paar",
+      "activity": "Wandern",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "2 Paar reichen für 1–2 kleine Wanderungen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 2
+        },
+        {
+          "person": "Florian",
+          "intended": 2
+        },
+        {
+          "person": "Carina",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S018",
+      "catalogItemId": "G0144",
+      "category": "Kleidung",
+      "name": "T-Shirts / Leiberl kurz",
+      "unit": "Stk",
+      "activity": "Stadt; Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 5
+        },
+        {
+          "person": "Florian",
+          "intended": 5
+        },
+        {
+          "person": "Carina",
+          "intended": 5
+        }
+      ]
+    },
+    {
+      "id": "S019",
+      "catalogItemId": "G0098",
+      "category": "Kleidung",
+      "name": "Langarmshirts / dünne Funktions-Basisschicht",
+      "unit": "Stk",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "Zwiebelprinzip; umfasst dünne Unterzieh-Leiberl und langärmelige Funktions-Leiberl",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 3
+        },
+        {
+          "person": "Florian",
+          "intended": 3
+        },
+        {
+          "person": "Carina",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S020",
+      "catalogItemId": "G0162",
+      "category": "Kleidung",
+      "name": "Warmer Fleece- oder Wollpullover",
+      "unit": "Stk",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S021",
+      "catalogItemId": "G0101",
+      "category": "Kleidung",
+      "name": "Freizeit-/Stadthose lang",
+      "unit": "Stk",
+      "activity": "Stadt; Museum",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 2
+        },
+        {
+          "person": "Florian",
+          "intended": 2
+        },
+        {
+          "person": "Carina",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S022",
+      "catalogItemId": "G0155",
+      "category": "Kleidung",
+      "name": "Wanderhose, schnelltrocknend / zum Abzippen",
+      "unit": "Stk",
+      "activity": "Wandern; Spaziergang",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S023",
+      "catalogItemId": "G0401",
+      "category": "Kleidung",
+      "name": "Bequeme Kleidung für Unterkunft/Autofahrt",
+      "unit": "Set",
+      "activity": "Autofahrt; Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Claude",
+      "notes": "kann mit anderer Kleidung kombiniert werden",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S024",
+      "catalogItemId": "G0414",
+      "category": "Kleidung",
+      "name": "Schlafbekleidung",
+      "unit": "Garnitur",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S025",
+      "catalogItemId": "G0062",
+      "category": "Kleidung",
+      "name": "Badebekleidung",
+      "unit": "Stk",
+      "activity": "Baden",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S026",
+      "catalogItemId": "G0172",
+      "category": "Kleidung",
+      "name": "Flipflops / Badeschlapfen",
+      "unit": "Paar",
+      "activity": "Baden; Unterkunft",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S027",
+      "catalogItemId": "G0161",
+      "category": "Kleidung",
+      "name": "Warme Mütze",
+      "unit": "Stk",
+      "activity": "Wandern; Spaziergang",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "klein und bei Wind nützlich",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S028",
+      "catalogItemId": "G0178",
+      "category": "Kleidung",
+      "name": "Dünne Handschuhe",
+      "unit": "Paar",
+      "activity": "Wandern; Spaziergang",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S029",
+      "catalogItemId": "G0124",
+      "category": "Kleidung",
+      "name": "Buff / leichter Schal",
+      "unit": "Stk",
+      "activity": "Wandern; Stadt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Claude",
+      "notes": "Wind- und Mückenschutz",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S030",
+      "catalogItemId": "G0626",
+      "category": "Kleidung",
+      "name": "Leichte lange Schicht gegen Midges",
+      "unit": "Stk",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Recherche",
+      "notes": "dicht gewebt, besonders abends",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S031",
+      "catalogItemId": "G0448",
+      "category": "Wetterschutz",
+      "name": "Wasserdichte und winddichte Regenjacke",
+      "unit": "Stk",
+      "activity": "Wandern; Stadt; Spaziergang",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "echte Regenjacke, nicht nur wasserabweisend",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S032",
+      "catalogItemId": "G0580",
+      "category": "Wetterschutz",
+      "name": "Leichte Regenhose",
+      "unit": "Stk",
+      "activity": "Wandern; Spaziergang",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "packbar",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S033",
+      "catalogItemId": "G0556",
+      "category": "Wetterschutz",
+      "name": "Kompakter windfester Regenschirm",
+      "unit": "Stk",
+      "activity": "Stadt; Museum",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "bei starkem Wind Regenjacke vorziehen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S034",
+      "catalogItemId": "G0596",
+      "category": "Wetterschutz",
+      "name": "Sonnenbrille",
+      "unit": "Stk",
+      "activity": "Autofahrt; Wandern",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S035",
+      "catalogItemId": "G0253",
+      "category": "Wetterschutz",
+      "name": "Sonnencreme LSF 30–50",
+      "unit": "Flasche",
+      "activity": "Wandern; Baden",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "Reisegröße im Handgepäck beachten",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S036",
+      "catalogItemId": "G0093",
+      "category": "Wetterschutz",
+      "name": "Kappe / Sonnenhut",
+      "unit": "Stk",
+      "activity": "Wandern; Stadt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Tagesrucksack",
+      "source": "Maximalliste",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S037",
+      "catalogItemId": "G0208",
+      "category": "Schuhe",
+      "name": "Salomon-/Wanderschuhe, wasserdicht und eingelaufen",
+      "unit": "Paar",
+      "activity": "Wandern; Schlechtwetter",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "getragen/Aufgabe",
+      "source": "Beide",
+      "notes": "für nasse Wege; vorhandene Salomon-Schuhe verwenden, keine neuen Schuhe",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S038",
+      "catalogItemId": "G0173",
+      "category": "Schuhe",
+      "name": "Sneakers / bequeme Stadt-/Alltagsschuhe",
+      "unit": "Paar",
+      "activity": "Stadt; Museum; Autofahrt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "getragen/Aufgabe",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S039",
+      "catalogItemId": "G0365",
+      "category": "Wandern & Baden",
+      "name": "Tagesrucksack 15–25 l",
+      "unit": "Stk",
+      "activity": "Wandern; Stadt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "bei Bedarf nur 1–2 statt 3 mitnehmen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S040",
+      "catalogItemId": "G0581",
+      "category": "Wandern & Baden",
+      "name": "Regenhüllen / wasserdichte Innensäcke",
+      "unit": "Stk",
+      "activity": "Wandern",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "Anzahl an tatsächlich mitgenommenen Rucksäcken anpassen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S041",
+      "catalogItemId": "G0370",
+      "category": "Wandern & Baden",
+      "name": "Trinkflasche",
+      "unit": "Stk",
+      "activity": "Wandern; Autofahrt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "leer durch Sicherheitskontrolle",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S042",
+      "catalogItemId": "G0379",
+      "category": "Wandern & Baden",
+      "name": "Wanderstöcke",
+      "unit": "Paar",
+      "activity": "Wandern",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "nur für Nutzer; Flugregeln beachten",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S043",
+      "catalogItemId": "G0362",
+      "category": "Wandern & Baden",
+      "name": "Kleine Sitzunterlage",
+      "unit": "Stk",
+      "activity": "Wandern; Spaziergang",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Tagesrucksack",
+      "source": "Maximalliste",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S044",
+      "catalogItemId": "G0538",
+      "category": "Wandern & Baden",
+      "name": "Kleine Handtücher / Funktionstücher",
+      "unit": "Stk",
+      "activity": "Baden",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "schnelltrocknend",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S045",
+      "catalogItemId": "G0622",
+      "category": "Wandern & Baden",
+      "name": "Beutel für nasse Badebekleidung",
+      "unit": "Stk",
+      "activity": "Baden",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "wiederverschließbar",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S046",
+      "catalogItemId": "G0531",
+      "category": "Wandern & Baden",
+      "name": "Fernglas",
+      "unit": "Stk",
+      "activity": "Wildlife; Autofahrt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S047",
+      "catalogItemId": "G0221",
+      "category": "Insektenschutz",
+      "name": "Midge-Repellent",
+      "unit": "Flasche",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide + Recherche",
+      "notes": "für schottische Midges geeignet",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S048",
+      "catalogItemId": "G0558",
+      "category": "Insektenschutz",
+      "name": "Midge-Kopfnetze",
+      "unit": "Stk",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Beide + Recherche",
+      "notes": "je Person eines",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S049",
+      "catalogItemId": "G0574",
+      "category": "Insektenschutz",
+      "name": "Zeckenentferner / Zeckenkarte",
+      "unit": "Stk",
+      "activity": "Wandern",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Beide + Recherche",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S050",
+      "catalogItemId": "G0507",
+      "category": "Insektenschutz",
+      "name": "Fenistil / Antihistamin-/After-Bite-Gel",
+      "unit": "Tube",
+      "activity": "Wandern",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Claude + Recherche",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S051",
+      "catalogItemId": "G0271",
+      "category": "Insektenschutz",
+      "name": "Elektronischer Stichheiler",
+      "unit": "Stk",
+      "activity": "Wandern",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Tagesrucksack",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S052",
+      "catalogItemId": "G0261",
+      "category": "Körperpflege",
+      "name": "Zahnbürste",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Kulturbeutel",
+      "source": "ChatGPT",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S053",
+      "catalogItemId": "G0265",
+      "category": "Körperpflege",
+      "name": "Zahnpasta",
+      "unit": "Tube",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "gemeinsam",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S054",
+      "catalogItemId": "G0213",
+      "category": "Körperpflege",
+      "name": "Deo",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Kulturbeutel",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S055",
+      "catalogItemId": "G0248",
+      "category": "Körperpflege",
+      "name": "Duschgel und Shampoo",
+      "unit": "Set",
+      "activity": "Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "Reisegrößen; Hotels stellen oft Produkte bereit",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S056",
+      "catalogItemId": "G0243",
+      "category": "Körperpflege",
+      "name": "Rasierzeug / persönliche Pflege",
+      "unit": "Set",
+      "activity": "Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Nach Bedarf",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "individuell anpassen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S057",
+      "catalogItemId": "G0212",
+      "category": "Körperpflege",
+      "name": "Brille / Kontaktlinsen samt Zubehör",
+      "unit": "Set",
+      "activity": "Alle",
+      "priority": "Optional",
+      "sourcePriority": "Nach Bedarf",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Reserve wenn nötig",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S058",
+      "catalogItemId": "G0233",
+      "category": "Körperpflege",
+      "name": "Lippenpflege mit UV-Schutz",
+      "unit": "Stk",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S059",
+      "catalogItemId": "G0217",
+      "category": "Körperpflege",
+      "name": "Kamm / Haarbürste",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Nach Bedarf",
+      "luggage": "Aufgabegepäck",
+      "source": "Maximalliste",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S060",
+      "catalogItemId": "G0256",
+      "category": "Körperpflege",
+      "name": "Taschentücher",
+      "unit": "Packungen",
+      "activity": "Alle",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "verteilt",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S061",
+      "catalogItemId": "G0216",
+      "category": "Körperpflege",
+      "name": "Feuchttücher",
+      "unit": "Packung",
+      "activity": "Autofahrt; Flug",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S062",
+      "catalogItemId": "G0555",
+      "category": "Körperpflege",
+      "name": "Klospray Reisegröße",
+      "unit": "Stk",
+      "activity": "Unterkunft",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S063",
+      "catalogItemId": "G0297",
+      "category": "Gesundheit & Medikamente",
+      "name": "Persönliche Medikamente",
+      "unit": "Bedarf",
+      "activity": "Alle",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "ausreichende Menge plus Reserve",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S064",
+      "catalogItemId": "G0299",
+      "category": "Gesundheit & Medikamente",
+      "name": "Reiseapotheke",
+      "unit": "Set",
+      "activity": "Alle",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Schmerzmittel, Pflaster, Desinfektion, Durchfallmittel",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S065",
+      "catalogItemId": "G0272",
+      "category": "Gesundheit & Medikamente",
+      "name": "Blasenpflaster",
+      "unit": "Packung",
+      "activity": "Wandern; Stadt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S066",
+      "catalogItemId": "G0335",
+      "category": "Gesundheit & Medikamente",
+      "name": "Reisetabletten",
+      "unit": "Packung",
+      "activity": "Autofahrt; Fähre",
+      "priority": "Optional",
+      "sourcePriority": "Nach Bedarf",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "kurvige Straßen/Fähren",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S067",
+      "catalogItemId": "G0301",
+      "category": "Gesundheit & Medikamente",
+      "name": "Salbe für Hautausschläge",
+      "unit": "Tube",
+      "activity": "Alle",
+      "priority": "Optional",
+      "sourcePriority": "Nach Bedarf",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S068",
+      "catalogItemId": "G0292",
+      "category": "Gesundheit & Medikamente",
+      "name": "Nasenspray / Nasensalbe",
+      "unit": "Stk",
+      "activity": "Flug; Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Nach Bedarf",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "nur für jene, die es brauchen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S069",
+      "catalogItemId": "G0319",
+      "category": "Elektronik",
+      "name": "Handy",
+      "unit": "Stk",
+      "activity": "Alle",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S070",
+      "catalogItemId": "G0322",
+      "category": "Elektronik",
+      "name": "Handy-Ladekabel",
+      "unit": "Stk",
+      "activity": "Aufenthalt; Auto",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S071",
+      "catalogItemId": "G0327",
+      "category": "Elektronik",
+      "name": "Kopfhörer",
+      "unit": "Stk",
+      "activity": "Flug; Autofahrt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S072",
+      "catalogItemId": "G0344",
+      "category": "Elektronik",
+      "name": "UK-Steckadapter Typ G",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S073",
+      "catalogItemId": "G0331",
+      "category": "Elektronik",
+      "name": "Mehrfach-USB-Ladegerät",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S074",
+      "catalogItemId": "G0334",
+      "category": "Elektronik",
+      "name": "Powerbanks",
+      "unit": "Stk",
+      "activity": "Flug; Wandern; Auto",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "nicht ins Aufgabegepäck",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S075",
+      "catalogItemId": "G0326",
+      "category": "Elektronik",
+      "name": "Kamera samt Akku/Ladegerät",
+      "unit": "Set",
+      "activity": "Alle",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "nur zusätzlich zum Handy",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S076",
+      "catalogItemId": "G0363",
+      "category": "Elektronik",
+      "name": "Stirnlampe",
+      "unit": "Stk",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S077",
+      "catalogItemId": "G0386",
+      "category": "Elektronik",
+      "name": "Kindle / Lektüre",
+      "unit": "Stk",
+      "activity": "Flug; Autofahrt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S078",
+      "catalogItemId": "G0341",
+      "category": "Elektronik",
+      "name": "Kleines Handystativ / Selfiestick",
+      "unit": "Stk",
+      "activity": "Stadt; Landschaft",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S079",
+      "catalogItemId": "G0312",
+      "category": "Auto & Navigation",
+      "name": "Auto-Ladegerät / 12-V-Adapter samt Kabeln",
+      "unit": "Set",
+      "activity": "Mietwagen",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "nicht zusätzlich doppelt als Zigarettenanzünder-Adapter",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S080",
+      "catalogItemId": "G0324",
+      "category": "Auto & Navigation",
+      "name": "Handyhalterung fürs Auto",
+      "unit": "Stk",
+      "activity": "Mietwagen",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S081",
+      "catalogItemId": "G0391",
+      "category": "Auto & Navigation",
+      "name": "Offlinekarten / Navigationsdaten",
+      "unit": "Set",
+      "activity": "Mietwagen; Wandern",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "digital",
+      "source": "Beide",
+      "notes": "vor Abflug laden",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S082",
+      "catalogItemId": "G0627",
+      "category": "Auto & Navigation",
+      "name": "USB-/Anschlussadapter fürs Mietauto",
+      "unit": "Set",
+      "activity": "Mietwagen",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Maximalliste",
+      "notes": "USB-A/USB-C nach Bedarf",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S083",
+      "catalogItemId": "G0428",
+      "category": "Auto & Navigation",
+      "name": "Kleine Kühltasche",
+      "unit": "Stk",
+      "activity": "Autofahrt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "nur wenn Platz vorhanden",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S084",
+      "catalogItemId": "G0628",
+      "category": "Auto & Navigation",
+      "name": "Müllbeutel fürs Auto",
+      "unit": "Stk",
+      "activity": "Autofahrt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Maximalliste",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S085",
+      "catalogItemId": "G0629",
+      "category": "Auto & Navigation",
+      "name": "Mikrofasertuch / Reinigungstuch",
+      "unit": "Stk",
+      "activity": "Autofahrt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Maximalliste",
+      "notes": "für beschlagene Scheiben/Brille",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S086",
+      "catalogItemId": "G0399",
+      "category": "Auto & Navigation",
+      "name": "WiFi-Stick fürs Auto",
+      "unit": "Stk",
+      "activity": "Mietwagen",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "nur falls vorhanden/gebucht; sonst weglassen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S087",
+      "catalogItemId": "G0630",
+      "category": "Organisation & Komfort",
+      "name": "Wiederverschließbare Flüssigkeitsbeutel",
+      "unit": "Set",
+      "activity": "Flug; Baden",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "Handgepäck",
+      "source": "Claude",
+      "notes": "für Flüssigkeiten und Nasses",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S088",
+      "catalogItemId": "G0576",
+      "category": "Organisation & Komfort",
+      "name": "Wäschesäcke / Plastiksackerl",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Aufgabegepäck",
+      "source": "Beide",
+      "notes": "sauber, schmutzig, nass trennen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 5
+        }
+      ]
+    },
+    {
+      "id": "S089",
+      "catalogItemId": "G0529",
+      "category": "Organisation & Komfort",
+      "name": "Faltbare Einkaufstaschen",
+      "unit": "Stk",
+      "activity": "Stadt; Autofahrt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Tagesrucksack",
+      "source": "Beide",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S090",
+      "catalogItemId": "G0586",
+      "category": "Organisation & Komfort",
+      "name": "Reiseführer",
+      "unit": "Stk",
+      "activity": "Stadt; Museum",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "digital oder gedruckt",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S091",
+      "catalogItemId": "G0551",
+      "category": "Organisation & Komfort",
+      "name": "Kartenspiel / kleines Spiel",
+      "unit": "Stk",
+      "activity": "Unterkunft",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Claude",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S092",
+      "catalogItemId": "G0631",
+      "category": "Organisation & Komfort",
+      "name": "Ohrstöpsel und Schlafmaske",
+      "unit": "Sets",
+      "activity": "Flug; Unterkunft",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Maximalliste",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S093",
+      "catalogItemId": "G0498",
+      "category": "Organisation & Komfort",
+      "name": "Papier + Schreibzeug / Notizbuch und Stift",
+      "unit": "Set",
+      "activity": "Alle",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Maximalliste",
+      "notes": "",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S094",
+      "catalogItemId": "G0445",
+      "category": "Verpflegung",
+      "name": "Snacks für Flug und Autofahrt",
+      "unit": "Vorrat",
+      "activity": "Flug; Autofahrt",
+      "priority": "Empfohlen",
+      "sourcePriority": "Empfohlen",
+      "luggage": "Handgepäck",
+      "source": "Beide",
+      "notes": "Nüsse/Riegel/Kekse; Einfuhrregeln beachten",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S095",
+      "catalogItemId": "G0432",
+      "category": "Verpflegung",
+      "name": "Wasser nach Ankunft",
+      "unit": "Flaschen",
+      "activity": "Autofahrt; Wandern",
+      "priority": "Unbedingt",
+      "sourcePriority": "Unbedingt",
+      "luggage": "vor Ort kaufen",
+      "source": "Beide",
+      "notes": "nicht von Österreich mitschleppen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 3
+        }
+      ]
+    },
+    {
+      "id": "S096",
+      "catalogItemId": "G0446",
+      "category": "Verpflegung",
+      "name": "Tee/Kaffee nach persönlichem Bedarf",
+      "unit": "Vorrat",
+      "activity": "Unterkunft",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "ChatGPT",
+      "notes": "nur falls in Unterkünften nicht vorhanden",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S097",
+      "catalogItemId": "G0053",
+      "category": "Elektronik",
+      "name": "USB-Stick + Kabel",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Brainstorming",
+      "notes": "zum Zwischenspeichern von Fotos",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S098",
+      "catalogItemId": "G0095",
+      "category": "Kleidung",
+      "name": "Kurze Hose",
+      "unit": "Stk",
+      "activity": "Baden; Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Brainstorming",
+      "notes": "für warme/sonnige Abschnitte",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S099",
+      "catalogItemId": "G0086",
+      "category": "Kleidung",
+      "name": "Langärmeliges Hemd (Knopfhemd)",
+      "unit": "Stk",
+      "activity": "Stadt; Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Brainstorming",
+      "notes": "für etwas gehobenere Abende",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S100",
+      "catalogItemId": "G0198",
+      "category": "Schuhe",
+      "name": "Hausschuhe / Pantoffeln für Unterkunft",
+      "unit": "Paar",
+      "activity": "Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Brainstorming",
+      "notes": "abweichend von Badeschlapfen, für drinnen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S101",
+      "catalogItemId": "G0277",
+      "category": "Gesundheit & Medikamente",
+      "name": "Elektrolytpulver",
+      "unit": "Packung",
+      "activity": "Wandern; Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Brainstorming",
+      "notes": "ursprünglich als „Herzpulver“ notiert – bitte bei Bedarf präzisieren/ergänzen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S102",
+      "catalogItemId": "G0345",
+      "category": "Elektronik",
+      "name": "Verlängerungskabel / Verteilersteckdose",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Brainstorming",
+      "notes": "ergänzend zum Mehrfach-USB-Ladegerät, für Hotels mit wenigen Steckdosen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S103",
+      "catalogItemId": "G0145",
+      "category": "Kleidung",
+      "name": "Tasche (für tagsüber und abends)",
+      "unit": "Stk",
+      "activity": "Stadt; Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Handgepäck",
+      "source": "Brainstorming",
+      "notes": "kleine persönliche Tasche zusätzlich zum Tagesrucksack",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 1
+        },
+        {
+          "person": "Florian",
+          "intended": 1
+        },
+        {
+          "person": "Carina",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S104",
+      "catalogItemId": "G0077",
+      "category": "Kleidung",
+      "name": "Funktions-Unterhosen / Funktionsunterwäsche (Merino)",
+      "unit": "Stk",
+      "activity": "Wandern",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Brainstorming",
+      "notes": "im Brainstorming mit 2–3 Stück vorgesehen; Menge je Person bei Bedarf anpassen",
+      "assignments": [
+        {
+          "person": "Clemens",
+          "intended": 2
+        },
+        {
+          "person": "Florian",
+          "intended": 2
+        },
+        {
+          "person": "Carina",
+          "intended": 2
+        }
+      ]
+    },
+    {
+      "id": "S105",
+      "catalogItemId": "G0532",
+      "category": "Sonstiges",
+      "name": "Feuerzeug / Streichhölzer",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "vor Abflug prüfen",
+      "source": "Brainstorming",
+      "notes": "Transportregeln der Fluglinie vor Abflug prüfen",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    },
+    {
+      "id": "S106",
+      "catalogItemId": "G0246",
+      "category": "Körperpflege",
+      "name": "Seife",
+      "unit": "Stk",
+      "activity": "Aufenthalt",
+      "priority": "Optional",
+      "sourcePriority": "Optional",
+      "luggage": "Aufgabegepäck",
+      "source": "Brainstorming",
+      "notes": "nur falls in den Unterkünften nicht vorhanden",
+      "assignments": [
+        {
+          "person": "Alle",
+          "intended": 1
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "scotland-task-1",
+      "area": "Einreise",
+      "label": "UK-ETA für Clemens, Florian und Carina beantragen/prüfen",
+      "priority": "Unbedingt",
+      "source": "https://www.gov.uk/eta",
+      "notes": "ETA je Person; nur offizielle GOV.UK-Seite/App verwenden"
+    },
+    {
+      "id": "scotland-task-2",
+      "area": "Dokumente",
+      "label": "Reisepässe auf Gültigkeit während des gesamten Aufenthalts prüfen",
+      "priority": "Unbedingt",
+      "source": "https://www.gov.uk/guidance/visiting-the-uk-as-an-eu-eea-or-swiss-citizen",
+      "notes": "Keine zusätzliche 6-Monats-Gültigkeit erforderlich"
+    },
+    {
+      "id": "scotland-task-3",
+      "area": "Flug",
+      "label": "Gepäckmaße, Gewicht und Flüssigkeitsregeln der Airline prüfen",
+      "priority": "Unbedingt",
+      "source": "Airline-Buchung",
+      "notes": "Powerbanks ins Handgepäck; Wanderstöcke ins Aufgabegepäck"
+    },
+    {
+      "id": "scotland-task-4",
+      "area": "Mietwagen",
+      "label": "Fahrer, Kreditkarte, Kaution und Versicherungsdeckung prüfen",
+      "priority": "Unbedingt",
+      "source": "Mietwagenvertrag",
+      "notes": "Originalführerschein und Kreditkarte des Hauptfahrers"
+    },
+    {
+      "id": "scotland-task-5",
+      "area": "Mietwagen",
+      "label": "Linksverkehr und Single-Track-Road-Regeln auffrischen",
+      "priority": "Empfohlen",
+      "source": "https://www.visitscotland.com/travel-planning/driving-in-scotland",
+      "notes": "Fahrzeiten großzügig planen"
+    },
+    {
+      "id": "scotland-task-6",
+      "area": "Navigation",
+      "label": "Offlinekarten für Route und Wanderungen herunterladen",
+      "priority": "Unbedingt",
+      "source": "Google Maps / Wander-App",
+      "notes": "vor Abflug testen"
+    },
+    {
+      "id": "scotland-task-7",
+      "area": "Buchungen",
+      "label": "Unterkünfte, Fähren, Führungen und Museen offline sammeln",
+      "priority": "Unbedingt",
+      "source": "Buchungsunterlagen",
+      "notes": "eine gemeinsame digitale Ablage"
+    },
+    {
+      "id": "scotland-task-8",
+      "area": "Gesundheit",
+      "label": "Persönliche Medikamente und Reserve bereitstellen",
+      "priority": "Unbedingt",
+      "source": "persönlich",
+      "notes": "ins Handgepäck"
+    },
+    {
+      "id": "scotland-task-9",
+      "area": "Midges",
+      "label": "Repellent, Kopfnetze, Zeckenentferner und After-Bite prüfen",
+      "priority": "Empfohlen",
+      "source": "https://www.visitscotland.com/travel-planning/midges-ticks-scotland",
+      "notes": "besonders für Skye/Nordwesten"
+    },
+    {
+      "id": "scotland-task-10",
+      "area": "Wetter",
+      "label": "Etwa 5–7 Tage vor Abreise aktuelle Prognosen prüfen",
+      "priority": "Empfohlen",
+      "source": "https://weather.metoffice.gov.uk/forecast/uk",
+      "notes": "Mengen/Schichten danach feinjustieren"
+    },
+    {
+      "id": "scotland-task-11",
+      "area": "Elektronik",
+      "label": "Adapter, Ladegerät, Kabel und Powerbanks testen/laden",
+      "priority": "Unbedingt",
+      "source": "eigene Geräte",
+      "notes": ""
+    },
+    {
+      "id": "scotland-task-12",
+      "area": "Notfall",
+      "label": "Notfallnummern, Versicherungsdaten und Dokumentkopien offline speichern",
+      "priority": "Empfohlen",
+      "source": "eigene Unterlagen",
+      "notes": ""
+    },
+    {
+      "id": "scotland-task-13",
+      "area": "Mietwagen",
+      "label": "Fahrzeugzustand bei Übernahme kontrollieren und fotografieren",
+      "priority": "Empfohlen",
+      "source": "Brainstorming",
+      "notes": "bei Abholung auch Ersatzreifen prüfen"
+    },
+    {
+      "id": "scotland-task-14",
+      "area": "Mietwagen",
+      "label": "Treibstoffart des Mietwagens notieren",
+      "priority": "Empfohlen",
+      "source": "Brainstorming",
+      "notes": "bei der Fahrzeugübernahme festhalten"
+    },
+    {
+      "id": "scotland-task-15",
+      "area": "Navigation",
+      "label": "Tankstellen-App vorab installieren",
+      "priority": "Optional",
+      "source": "Brainstorming",
+      "notes": "für Tankstellen und Preisvergleich unterwegs"
+    },
+    {
+      "id": "scotland-task-16",
+      "area": "Kommunikation",
+      "label": "Roaming vor Abflug prüfen und freischalten",
+      "priority": "Empfohlen",
+      "source": "Brainstorming",
+      "notes": "Mobilfunktarif und Roaming-Einstellungen kontrollieren"
+    }
+  ]
+}
