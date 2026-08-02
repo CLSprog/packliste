@@ -178,7 +178,7 @@
       "units": "Stk",
       "notes": "ins Handgepäck",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0019",
@@ -218,7 +218,7 @@
       "units": "Set",
       "notes": "digital und optional ausgedruckt",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0023",
@@ -618,7 +618,7 @@
       "units": "Stk",
       "notes": "Badehose oder Badeanzug",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0063",
@@ -928,7 +928,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0094",
@@ -948,7 +948,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0096",
@@ -968,7 +968,7 @@
       "units": "Stück",
       "notes": "Aktivität: TaiJi; für kühle Morgenstunden im Training",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0098",
@@ -978,7 +978,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0099",
@@ -1108,7 +1108,7 @@
       "units": "stk, Stk",
       "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, Mariensee, Waldviertel 01",
       "reviewStatus": "Übernommen",
-      "archived": true
+      "archived": false
     },
     {
       "id": "G0112",
@@ -1438,7 +1438,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0145",
@@ -1508,7 +1508,7 @@
       "units": "stk, Stk",
       "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01 | Für 10 Nächtigungen; bei Waschmöglichkeit reduzierbar | Für 10 Tage",
       "reviewStatus": "Manuell prüfen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0152",
@@ -1548,7 +1548,7 @@
       "units": "Stk, Stück",
       "notes": "möglichst schnelltrocknend | Aktivität: Bergwanderung_Huette;",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0156",
@@ -1608,7 +1608,7 @@
       "units": "",
       "notes": "Wind an Küste/Skye",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0162",
@@ -1618,7 +1618,7 @@
       "units": "",
       "notes": "Abende können kühl sein",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0163",
@@ -1728,7 +1728,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0174",
@@ -2078,7 +2078,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0209",
@@ -2428,7 +2428,7 @@
       "units": "Set",
       "notes": "individuell anpassen",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0244",
@@ -2478,7 +2478,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0249",
@@ -2528,7 +2528,7 @@
       "units": "",
       "notes": "Allgemein",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0254",
@@ -3118,7 +3118,7 @@
       "units": "Set",
       "notes": "USB-C/benötigte Anschlüsse",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0313",
@@ -3238,7 +3238,7 @@
       "units": "Stk",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0325",
@@ -3258,7 +3258,7 @@
       "units": "Set",
       "notes": "nur bei Mitnahme der Kamera",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0327",
@@ -3338,7 +3338,7 @@
       "units": "Stk",
       "notes": "nur ins Handgepäck",
       "reviewStatus": "Manuell prüfen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0335",
@@ -3788,7 +3788,7 @@
       "units": "Paar",
       "notes": "Ins Aufgabegepäck | Optional, faltbar | Meist nur im Aufgabegepäck erlaubt | Aktivität: Wandern; optional",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0380",
@@ -3988,7 +3988,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0400",
@@ -4448,7 +4448,7 @@
       "units": "Vorrat",
       "notes": "Müsliriegel, Kekse oder Nüsse",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0446",
@@ -4458,7 +4458,7 @@
       "units": "Vorrat",
       "notes": "nur falls in Unterkünften nicht vorhanden",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0447",
@@ -4478,7 +4478,7 @@
       "units": "",
       "notes": "Regen sehr wahrscheinlich",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0449",
@@ -5508,7 +5508,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0552",
@@ -5558,7 +5558,7 @@
       "units": "",
       "notes": "Optional, für Stadtbummel",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0557",
@@ -5578,7 +5578,7 @@
       "units": "",
       "notes": "Bei starkem Aufkommen sehr hilfreich",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0559",
@@ -6158,7 +6158,7 @@
       "units": "",
       "notes": "",
       "reviewStatus": "Übernommen",
-      "archived": false
+      "archived": true
     },
     {
       "id": "G0617",
