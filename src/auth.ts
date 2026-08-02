@@ -1,7 +1,7 @@
 import { PublicClientApplication, type AccountInfo, InteractionRequiredAuthError } from "@azure/msal-browser";
 
-// Diese Werte stammen aus der Azure-App-Registrierung "P03 Packliste App".
-const CLIENT_ID = "ddfae93a-0623-4d37-b6dd-f25c385d06d1";
+// Diese Werte stammen aus der Azure-App-Registrierung "packliste".
+const CLIENT_ID = "43b301b1-6559-4c3f-8542-3b47bc207aa3";
 const TENANT_AUTHORITY = "https://login.microsoftonline.com/common"; // "common" erlaubt private Microsoft-Konten und Organisationskonten
 
 // BASE_URL wird von Vite anhand von vite.config.ts (base: "/p03-packliste/") gesetzt.
@@ -67,3 +67,4 @@ export async function getAccessToken(): Promise<string> {
     throw error;
   }
 }
+
