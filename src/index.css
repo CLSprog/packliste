@@ -65,21 +65,42 @@ svg { width:24px; height:24px; }
 .pl-category-tag { font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); background: var(--blue-soft); padding: 2px 8px; border-radius: 5px; border: 1px solid #cddcee; }
 .pl-category-count { font-size: 10.5px; color: var(--muted); }
 
-.pl-item { background: var(--card); border-bottom: 1px solid var(--line); padding: 6px 2px; margin-bottom: 0; display: flex; align-items: center; gap: 8px; min-height: 30px; }
-.pl-item-name { font-size: 12.5px; font-weight: 600; color: var(--ink); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pl-item-empty { font-size: 10.5px; color: var(--muted); font-style: italic; }
-.pl-badges { display: flex; align-items: center; gap: 4px; flex: none; }
-.pl-badge {
-  width: 30px; height: 24px; border-radius: 6px; border: 1px solid var(--line);
-  background: #f3f4f6; color: var(--muted); font-size: 10px; font-weight: 700;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1;
-}
-.pl-badge .qty { font-size: 8.5px; font-weight: 600; opacity: .8; }
-.pl-badge.stage-hergerichtet { background: var(--amber-soft); border-color: #e2cfa8; color: #7a5c21; }
-.pl-badge.stage-eingepackt { background: var(--blue-soft); border-color: #b9cfe8; color: #1F4E78; }
-.pl-badge.stage-verwendet { background: var(--green); border-color: var(--green); color: white; }
+.pl-legend { display: flex; gap: 4px; padding: 4px 12px 2px; font-size: 9px; color: var(--muted); }
+.pl-legend span { width: 22px; text-align: center; }
 
-.pl-loading { padding: 60px 20px; text-align: center; color: var(--muted); }
+.pl-item { background: var(--card); border-bottom: 1px solid var(--line); padding: 6px 2px; margin-bottom: 0; }
+.pl-item-name { font-size: 12.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.pl-item-empty { font-size: 10.5px; color: var(--muted); font-style: italic; }
+.pl-item.pl-item-single { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pl-item.pl-item-single .pl-item-name { margin-bottom: 0; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pl-qrow { display: flex; gap: 4px; flex: none; }
+.pl-qbox { user-select: none; }
+.pl-qbox {
+  width: 22px; height: 20px; border-radius: 4px; border: 1px solid var(--line);
+  background: #f8fafc; color: var(--muted); font-size: 10.5px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex: none; padding: 0;
+}
+.pl-qbox.q-ausgewaehlt { background: #eef0f3; color: var(--ink); border-color: #d5d9de; }
+.pl-qbox.q-hergerichtet.q-set { background: var(--amber-soft); border-color: #e2cfa8; color: #7a5c21; }
+.pl-qbox.q-eingepackt.q-set { background: var(--blue-soft); border-color: #b9cfe8; color: #1F4E78; }
+.pl-qbox.q-verwendet.q-set { background: var(--green); border-color: var(--green); color: white; }
+
+.pl-editbar { display: flex; justify-content: flex-end; padding: 8px 14px 0; }
+.pl-edit-toggle { font-size: 12px; background: var(--card); border: 1px solid var(--line); color: var(--navy); border-radius: 999px; padding: 6px 12px; font-weight: 600; }
+.pl-edit-toggle.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+.pl-newreise { padding: 14px; background: var(--card); margin: 10px 14px; border-radius: 10px; border: 1px solid var(--line); }
+.pl-newreise label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin: 8px 0 3px; }
+.pl-newreise input { width: 100%; padding: 8px 9px; border-radius: 7px; border: 1px solid var(--line); font-size: 14px; }
+.pl-newreise button { margin-top: 12px; background: var(--navy); color: white; border: none; border-radius: 8px; padding: 9px 16px; font-size: 14px; font-weight: 600; }
+
+.pl-edit-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 2px; border-bottom: 1px solid var(--line); }
+.pl-edit-item-name { font-size: 12.5px; color: var(--ink); flex: 1; }
+.pl-edit-check {
+  width: 30px; height: 26px; border-radius: 6px; border: 1.5px solid var(--line); background: #f8fafc;
+  color: var(--muted); font-size: 13px; font-weight: 800; flex: none;
+}
+.pl-edit-check.on { background: var(--green); border-color: var(--green); color: white; }
 .menu-button { display:none; border:0; background:none; padding:8px; }
 .card { background:color-mix(in srgb,var(--card) 96%,transparent); border:1px solid var(--line); border-radius:20px; box-shadow:0 12px 30px #4b42340a; }
 .workflow-overview { max-width:1180px; min-height:210px; margin:22px auto 0; padding:24px 28px; display:grid; grid-template-columns:160px minmax(280px,1fr) minmax(220px,.55fr); align-items:center; gap:28px; }
