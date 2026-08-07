@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
 import { initMsal, login, getAccount } from "./auth";
-import PackingApp from "./PackingApp";
+import SchemaApp from "./SchemaApp";
 
 export default function App() {
   const [status, setStatus] = useState<"initializing" | "signed-out" | "signing-in" | "signed-in" | "error">("initializing");
@@ -43,7 +43,7 @@ export default function App() {
   }
 
   if (status === "signed-in" && account) {
-    return <PackingApp account={account} />;
+    return <SchemaApp account={account} />;
   }
 
   return (
