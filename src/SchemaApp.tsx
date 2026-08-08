@@ -152,28 +152,16 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     });
   }
 
-  // Wisch-Erkennung: nach oben = hochzählen, nach unten = runterzählen.
-  // Reine Tippen (ohne nennenswerte Bewegung) zählt ebenfalls als "hoch" (schnellster Standardfall).
-  const swipeStart = { current: null as { y: number } | null };
-  function handlePointerDown(e: React.PointerEvent<HTMLButtonElement>) {
-    swipeStart.current = { y: e.clientY };
-  }
-  function handlePointerUp(
-    e: React.PointerEvent<HTMLButtonElement>,
+  // Antippen der linken Hälfte eines Feldes = runterzählen, rechte Hälfte = hochzählen.
+  // (Wischen war auf dem Handy unzuverlässig, weil die Seite dabei mitscrollt.)
+  function handleFieldTap(
+    e: React.MouseEvent<HTMLButtonElement>,
     row: Tk04GegenstandPerson,
     field: "ausgewaehlt" | "hergerichtet" | "eingepackt" | "verwendet"
   ) {
-    const start = swipeStart.current;
-    swipeStart.current = null;
-    const deltaY = start ? e.clientY - start.y : 0;
-    const THRESHOLD = 12; // Pixel, ab wann es als Wisch gilt
-    if (deltaY < -THRESHOLD) {
-      bumpField(row, field, 1); // nach oben gewischt
-    } else if (deltaY > THRESHOLD) {
-      bumpField(row, field, -1); // nach unten gewischt
-    } else {
-      bumpField(row, field, 1); // einfaches Antippen = hochzählen
-    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    const isRightHalf = e.clientX - rect.left > rect.width / 2;
+    bumpField(row, field, isRightHalf ? 1 : -1);
   }
 
   function collectAllIds(d: SchemaData): Set<string> {
@@ -412,8 +400,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                 <div className="pl-qrow">
                   <button
                     className="pl-qbox q-ausgewaehlt"
-                    onPointerDown={handlePointerDown}
-                    onPointerUp={(e) => handlePointerUp(e, row, "ausgewaehlt")}
+                    onClick={(e) => handleFieldTap(e, row, "ausgewaehlt")}
                   >
                     {row.ausgewaehlt ?? 0}
                   </button>
@@ -424,8 +411,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                       <button
                         key={field}
                         className={"pl-qbox q-" + field + (has ? " q-set" : "")}
-                        onPointerDown={handlePointerDown}
-                        onPointerUp={(e) => handlePointerUp(e, row, field)}
+                        onClick={(e) => handleFieldTap(e, row, field)}
                       >
                         {has ? val : "–"}
                       </button>
