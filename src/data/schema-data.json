@@ -10,9 +10,9 @@
     {
       "id": "R-25903",
       "reise": "China 2024",
-      "von": null,
-      "bis": null,
-      "notiz": "Datum noch zu ergänzen"
+      "von": "2024-07-29T00:00:00",
+      "bis": "2024-08-20T00:00:00",
+      "notiz": "TaiJi-Seminar mit Klosteraufenthalt und Wettbewerb, mit Sonja. Packliste aus historischen Excel-Listen (CLS + Sonja) uebernommen."
     },
     {
       "id": "R-92041",
@@ -24,9 +24,9 @@
     {
       "id": "R-66718",
       "reise": "Grimming 2026",
-      "von": null,
-      "bis": null,
-      "notiz": "Datum noch zu ergänzen"
+      "von": "2026-06-19T00:00:00",
+      "bis": "2026-06-28T00:00:00",
+      "notiz": ""
     }
   ],
   "t02_aktivitaet": [
@@ -88,6 +88,11 @@
     {
       "id": "A-72931",
       "aktivitaet": "Roadtrip",
+      "notiz": ""
+    },
+    {
+      "id": "A-92418",
+      "aktivitaet": "Laufen",
       "notiz": ""
     }
   ],
@@ -817,6 +822,942 @@
       "gegenstand": "Zündhölzer",
       "id_kathegorie": "K-31912",
       "notiz": ""
+    },
+    {
+      "id": "G-90308",
+      "gegenstand": "Trainingshosen (weit, bequem)",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-99763",
+      "gegenstand": "Leichte T-Shirts / Funktionsshirts",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-43725",
+      "gegenstand": "Langarmshirts",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-92135",
+      "gegenstand": "Leichte Jacke / Sweatjacke fürs Training",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-85401",
+      "gegenstand": "TaiJi-Schuhe",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-31576",
+      "gegenstand": "Hallenschuhe / Hausschuhe",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-68045",
+      "gegenstand": "Schweißband / Stirnband",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-75080",
+      "gegenstand": "Laufhosen / Lauftights",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-15027",
+      "gegenstand": "Lauf-Funktionsshirts",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-75179",
+      "gegenstand": "Laufsocken",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-92123",
+      "gegenstand": "Laufschuhe",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-66443",
+      "gegenstand": "Stirnband / Schirmmütze",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-52279",
+      "gegenstand": "Laufuhr / GPS-Uhr",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-45869",
+      "gegenstand": "Kompressionsstrümpfe",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-31508",
+      "gegenstand": "Alltagshosen / Chinos",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-13275",
+      "gegenstand": "Alltagsshirts / Polos",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-97782",
+      "gegenstand": "Wetterfeste Jacke / Softshell",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-42952",
+      "gegenstand": "Abendgarnitur",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-54654",
+      "gegenstand": "Bequeme Alltagsschuhe / Sneaker",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-40497",
+      "gegenstand": "Badetuch / Strandtuch",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-48054",
+      "gegenstand": "Badelatschen / Flip-Flops",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-49724",
+      "gegenstand": "Wanderschuhe",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-99161",
+      "gegenstand": "Wanderstöcke",
+      "id_kathegorie": "K-89603",
+      "notiz": ""
+    },
+    {
+      "id": "G-35768",
+      "gegenstand": "Wanderkarte oder GPS-App",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-27305",
+      "gegenstand": "Funktionsunterwäsche Merino",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-72404",
+      "gegenstand": "Daunenjacke / Wärmejacke",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-95875",
+      "gegenstand": "Mütze + Handschuhe",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-48551",
+      "gegenstand": "Hüttenschuhe / leichte Sandalen",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-18507",
+      "gegenstand": "Wechsel-T-Shirt + Unterwäsche (Tag 2)",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-40441",
+      "gegenstand": "Regenschutz / Rucksack-Cover",
+      "id_kathegorie": "K-89603",
+      "notiz": ""
+    },
+    {
+      "id": "G-76180",
+      "gegenstand": "Rettungsdecke",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-88156",
+      "gegenstand": "Pfeife (Notfallsignal)",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-13678",
+      "gegenstand": "Wanderkarte Papier + Kompass",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-90750",
+      "gegenstand": "Trinksack",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-16595",
+      "gegenstand": "Energieriegel / Nüsse / Trockenfrüchte",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-57247",
+      "gegenstand": "Notfallration Schokolade",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-91911",
+      "gegenstand": "Hüttenschlafsack (Inlett)",
+      "id_kathegorie": "K-24223",
+      "notiz": ""
+    },
+    {
+      "id": "G-28757",
+      "gegenstand": "Ohrstöpsel",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-48161",
+      "gegenstand": "Minitoilettenset",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-85275",
+      "gegenstand": "Hüttenreservierung",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-69993",
+      "gegenstand": "Meditationskissen / Zafu",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-87974",
+      "gegenstand": "Meditationsdecke / Wollschal",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-57741",
+      "gegenstand": "Weite Hose extra fürs Sitzen",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-29734",
+      "gegenstand": "Augenmaske",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-10952",
+      "gegenstand": "Notizbuch + Stift",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-48692",
+      "gegenstand": "Lektüre / spirituelles Buch",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-47330",
+      "gegenstand": "Aromaöl / Raumduft (kleines Fläschchen)",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-38922",
+      "gegenstand": "Mala / Gebetskette",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-23721",
+      "gegenstand": "Handtuch",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-74905",
+      "gegenstand": "Augentropfen",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-30798",
+      "gegenstand": "Ibuprofen 400mg",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-94503",
+      "gegenstand": "Paracetamol 500mg",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-56162",
+      "gegenstand": "Buscopan",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-43924",
+      "gegenstand": "Pantoprazol / Omeprazol",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-99372",
+      "gegenstand": "Elektrolytpulver",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-16599",
+      "gegenstand": "Halstabletten / Lutschtabletten",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-10505",
+      "gegenstand": "Antihistaminikum (Cetirizin)",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-52405",
+      "gegenstand": "Nasendusche / Salzspray",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-48849",
+      "gegenstand": "Wundsalbe (Bepanthen)",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-71661",
+      "gegenstand": "Elastische Binde / Tensor-Bandage",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-71314",
+      "gegenstand": "Voltaren Gel / Muskelgel",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-57388",
+      "gegenstand": "Tigerbalm oder Franzbranntwein",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-51916",
+      "gegenstand": "Kühlpack (wiederverwendbar)",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-33005",
+      "gegenstand": "Kamera",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-49154",
+      "gegenstand": "Snacks für die Autofahrt",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-69350",
+      "gegenstand": "Seminarbestätigung / Buchungsunterlagen",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-73863",
+      "gegenstand": "Versicherung",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-41398",
+      "gegenstand": "Impfpass",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-89258",
+      "gegenstand": "Creditkarten",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-13166",
+      "gegenstand": "Couvert Kloster",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-43989",
+      "gegenstand": "Couvert Wettbewerb",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-70496",
+      "gegenstand": "Couvert Hotel",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-12325",
+      "gegenstand": "Diter Hepatitis",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-23806",
+      "gegenstand": "Bauchtascherl",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-42708",
+      "gegenstand": "Passbild",
+      "id_kathegorie": "K-42296",
+      "notiz": ""
+    },
+    {
+      "id": "G-57222",
+      "gegenstand": "Zahnseide",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-44580",
+      "gegenstand": "Deo",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-15760",
+      "gegenstand": "Parfume",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-95235",
+      "gegenstand": "Nasensprey",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-19264",
+      "gegenstand": "Barttrimmer + Ladegerät",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-21403",
+      "gegenstand": "Nasenspülung",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-14609",
+      "gegenstand": "Unterwäsche",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-80281",
+      "gegenstand": "Unterwäsche transtex",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-89050",
+      "gegenstand": "Socken Sport",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-35101",
+      "gegenstand": "Leiber transtex kurz",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-29857",
+      "gegenstand": "Leiberl transtex Lang",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-36698",
+      "gegenstand": "Pulli/Weste",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-71735",
+      "gegenstand": "Schuhe",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-19527",
+      "gegenstand": "Sandalen",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-45745",
+      "gegenstand": "FlipFlo",
+      "id_kathegorie": "K-79836",
+      "notiz": ""
+    },
+    {
+      "id": "G-65694",
+      "gegenstand": "Handtücher klein",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-66185",
+      "gegenstand": "Handtuch mittel",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-99230",
+      "gegenstand": "Schlafsack",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-34349",
+      "gegenstand": "Insektennetz",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-14146",
+      "gegenstand": "Schlafgewand",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-51062",
+      "gegenstand": "Jacke",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-20661",
+      "gegenstand": "Haube",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-81530",
+      "gegenstand": "Säbel",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-43171",
+      "gegenstand": "Tücher für Säbel",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-74468",
+      "gegenstand": "Socken weiß",
+      "id_kathegorie": "K-19415",
+      "notiz": ""
+    },
+    {
+      "id": "G-64256",
+      "gegenstand": "Säbeltasche",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-90574",
+      "gegenstand": "Polster aufblasbar",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-44976",
+      "gegenstand": "Tücher",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-69497",
+      "gegenstand": "Sonnenschutz",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-76453",
+      "gegenstand": "Schreibzeug",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-20833",
+      "gegenstand": "Block",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-98875",
+      "gegenstand": "Kluppen",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-65221",
+      "gegenstand": "Sonnenbrillen",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-78331",
+      "gegenstand": "Aftersun",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-55975",
+      "gegenstand": "Lipstick",
+      "id_kathegorie": "K-98911",
+      "notiz": ""
+    },
+    {
+      "id": "G-23170",
+      "gegenstand": "Sackerln",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-16964",
+      "gegenstand": "Tascherl",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-35272",
+      "gegenstand": "Stirnlampe + Batterien",
+      "id_kathegorie": "K-89603",
+      "notiz": ""
+    },
+    {
+      "id": "G-73091",
+      "gegenstand": "Kleiderhaken",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-56873",
+      "gegenstand": "Saugknöpfe",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-18738",
+      "gegenstand": "Taschenmesser",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-18218",
+      "gegenstand": "Waschmittel",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-62955",
+      "gegenstand": "Schirm",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-65296",
+      "gegenstand": "Kofferwaage",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-44607",
+      "gegenstand": "Visitkarten",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-58638",
+      "gegenstand": "Nähzeug",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-47477",
+      "gegenstand": "Wäscheleine",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-99102",
+      "gegenstand": "Schnur",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-52888",
+      "gegenstand": "Frischespray",
+      "id_kathegorie": "K-31912",
+      "notiz": ""
+    },
+    {
+      "id": "G-72983",
+      "gegenstand": "Akkupack",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-85711",
+      "gegenstand": "Ladekabel USB-C",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-31272",
+      "gegenstand": "Ladekabel USB-B Mini",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-54282",
+      "gegenstand": "Ladestecker",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-62247",
+      "gegenstand": "Verteiler",
+      "id_kathegorie": "K-31915",
+      "notiz": ""
+    },
+    {
+      "id": "G-35951",
+      "gegenstand": "Insektenschutz",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-56745",
+      "gegenstand": "Durchfall",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-57867",
+      "gegenstand": "Verstopfung",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-35065",
+      "gegenstand": "Verstauchung",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-21966",
+      "gegenstand": "Fieber",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-49069",
+      "gegenstand": "Nagelpilz",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-26042",
+      "gegenstand": "Desinfektion",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-55614",
+      "gegenstand": "Malariaprophilaxe",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-95344",
+      "gegenstand": "Verbände",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-86224",
+      "gegenstand": "Pflaster",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-33798",
+      "gegenstand": "Blasenpflaster",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-96475",
+      "gegenstand": "Insekten Stift",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-94529",
+      "gegenstand": "Insektenstiche",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-93738",
+      "gegenstand": "Wundversorgung",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-61745",
+      "gegenstand": "Schmerzmittel",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-36475",
+      "gegenstand": "Sodbrennen",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-11969",
+      "gegenstand": "Alergie",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-87354",
+      "gegenstand": "Sonjas Wundersalbe",
+      "id_kathegorie": "K-13774",
+      "notiz": ""
+    },
+    {
+      "id": "G-91633",
+      "gegenstand": "Magnesium Tabletten",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-63216",
+      "gegenstand": "Vitamine",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-99849",
+      "gegenstand": "Brausetabletten",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-88288",
+      "gegenstand": "isotonisches Pulver",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-16194",
+      "gegenstand": "Powerriegel",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-76209",
+      "gegenstand": "Calzium",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-56825",
+      "gegenstand": "Magnesium Sackerl",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-36031",
+      "gegenstand": "Magnesium Quick",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
+    },
+    {
+      "id": "G-55818",
+      "gegenstand": "Teesackerl",
+      "id_kathegorie": "K-42823",
+      "notiz": ""
     }
   ],
   "t05_namen": [
@@ -880,6 +1821,71 @@
     {
       "id": "V1-55417",
       "id_t01": "R-63939",
+      "id_t02": "A-38817"
+    },
+    {
+      "id": "V1-62958",
+      "id_t01": "R-66718",
+      "id_t02": "A-81840"
+    },
+    {
+      "id": "V1-99482",
+      "id_t01": "R-66718",
+      "id_t02": "A-46982"
+    },
+    {
+      "id": "V1-33340",
+      "id_t01": "R-66718",
+      "id_t02": "A-26622"
+    },
+    {
+      "id": "V1-79469",
+      "id_t01": "R-66718",
+      "id_t02": "A-48657"
+    },
+    {
+      "id": "V1-83888",
+      "id_t01": "R-66718",
+      "id_t02": "A-38817"
+    },
+    {
+      "id": "V1-27987",
+      "id_t01": "R-66718",
+      "id_t02": "A-77819"
+    },
+    {
+      "id": "V1-95250",
+      "id_t01": "R-66718",
+      "id_t02": "A-38103"
+    },
+    {
+      "id": "V1-12676",
+      "id_t01": "R-66718",
+      "id_t02": "A-92418"
+    },
+    {
+      "id": "V1-95841",
+      "id_t01": "R-25903",
+      "id_t02": "A-48657"
+    },
+    {
+      "id": "V1-81417",
+      "id_t01": "R-25903",
+      "id_t02": "A-38103"
+    },
+    {
+      "id": "V1-76798",
+      "id_t01": "R-25903",
+      "id_t02": "A-12038"
+    },
+    {
+      "id": "V1-94566",
+      "id_t01": "R-25903",
+      "id_t02": "A-77819"
+    },
+    {
+      "id": "V1-79160",
+      "id_t01": "R-25903",
       "id_t02": "A-38817"
     }
   ],
@@ -1778,6 +2784,896 @@
       "id": "V2-34087",
       "id_t02": "A-38817",
       "id_t04": "G-20526"
+    },
+    {
+      "id": "V2-73763",
+      "id_t02": "A-48657",
+      "id_t04": "G-90308"
+    },
+    {
+      "id": "V2-29627",
+      "id_t02": "A-48657",
+      "id_t04": "G-99763"
+    },
+    {
+      "id": "V2-70473",
+      "id_t02": "A-48657",
+      "id_t04": "G-43725"
+    },
+    {
+      "id": "V2-28717",
+      "id_t02": "A-48657",
+      "id_t04": "G-92135"
+    },
+    {
+      "id": "V2-70331",
+      "id_t02": "A-48657",
+      "id_t04": "G-85401"
+    },
+    {
+      "id": "V2-46361",
+      "id_t02": "A-48657",
+      "id_t04": "G-31576"
+    },
+    {
+      "id": "V2-48737",
+      "id_t02": "A-48657",
+      "id_t04": "G-68045"
+    },
+    {
+      "id": "V2-14559",
+      "id_t02": "A-92418",
+      "id_t04": "G-75080"
+    },
+    {
+      "id": "V2-23183",
+      "id_t02": "A-92418",
+      "id_t04": "G-15027"
+    },
+    {
+      "id": "V2-60934",
+      "id_t02": "A-92418",
+      "id_t04": "G-75179"
+    },
+    {
+      "id": "V2-45627",
+      "id_t02": "A-92418",
+      "id_t04": "G-92123"
+    },
+    {
+      "id": "V2-35559",
+      "id_t02": "A-92418",
+      "id_t04": "G-13579"
+    },
+    {
+      "id": "V2-74830",
+      "id_t02": "A-92418",
+      "id_t04": "G-66443"
+    },
+    {
+      "id": "V2-56018",
+      "id_t02": "A-92418",
+      "id_t04": "G-52279"
+    },
+    {
+      "id": "V2-60367",
+      "id_t02": "A-92418",
+      "id_t04": "G-45869"
+    },
+    {
+      "id": "V2-19866",
+      "id_t02": "A-38817",
+      "id_t04": "G-31508"
+    },
+    {
+      "id": "V2-31590",
+      "id_t02": "A-38817",
+      "id_t04": "G-13275"
+    },
+    {
+      "id": "V2-64200",
+      "id_t02": "A-38817",
+      "id_t04": "G-97782"
+    },
+    {
+      "id": "V2-78069",
+      "id_t02": "A-38817",
+      "id_t04": "G-42952"
+    },
+    {
+      "id": "V2-51109",
+      "id_t02": "A-38817",
+      "id_t04": "G-54654"
+    },
+    {
+      "id": "V2-26738",
+      "id_t02": "A-77819",
+      "id_t04": "G-40497"
+    },
+    {
+      "id": "V2-88406",
+      "id_t02": "A-77819",
+      "id_t04": "G-48054"
+    },
+    {
+      "id": "V2-68068",
+      "id_t02": "A-81840",
+      "id_t04": "G-49724"
+    },
+    {
+      "id": "V2-43293",
+      "id_t02": "A-46982",
+      "id_t04": "G-49724"
+    },
+    {
+      "id": "V2-82135",
+      "id_t02": "A-81840",
+      "id_t04": "G-99161"
+    },
+    {
+      "id": "V2-84310",
+      "id_t02": "A-81840",
+      "id_t04": "G-90750"
+    },
+    {
+      "id": "V2-34746",
+      "id_t02": "A-81840",
+      "id_t04": "G-60982"
+    },
+    {
+      "id": "V2-29068",
+      "id_t02": "A-81840",
+      "id_t04": "G-35768"
+    },
+    {
+      "id": "V2-63977",
+      "id_t02": "A-46982",
+      "id_t04": "G-51159"
+    },
+    {
+      "id": "V2-25864",
+      "id_t02": "A-46982",
+      "id_t04": "G-27305"
+    },
+    {
+      "id": "V2-80719",
+      "id_t02": "A-46982",
+      "id_t04": "G-72975"
+    },
+    {
+      "id": "V2-40317",
+      "id_t02": "A-46982",
+      "id_t04": "G-43032"
+    },
+    {
+      "id": "V2-91554",
+      "id_t02": "A-46982",
+      "id_t04": "G-38803"
+    },
+    {
+      "id": "V2-74676",
+      "id_t02": "A-46982",
+      "id_t04": "G-72404"
+    },
+    {
+      "id": "V2-34961",
+      "id_t02": "A-46982",
+      "id_t04": "G-95875"
+    },
+    {
+      "id": "V2-52595",
+      "id_t02": "A-46982",
+      "id_t04": "G-48551"
+    },
+    {
+      "id": "V2-37320",
+      "id_t02": "A-46982",
+      "id_t04": "G-18507"
+    },
+    {
+      "id": "V2-66168",
+      "id_t02": "A-46982",
+      "id_t04": "G-78487"
+    },
+    {
+      "id": "V2-38105",
+      "id_t02": "A-46982",
+      "id_t04": "G-40441"
+    },
+    {
+      "id": "V2-63818",
+      "id_t02": "A-46982",
+      "id_t04": "G-30857"
+    },
+    {
+      "id": "V2-67997",
+      "id_t02": "A-46982",
+      "id_t04": "G-76180"
+    },
+    {
+      "id": "V2-38662",
+      "id_t02": "A-46982",
+      "id_t04": "G-88156"
+    },
+    {
+      "id": "V2-32618",
+      "id_t02": "A-46982",
+      "id_t04": "G-95141"
+    },
+    {
+      "id": "V2-33194",
+      "id_t02": "A-46982",
+      "id_t04": "G-64187"
+    },
+    {
+      "id": "V2-74341",
+      "id_t02": "A-46982",
+      "id_t04": "G-13678"
+    },
+    {
+      "id": "V2-77954",
+      "id_t02": "A-46982",
+      "id_t04": "G-90750"
+    },
+    {
+      "id": "V2-27061",
+      "id_t02": "A-46982",
+      "id_t04": "G-16595"
+    },
+    {
+      "id": "V2-42711",
+      "id_t02": "A-46982",
+      "id_t04": "G-57247"
+    },
+    {
+      "id": "V2-77168",
+      "id_t02": "A-46982",
+      "id_t04": "G-91911"
+    },
+    {
+      "id": "V2-83042",
+      "id_t02": "A-46982",
+      "id_t04": "G-28757"
+    },
+    {
+      "id": "V2-34407",
+      "id_t02": "A-38103",
+      "id_t04": "G-28757"
+    },
+    {
+      "id": "V2-24819",
+      "id_t02": "A-46982",
+      "id_t04": "G-76793"
+    },
+    {
+      "id": "V2-77514",
+      "id_t02": "A-46982",
+      "id_t04": "G-48161"
+    },
+    {
+      "id": "V2-46360",
+      "id_t02": "A-46982",
+      "id_t04": "G-77053"
+    },
+    {
+      "id": "V2-12270",
+      "id_t02": "A-46982",
+      "id_t04": "G-85275"
+    },
+    {
+      "id": "V2-98617",
+      "id_t02": "A-38103",
+      "id_t04": "G-69993"
+    },
+    {
+      "id": "V2-49236",
+      "id_t02": "A-38103",
+      "id_t04": "G-87974"
+    },
+    {
+      "id": "V2-23541",
+      "id_t02": "A-38103",
+      "id_t04": "G-57741"
+    },
+    {
+      "id": "V2-37819",
+      "id_t02": "A-38103",
+      "id_t04": "G-29734"
+    },
+    {
+      "id": "V2-41190",
+      "id_t02": "A-38103",
+      "id_t04": "G-10952"
+    },
+    {
+      "id": "V2-36663",
+      "id_t02": "A-38103",
+      "id_t04": "G-48692"
+    },
+    {
+      "id": "V2-68269",
+      "id_t02": "A-38103",
+      "id_t04": "G-47330"
+    },
+    {
+      "id": "V2-39143",
+      "id_t02": "A-38103",
+      "id_t04": "G-38922"
+    },
+    {
+      "id": "V2-96745",
+      "id_t02": "A-38817",
+      "id_t04": "G-23721"
+    },
+    {
+      "id": "V2-97220",
+      "id_t02": "A-38817",
+      "id_t04": "G-74905"
+    },
+    {
+      "id": "V2-95633",
+      "id_t02": "A-38817",
+      "id_t04": "G-30798"
+    },
+    {
+      "id": "V2-84644",
+      "id_t02": "A-38817",
+      "id_t04": "G-94503"
+    },
+    {
+      "id": "V2-89174",
+      "id_t02": "A-38817",
+      "id_t04": "G-56162"
+    },
+    {
+      "id": "V2-63008",
+      "id_t02": "A-38817",
+      "id_t04": "G-43924"
+    },
+    {
+      "id": "V2-33681",
+      "id_t02": "A-38817",
+      "id_t04": "G-99372"
+    },
+    {
+      "id": "V2-70984",
+      "id_t02": "A-38817",
+      "id_t04": "G-16599"
+    },
+    {
+      "id": "V2-51682",
+      "id_t02": "A-38817",
+      "id_t04": "G-10505"
+    },
+    {
+      "id": "V2-24907",
+      "id_t02": "A-38817",
+      "id_t04": "G-52405"
+    },
+    {
+      "id": "V2-14120",
+      "id_t02": "A-38817",
+      "id_t04": "G-48849"
+    },
+    {
+      "id": "V2-17002",
+      "id_t02": "A-38817",
+      "id_t04": "G-71661"
+    },
+    {
+      "id": "V2-85147",
+      "id_t02": "A-38817",
+      "id_t04": "G-71314"
+    },
+    {
+      "id": "V2-16712",
+      "id_t02": "A-38817",
+      "id_t04": "G-57388"
+    },
+    {
+      "id": "V2-87861",
+      "id_t02": "A-38817",
+      "id_t04": "G-51916"
+    },
+    {
+      "id": "V2-28584",
+      "id_t02": "A-38817",
+      "id_t04": "G-33005"
+    },
+    {
+      "id": "V2-16589",
+      "id_t02": "A-26622",
+      "id_t04": "G-49154"
+    },
+    {
+      "id": "V2-30734",
+      "id_t02": "A-38817",
+      "id_t04": "G-69350"
+    },
+    {
+      "id": "V2-24854",
+      "id_t02": "A-46982",
+      "id_t04": "G-77359"
+    },
+    {
+      "id": "V2-13995",
+      "id_t02": "A-38817",
+      "id_t04": "G-98205"
+    },
+    {
+      "id": "V2-23016",
+      "id_t02": "A-38817",
+      "id_t04": "G-73863"
+    },
+    {
+      "id": "V2-79519",
+      "id_t02": "A-38817",
+      "id_t04": "G-41398"
+    },
+    {
+      "id": "V2-20711",
+      "id_t02": "A-38817",
+      "id_t04": "G-89258"
+    },
+    {
+      "id": "V2-40018",
+      "id_t02": "A-38817",
+      "id_t04": "G-13166"
+    },
+    {
+      "id": "V2-44691",
+      "id_t02": "A-38817",
+      "id_t04": "G-43989"
+    },
+    {
+      "id": "V2-45535",
+      "id_t02": "A-38817",
+      "id_t04": "G-70496"
+    },
+    {
+      "id": "V2-35705",
+      "id_t02": "A-38817",
+      "id_t04": "G-12325"
+    },
+    {
+      "id": "V2-62689",
+      "id_t02": "A-38817",
+      "id_t04": "G-23806"
+    },
+    {
+      "id": "V2-92387",
+      "id_t02": "A-38817",
+      "id_t04": "G-42708"
+    },
+    {
+      "id": "V2-46634",
+      "id_t02": "A-38817",
+      "id_t04": "G-57222"
+    },
+    {
+      "id": "V2-78432",
+      "id_t02": "A-38817",
+      "id_t04": "G-44580"
+    },
+    {
+      "id": "V2-45808",
+      "id_t02": "A-38817",
+      "id_t04": "G-15760"
+    },
+    {
+      "id": "V2-27640",
+      "id_t02": "A-38817",
+      "id_t04": "G-95235"
+    },
+    {
+      "id": "V2-86217",
+      "id_t02": "A-38817",
+      "id_t04": "G-19264"
+    },
+    {
+      "id": "V2-19927",
+      "id_t02": "A-38817",
+      "id_t04": "G-21403"
+    },
+    {
+      "id": "V2-33655",
+      "id_t02": "A-38817",
+      "id_t04": "G-14609"
+    },
+    {
+      "id": "V2-30785",
+      "id_t02": "A-38817",
+      "id_t04": "G-80281"
+    },
+    {
+      "id": "V2-51967",
+      "id_t02": "A-38817",
+      "id_t04": "G-89050"
+    },
+    {
+      "id": "V2-16445",
+      "id_t02": "A-38817",
+      "id_t04": "G-35101"
+    },
+    {
+      "id": "V2-76815",
+      "id_t02": "A-38817",
+      "id_t04": "G-29857"
+    },
+    {
+      "id": "V2-42865",
+      "id_t02": "A-38817",
+      "id_t04": "G-36698"
+    },
+    {
+      "id": "V2-26968",
+      "id_t02": "A-38817",
+      "id_t04": "G-71735"
+    },
+    {
+      "id": "V2-53488",
+      "id_t02": "A-38817",
+      "id_t04": "G-19527"
+    },
+    {
+      "id": "V2-69756",
+      "id_t02": "A-38817",
+      "id_t04": "G-45745"
+    },
+    {
+      "id": "V2-53900",
+      "id_t02": "A-38817",
+      "id_t04": "G-65694"
+    },
+    {
+      "id": "V2-27297",
+      "id_t02": "A-38817",
+      "id_t04": "G-66185"
+    },
+    {
+      "id": "V2-99874",
+      "id_t02": "A-38817",
+      "id_t04": "G-99230"
+    },
+    {
+      "id": "V2-39097",
+      "id_t02": "A-38817",
+      "id_t04": "G-34349"
+    },
+    {
+      "id": "V2-50586",
+      "id_t02": "A-38817",
+      "id_t04": "G-14146"
+    },
+    {
+      "id": "V2-22660",
+      "id_t02": "A-48657",
+      "id_t04": "G-39264"
+    },
+    {
+      "id": "V2-19700",
+      "id_t02": "A-48657",
+      "id_t04": "G-51062"
+    },
+    {
+      "id": "V2-50263",
+      "id_t02": "A-48657",
+      "id_t04": "G-71735"
+    },
+    {
+      "id": "V2-27620",
+      "id_t02": "A-48657",
+      "id_t04": "G-20661"
+    },
+    {
+      "id": "V2-24611",
+      "id_t02": "A-48657",
+      "id_t04": "G-81530"
+    },
+    {
+      "id": "V2-80564",
+      "id_t02": "A-48657",
+      "id_t04": "G-43171"
+    },
+    {
+      "id": "V2-21600",
+      "id_t02": "A-48657",
+      "id_t04": "G-74468"
+    },
+    {
+      "id": "V2-99089",
+      "id_t02": "A-48657",
+      "id_t04": "G-64256"
+    },
+    {
+      "id": "V2-79171",
+      "id_t02": "A-38103",
+      "id_t04": "G-90574"
+    },
+    {
+      "id": "V2-38234",
+      "id_t02": "A-38103",
+      "id_t04": "G-44976"
+    },
+    {
+      "id": "V2-31869",
+      "id_t02": "A-38817",
+      "id_t04": "G-69497"
+    },
+    {
+      "id": "V2-29822",
+      "id_t02": "A-38817",
+      "id_t04": "G-76453"
+    },
+    {
+      "id": "V2-71036",
+      "id_t02": "A-38817",
+      "id_t04": "G-20833"
+    },
+    {
+      "id": "V2-74325",
+      "id_t02": "A-38817",
+      "id_t04": "G-98875"
+    },
+    {
+      "id": "V2-13282",
+      "id_t02": "A-38817",
+      "id_t04": "G-65221"
+    },
+    {
+      "id": "V2-42699",
+      "id_t02": "A-38817",
+      "id_t04": "G-78331"
+    },
+    {
+      "id": "V2-18063",
+      "id_t02": "A-38817",
+      "id_t04": "G-55975"
+    },
+    {
+      "id": "V2-24516",
+      "id_t02": "A-38817",
+      "id_t04": "G-23170"
+    },
+    {
+      "id": "V2-44288",
+      "id_t02": "A-38817",
+      "id_t04": "G-16964"
+    },
+    {
+      "id": "V2-82834",
+      "id_t02": "A-38817",
+      "id_t04": "G-35272"
+    },
+    {
+      "id": "V2-60944",
+      "id_t02": "A-38817",
+      "id_t04": "G-73091"
+    },
+    {
+      "id": "V2-27489",
+      "id_t02": "A-38817",
+      "id_t04": "G-56873"
+    },
+    {
+      "id": "V2-17060",
+      "id_t02": "A-38817",
+      "id_t04": "G-18738"
+    },
+    {
+      "id": "V2-80242",
+      "id_t02": "A-38817",
+      "id_t04": "G-18218"
+    },
+    {
+      "id": "V2-97963",
+      "id_t02": "A-38817",
+      "id_t04": "G-62955"
+    },
+    {
+      "id": "V2-51553",
+      "id_t02": "A-38817",
+      "id_t04": "G-65296"
+    },
+    {
+      "id": "V2-62540",
+      "id_t02": "A-38817",
+      "id_t04": "G-44607"
+    },
+    {
+      "id": "V2-31447",
+      "id_t02": "A-38817",
+      "id_t04": "G-58638"
+    },
+    {
+      "id": "V2-62266",
+      "id_t02": "A-38817",
+      "id_t04": "G-47477"
+    },
+    {
+      "id": "V2-30594",
+      "id_t02": "A-38817",
+      "id_t04": "G-99102"
+    },
+    {
+      "id": "V2-87316",
+      "id_t02": "A-38817",
+      "id_t04": "G-52888"
+    },
+    {
+      "id": "V2-88269",
+      "id_t02": "A-77819",
+      "id_t04": "G-23721"
+    },
+    {
+      "id": "V2-40216",
+      "id_t02": "A-12038",
+      "id_t04": "G-23009"
+    },
+    {
+      "id": "V2-35405",
+      "id_t02": "A-12038",
+      "id_t04": "G-72983"
+    },
+    {
+      "id": "V2-84166",
+      "id_t02": "A-12038",
+      "id_t04": "G-40844"
+    },
+    {
+      "id": "V2-43164",
+      "id_t02": "A-12038",
+      "id_t04": "G-85711"
+    },
+    {
+      "id": "V2-46515",
+      "id_t02": "A-12038",
+      "id_t04": "G-31272"
+    },
+    {
+      "id": "V2-46777",
+      "id_t02": "A-38817",
+      "id_t04": "G-54282"
+    },
+    {
+      "id": "V2-30425",
+      "id_t02": "A-38817",
+      "id_t04": "G-62247"
+    },
+    {
+      "id": "V2-78665",
+      "id_t02": "A-38817",
+      "id_t04": "G-35951"
+    },
+    {
+      "id": "V2-91298",
+      "id_t02": "A-38817",
+      "id_t04": "G-56745"
+    },
+    {
+      "id": "V2-15826",
+      "id_t02": "A-38817",
+      "id_t04": "G-57867"
+    },
+    {
+      "id": "V2-49165",
+      "id_t02": "A-38817",
+      "id_t04": "G-35065"
+    },
+    {
+      "id": "V2-33621",
+      "id_t02": "A-38817",
+      "id_t04": "G-21966"
+    },
+    {
+      "id": "V2-14538",
+      "id_t02": "A-38817",
+      "id_t04": "G-49069"
+    },
+    {
+      "id": "V2-11359",
+      "id_t02": "A-38817",
+      "id_t04": "G-26042"
+    },
+    {
+      "id": "V2-42321",
+      "id_t02": "A-38817",
+      "id_t04": "G-55614"
+    },
+    {
+      "id": "V2-86609",
+      "id_t02": "A-38817",
+      "id_t04": "G-95344"
+    },
+    {
+      "id": "V2-16663",
+      "id_t02": "A-38817",
+      "id_t04": "G-86224"
+    },
+    {
+      "id": "V2-88506",
+      "id_t02": "A-38817",
+      "id_t04": "G-33798"
+    },
+    {
+      "id": "V2-21211",
+      "id_t02": "A-38817",
+      "id_t04": "G-96475"
+    },
+    {
+      "id": "V2-95277",
+      "id_t02": "A-38817",
+      "id_t04": "G-94529"
+    },
+    {
+      "id": "V2-29962",
+      "id_t02": "A-38817",
+      "id_t04": "G-93738"
+    },
+    {
+      "id": "V2-77788",
+      "id_t02": "A-38817",
+      "id_t04": "G-61745"
+    },
+    {
+      "id": "V2-83464",
+      "id_t02": "A-38817",
+      "id_t04": "G-36475"
+    },
+    {
+      "id": "V2-98989",
+      "id_t02": "A-38817",
+      "id_t04": "G-11969"
+    },
+    {
+      "id": "V2-86354",
+      "id_t02": "A-38817",
+      "id_t04": "G-87354"
+    },
+    {
+      "id": "V2-98057",
+      "id_t02": "A-38817",
+      "id_t04": "G-91633"
+    },
+    {
+      "id": "V2-77370",
+      "id_t02": "A-38817",
+      "id_t04": "G-63216"
+    },
+    {
+      "id": "V2-23593",
+      "id_t02": "A-38817",
+      "id_t04": "G-99849"
+    },
+    {
+      "id": "V2-78059",
+      "id_t02": "A-38817",
+      "id_t04": "G-88288"
+    },
+    {
+      "id": "V2-57346",
+      "id_t02": "A-38817",
+      "id_t04": "G-16194"
+    },
+    {
+      "id": "V2-61810",
+      "id_t02": "A-38817",
+      "id_t04": "G-76209"
+    },
+    {
+      "id": "V2-38285",
+      "id_t02": "A-38817",
+      "id_t04": "G-56825"
+    },
+    {
+      "id": "V2-63967",
+      "id_t02": "A-38817",
+      "id_t04": "G-36031"
+    },
+    {
+      "id": "V2-62499",
+      "id_t02": "A-38817",
+      "id_t04": "G-55818"
     }
   ],
   "tk03_tk01_t04": [
@@ -2434,6 +4330,1398 @@
       "id_tk01": "V1-10658",
       "id_t04": "G-22262",
       "notiz": ""
+    },
+    {
+      "id": "V3-59685",
+      "id_tk01": "V1-79469",
+      "id_t04": "G-90308",
+      "notiz": ""
+    },
+    {
+      "id": "V3-33634",
+      "id_tk01": "V1-79469",
+      "id_t04": "G-99763",
+      "notiz": ""
+    },
+    {
+      "id": "V3-13825",
+      "id_tk01": "V1-79469",
+      "id_t04": "G-43725",
+      "notiz": ""
+    },
+    {
+      "id": "V3-50794",
+      "id_tk01": "V1-79469",
+      "id_t04": "G-92135",
+      "notiz": ""
+    },
+    {
+      "id": "V3-75700",
+      "id_tk01": "V1-79469",
+      "id_t04": "G-85401",
+      "notiz": ""
+    },
+    {
+      "id": "V3-33335",
+      "id_tk01": "V1-79469",
+      "id_t04": "G-31576",
+      "notiz": ""
+    },
+    {
+      "id": "V3-96129",
+      "id_tk01": "V1-79469",
+      "id_t04": "G-68045",
+      "notiz": ""
+    },
+    {
+      "id": "V3-17142",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-75080",
+      "notiz": ""
+    },
+    {
+      "id": "V3-71146",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-15027",
+      "notiz": ""
+    },
+    {
+      "id": "V3-33796",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-75179",
+      "notiz": ""
+    },
+    {
+      "id": "V3-86940",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-92123",
+      "notiz": ""
+    },
+    {
+      "id": "V3-96530",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-13579",
+      "notiz": ""
+    },
+    {
+      "id": "V3-91979",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-66443",
+      "notiz": ""
+    },
+    {
+      "id": "V3-61625",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-52279",
+      "notiz": ""
+    },
+    {
+      "id": "V3-97836",
+      "id_tk01": "V1-12676",
+      "id_t04": "G-45869",
+      "notiz": ""
+    },
+    {
+      "id": "V3-99877",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-50001",
+      "notiz": ""
+    },
+    {
+      "id": "V3-74504",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-46399",
+      "notiz": ""
+    },
+    {
+      "id": "V3-54974",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-31508",
+      "notiz": ""
+    },
+    {
+      "id": "V3-88597",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-13275",
+      "notiz": ""
+    },
+    {
+      "id": "V3-73887",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-97782",
+      "notiz": ""
+    },
+    {
+      "id": "V3-76890",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-42952",
+      "notiz": ""
+    },
+    {
+      "id": "V3-55296",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-54654",
+      "notiz": ""
+    },
+    {
+      "id": "V3-98941",
+      "id_tk01": "V1-27987",
+      "id_t04": "G-92978",
+      "notiz": ""
+    },
+    {
+      "id": "V3-55418",
+      "id_tk01": "V1-27987",
+      "id_t04": "G-40497",
+      "notiz": ""
+    },
+    {
+      "id": "V3-58425",
+      "id_tk01": "V1-27987",
+      "id_t04": "G-48054",
+      "notiz": ""
+    },
+    {
+      "id": "V3-41020",
+      "id_tk01": "V1-27987",
+      "id_t04": "G-64187",
+      "notiz": ""
+    },
+    {
+      "id": "V3-60830",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-49724",
+      "notiz": ""
+    },
+    {
+      "id": "V3-26527",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-49724",
+      "notiz": ""
+    },
+    {
+      "id": "V3-68877",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-51159",
+      "notiz": ""
+    },
+    {
+      "id": "V3-91649",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-99161",
+      "notiz": ""
+    },
+    {
+      "id": "V3-40742",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-95561",
+      "notiz": ""
+    },
+    {
+      "id": "V3-20405",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-90750",
+      "notiz": ""
+    },
+    {
+      "id": "V3-92852",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-38803",
+      "notiz": ""
+    },
+    {
+      "id": "V3-46517",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-60982",
+      "notiz": ""
+    },
+    {
+      "id": "V3-39573",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-35768",
+      "notiz": ""
+    },
+    {
+      "id": "V3-87050",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-51159",
+      "notiz": ""
+    },
+    {
+      "id": "V3-42888",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-27305",
+      "notiz": ""
+    },
+    {
+      "id": "V3-58767",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-72975",
+      "notiz": ""
+    },
+    {
+      "id": "V3-64109",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-43032",
+      "notiz": ""
+    },
+    {
+      "id": "V3-84257",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-38803",
+      "notiz": ""
+    },
+    {
+      "id": "V3-69259",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-72404",
+      "notiz": ""
+    },
+    {
+      "id": "V3-29535",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-95875",
+      "notiz": ""
+    },
+    {
+      "id": "V3-12450",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-48551",
+      "notiz": ""
+    },
+    {
+      "id": "V3-71706",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-18507",
+      "notiz": ""
+    },
+    {
+      "id": "V3-28778",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-78487",
+      "notiz": ""
+    },
+    {
+      "id": "V3-55971",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-40441",
+      "notiz": ""
+    },
+    {
+      "id": "V3-16685",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-30857",
+      "notiz": ""
+    },
+    {
+      "id": "V3-15022",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-76180",
+      "notiz": ""
+    },
+    {
+      "id": "V3-17393",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-88156",
+      "notiz": ""
+    },
+    {
+      "id": "V3-81440",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-95141",
+      "notiz": ""
+    },
+    {
+      "id": "V3-19617",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-64187",
+      "notiz": ""
+    },
+    {
+      "id": "V3-20281",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-13678",
+      "notiz": ""
+    },
+    {
+      "id": "V3-33562",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-90750",
+      "notiz": ""
+    },
+    {
+      "id": "V3-65344",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-16595",
+      "notiz": ""
+    },
+    {
+      "id": "V3-66465",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-57247",
+      "notiz": ""
+    },
+    {
+      "id": "V3-95467",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-91911",
+      "notiz": ""
+    },
+    {
+      "id": "V3-24978",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-28757",
+      "notiz": ""
+    },
+    {
+      "id": "V3-33769",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-28757",
+      "notiz": ""
+    },
+    {
+      "id": "V3-41927",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-76793",
+      "notiz": ""
+    },
+    {
+      "id": "V3-54796",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-48161",
+      "notiz": ""
+    },
+    {
+      "id": "V3-84084",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-77053",
+      "notiz": ""
+    },
+    {
+      "id": "V3-46440",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-85275",
+      "notiz": ""
+    },
+    {
+      "id": "V3-64167",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-69993",
+      "notiz": ""
+    },
+    {
+      "id": "V3-11256",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-87974",
+      "notiz": ""
+    },
+    {
+      "id": "V3-70182",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-57741",
+      "notiz": ""
+    },
+    {
+      "id": "V3-31514",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-29734",
+      "notiz": ""
+    },
+    {
+      "id": "V3-64611",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-10952",
+      "notiz": ""
+    },
+    {
+      "id": "V3-79967",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-48692",
+      "notiz": ""
+    },
+    {
+      "id": "V3-87996",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-47330",
+      "notiz": ""
+    },
+    {
+      "id": "V3-67608",
+      "id_tk01": "V1-95250",
+      "id_t04": "G-38922",
+      "notiz": ""
+    },
+    {
+      "id": "V3-56350",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-38892",
+      "notiz": ""
+    },
+    {
+      "id": "V3-33986",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-78622",
+      "notiz": ""
+    },
+    {
+      "id": "V3-97597",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-71078",
+      "notiz": ""
+    },
+    {
+      "id": "V3-78993",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-64187",
+      "notiz": ""
+    },
+    {
+      "id": "V3-20142",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-61388",
+      "notiz": ""
+    },
+    {
+      "id": "V3-75407",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-23721",
+      "notiz": ""
+    },
+    {
+      "id": "V3-37537",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-74905",
+      "notiz": ""
+    },
+    {
+      "id": "V3-86919",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-30798",
+      "notiz": ""
+    },
+    {
+      "id": "V3-24650",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-94503",
+      "notiz": ""
+    },
+    {
+      "id": "V3-99944",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-79370",
+      "notiz": ""
+    },
+    {
+      "id": "V3-43636",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-33682",
+      "notiz": ""
+    },
+    {
+      "id": "V3-15266",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-56162",
+      "notiz": ""
+    },
+    {
+      "id": "V3-42890",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-43924",
+      "notiz": ""
+    },
+    {
+      "id": "V3-18088",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-99372",
+      "notiz": ""
+    },
+    {
+      "id": "V3-64176",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-25941",
+      "notiz": ""
+    },
+    {
+      "id": "V3-23264",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-42101",
+      "notiz": ""
+    },
+    {
+      "id": "V3-96981",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-16599",
+      "notiz": ""
+    },
+    {
+      "id": "V3-95281",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-10505",
+      "notiz": ""
+    },
+    {
+      "id": "V3-78445",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-52405",
+      "notiz": ""
+    },
+    {
+      "id": "V3-95865",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-24912",
+      "notiz": ""
+    },
+    {
+      "id": "V3-50492",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-79526",
+      "notiz": ""
+    },
+    {
+      "id": "V3-82356",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-48849",
+      "notiz": ""
+    },
+    {
+      "id": "V3-53434",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-71661",
+      "notiz": ""
+    },
+    {
+      "id": "V3-56694",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-71314",
+      "notiz": ""
+    },
+    {
+      "id": "V3-44337",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-57388",
+      "notiz": ""
+    },
+    {
+      "id": "V3-55349",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-51916",
+      "notiz": ""
+    },
+    {
+      "id": "V3-12715",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-77591",
+      "notiz": ""
+    },
+    {
+      "id": "V3-23906",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-32784",
+      "notiz": ""
+    },
+    {
+      "id": "V3-81647",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-40844",
+      "notiz": ""
+    },
+    {
+      "id": "V3-26707",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-33005",
+      "notiz": ""
+    },
+    {
+      "id": "V3-59063",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-95141",
+      "notiz": ""
+    },
+    {
+      "id": "V3-36996",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-10470",
+      "notiz": ""
+    },
+    {
+      "id": "V3-37394",
+      "id_tk01": "V1-33340",
+      "id_t04": "G-49154",
+      "notiz": ""
+    },
+    {
+      "id": "V3-97833",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-38960",
+      "notiz": ""
+    },
+    {
+      "id": "V3-60541",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-69350",
+      "notiz": ""
+    },
+    {
+      "id": "V3-14250",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-39124",
+      "notiz": ""
+    },
+    {
+      "id": "V3-99138",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-77053",
+      "notiz": ""
+    },
+    {
+      "id": "V3-95815",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-96322",
+      "notiz": ""
+    },
+    {
+      "id": "V3-66592",
+      "id_tk01": "V1-62958",
+      "id_t04": "G-77359",
+      "notiz": ""
+    },
+    {
+      "id": "V3-40567",
+      "id_tk01": "V1-99482",
+      "id_t04": "G-77359",
+      "notiz": ""
+    },
+    {
+      "id": "V3-41216",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-77359",
+      "notiz": ""
+    },
+    {
+      "id": "V3-12997",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-19758",
+      "notiz": ""
+    },
+    {
+      "id": "V3-61883",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-58150",
+      "notiz": ""
+    },
+    {
+      "id": "V3-49506",
+      "id_tk01": "V1-83888",
+      "id_t04": "G-40357",
+      "notiz": ""
+    },
+    {
+      "id": "V3-66218",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-98205",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; sa einchecken"
+    },
+    {
+      "id": "V3-67272",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-73863",
+      "notiz": "2024 vorhanden: 1; Rückhol etc."
+    },
+    {
+      "id": "V3-11566",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-38960",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; fotografieren"
+    },
+    {
+      "id": "V3-44270",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-41398",
+      "notiz": "2024 vorhanden: 1; eingepackt: 0; fotografieren"
+    },
+    {
+      "id": "V3-34747",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-89258",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2"
+    },
+    {
+      "id": "V3-76465",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-11397",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-24825",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-77053",
+      "notiz": "2024 vorhanden: 500; 2*50, 5*20, 20*10, 20*5 + Münzen"
+    },
+    {
+      "id": "V3-69460",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-13166",
+      "notiz": "2024 vorhanden: 1820; eingepackt: 1820"
+    },
+    {
+      "id": "V3-32544",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-43989",
+      "notiz": "2024 vorhanden: 40; eingepackt: ???"
+    },
+    {
+      "id": "V3-42869",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-70496",
+      "notiz": "2024 vorhanden: 590+180; eingepackt: ???"
+    },
+    {
+      "id": "V3-98724",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-12325",
+      "notiz": "2024 vorhanden: 1; fotografieren"
+    },
+    {
+      "id": "V3-71906",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-23806",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-29239",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-42708",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2; fotografieren"
+    },
+    {
+      "id": "V3-94481",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-38892",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-65296",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-24435",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-86130",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-57222",
+      "notiz": "2024 vorhanden: x; eingepackt: 4"
+    },
+    {
+      "id": "V3-68205",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-44580",
+      "notiz": "2024 vorhanden: 2; eingepackt: 1"
+    },
+    {
+      "id": "V3-16475",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-15760",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; kaufen klein"
+    },
+    {
+      "id": "V3-36360",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-95235",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; Bad"
+    },
+    {
+      "id": "V3-24376",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-22763",
+      "notiz": "2024 vorhanden: 2; eingepackt: 1"
+    },
+    {
+      "id": "V3-14923",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-71078",
+      "notiz": "2024 vorhanden: 3; eingepackt: 3; Bad Stiel"
+    },
+    {
+      "id": "V3-37156",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-19264",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; Bad"
+    },
+    {
+      "id": "V3-72560",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-21403",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; Bad + Salz W4"
+    },
+    {
+      "id": "V3-86702",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-14609",
+      "notiz": "2024 vorhanden: 20; eingepackt: 10"
+    },
+    {
+      "id": "V3-45359",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-80281",
+      "notiz": "2024 vorhanden: 18; eingepackt: 18; Amzine 9 stk fr  +3 weiß +2* lang"
+    },
+    {
+      "id": "V3-28228",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-46399",
+      "notiz": "2024 vorhanden: 17+3; eingepackt: 10+3"
+    },
+    {
+      "id": "V3-28582",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-89050",
+      "notiz": "2024 vorhanden: 5; eingepackt: 3"
+    },
+    {
+      "id": "V3-13972",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-38566",
+      "notiz": "2024 vorhanden: 12; eingepackt: 16; 4*weiß, 4*schw, 2*blau +2*grau"
+    },
+    {
+      "id": "V3-27405",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-35101",
+      "notiz": "2024 vorhanden: 29; eingepackt: 12"
+    },
+    {
+      "id": "V3-21162",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-89036",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2"
+    },
+    {
+      "id": "V3-35055",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-29857",
+      "notiz": "2024 vorhanden: 8; eingepackt: 3"
+    },
+    {
+      "id": "V3-92345",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-36698",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2; ???"
+    },
+    {
+      "id": "V3-84439",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-11017",
+      "notiz": "2024 vorhanden: 4; eingepackt: 3"
+    },
+    {
+      "id": "V3-80224",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-39264",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2"
+    },
+    {
+      "id": "V3-87658",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-71735",
+      "notiz": "2024 vorhanden: 1; eingepackt: 2; Sneakers"
+    },
+    {
+      "id": "V3-21796",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-19527",
+      "notiz": "2024 vorhanden: 3; eingepackt: 1; ???"
+    },
+    {
+      "id": "V3-66069",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-45745",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; ???"
+    },
+    {
+      "id": "V3-44451",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-38803",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-20652",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-78622",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-37784",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-65694",
+      "notiz": "2024 vorhanden: 5; eingepackt: 6"
+    },
+    {
+      "id": "V3-65362",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-66185",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-70751",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-99230",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-55589",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-34349",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; Amazone"
+    },
+    {
+      "id": "V3-49762",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-14146",
+      "notiz": "2024 vorhanden: 3; eingepackt: 1"
+    },
+    {
+      "id": "V3-11176",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-39264",
+      "notiz": "2024 vorhanden: 9; eingepackt: 9; + 1 x grau Dragonsport"
+    },
+    {
+      "id": "V3-21678",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-51062",
+      "notiz": "2024 vorhanden: 9; eingepackt: 9; + 1 x grau Dragonsport"
+    },
+    {
+      "id": "V3-20761",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-71735",
+      "notiz": "2024 vorhanden: 4; eingepackt: 4"
+    },
+    {
+      "id": "V3-62752",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-20661",
+      "notiz": "2024 vorhanden: 6; eingepackt: 6"
+    },
+    {
+      "id": "V3-38515",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-81530",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-13034",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-43171",
+      "notiz": "2024 vorhanden: 7; eingepackt: 7"
+    },
+    {
+      "id": "V3-24179",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-74468",
+      "notiz": "2024 vorhanden: 5; eingepackt: 3"
+    },
+    {
+      "id": "V3-43659",
+      "id_tk01": "V1-95841",
+      "id_t04": "G-64256",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-52967",
+      "id_tk01": "V1-81417",
+      "id_t04": "G-90574",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-95140",
+      "id_tk01": "V1-81417",
+      "id_t04": "G-44976",
+      "notiz": "2024 vorhanden: 3; eingepackt: 2"
+    },
+    {
+      "id": "V3-39316",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-69497",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2"
+    },
+    {
+      "id": "V3-55420",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-76453",
+      "notiz": "2024 vorhanden: 4; eingepackt: 4"
+    },
+    {
+      "id": "V3-37399",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-20833",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-40705",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-98875",
+      "notiz": "2024 vorhanden: 20; eingepackt: 12; 1140"
+    },
+    {
+      "id": "V3-35399",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-65221",
+      "notiz": "2024 vorhanden: 3; eingepackt: 1"
+    },
+    {
+      "id": "V3-48166",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-78331",
+      "notiz": "2024 vorhanden: 3; eingepackt: 1"
+    },
+    {
+      "id": "V3-21581",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-55975",
+      "notiz": "2024 vorhanden: 3; eingepackt: 2"
+    },
+    {
+      "id": "V3-84404",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-78487",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-25534",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-23170",
+      "notiz": "2024 vorhanden: x; eingepackt: x"
+    },
+    {
+      "id": "V3-26753",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-16964",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-62890",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-25480",
+      "notiz": "2024 vorhanden: 18; eingepackt: 6"
+    },
+    {
+      "id": "V3-93209",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-35272",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; ???"
+    },
+    {
+      "id": "V3-12233",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-73091",
+      "notiz": "2024 vorhanden: 10; eingepackt: 6; Amazone"
+    },
+    {
+      "id": "V3-27082",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-56873",
+      "notiz": "2024 vorhanden: 6; eingepackt: 4"
+    },
+    {
+      "id": "V3-66946",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-18738",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-98689",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-18218",
+      "notiz": "2024 vorhanden: 10; eingepackt: 7"
+    },
+    {
+      "id": "V3-62738",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-62955",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-85445",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-65296",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-66381",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-44607",
+      "notiz": "2024 vorhanden: 100; eingepackt: 50; Lieferung"
+    },
+    {
+      "id": "V3-58250",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-58638",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; Amazone"
+    },
+    {
+      "id": "V3-27517",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-47477",
+      "notiz": "2024 vorhanden: 10; eingepackt: 10"
+    },
+    {
+      "id": "V3-92910",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-99102",
+      "notiz": "2024 vorhanden: 8; eingepackt: 8"
+    },
+    {
+      "id": "V3-57798",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-20526",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2"
+    },
+    {
+      "id": "V3-22542",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-52888",
+      "notiz": "2024 vorhanden: 2; eingepackt: 1"
+    },
+    {
+      "id": "V3-53200",
+      "id_tk01": "V1-94566",
+      "id_t04": "G-92978",
+      "notiz": "2024 vorhanden: 2; eingepackt: 1; ???"
+    },
+    {
+      "id": "V3-38865",
+      "id_tk01": "V1-94566",
+      "id_t04": "G-23721",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; ???"
+    },
+    {
+      "id": "V3-99029",
+      "id_tk01": "V1-76798",
+      "id_t04": "G-23009",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-45328",
+      "id_tk01": "V1-76798",
+      "id_t04": "G-72983",
+      "notiz": "2024 vorhanden: 2; eingepackt: 1"
+    },
+    {
+      "id": "V3-68513",
+      "id_tk01": "V1-76798",
+      "id_t04": "G-40844",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2"
+    },
+    {
+      "id": "V3-52641",
+      "id_tk01": "V1-76798",
+      "id_t04": "G-85711",
+      "notiz": "2024 vorhanden: 2; eingepackt: 2"
+    },
+    {
+      "id": "V3-37212",
+      "id_tk01": "V1-76798",
+      "id_t04": "G-31272",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-19460",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-54282",
+      "notiz": "2024 vorhanden: 2; eingepackt: 1"
+    },
+    {
+      "id": "V3-39759",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-74120",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-69617",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-44279",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-70365",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-85074",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-73466",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-62247",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-59314",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-35951",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; Autan/Nobite/Lavendel/..."
+    },
+    {
+      "id": "V3-28133",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-56745",
+      "notiz": "2024 vorhanden: 1+1+1; eingepackt: 1+1+1; Imodium/Eucarbon/TI"
+    },
+    {
+      "id": "V3-92554",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-57867",
+      "notiz": "Dulcolax"
+    },
+    {
+      "id": "V3-64185",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-35065",
+      "notiz": "2024 vorhanden: 1+1+1; eingepackt: 1+1+1; Voltadol / Hirudoid/Ventren"
+    },
+    {
+      "id": "V3-99579",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-21966",
+      "notiz": "2024 vorhanden: 0+1; eingepackt: 0+1; Ibrumetin"
+    },
+    {
+      "id": "V3-76839",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-49069",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; Ciclopoli"
+    },
+    {
+      "id": "V3-51375",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-26042",
+      "notiz": "2024 vorhanden: 3; eingepackt: 3"
+    },
+    {
+      "id": "V3-88572",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-55614",
+      "notiz": "2024 vorhanden: 1; Sonja"
+    },
+    {
+      "id": "V3-96676",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-95344",
+      "notiz": "2024 vorhanden: 4; eingepackt: 2; Box Bandagen"
+    },
+    {
+      "id": "V3-12696",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-86224",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-63451",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-33798",
+      "notiz": "2024 vorhanden: 6; eingepackt: 6"
+    },
+    {
+      "id": "V3-91654",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-96475",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1; elektro"
+    },
+    {
+      "id": "V3-97021",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-94529",
+      "notiz": "2024 vorhanden: 0; eingepackt: 1; Fenistil"
+    },
+    {
+      "id": "V3-72574",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-93738",
+      "notiz": "2024 vorhanden: 1+1+0; eingepackt: 1+1+0; Betaisodona / Vitawund"
+    },
+    {
+      "id": "V3-25847",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-61745",
+      "notiz": "2024 vorhanden: 18; eingepackt: 18; Deflamat/…"
+    },
+    {
+      "id": "V3-71645",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-36475",
+      "notiz": "2024 vorhanden: 10; eingepackt: 10; Rennie/…"
+    },
+    {
+      "id": "V3-20198",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-11969",
+      "notiz": "2024 vorhanden: 30; eingepackt: 30; Clarityn/…"
+    },
+    {
+      "id": "V3-96159",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-87354",
+      "notiz": "2024 vorhanden: 1; eingepackt: 1"
+    },
+    {
+      "id": "V3-98767",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-91633",
+      "notiz": "2024 vorhanden: 45; eingepackt: 15"
+    },
+    {
+      "id": "V3-57243",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-63216",
+      "notiz": "2024 vorhanden: 30; eingepackt: 30"
+    },
+    {
+      "id": "V3-35253",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-99849",
+      "notiz": "2024 vorhanden: 12; eingepackt: 12"
+    },
+    {
+      "id": "V3-66984",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-10470",
+      "notiz": "2024 vorhanden: 0+1; eingepackt: 0+1"
+    },
+    {
+      "id": "V3-52274",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-88288",
+      "notiz": "2024 vorhanden: 70; eingepackt: 40"
+    },
+    {
+      "id": "V3-46664",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-16194",
+      "notiz": "2024 vorhanden: 8; eingepackt: 8"
+    },
+    {
+      "id": "V3-58984",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-76209",
+      "notiz": "2024 vorhanden: 40; eingepackt: 20"
+    },
+    {
+      "id": "V3-44236",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-56825",
+      "notiz": "2024 vorhanden: 20; eingepackt: 20"
+    },
+    {
+      "id": "V3-53938",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-36031",
+      "notiz": "2024 vorhanden: 10; eingepackt: 10"
+    },
+    {
+      "id": "V3-78420",
+      "id_tk01": "V1-79160",
+      "id_t04": "G-55818",
+      "notiz": "2024 vorhanden: 30; eingepackt: 30"
     }
   ],
   "tk04_tk03_t05": [
@@ -4296,6 +7584,996 @@
       "id_tk03": "V3-17087",
       "id_t05": "N-98284",
       "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-67774",
+      "id_tk03": "V3-66218",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-24500",
+      "id_tk03": "V3-11566",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-20143",
+      "id_tk03": "V3-44270",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 0,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-28081",
+      "id_tk03": "V3-34747",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-88670",
+      "id_tk03": "V3-76465",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-29854",
+      "id_tk03": "V3-69460",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1820,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-10744",
+      "id_tk03": "V3-71906",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-25792",
+      "id_tk03": "V3-29239",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-47844",
+      "id_tk03": "V3-94481",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-72745",
+      "id_tk03": "V3-65296",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-17856",
+      "id_tk03": "V3-86130",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 4,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-90777",
+      "id_tk03": "V3-68205",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-85331",
+      "id_tk03": "V3-16475",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-92753",
+      "id_tk03": "V3-36360",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-57040",
+      "id_tk03": "V3-24376",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-13479",
+      "id_tk03": "V3-14923",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-20163",
+      "id_tk03": "V3-37156",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-28841",
+      "id_tk03": "V3-72560",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-70321",
+      "id_tk03": "V3-86702",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 10,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-99013",
+      "id_tk03": "V3-45359",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 18,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-88451",
+      "id_tk03": "V3-28228",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 13,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-95790",
+      "id_tk03": "V3-28582",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-45800",
+      "id_tk03": "V3-13972",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 16,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-98371",
+      "id_tk03": "V3-27405",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 12,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-77029",
+      "id_tk03": "V3-21162",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-39244",
+      "id_tk03": "V3-35055",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-34485",
+      "id_tk03": "V3-92345",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-21362",
+      "id_tk03": "V3-84439",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-37623",
+      "id_tk03": "V3-80224",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-82530",
+      "id_tk03": "V3-87658",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-67755",
+      "id_tk03": "V3-21796",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-31343",
+      "id_tk03": "V3-66069",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-78729",
+      "id_tk03": "V3-44451",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-41935",
+      "id_tk03": "V3-20652",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-94304",
+      "id_tk03": "V3-37784",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 6,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-19758",
+      "id_tk03": "V3-65362",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-99544",
+      "id_tk03": "V3-70751",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-29553",
+      "id_tk03": "V3-55589",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-32498",
+      "id_tk03": "V3-49762",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-86509",
+      "id_tk03": "V3-11176",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 9,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-29810",
+      "id_tk03": "V3-21678",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 9,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-51317",
+      "id_tk03": "V3-20761",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 4,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-52892",
+      "id_tk03": "V3-62752",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 6,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-34835",
+      "id_tk03": "V3-38515",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-13473",
+      "id_tk03": "V3-13034",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 7,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-56839",
+      "id_tk03": "V3-24179",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-37047",
+      "id_tk03": "V3-43659",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-79802",
+      "id_tk03": "V3-52967",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-38013",
+      "id_tk03": "V3-95140",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-30087",
+      "id_tk03": "V3-39316",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-19468",
+      "id_tk03": "V3-55420",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 4,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-92571",
+      "id_tk03": "V3-37399",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-61123",
+      "id_tk03": "V3-40705",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 12,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-33271",
+      "id_tk03": "V3-35399",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-42175",
+      "id_tk03": "V3-48166",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-10039",
+      "id_tk03": "V3-21581",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-23416",
+      "id_tk03": "V3-84404",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-50780",
+      "id_tk03": "V3-26753",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-84805",
+      "id_tk03": "V3-62890",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 6,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-68495",
+      "id_tk03": "V3-93209",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-32573",
+      "id_tk03": "V3-12233",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 6,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-11040",
+      "id_tk03": "V3-27082",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 4,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-54477",
+      "id_tk03": "V3-66946",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-10688",
+      "id_tk03": "V3-98689",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 7,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-96103",
+      "id_tk03": "V3-62738",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-58132",
+      "id_tk03": "V3-85445",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-69492",
+      "id_tk03": "V3-66381",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 50,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-20074",
+      "id_tk03": "V3-58250",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-28678",
+      "id_tk03": "V3-27517",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 10,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-17066",
+      "id_tk03": "V3-92910",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 8,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-94228",
+      "id_tk03": "V3-57798",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-72966",
+      "id_tk03": "V3-22542",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-84062",
+      "id_tk03": "V3-53200",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-15921",
+      "id_tk03": "V3-38865",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": 1,
+      "verwendet": null
+    },
+    {
+      "id": "V4-78406",
+      "id_tk03": "V3-99029",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-76884",
+      "id_tk03": "V3-45328",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-16523",
+      "id_tk03": "V3-68513",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-29774",
+      "id_tk03": "V3-52641",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-33350",
+      "id_tk03": "V3-37212",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-30120",
+      "id_tk03": "V3-19460",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-70920",
+      "id_tk03": "V3-39759",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-65640",
+      "id_tk03": "V3-69617",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-27650",
+      "id_tk03": "V3-70365",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-20585",
+      "id_tk03": "V3-73466",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-13187",
+      "id_tk03": "V3-59314",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-70636",
+      "id_tk03": "V3-28133",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-82582",
+      "id_tk03": "V3-64185",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-54831",
+      "id_tk03": "V3-99579",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-97573",
+      "id_tk03": "V3-76839",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-19682",
+      "id_tk03": "V3-51375",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 3,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-90935",
+      "id_tk03": "V3-96676",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-25749",
+      "id_tk03": "V3-12696",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-25027",
+      "id_tk03": "V3-63451",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 6,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-20306",
+      "id_tk03": "V3-91654",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-49810",
+      "id_tk03": "V3-97021",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-51889",
+      "id_tk03": "V3-72574",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 2,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-94353",
+      "id_tk03": "V3-25847",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 18,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-23940",
+      "id_tk03": "V3-71645",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 10,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-72202",
+      "id_tk03": "V3-20198",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 30,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-22491",
+      "id_tk03": "V3-96159",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-79113",
+      "id_tk03": "V3-98767",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 15,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-61206",
+      "id_tk03": "V3-57243",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 30,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-58264",
+      "id_tk03": "V3-35253",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 12,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-50843",
+      "id_tk03": "V3-66984",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 1,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-37266",
+      "id_tk03": "V3-52274",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 40,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-36824",
+      "id_tk03": "V3-46664",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 8,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-21728",
+      "id_tk03": "V3-58984",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 20,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-74187",
+      "id_tk03": "V3-44236",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 20,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-31755",
+      "id_tk03": "V3-53938",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 10,
+      "hergerichtet": null,
+      "eingepackt": null,
+      "verwendet": null
+    },
+    {
+      "id": "V4-38809",
+      "id_tk03": "V3-78420",
+      "id_t05": "N-48986",
+      "ausgewaehlt": 30,
       "hergerichtet": null,
       "eingepackt": null,
       "verwendet": null

@@ -145,10 +145,10 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       const personen = personenFuerTk03(data, tk03.id);
       const row = personen.find((p) => p.id_t05 === personFilter);
       if (!row) continue; // diese Person braucht den Gegenstand nicht
+      if (row.ausgewaehlt === -1) continue; // Strich = sicher nicht mitgenommen, aus der Liste raus
       if (offenFilter) {
-        const ausgewaehlt = row.ausgewaehlt ?? 0;
         const feldWert = row[offenFilter];
-        const istOffen = ausgewaehlt > 0 && (feldWert === null || feldWert === undefined);
+        const istOffen = feldWert === null || feldWert === undefined;
         if (!istOffen) continue;
       }
       const kat = kathegorieName(data, g.id_kathegorie);
@@ -159,19 +159,20 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   }, [data, gegenstaende, personFilter, offenFilter, reise]);
 
   const fortschritt = useMemo(() => {
-    if (!data || !reise) return { done: 0, total: 0 };
+    if (!data || !reise || !personFilter) return { done: 0, total: 0 };
     let done = 0;
     let total = 0;
     for (const g of gegenstaende) {
       const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
       if (!tk03) continue;
-      for (const p of personenFuerTk03(data, tk03.id)) {
-        total++;
-        if (p.eingepackt !== null && p.eingepackt !== undefined && p.eingepackt > 0) done++;
-      }
+      const row = data.tk04_tk03_t05.find((r) => r.id_tk03 === tk03.id && r.id_t05 === personFilter);
+      if (!row) continue; // Gegenstand betrifft diese Person nicht
+      if (row.ausgewaehlt === -1) continue; // Strich zählt nicht mit
+      total++;
+      if (row.eingepackt !== null && row.eingepackt !== undefined && row.eingepackt > 0) done++;
     }
     return { done, total };
-  }, [data, reise, gegenstaende]);
+  }, [data, reise, gegenstaende, personFilter]);
 
   function bumpField(
     row: Tk04GegenstandPerson,
@@ -180,24 +181,38 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   ) {
     setData((prev) => {
       if (!prev) return prev;
-      // Vorläufig: bei "ausgewählt" auf 0 NICHT automatisch aus der Liste entfernen
-      // (Unfallgefahr bei versehentlichem Wischen) - Sicherheitsnetz/Rückgängig folgt noch.
       const updated = prev.tk04_tk03_t05.map((r) => {
         if (r.id !== row.id) return r;
+
+        if (field === "eingepackt") {
+          // Eingepackt bleibt wie bisher: nur "leer" (–) oder Zahl, kein Strich-Zustand.
+          const current = r.eingepackt;
+          const has = current !== null && current !== undefined;
+          if (direction === 1) {
+            if (!has) return { ...r, eingepackt: r.ausgewaehlt ?? 1 };
+            return { ...r, eingepackt: current + 1 };
+          }
+          if (!has) return r;
+          if (current <= 1) return { ...r, eingepackt: null };
+          return { ...r, eingepackt: current - 1 };
+        }
+
+        // Ausgewählt/Hergerichtet/Verwendet: -1 = Strich (bewusst ausgeschlossen),
+        // 0 = unsicher, Zahl > 0 = Menge. In 1er-Schritten, Untergrenze -1.
         if (field === "ausgewaehlt") {
-          const next = Math.max(0, (r.ausgewaehlt ?? 0) + direction);
+          const next = Math.max(-1, (r.ausgewaehlt ?? 0) + direction);
+          if (next === -1 && (r.ausgewaehlt ?? 0) !== -1) {
+            // Beim Wechsel auf Strich: Hergerichtet/Eingepackt/Verwendet zurücksetzen,
+            // die gehören nicht mehr dazu, wenn der Gegenstand sicher nicht mitkommt.
+            return { ...r, ausgewaehlt: next, hergerichtet: null, eingepackt: null, verwendet: null };
+          }
           return { ...r, ausgewaehlt: next };
         }
-        const current = r[field];
-        const has = current !== null && current !== undefined;
-        if (direction === 1) {
-          if (!has) return { ...r, [field]: r.ausgewaehlt ?? 1 };
-          return { ...r, [field]: current + 1 };
-        }
-        // runterzählen
-        if (!has) return r; // schon leer, nichts zu tun
-        if (current <= 1) return { ...r, [field]: null }; // zurück auf "nicht angetippt"
-        return { ...r, [field]: current - 1 };
+
+        // hergerichtet oder verwendet
+        const current = r[field] ?? 0;
+        const next = Math.max(-1, current + direction);
+        return { ...r, [field]: next };
       });
       return { ...prev, tk04_tk03_t05: updated };
     });
@@ -254,11 +269,22 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         ...prev,
         tk04_tk03_t05: prev.tk04_tk03_t05.map((r) => {
           if (r.id !== rowId) return r;
-          if (trimmed === "") {
-            return { ...r, [field]: field === "ausgewaehlt" ? 0 : null };
+          if (field === "eingepackt") {
+            if (trimmed === "") return { ...r, eingepackt: null };
+            const n = Math.max(0, Math.floor(Number(trimmed)));
+            if (Number.isNaN(n)) return r;
+            return { ...r, eingepackt: n };
           }
-          const n = Math.max(0, Math.floor(Number(trimmed)));
+          // ausgewählt/hergerichtet/verwendet: -1 (Strich) bis beliebig hoch
+          if (trimmed === "" || trimmed === "-") {
+            const reset = { ...r, [field]: 0 };
+            return reset;
+          }
+          const n = Math.max(-1, Math.floor(Number(trimmed)));
           if (Number.isNaN(n)) return r;
+          if (field === "ausgewaehlt" && n === -1 && (r.ausgewaehlt ?? 0) !== -1) {
+            return { ...r, ausgewaehlt: -1, hergerichtet: null, eingepackt: null, verwendet: null };
+          }
           return { ...r, [field]: n };
         }),
       };
@@ -897,12 +923,14 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                       onTouchStart={() => startLongPress(row, "ausgewaehlt")}
                       onTouchEnd={cancelLongPress}
                     >
-                      {row.ausgewaehlt ?? 0}
+                      {row.ausgewaehlt === -1 ? "–" : row.ausgewaehlt ?? 0}
                     </button>
                   )}
                   {(["hergerichtet", "eingepackt", "verwendet"] as const).map((field) => {
                     const val = row[field];
-                    const has = val !== null && val !== undefined;
+                    const hatStrich = field !== "eingepackt" && val === -1;
+                    const has = val !== null && val !== undefined && !hatStrich;
+                    const istGesetzt = has && (val as number) > 0;
                     if (editingQty && editingQty.rowId === row.id && editingQty.field === field) {
                       return (
                         <input
@@ -924,7 +952,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                     return (
                       <button
                         key={field}
-                        className={"pl-qbox q-" + field + (has ? " q-set" : "")}
+                        className={"pl-qbox q-" + field + (istGesetzt ? " q-set" : "")}
                         onClick={(e) => handleFieldTap(e, row, field)}
                         onMouseDown={() => startLongPress(row, field)}
                         onMouseUp={cancelLongPress}
