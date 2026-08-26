@@ -1,0 +1,6381 @@
+{
+  "items": [
+    {
+      "id": "G0001",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Alle Buchungsunterlagen",
+      "units": "",
+      "notes": "Digital + 1x ausgedruckt als Backup",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0002",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Alpenvereinsausweis",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0003",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Autopapiere",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 4; Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0004",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Bankkarte + Bargeld",
+      "units": "",
+      "notes": "Hütte: nur Bargeld!",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0005",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Bankkarte + etwas Bargeld",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0006",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Bankomatkarte",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0007",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Bargeld",
+      "units": "Pauschal, €",
+      "notes": "Aktion: Anreise | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01 | Viele Hütten akzeptieren keine Karte! | Aktivität: Bergwanderung_Huette; viele Hütten ohne Kartenzahlung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0008",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Bargeld + Bankkarte",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0009",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Bargeld GBP",
+      "units": "Betrag",
+      "notes": "Für Kleinbeträge, Parkscheine | kleiner Notfallbetrag",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0010",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Boardingpässe",
+      "units": "",
+      "notes": "Am Handy + zusätzlich ausgedruckt",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0011",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Bordkarten",
+      "units": "",
+      "notes": "Ausgedruckt oder digital | ausgedruckt oder digital",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0012",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Buchungsbestätigungen aller Unterkünfte",
+      "units": "",
+      "notes": "ausgedruckt oder offline",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0013",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Buchungsbestätigungen der Unterkünfte",
+      "units": "",
+      "notes": "Ausgedruckt oder offline",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0014",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Buchungsbestätigungen Führungen",
+      "units": "Set",
+      "notes": "inkl. Glenfiddich und Ausflüge",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0015",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Buchungsunterlagen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0016",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Dokumentenkopien",
+      "units": "Set",
+      "notes": "getrennt von Originalen und digital",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0017",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "E-Card",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0018",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "E-Card / EKVK",
+      "units": "Stk",
+      "notes": "ins Handgepäck",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0019",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "e-Card / Krankenversicherungskarte",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0020",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Etwas Bargeld + Bankkarte",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0021",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Flugticket",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0022",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Flugtickets / Boardingpässe",
+      "units": "Set",
+      "notes": "digital und optional ausgedruckt",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0023",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Führerschein",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 4; Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01 | Für Fahrer(in) | bei Mietwagen",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0024",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Führerscheine",
+      "units": "Stk",
+      "notes": "für alle vorgesehenen Fahrer",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0025",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Grüne Versichrungskarte",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0026",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Hotelbuchungen (alle Stationen)",
+      "units": "",
+      "notes": "Ausgedruckt oder offline",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0027",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Hotelreservierung",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0028",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Hotelreservierungen",
+      "units": "Set",
+      "notes": "digital gesammelt",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0029",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Hüttenreservierung",
+      "units": "",
+      "notes": "Ausgedruckt oder offline gespeichert",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0030",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Impfpaß",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0031",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Kleine Geldbörse",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0032",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Krankenversicherungskarte (e-Card)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0033",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Kreditkarte",
+      "units": "Stk",
+      "notes": "mindestens Fahrer benötigt geeignete Karte",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0034",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Kreditkarte für Kaution",
+      "units": "",
+      "notes": "bei Mietwagen",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0035",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Kreditkarten",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0036",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Mietwagen-Buchungsbestätigung",
+      "units": "",
+      "notes": "Ausgedruckt + digital",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0037",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Mietwagen-Buchungsunterlagen",
+      "units": "",
+      "notes": "bei Mietwagen",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0038",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Mietwagenbuchung",
+      "units": "Set",
+      "notes": "Abholort, Fahrer und Kaution prüfen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0039",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Motoradpapiere",
+      "units": "stk",
+      "notes": "Aktion: Motorradtour | Touren: 1; Hütte 02",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0040",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Mutter-Kind-Paß",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0041",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Notfallkontakte",
+      "units": "",
+      "notes": "Notiert oder gespeichert",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0042",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Notfallkontakte notiert",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0043",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Personalausweis / Reisepass",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0044",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Quartiersunterlagen ausgedruckt",
+      "units": "",
+      "notes": "Bereits auf Englisch vorbereitet",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0045",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Reisekrankenversicherung / GHIC",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0046",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Reisepass",
+      "units": "Stk",
+      "notes": "Gültigkeit prüfen | ins Handgepäck; Gültigkeit prüfen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0047",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Reisepass / Personalausweis",
+      "units": "",
+      "notes": "Griffbereit für die Kontrolle",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0048",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Reisepaß",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0049",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Reiseversicherung",
+      "units": "Polizze",
+      "notes": "Notfallnummer speichern",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0050",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Roaming freischalten",
+      "units": "",
+      "notes": "Vorab prüfen/aktivieren",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0051",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "Seminarbestätigung / Buchungsunterlagen",
+      "units": "",
+      "notes": "Ausgedruckt oder offline",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0052",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "UK ETA (Einreisegenehmigung)",
+      "units": "",
+      "notes": "Vorab online beantragen, pro Person",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0053",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "USB-Stick + Kabel",
+      "units": "",
+      "notes": "Zum Zwischenspeichern von Fotos",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0054",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "wasserdichte Dokumentenhülle",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0055",
+      "categoryId": "K001",
+      "category": "Dokumente & Finanzen",
+      "name": "ÖAMTC Karte",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0056",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Abendgarnitur",
+      "units": "Set",
+      "notes": "Falls gesellige Abende geplant | Aktivität: Allgemein; falls gesellige Abende geplant",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0057",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Alltagshose / Chino",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein; (aktualisiert: Hose lang+kurz zusammen 4/10 Tage)",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0058",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Alltagshosen / Chinos",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0059",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Alltagsshirt / Polo",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein;",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0060",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Alltagsshirts / Polos",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0061",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Badeanzug",
+      "units": "stk",
+      "notes": "Aktion: Baden | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0062",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Badebekleidung",
+      "units": "Stk",
+      "notes": "Badehose oder Badeanzug",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0063",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Badehose",
+      "units": "stk",
+      "notes": "Aktion: Baden | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0064",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Badehose / Badeanzug",
+      "units": "Stück",
+      "notes": "Aktivität: Baden;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0065",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Badehut",
+      "units": "stk",
+      "notes": "Aktion: Baden | Touren: 3; Barcelona, Mariensee, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0066",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Bademantel",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0067",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Body Kurzarm",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0068",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Body Langarm",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0069",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Body ärmellos",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, Mariensee, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0070",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Dünne Unterzieh-Leiberl",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0071",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Einteiler kurz, ärmellos",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0072",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Fleece Jacke (separat zu Pullover)",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein; laut Packerfahrung",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0073",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Fleece Pulli",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0074",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Fleecehemd",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0075",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Fleecejacke",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0076",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Fleecjacke",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0077",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Funktionsunterwäsche (Merino)",
+      "units": "Set",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0078",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Fäustlinge",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0079",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Gamaschen",
+      "units": "Paar",
+      "notes": "Aktivität: Bergwanderung_Huette; optional, bei Nässe/Schneeresten",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0080",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Goretexjacke dick",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0081",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Goretexjacke dünn",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Touren: 2; Hütte 01, St. Jakob im Defereggental | wasserdicht",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0082",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "hadehut",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0083",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Haube",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Aktion: Wandern | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0084",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Hemd - Baumwolle",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0085",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Hemd kurz",
+      "units": "stk, Stück",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental | Aktivität: Allgemein; laut Packerfahrung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0086",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Hemd lang",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0087",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Hose kurz",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Anreise | Aktion: Spazieren | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0088",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Hose lang",
+      "units": "stk, Stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Aktion: Anreise | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0089",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Hose Sport kurz",
+      "units": "Stück",
+      "notes": "Aktivität: TaiJi; laut Packerfahrung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0090",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Hose Wandern",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0091",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Jacke",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0092",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Jeans",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0093",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Kappe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0094",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Kapperl",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wandern | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0095",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Kurze Hose",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0096",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Kurze Socken",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0097",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Langarmshirt",
+      "units": "Stück",
+      "notes": "Aktivität: TaiJi; für kühle Morgenstunden im Training",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0098",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Langarmshirts / dünne Pullover",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0099",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Lange Hemden",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0100",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Lange Hose",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0101",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Lange Hose / Jeans (Freizeit/Stadt)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0102",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Lange Socken",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0103",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Langärmelige Leiberl",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0104",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Latzhose",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, Mariensee, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0105",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leggings - Baumwolle",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0106",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leibel kurz",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0107",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leibel schön",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0108",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leibel Sport",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0109",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leiberl Kurzarm",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Aktion: Wickelrucksack | Aktion: Spazieren | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0110",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leiberl Kurzarm Transtex",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0111",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leiberl Langarm",
+      "units": "stk, Stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, Mariensee, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0112",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leiberl Langarm Transtex",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0113",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leichter Pullover oder Fleece",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0114",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Motoradhose",
+      "units": "stk",
+      "notes": "Aktion: Motorradtour | Touren: 1; Hütte 02",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0115",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Motoradjacke",
+      "units": "stk",
+      "notes": "Aktion: Motorradtour | Touren: 1; Hütte 02",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0116",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Oberteil lang (unleserlich)",
+      "units": "",
+      "notes": "handschriftlich unklar – bitte prüfen",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0117",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Poncho",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0118",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Pulli",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0119",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Pullover",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0120",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Pullover / Fleece",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0121",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Pyjama / Nachtwäsche",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0122",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Regenjacke",
+      "units": "Stück",
+      "notes": "Aktivität: Wandern; | unberechenbares Wetter",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0123",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Regenoverall",
+      "units": "stk",
+      "notes": "Aktion: Motorradtour | Touren: 1; Hütte 02",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0124",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Schal / Buff",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0125",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Schirm",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0126",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Short",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0127",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Skitourenhose dick",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0128",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Sneakers",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0129",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Socken",
+      "units": "pa, Paar",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01 | Aktivität: Allgemein; (aktualisiert laut Packerfahrung: 5 Paar/10 Tage)",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0130",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Socken kurz",
+      "units": "Paar",
+      "notes": "Aktivität: Allgemein; laut Packerfahrung, zusätzlich zu Alltagssocken",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0131",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Socken Sport",
+      "units": "Paar",
+      "notes": "Aktivität: TaiJi; laut Packerfahrung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0132",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Socken Wandern",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0133",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Sonnenhut",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0134",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Sportjacke",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein; laut Packerfahrung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0135",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Sportsocken",
+      "units": "pa",
+      "notes": "Aktion: Wandern | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0136",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Strampler Kurzarm",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0137",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Strampler Langarm",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0138",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Strampler Langarm dick",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0139",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Strampler langarm dünn",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0140",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Strampler ärmellos",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0141",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Stutzen",
+      "units": "pa",
+      "notes": "Aktion: Wandern | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0142",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Sweater",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0143",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "T-Shirt / Funktionsshirt",
+      "units": "Stück",
+      "notes": "Aktivität: TaiJi; (aktualisiert laut Packerfahrung: 12 Sport-Leiberl/10 Tage)",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0144",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "T-Shirts",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0145",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Tasche (für tagsüber und abends)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0146",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "tesfjshdg",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0147",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "test",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0148",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "transtexleiberl kurz",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0149",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Unterhose",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein; (aktualisiert laut Packerfahrung: 5 Stück/10 Tage)",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0150",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Unterhose Sport",
+      "units": "Stück",
+      "notes": "Aktivität: TaiJi; laut Packerfahrung: 10 Stück/10 Tage",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0151",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Unterhosen",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01 | Für 10 Nächtigungen; bei Waschmöglichkeit reduzierbar | Für 10 Tage",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0152",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Unterhosen - Transtex",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0153",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Unterhosen Sport",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0154",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Unterwäsche",
+      "units": "",
+      "notes": "Für 10 Tage",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0155",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Wanderhose",
+      "units": "Stk, Stück",
+      "notes": "möglichst schnelltrocknend | Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0156",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Wanderhose dick",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0157",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Wanderhose dünn",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0158",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Wanderhose lang/kurz",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0159",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Wanderhose zum Abzippen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0160",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Wandersocken",
+      "units": "pa, Paar",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental | Merinowolle ideal | Aktivität: Wandern; Merinowolle ideal",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0161",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Warme Mütze",
+      "units": "",
+      "notes": "Wind an Küste/Skye",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0162",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Warmer Fleece-/Wollpullover",
+      "units": "",
+      "notes": "Abende können kühl sein",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0163",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Weite Sitzhose",
+      "units": "Stück",
+      "notes": "Aktivität: Meditation; Bauchband nicht einschneidend (aktualisiert laut Packerfahrung: 2 Hosen für Meditation)",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0164",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Weste",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein; laut Packerfahrung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0165",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Wetterfeste Jacke / Softshell",
+      "units": "Stück",
+      "notes": "Mitteleuropa = unberechenbar | Aktivität: Allgemein;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0166",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Windjacke",
+      "units": "Stück",
+      "notes": "Aktivität: Allgemein; laut Packerfahrung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0167",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Winterstrampler",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0168",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Überhose",
+      "units": "Stk",
+      "notes": "Regenhose",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0169",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Alltagsschuhe / Sneaker",
+      "units": "Paar",
+      "notes": "Aktivität: Allgemein;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0170",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Badelatschen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0171",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Badelatschen / Flip-Flops",
+      "units": "Paar",
+      "notes": "Aktivität: Baden;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0172",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Badeschlapfen",
+      "units": "pa, Paar",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0173",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Bequeme Alltagsschuhe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0174",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Bequeme Alltagsschuhe / Sneaker",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0175",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Bequeme Schuhe",
+      "units": "",
+      "notes": "Fürs lange Sitzen",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0176",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Bequeme Schuhe zum längeren Gehen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0177",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Bergschuhe leicht",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0178",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Dünne Handschuhe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0179",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Fleecwhandschuhe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0180",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Flip Flop",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0181",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Halbschuhe",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0182",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Hallenschuhe",
+      "units": "Paar",
+      "notes": "Aktivität: TaiJi; falls Training drinnen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0183",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Hallenschuhe / Hausschuhe",
+      "units": "",
+      "notes": "Falls Training drinnen stattfindet",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0184",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Handschuhe",
+      "units": "pa",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0185",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Hausschuhe / Flipflops",
+      "units": "",
+      "notes": "Optional fürs Hotel",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0186",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Hüttenschuhe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0187",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Hüttenschuhe / leichte Sandalen",
+      "units": "Paar",
+      "notes": "Pflicht auf der Hütte! | Aktivität: Bergwanderung_Huette; Pflicht auf vielen Hütten",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0188",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Laufschuhe",
+      "units": "Paar",
+      "notes": "Aktivität: Laufen;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0189",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "leichte Handschuhe",
+      "units": "Paar",
+      "notes": "optional, aber für windige Tage sinnvoll",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0190",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Motoradhanschuhe",
+      "units": "pa",
+      "notes": "Aktion: Motorradtour | Touren: 1; Hütte 02",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0191",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Motoradstiefel",
+      "units": "pa",
+      "notes": "Aktion: Motorradtour | Touren: 1; Hütte 02",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0192",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Mütze + Handschuhe",
+      "units": "Set",
+      "notes": "Auch im Sommer am Berg! | Aktivität: Bergwanderung_Huette; auch im Sommer am Berg! | auch im Sommer am Berg",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0193",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Salomon-Schuhe",
+      "units": "",
+      "notes": "Bereits vorhanden",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0194",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Salomon-Wanderschuhe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0195",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Sandalen",
+      "units": "Paar",
+      "notes": "Aktivität: Baden; zusätzlich zu Badelatschen, laut Packerfahrung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0196",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Schlapfen",
+      "units": "pa",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0197",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Schuhe",
+      "units": "pa",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, Mariensee, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0198",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Schuhe für Unterkunft",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0199",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Sonnenkappe (unleserlich)",
+      "units": "",
+      "notes": "handschriftlich unklar – bitte prüfen",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0200",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Spoertschlapfen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0201",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Sportschlapfen",
+      "units": "pa",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0202",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Stadtschuhe",
+      "units": "Paar",
+      "notes": "bequem",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0203",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "TaiJi-Schuhe",
+      "units": "",
+      "notes": "Flache, weiche Sohle – flexibel",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0204",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "TaiJi-Schuhe / Turnschuhe",
+      "units": "Paar",
+      "notes": "Aktivität: TaiJi; Sohle dünn & flexibel (aktualisiert laut Packerfahrung: 2 Paar)",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0205",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Trekkingschuhe",
+      "units": "pa, Paar",
+      "notes": "Aktion: Anreise | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01 | wasserdicht und eingegangen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0206",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Wanderschuhe",
+      "units": "Paar",
+      "notes": "Bereits eingetragen! | Aktivität: Wandern;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0207",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Wanderschuhe knöchelhoch",
+      "units": "Paar",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0208",
+      "categoryId": "K003",
+      "category": "Schuhe",
+      "name": "Wanderschuhe oder robuste, eingelaufene Schuhe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0209",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Aftersun-Lotion",
+      "units": "",
+      "notes": "laut Packerfahrung, nach Sonnenbad",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0210",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Badetuch",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0211",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Badetuch / Strandtuch",
+      "units": "Stück",
+      "notes": "Aktivität: Baden;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0212",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Brille / Kontaktlinsen",
+      "units": "Set",
+      "notes": "individuell; Reserve wenn nötig",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0213",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Deostift",
+      "units": "stk, Stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0214",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Duschgel",
+      "units": "Flasche, stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental | Reisegröße",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0215",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Duschgelsäckchen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0216",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Feuchttücher",
+      "units": "pk",
+      "notes": "Aktion: Wickelrucksack | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0217",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Haarbürste",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0218",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Handtuch",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Baden | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01 | Falls nicht gestellt | falls nicht gestellt",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0219",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Handtuch klein",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0220",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Handtücher",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0221",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Insektenschutz",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0222",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Insektenschutz verstärkt",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0223",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Insektenschutzmittel",
+      "units": "",
+      "notes": "Spray oder Stick",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0224",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Kamm",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0225",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Kaputzenhandtuch",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Baden | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0226",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Kleines Handtuch / Funktionstuch",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0227",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Klopapier",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0228",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Kontaktlinsen",
+      "units": "pa",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0229",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Kontaktlinsenbehälter",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0230",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Kosmetika",
+      "units": "-",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0231",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Labello Sonne",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0232",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Ladekabel Video",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0233",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Lippenpflege mit UV-Schutz",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0234",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Lippenpflegestift mit UV-Schutz",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0235",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Microfaser-Handtuch (klein)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0236",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Mikrofaser- oder Badetuch",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0237",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Mikrofaserhandtuch (klein)",
+      "units": "Stück",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0238",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Mückennetze für den Kopf",
+      "units": "Stk",
+      "notes": "für Midges; klein und leicht",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0239",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Mückenschutz",
+      "units": "Stk",
+      "notes": "Midges-tauglich",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0240",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Mückenspray",
+      "units": "",
+      "notes": "Midges v.a. Skye & Nordwesten, abends",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0241",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Rasiercreme",
+      "units": "tub",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Mariensee, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0242",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Rasierer",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Mariensee, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0243",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Rasierer / persönliche Pflege",
+      "units": "Set",
+      "notes": "individuell anpassen",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0244",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Rasierzeug",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0245",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Salzlösung für Kontaktlinsen",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0246",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Seife",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01 | Fraglich – meist im Hotel vorhanden",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0247",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Shampoo",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0248",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Shampoo + Duschgel + Deo",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0249",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Shampoo, Duschgel, Deo",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0250",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Sonnencreme",
+      "units": "Flasche, tub",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Aktion: Baden | Aktion: Wandern | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01 | Auch wenn evtl. nicht gebraucht | Auch bei Bewölkung, UV oft unterschätzt",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0251",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Sonnencreme + Aftersun",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0252",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Sonnencreme höherer LSF",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0253",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Sonnencreme LSF 30+",
+      "units": "",
+      "notes": "Allgemein",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0254",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Sonnencreme LSF 50",
+      "units": "",
+      "notes": "Höhensonne – unbedingt! | Höhensonne",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0255",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Sonnenmilch",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0256",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Taschentücher",
+      "units": "Packungen, pk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0257",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Videokamera",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0258",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Wasserfeste Sonnencreme",
+      "units": "Stück",
+      "notes": "LSF 30+ | Aktivität: Baden;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0259",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Wattestäbchen Nase",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0260",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Wattestäbchen Ohr",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0261",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Zahnbürste",
+      "units": "stk, Stk",
+      "notes": "Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0262",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Zahnbürste + Zahncreme + Zahnseide",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0263",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Zahnbürste, Zahncreme, Zahnseide",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0264",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Zahnbürste, Zahnpasta, Deo",
+      "units": "",
+      "notes": "Set pro Person",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0265",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Zahnpasta",
+      "units": "Tube",
+      "notes": "gemeinsam",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0266",
+      "categoryId": "K004",
+      "category": "Körperpflege",
+      "name": "Zahnpaster",
+      "units": "tub",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, Mariensee, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0267",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Aktivkohletabletten",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0268",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Antihistaminikum (Cetirizin)",
+      "units": "",
+      "notes": "Auch gut bei Insektenstichen | auch gut bei Insektenstichen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0269",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Aspirin",
+      "units": "",
+      "notes": "Optional – z.B. bei Kopfschmerzen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0270",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Augentropfen",
+      "units": "pk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01 | Bei trockenen Augen / Staub | bei trockenen Augen/Staub",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0271",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Bite Away Gerät",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0272",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Blasenpflaster (Compeed)",
+      "units": "Packung",
+      "notes": "Für unterwegs | Besonders fürs Wandern",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0273",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Buscopan",
+      "units": "",
+      "notes": "Bauchkrämpfe",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0274",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Calcium",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0275",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Desinfektionsmittel",
+      "units": "",
+      "notes": "Spray oder Gel",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0276",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Elastische Binde / Tensor-Bandage",
+      "units": "",
+      "notes": "Verstauchung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0277",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Elektrolytpulver",
+      "units": "",
+      "notes": "Ausgleich bei Durchfall / Erbrechen | Ausgleich bei Durchfall/Erbrechen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0278",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Erste-Hilfe-Set (kompakt)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0279",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Erste-Hilfe-Set fürs Auto",
+      "units": "",
+      "notes": "In vielen Ländern Pflicht | in manchen Ländern Pflicht",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0280",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Fenistil",
+      "units": "",
+      "notes": "In ausreichender Menge",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0281",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Fieberthermometer",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0282",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Herzpulver",
+      "units": "",
+      "notes": "Bedeutung unklar – bitte präzisieren",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0283",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Ibuprofen 400mg",
+      "units": "",
+      "notes": "Schmerz, Entzündung, Fieber",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0284",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Imodium / Loperamid",
+      "units": "",
+      "notes": "Durchfall",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0285",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Kleines Erste-Hilfe-Set",
+      "units": "Set",
+      "notes": "inkl. Blasenpflaster | Aktivität: Wandern; inkl. Blasenpflaster",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0286",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Kühlpack (faltbar)",
+      "units": "",
+      "notes": "Faltbar, leicht",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0287",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Medikamente",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0288",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Mittel gegen Durchfall (Imodium)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0289",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Muskelgel / Voltaren Gel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0290",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Nasendusche / Salzspray",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0291",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Nasensalbe",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0292",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Nasenspray",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental | z.B. Otrivin | abschwellend",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0293",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Osanit",
+      "units": "pk",
+      "notes": "Aktion: Anreise | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0294",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Pantoprazol / Omeprazol",
+      "units": "",
+      "notes": "Sodbrennen, Magenschutz",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0295",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Paracetamol 500mg",
+      "units": "",
+      "notes": "Alternative – magenschonender | magenschonende Alternative",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0296",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Persönliche Dauermedikamente",
+      "units": "",
+      "notes": "Vorrat für mind. 12 Tage! | Vorrat für 12 Tage – Reise + Puffer | Menge an Reisedauer + 2 Tage Puffer anpassen!",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0297",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "persönliche Medikamente",
+      "units": "Bedarf",
+      "notes": "Falls benötigt, individuell | ins Handgepäck",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0298",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Pflaster (verschiedene Größen)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0299",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Reiseapotheke",
+      "units": "Set",
+      "notes": "Gemeinsames Set | Schmerzmittel, Pflaster, Desinfektion, Durchfallmittel",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0300",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Rettungsdecke",
+      "units": "Stück",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0301",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Salbe für Ausschläge",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0302",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Schmerzmittel (Ibuprofen / Paracetamol)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0303",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Standard-Reiseapotheke",
+      "units": "",
+      "notes": "Schmerzmittel, Blasenpflaster, Pflaster, Verband",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0304",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Tigerbalm oder Franzbranntwein",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0305",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Vitamine",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0306",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Voltaren Gel / Muskelgel",
+      "units": "",
+      "notes": "Zerrung, Verspannung",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0307",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Wichtigste Medikamente",
+      "units": "",
+      "notes": "Im Handgepäck, falls Koffer verspätet",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0308",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Wichtigste Medikamente im Handgepäck",
+      "units": "",
+      "notes": "falls Koffer verspätet ankommt",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0309",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Wundsalbe",
+      "units": "",
+      "notes": "z.B. Bepanthen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0310",
+      "categoryId": "K005",
+      "category": "Gesundheit & Medikamente",
+      "name": "Zahnputzzeug",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0311",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "12V-Ladeadapter / Ladekabel fürs Auto",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0312",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Auto-Ladegerät und Kabel",
+      "units": "Set",
+      "notes": "USB-C/benötigte Anschlüsse",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0313",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Cassetten",
+      "units": "-",
+      "notes": "Aktion: Anreise | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0314",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Digitalkamera",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0315",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Filme",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0316",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Firewire",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0317",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Fotoapparat - Pocket",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, Mariensee, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0318",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Halstabletten / Lutschtabletten",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0319",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Handy",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0320",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Handy + Ladegerät",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0321",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Handy + Ladekabel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0322",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Handy-Ladekabel",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0323",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Handyhalterung",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0324",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Handyhalterung fürs Auto",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0325",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Kamera",
+      "units": "Stk",
+      "notes": "nur falls zusätzlich zum Handy gewünscht | Optional | optional",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0326",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Kamera-Akku und Ladegerät",
+      "units": "Set",
+      "notes": "nur bei Mitnahme der Kamera",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0327",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Kopfhörer",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0328",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Ladekabel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0329",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Ladekabel Digitalcamera",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0330",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Laptop",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0331",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Mehrfach-USB-Ladegerät",
+      "units": "Stk",
+      "notes": "reduziert benötigte Adapter",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0332",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Mehrfachstecker / Adapter",
+      "units": "",
+      "notes": "Falls andere Steckertypen | falls andere Steckertypen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0333",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Powerbank",
+      "units": "",
+      "notes": "Erlaubnis im Flugzeug/Handgepäck prüfen | Nur Handgepäck | Nur im Handgepäck – Wattzahl-Limit beachten",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0334",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Powerbanks",
+      "units": "Stk",
+      "notes": "nur ins Handgepäck",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0335",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Reisetabletten",
+      "units": "",
+      "notes": "Kurvige Straßen (Highlands, Skye)",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0336",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Reserveakku",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0337",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Reserveakku Kamera",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0338",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Reservebatterien",
+      "units": "set",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0339",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Reservecassette",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0340",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Reservefilm",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0341",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Selfiestick / kleines Handystativ",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0342",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Steckdosenadapter Typ G",
+      "units": "Stk",
+      "notes": "für Großbritannien",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0343",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Stirnlampe + Ersatzbatterien",
+      "units": "Stück",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0344",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "UK-Steckadapter",
+      "units": "",
+      "notes": "Mehrfach, falls gleichzeitig laden | 1 pro Zimmer reicht meist",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0345",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Verlängerungskabel / Verteilersteckdose",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0346",
+      "categoryId": "K006",
+      "category": "Elektronik",
+      "name": "Zigarettenanzünder-Adapter",
+      "units": "",
+      "notes": "Für WiFi-Stick / Ladegeräte im Auto",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0347",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Faltbarer Taschenschirm",
+      "units": "Stück",
+      "notes": "Aktivität: Staedtereisen; Ergänzung zur Regenjacke",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0348",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Funktions-Unterhosen (2–3 Stk.)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0349",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Höhenmesser",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0350",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Kleiner Tagesrucksack / Crossbody-Bag",
+      "units": "Stück",
+      "notes": "Aktivität: Staedtereisen; möglichst diebstahlsicher",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0351",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Kleiner Tagesrucksack oder Crossbody-Bag",
+      "units": "",
+      "notes": "Möglichst diebstahlsicher",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0352",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Kompass",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0353",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Langärmelige Funktions-Leiberl",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0354",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Pfeife (Notfallsignal)",
+      "units": "Stück",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0355",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Regenschutz / Rucksack-Cover",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0356",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Regenschutz für den Rucksack",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0357",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Rucksack",
+      "units": "",
+      "notes": "Für Getränke, Tagesausflüge",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0358",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Rucksack 30–40 L mit Hüftgurt",
+      "units": "Stück",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0359",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Rucksack 35l",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Barcelona",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0360",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Rucksack 45l",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0361",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Rucksack-Regenschutz",
+      "units": "Stück",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0362",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Sitzunterlage",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0363",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Stirnlampe",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0364",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Tagesrucksack",
+      "units": "Stück",
+      "notes": "Kann geteilt werden, ggf. 2. je nach Gruppe | Aktivität: Wandern; 20–30 L",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0365",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Tagesrucksack 15–25 l",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0366",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Tagesrucksack 20–30 L",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0367",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Taschenmesser",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Aktion: Spazieren | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0368",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Taschenmesser / Multitool",
+      "units": "",
+      "notes": "Ins Aufgabegepäck, nicht Handgepäck | NUR im Aufgabegepäck erlaubt! | bei Flugreise nur im Aufgabegepäck!",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0369",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Teleskopstöcke",
+      "units": "Paar",
+      "notes": "für jene, die sie verwenden",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0370",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Trinkflasche",
+      "units": "Stk",
+      "notes": "leer durch Sicherheitskontrolle",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0371",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Trinkflasche / Hydrationssystem",
+      "units": "Stück",
+      "notes": "Aktivität: Wandern;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0372",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Trinkflasche 1,5l",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0373",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Trinkflasche 1l",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0374",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Trinkflasche 1L + Reserve/Trinkblase",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0375",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Trinkflasche 3/4l",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0376",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Wanderkarte / GPS-App",
+      "units": "Stück",
+      "notes": "Aktivität: Wandern; offline, z.B. Komoot",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0377",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Wanderkarte oder GPS-App",
+      "units": "",
+      "notes": "z.B. Komoot, offline herunterladen",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0378",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Wanderkarte Papier + Kompass",
+      "units": "",
+      "notes": "GPS-Backup reicht nicht allein",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0379",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Wanderstöcke",
+      "units": "Paar",
+      "notes": "Ins Aufgabegepäck | Optional, faltbar | Meist nur im Aufgabegepäck erlaubt | Aktivität: Wandern; optional",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0380",
+      "categoryId": "K007",
+      "category": "Wandern & Outdoor",
+      "name": "Wiederverwendbare Trinkflasche",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0381",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Bequeme Reisekleidung (Zwiebellook)",
+      "units": "",
+      "notes": "Wegen Klimaanlage im Flugzeug",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0382",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Fahrzeugzustand kontrollieren & fotografieren",
+      "units": "",
+      "notes": "Bei Übernahme: auch Ersatzreifen prüfen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0383",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Gepäcksgitter",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0384",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Gepäcksnetz",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0385",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Leichte Jacke / Schal",
+      "units": "",
+      "notes": "Zum Überziehen",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0386",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Lektüre / Buch",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0387",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Motoröl",
+      "units": "-",
+      "notes": "Aktion: Anreise | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0388",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Nackenpolster",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0389",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Offline-Karten/Navigation herunterladen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0390",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Offline-Navigationskarte / App",
+      "units": "",
+      "notes": "Falls schlechter Empfang | falls schlechter Empfang",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0391",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Offlinekarten / Navigationsdaten",
+      "units": "Set",
+      "notes": "vor Abflug herunterladen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0392",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Pflegeprodukte in Reisegröße (≤100ml)",
+      "units": "",
+      "notes": "Handgepäck-Flüssigkeitsregel beachten",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0393",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Pflegeprodukte in Reisegröße ≤100ml",
+      "units": "",
+      "notes": "Handgepäck-Flüssigkeitsregel",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0394",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Spanngurte",
+      "units": "set",
+      "notes": "Aktion: Anreise | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0395",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Straßenkarte",
+      "units": "set",
+      "notes": "Aktion: Anreise | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0396",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Tankstellen-App herunterladen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0397",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Treibstoffart notieren",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0398",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Warnweste + Warndreieck",
+      "units": "",
+      "notes": "Pflicht in vielen EU-Ländern",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0399",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "WiFi-Stick fürs Auto",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0400",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Augenmaske",
+      "units": "Stück",
+      "notes": "Relaxation / Yoga Nidra | Aktivität: Meditation; Relaxation / Yoga Nidra",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0401",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Bequeme Kleidung für Unterkunft / Schlafkleidung",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0402",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Bettdecke",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0403",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Bettzeug",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0404",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Decke / leichter Wollschal",
+      "units": "Stück",
+      "notes": "Aktivität: Meditation; für ruhige Sitzphasen wird's kühl",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0405",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Hüttenpolster",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0406",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Hüttenschlafsack (Inlett)",
+      "units": "Stück",
+      "notes": "Seide oder Baumwolle – oft Pflicht! | Aktivität: Bergwanderung_Huette; auf vielen Hütten Pflicht",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0407",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Komplett gepackter Kulturbeutel",
+      "units": "",
+      "notes": "Zahnbürste, Duschgel, Deo, Rasierer",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0408",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Kopfpolster Luft",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0409",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Kuscheldecke",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0410",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Ohrenstöpsel",
+      "units": "Paar",
+      "notes": "Für ungestörte Praxis / Nächte | Aktivität: Meditation;",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0411",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Ohrstöpsel",
+      "units": "Paar",
+      "notes": "Hütten-Schlafsäle können laut sein | Falls Unterkunft hellhörig | Aktivität: Bergwanderung_Huette; Hütten-Schlafsäle können laut sein | falls Unterkunft hellhörig",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0412",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Paar Socken",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0413",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Polster",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0414",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Schlafbekleidung",
+      "units": "Garnitur",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0415",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Schlafgewand",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0416",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Schlafkleidung",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0417",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Schlafsack",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0418",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Schlafsack dick",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0419",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Spannleintuch Doppelbett",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0420",
+      "categoryId": "K009",
+      "category": "Unterkunft & Schlafen",
+      "name": "Wäschebeutel",
+      "units": "",
+      "notes": "Für Schmutzwäsche | für Schmutzwäsche getrennt",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0421",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Bananen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0422",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Bier alkoholfrei",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0423",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Essen",
+      "units": "-",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0424",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Getränke",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0425",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Grillsachen",
+      "units": "-",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0426",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Karlsquell Alcfreidosen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0427",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Kekse",
+      "units": "pk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0428",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "kleine Kühltasche",
+      "units": "Stk",
+      "notes": "optional",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0429",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Käse",
+      "units": "g",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0430",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Leichte wasserfeste Jacke",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0431",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Milchpulver",
+      "units": "pk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0432",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Mineralwasser",
+      "units": "fl, Flaschen",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01 | nach Ankunft kaufen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0433",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Notfallration Schokolade 🍫",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0434",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Obst",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Wandern | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0435",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Paprika",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0436",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Paradeiser",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0437",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Rotwein",
+      "units": "fl3/4",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0438",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Schnaps",
+      "units": "fl",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0439",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Schokolade",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wandern | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0440",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Semmeln",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0441",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Snacks & Getränke für die Fahrt",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0442",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Snacks für Autofahrten",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0443",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Snacks für den Flug",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0444",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Snacks für die Autofahrt",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0445",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Snacks für Flug und Fahrt",
+      "units": "Vorrat",
+      "notes": "Müsliriegel, Kekse oder Nüsse",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0446",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Tee / Kaffee nach Bedarf",
+      "units": "Vorrat",
+      "notes": "nur falls in Unterkünften nicht vorhanden",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0447",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Teesackerl",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0448",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Wasserdichte, winddichte Jacke",
+      "units": "",
+      "notes": "Regen sehr wahrscheinlich",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0449",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Wasserflasche (wiederverwendbar)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0450",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Wurst",
+      "units": "g",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0451",
+      "categoryId": "K010",
+      "category": "Lebensmittel & Verpflegung",
+      "name": "Äpfel",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0452",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Auflage Reisegitterbett",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0453",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Babyphone",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, Mariensee, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0454",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Babysekt",
+      "units": "fl",
+      "notes": "Aktion: Aufenthalt | Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0455",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Beißring",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0456",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Insektenschutz Kinderwagen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0457",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Kinderwagen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0458",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Kinderwagensack rot",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0459",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Krabbeldecke",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0460",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "MaxiCosi",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 4; Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0461",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Netzerl Kinderwagen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0462",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Regenschutz Kinderwagen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0463",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Reisegitterbett",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, Mariensee, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0464",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Sonnenschutz Maxi Cosi",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0465",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Spannleintuch Reisegitterbett",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0466",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Spieluhr",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Anreise | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0467",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Still-BH",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0468",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Stilleinlagen",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0469",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Stoffwindeln",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0470",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Tragegestell",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0471",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Unterlage Reisegitterbett",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0472",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Vlies Reisegitterbett",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0473",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Wickelauflage",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0474",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Wickelrucksack",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0475",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Wickelunterlage",
+      "units": "stk",
+      "notes": "Aktion: Wickelrucksack | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0476",
+      "categoryId": "K011",
+      "category": "Baby & Kind",
+      "name": "Windeln",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Aktion: Anreise | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0477",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Aromaöl / Raumduft",
+      "units": "Stück",
+      "notes": "z.B. Lavendel | Aktivität: Meditation; optional, z.B. Lavendel",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0478",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Hose Laufen kurz",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0479",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Hose Laufen lang",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0480",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Hose Meditation",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0481",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Hose TaiJi",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0482",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Kompressionsstrümpfe",
+      "units": "Paar",
+      "notes": "Optional – für Regeneration | Aktivität: Laufen; optional, Regeneration",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0483",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Langarmshirts",
+      "units": "",
+      "notes": "Für kühle Morgenstunden im Training",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0484",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Lauf-Funktionsshirt",
+      "units": "Stück",
+      "notes": "Aktivität: Laufen; feuchtigkeitsableitend",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0485",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Lauf-Funktionsshirts",
+      "units": "",
+      "notes": "Feuchtigkeitsableitend",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0486",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Lauf-Windjacke / leichtes Regenjacket",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0487",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Lauf-Windjacke / Regenjacket",
+      "units": "Stück",
+      "notes": "Aktivität: Laufen;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0488",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Laufhose / Lauftights",
+      "units": "Stück",
+      "notes": "Aktivität: Laufen;",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0489",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Laufhosen / Lauftights",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0490",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Laufsocken",
+      "units": "Paar",
+      "notes": "Dünn & blasenresistent | Aktivität: Laufen; dünn, blasenresistent",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0491",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Laufuhr / GPS-Uhr",
+      "units": "Stück",
+      "notes": "Oder Handy-Halterung | Aktivität: Laufen; optional",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0492",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Leichte Jacke / Sweatjacke fürs Training",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0493",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Leichte T-Shirts / Funktionsshirts",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0494",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Lektüre / spirituelles Buch",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0495",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Mala / Gebetskette",
+      "units": "Stück",
+      "notes": "Falls in der Praxis verwendet | Aktivität: Meditation; optional, falls verwendet",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0496",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Meditationsdecke / Wollschal",
+      "units": "",
+      "notes": "Für ruhige Sitzphasen wird's kühl",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0497",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Meditationskissen / Zafu",
+      "units": "Stück",
+      "notes": "Anfragen ob gestellt | Aktivität: Meditation; falls nicht gestellt, vorher anfragen",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0498",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Notizbuch + Stift",
+      "units": "Set",
+      "notes": "Seminarnotizen & Reflexionen | Aktivität: Meditation; Seminarnotizen, Reflexion",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0499",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Schweißband / Stirnband",
+      "units": "",
+      "notes": "Optional",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0500",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Stirnband",
+      "units": "stk, Stück",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental | Aktivität: TaiJi; optional",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0501",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Stirnband / Schirmmütze",
+      "units": "Stück",
+      "notes": "Aktivität: Laufen;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0502",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "TaiJi Jacke",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0503",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Trainingshose (weit, bequem)",
+      "units": "Stück",
+      "notes": "Aktivität: TaiJi; z.B. Kung-Fu-Hose, Joggingpants (aktualisiert laut Packerfahrung 10-Tage-Seminar: 6 Stück)",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0504",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Trainingshosen (weit, bequem)",
+      "units": "",
+      "notes": "Kung-Fu-Hose oder Joggingpants",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0505",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Trainingsjacke / Sweatjacke",
+      "units": "Stück",
+      "notes": "Aktivität: TaiJi; (aktualisiert laut Packerfahrung: 3 TaiJi-Jacken)",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0506",
+      "categoryId": "K012",
+      "category": "Sport & Seminar",
+      "name": "Weite Hose extra fürs Sitzen",
+      "units": "",
+      "notes": "Kein einschneidendes Bauchband",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0507",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "After-Bite / Juckreiz-Gel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0508",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Alufolie",
+      "units": "rol",
+      "notes": "Aktion: Wandern | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0509",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Aspirin C+",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0510",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Badekübel",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0511",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Badesachen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0512",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Badetücher",
+      "units": "stk",
+      "notes": "Aktion: Baden | Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0513",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Badeöl",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0514",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Ball",
+      "units": "stk",
+      "notes": "Aktion: Baden | Touren: 2; Hütte 01, Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0515",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Bandschlinge Lang",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0516",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Bergapotheke",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wandern | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0517",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Biwaksack",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0518",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Brille",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0519",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Bücher",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0520",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Compact Flash 16",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0521",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Compact Flash 256",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0522",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Dachbox",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0523",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Dachträger",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0524",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Daunenjacke",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0525",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Daunenjacke / Wärmejacke",
+      "units": "Stück",
+      "notes": "Für Abend auf der Hütte / Gipfel | Aktivität: Bergwanderung_Huette; Abend auf der Hütte, Gipfel",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0526",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Digitalcamera",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0527",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Energieriegel / Nüsse / Trockenfrüchte",
+      "units": "",
+      "notes": "Ausreichend für 2 Tage",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0528",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Etwas Schickeres für Abend / Restaurant",
+      "units": "",
+      "notes": "Optional",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0529",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "faltbare Einkaufstasche",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0530",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Fellsack",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0531",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Fernglas",
+      "units": "Stk",
+      "notes": "optional für Wildlife",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0532",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Feuerzeug",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0533",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Feuerzeug / Streichhölzer",
+      "units": "",
+      "notes": "Auch praktisch gegen Geruch",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0534",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Fieberzäpfchen",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0535",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Fleecejacke / Midlayer",
+      "units": "Stück",
+      "notes": "Aktivität: Bergwanderung_Huette;",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0536",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Flipflops",
+      "units": "",
+      "notes": "Eventuell",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0537",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Frischtücher",
+      "units": "pk",
+      "notes": "Aktion: Wickelrucksack | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0538",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Funktionshandtücher",
+      "units": "Stk",
+      "notes": "klein und schnelltrocknend",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0539",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Funktionsunterwäsche Merino",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0540",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Föhn",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0541",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Führer",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0542",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Gletscherbrille",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0543",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Globolies",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0544",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Haarband",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0545",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Haarreifen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0546",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Haarwaschmittel",
+      "units": "Flasche, pk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, Waldviertel 01 | Reisegröße",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0547",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Hakle feucht",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0548",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Hardshell / Regenjacke",
+      "units": "Stück",
+      "notes": "Winddicht & wasserdicht | Aktivität: Bergwanderung_Huette; winddicht & wasserdicht",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0549",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Hirschtalg",
+      "units": "tub",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0550",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Karten",
+      "units": "set",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0551",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kartenspiel / kleines Spiel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0552",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kerzen",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0553",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kindle",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0554",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kleiner faltbarer Regenschirm",
+      "units": "",
+      "notes": "Ergänzung zur Jacke",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0555",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Klospray",
+      "units": "",
+      "notes": "Kleine Reisegröße",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0556",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kompakter Regenschirm (windfest)",
+      "units": "",
+      "notes": "Optional, für Stadtbummel",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0557",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kompressions-/Packbeutel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0558",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kopfnetz gegen Midges (optional)",
+      "units": "",
+      "notes": "Bei starkem Aufkommen sehr hilfreich",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0559",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Küchenrolle",
+      "units": "rol",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0560",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Kühlbox",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0561",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Latzerln",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0562",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Leatherman",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0563",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Leichte, atmungsaktive Schichten",
+      "units": "",
+      "notes": "Zwiebelprinzip",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0564",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Lektüre",
+      "units": "Stück",
+      "notes": "Aktivität: Meditation; optional, spirituelle Lektüre",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0565",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Lesestoff",
+      "units": "-",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Hütte 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0566",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Memorystik 128",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0567",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Minitoilettenset",
+      "units": "",
+      "notes": "Zahnbürste, Zahncreme, Deo, Seife",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0568",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Nagelschere",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0569",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Notziblock",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0570",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Nägel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0571",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Paar Wandersocken",
+      "units": "",
+      "notes": "Merino ideal",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0572",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Papier + Schreibzeug",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0573",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Papierwaschlappen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0574",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Pinzette / Zeckenkarte",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0575",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Plastiklöffel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0576",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Plastiksackerl / Wäschesäcke",
+      "units": "Stk",
+      "notes": "nass, schmutzig, Wäsche",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0577",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Plastiksackerln",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0578",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Radio",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0579",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Reepschnüre",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0580",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Regenhose (leicht, packbar)",
+      "units": "",
+      "notes": "Für die Wanderung",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0581",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Regenhüllen für Tagesrucksäcke",
+      "units": "Stk",
+      "notes": "alternativ wasserdichte Innensäcke",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0582",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Regenjacke + Regenschirm",
+      "units": "",
+      "notes": "regnet öfter als in Mitteleuropa",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0583",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Regenschirm",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Anreise | Aktion: Wandern | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Manuell prüfen",
+      "archived": false
+    },
+    {
+      "id": "G0584",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Regenschirme",
+      "units": "Stk",
+      "notes": "klein und windfest",
+      "reviewStatus": "Manuell prüfen",
+      "archived": true
+    },
+    {
+      "id": "G0585",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Rei in der Tube",
+      "units": "tub",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0586",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Reiseführer",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona | digital oder gedruckt",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0587",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sab Tropfen",
+      "units": "pk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0588",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Schlauchboot",
+      "units": "stk",
+      "notes": "Aktion: Baden | Touren: 1; Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0589",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Schraubkarabiner",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0590",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Schreibzeug",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0591",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Schwimmreifen",
+      "units": "stk",
+      "notes": "Aktion: Baden | Touren: 4; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0592",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Schwimmtiere",
+      "units": "stk",
+      "notes": "Aktion: Baden | Touren: 4; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0593",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Signalstift",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0594",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Slipeinlagen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0595",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sonneblumencreme",
+      "units": "tub",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0596",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sonnenbrille",
+      "units": "stk, Stk",
+      "notes": "Aktion: Anreise | Aktion: Wickelrucksack | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01 | Zum Fahren",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0597",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sonnenbrille UV Kat. 3–4",
+      "units": "",
+      "notes": "Höhensonne!",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0598",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sonnenschirm",
+      "units": "stk",
+      "notes": "Aktion: Baden | Aktion: Aufenthalt | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0599",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sonnenschirmgriff",
+      "units": "stk",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0600",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sonnenschutz",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 4; Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0601",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Spielauto",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 1; Mariensee",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0602",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Spiele",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Barcelona, Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0603",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Spielkarten",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0604",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Spielsachen",
+      "units": "-",
+      "notes": "Aktion: Anreise | Aktion: Aufenthalt | Touren: 5; Barcelona, Hütte 01, Mariensee, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0605",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Stadtkarte / Offline-App",
+      "units": "Stück",
+      "notes": "Aktivität: Staedtereisen; z.B. Google Maps offline",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0606",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Stadtplan",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 1; Barcelona",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0607",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Stofflappen",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Aktion: Wickelrucksack | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0608",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Stoffsackerl",
+      "units": "stk",
+      "notes": "Aktion: Spazieren | Touren: 1; Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0609",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Stöcke",
+      "units": "pa",
+      "notes": "Aktion: Wandern | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0610",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Sunto",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0611",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Tragetuch",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 3; Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0612",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Treckingsack",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0613",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Uhr",
+      "units": "stk",
+      "notes": "Aktion: Anreise | Touren: 4; Barcelona, Hütte 01, St. Jakob im Defereggental, Waldviertel 01",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0614",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Verhütungsmittel",
+      "units": "stk",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Barcelona, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0615",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Wanderkarte / Offline-App",
+      "units": "",
+      "notes": "z.B. Komoot",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0616",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Wandersocken Merino",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0617",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Waschmittel",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0618",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Wechsel-T-Shirt + Unterwäsche (Tag 2)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0619",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Wegbeschreibung",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0620",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Weltempfänger",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0621",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Wetterfeste Regenjacke",
+      "units": "",
+      "notes": "Wichtig – in Nordeuropa regnet's öfter",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0622",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Wiederverschließbare Tüten (für nasse Kleidung)",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0623",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Windschutzcreme",
+      "units": "tub",
+      "notes": "Aktion: Aufenthalt | Touren: 2; Hütte 01, St. Jakob im Defereggental",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0624",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Zigarren",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": true
+    },
+    {
+      "id": "G0625",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Zündhölzer",
+      "units": "",
+      "notes": "",
+      "reviewStatus": "Übernommen",
+      "archived": false
+    },
+    {
+      "id": "G0626",
+      "categoryId": "K002",
+      "category": "Kleidung",
+      "name": "Leichte lange Schicht gegen Midges",
+      "units": "Stk",
+      "notes": "dicht gewebt, besonders abends",
+      "reviewStatus": "Aus aktueller Schottland-Liste ergänzt",
+      "archived": false
+    },
+    {
+      "id": "G0627",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "USB-/Anschlussadapter fürs Mietauto",
+      "units": "Set",
+      "notes": "USB-A/USB-C nach Bedarf",
+      "reviewStatus": "Aus aktueller Schottland-Liste ergänzt",
+      "archived": false
+    },
+    {
+      "id": "G0628",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Müllbeutel fürs Auto",
+      "units": "Stk",
+      "notes": "",
+      "reviewStatus": "Aus aktueller Schottland-Liste ergänzt",
+      "archived": false
+    },
+    {
+      "id": "G0629",
+      "categoryId": "K008",
+      "category": "Reise & Transport",
+      "name": "Mikrofasertuch / Reinigungstuch",
+      "units": "Stk",
+      "notes": "für beschlagene Scheiben/Brille",
+      "reviewStatus": "Aus aktueller Schottland-Liste ergänzt",
+      "archived": false
+    },
+    {
+      "id": "G0630",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Wiederverschließbare Flüssigkeitsbeutel",
+      "units": "Set",
+      "notes": "für Flüssigkeiten und Nasses",
+      "reviewStatus": "Aus aktueller Schottland-Liste ergänzt",
+      "archived": false
+    },
+    {
+      "id": "G0631",
+      "categoryId": "K013",
+      "category": "Sonstiges",
+      "name": "Ohrstöpsel und Schlafmaske",
+      "units": "Sets",
+      "notes": "",
+      "reviewStatus": "Aus aktueller Schottland-Liste ergänzt",
+      "archived": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "K001",
+      "name": "Dokumente & Finanzen",
+      "order": 1
+    },
+    {
+      "id": "K002",
+      "name": "Kleidung",
+      "order": 2
+    },
+    {
+      "id": "K003",
+      "name": "Schuhe",
+      "order": 3
+    },
+    {
+      "id": "K004",
+      "name": "Körperpflege",
+      "order": 4
+    },
+    {
+      "id": "K005",
+      "name": "Gesundheit & Medikamente",
+      "order": 5
+    },
+    {
+      "id": "K006",
+      "name": "Elektronik",
+      "order": 6
+    },
+    {
+      "id": "K007",
+      "name": "Wandern & Outdoor",
+      "order": 7
+    },
+    {
+      "id": "K008",
+      "name": "Reise & Transport",
+      "order": 8
+    },
+    {
+      "id": "K009",
+      "name": "Unterkunft & Schlafen",
+      "order": 9
+    },
+    {
+      "id": "K010",
+      "name": "Lebensmittel & Verpflegung",
+      "order": 10
+    },
+    {
+      "id": "K011",
+      "name": "Baby & Kind",
+      "order": 11
+    },
+    {
+      "id": "K012",
+      "name": "Sport & Seminar",
+      "order": 12
+    },
+    {
+      "id": "K013",
+      "name": "Sonstiges",
+      "order": 13
+    }
+  ]
+}
