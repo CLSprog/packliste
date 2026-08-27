@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root { --navy:#082d49; --navy-2:#0d3b5d; --ink:#10222c; --muted:#66727a; --paper:#f7f4ee; --card:#fffdfa; --line:#ddd8cf; --green:#39734b; --green-soft:#e7efe5; --blue-soft:#e6eef8; --amber-soft:#f6eee1; }
+:root { --navy:#082d49; --navy-2:#0d3b5d; --ink:#10222c; --muted:#66727a; --paper:#f7f4ee; --card:#fffdfa; --line:#ddd8cf; --green:#39734b; --green-soft:#e7efe5; --blue-soft:#e6eef8; --amber-soft:#f6eee1; --red:#a8392f; --red-soft:#fbeae8; --blue:#2f5f8a; }
 * { box-sizing:border-box; }
 html { background:var(--paper); scroll-behavior:smooth; }
 body { margin:0; color:var(--ink); background:var(--paper); font-family:Arial, Helvetica, sans-serif; }
@@ -93,6 +93,7 @@ svg { width:24px; height:24px; }
 .pl-editbar { display: flex; justify-content: flex-end; padding: 8px 14px 0; }
 .pl-edit-toggle { font-size: 12px; background: var(--card); border: 1px solid var(--line); color: var(--navy); border-radius: 999px; padding: 6px 12px; font-weight: 600; }
 .pl-edit-toggle.active { background: var(--navy); color: white; border-color: var(--navy); }
+.pl-edit-toggle:disabled { opacity: 0.4; }
 
 .pl-newreise { padding: 14px; background: var(--card); margin: 10px 14px; border-radius: 10px; border: 1px solid var(--line); }
 .pl-newreise label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin: 8px 0 3px; }
@@ -109,6 +110,29 @@ svg { width:24px; height:24px; }
 
 .pl-edit-item-block { border-bottom: 1px solid var(--line); padding-bottom: 2px; }
 .pl-edit-item-block .pl-edit-item { border-bottom: 0; }
+
+/* Kompakte Auswahl-Liste in "Liste bearbeiten" (V01-20): Gegenstände, die die
+   aktuelle Person noch nicht aktiv in ihrer eigenen Liste hat, mit Prioritäts-Farbe. */
+.pl-add-item { border-bottom: 1px solid var(--line); padding: 7px 8px; border-left: 4px solid transparent; }
+.pl-add-item.pri-rot { background: var(--red-soft); border-left-color: var(--red); }
+.pl-add-item.pri-blau { background: var(--blue-soft); border-left-color: var(--blue); }
+.pl-add-item.pri-gruen { background: var(--card); border-left-color: var(--green); }
+.pl-add-item-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pl-add-item-text { min-width: 0; flex: 1; }
+.pl-add-item-name { font-size: 12.5px; font-weight: 600; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
+.pl-add-item-hint { font-size: 10px; font-weight: 700; }
+.pri-rot .pl-add-item-hint { color: var(--red); }
+.pri-blau .pl-add-item-hint { color: var(--blue); }
+.pl-add-btn { width: 30px; height: 26px; border-radius: 6px; border: none; font-size: 16px; font-weight: 800; flex: none; line-height: 1; color: white; }
+.pri-rot .pl-add-btn { background: var(--red); }
+.pri-blau .pl-add-btn { background: var(--blue); }
+.pri-gruen .pl-add-btn { background: var(--green); }
+.pl-add-legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--ink); padding: 4px 4px 8px; }
+.pl-add-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.pl-add-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.pl-add-legend i.rot { background: var(--red); }
+.pl-add-legend i.blau { background: var(--blue); }
+.pl-add-legend i.gruen { background: var(--green); }
 .pl-person-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 2px 8px; }
 .pl-person-chip-wrap { display: inline-flex; align-items: center; gap: 3px; }
 .pl-person-chip { font-size: 11.5px; padding: 5px 10px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); color: var(--muted); font-weight: 600; }

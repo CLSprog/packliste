@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
 import seedData from "./data/schema-data.json";
 import { logout } from "./auth";
-import { loadState, saveState } from "./onedrive";
+import { loadState, saveState, LEGACY_FOLDER } from "./onedrive";
 import type { SchemaData, Tk04GegenstandPerson, T01Reise, T04Gegenstand } from "./data/schema";
 import {
   gegenstaendeFuerReise,
@@ -45,14 +45,26 @@ type ExportZeile = {
   verwendet: number | null;
 };
 
+const HISTORY_FILE = "P03_Packliste_Verlauf_AI.json";
+const MAX_HISTORY = 20;
+
 export default function SchemaApp({ account }: { account: AccountInfo }) {
   const [data, setData] = useState<SchemaData | null>(null);
+  // Rückgängig-Verlauf: die letzten Datenstände VOR jeder Änderung, älteste zuerst.
+  // Wird zusätzlich in OneDrive gesichert, damit "Rückgängig" auch nach einem
+  // Neuladen der Seite noch funktioniert (z.B. wenn man die App zwischendurch schließt).
+  const [history, setHistory] = useState<SchemaData[]>([]);
   const [loadStatus, setLoadStatus] = useState<"loading" | "ready" | "error">("loading");
   const [saveStatus, setSaveStatus] = useState<string>("");
   const [exportStatus, setExportStatus] = useState<string>("");
   const [selectedReiseId, setSelectedReiseId] = useState<string | null>(null);
   const [personFilter, setPersonFilter] = useState<string | null>(null);
-  const [offenFilter, setOffenFilter] = useState<"hergerichtet" | "eingepackt" | null>(null);
+  const [offenFilter, setOffenFilter] = useState<"hergerichtet" | "eingepackt" | "neu" | null>(null);
+  // Merkt sich, welche tk04-Zeilen in dieser Sitzung frisch über "Liste bearbeiten"
+  // hinzugefügt/reaktiviert wurden, fuer den Filter "Neu hinzugefügt". Bewusst nur
+  // im Speicher (nicht in OneDrive gesichert) - nach einem Neuladen der App ist der
+  // Filter wieder leer, die Gegenstände selbst bleiben natürlich erhalten.
+  const [neuHinzugefuegt, setNeuHinzugefuegt] = useState<Set<string>>(new Set());
   const [mode, setMode] = useState<"liste" | "bearbeiten" | "neueReise">("liste");
   const [editSearch, setEditSearch] = useState("");
   const [neuReiseName, setNeuReiseName] = useState("");
@@ -75,10 +87,24 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     let cancelled = false;
     (async () => {
       try {
-        const remote = await loadState(SCHEMA_FILE);
+        let [remote, remoteHistory] = await Promise.all([
+          loadState(SCHEMA_FILE),
+          loadState(HISTORY_FILE),
+        ]);
+        // Ordner-Umstellung V01-19: falls im neuen Ordner noch nichts liegt (z.B. weil
+        // dieses Gerät die App zuletzt vor der Umstellung geöffnet hat), im alten Ordner
+        // nachsehen. Wird gefunden, speichert der normale Auto-Save gleich danach eine
+        // Kopie im neuen Ordner - die alte Datei bleibt dabei unangetastet liegen.
+        if (remote === null) {
+          remote = await loadState(SCHEMA_FILE, LEGACY_FOLDER);
+        }
+        if (remoteHistory === null) {
+          remoteHistory = await loadState(HISTORY_FILE, LEGACY_FOLDER);
+        }
         if (cancelled) return;
         const initial = (remote as SchemaData) ?? (seedData as unknown as SchemaData);
         setData(initial);
+        setHistory((remoteHistory as SchemaData[]) ?? []);
         setSelectedReiseId(initial.t01_reise[0]?.id ?? null);
         setLoadStatus("ready");
       } catch (error) {
@@ -108,6 +134,17 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  // Rückgängig-Verlauf separat in OneDrive sichern, damit er auch nach einem
+  // Neuladen der Seite (z.B. App am Handy zwischendurch geschlossen) erhalten bleibt.
+  useEffect(() => {
+    if (loadStatus !== "ready") return;
+    const t = setTimeout(() => {
+      saveState(history, HISTORY_FILE).catch((error) => console.error(error));
+    }, 600);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history, loadStatus]);
 
   const reise = useMemo(
     () => data?.t01_reise.find((r) => r.id === selectedReiseId) ?? null,
@@ -146,7 +183,9 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       const row = personen.find((p) => p.id_t05 === personFilter);
       if (!row) continue; // diese Person braucht den Gegenstand nicht
       if (row.ausgewaehlt === -1) continue; // Strich = sicher nicht mitgenommen, aus der Liste raus
-      if (offenFilter) {
+      if (offenFilter === "neu") {
+        if (!neuHinzugefuegt.has(row.id)) continue;
+      } else if (offenFilter) {
         const feldWert = row[offenFilter];
         const istOffen = feldWert === null || feldWert === undefined;
         if (!istOffen) continue;
@@ -156,7 +195,21 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       byKat.get(kat)!.push({ g, row });
     }
     return Array.from(byKat.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
-  }, [data, gegenstaende, personFilter, offenFilter, reise]);
+  }, [data, gegenstaende, personFilter, offenFilter, reise, neuHinzugefuegt]);
+
+  // Zaehlt, wie viele "neu hinzugefügt"-Zeilen es fuer die aktuelle Person/Reise gibt -
+  // fuer die Anzeige "(n)" am Filter-Chip. Nur sichtbar, wenn > 0.
+  const neuCount = useMemo(() => {
+    if (!data || !reise || !personFilter || neuHinzugefuegt.size === 0) return 0;
+    let n = 0;
+    for (const g of gegenstaende) {
+      const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
+      if (!tk03) continue;
+      const row = data.tk04_tk03_t05.find((r) => r.id_tk03 === tk03.id && r.id_t05 === personFilter);
+      if (row && neuHinzugefuegt.has(row.id) && row.ausgewaehlt !== -1) n++;
+    }
+    return n;
+  }, [data, reise, gegenstaende, personFilter, neuHinzugefuegt]);
 
   const fortschritt = useMemo(() => {
     if (!data || !reise || !personFilter) return { done: 0, total: 0 };
@@ -174,13 +227,49 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return { done, total };
   }, [data, reise, gegenstaende, personFilter]);
 
+  // Alle inhaltlichen Änderungen laufen über diese Funktion statt über setData direkt,
+  // damit vor jeder Änderung der bisherige Stand im Rückgängig-Verlauf gesichert wird.
+  // Der updater bekommt garantiert einen nicht-null Stand und gibt entweder eine
+  // geänderte Kopie zurück, oder exakt dasselbe Objekt (===), wenn nichts zu tun war -
+  // in dem Fall wird auch nichts im Verlauf vermerkt.
+  function updateData(updater: (prev: SchemaData) => SchemaData) {
+    setData((prev) => {
+      if (!prev) return prev;
+      const next = updater(prev);
+      if (next === prev) return prev;
+      setHistory((h) => {
+        const erweitert = [...h, prev];
+        return erweitert.length > MAX_HISTORY ? erweitert.slice(erweitert.length - MAX_HISTORY) : erweitert;
+      });
+      return next;
+    });
+  }
+
+  // Letzten Schritt rückgängig machen: den zuletzt gesicherten Stand vor der Änderung
+  // wiederherstellen. Mehrfach hintereinander drückbar, bis der Verlauf leer ist.
+  function undo() {
+    setHistory((h) => {
+      if (h.length === 0) return h;
+      const letzter = h[h.length - 1];
+      setData(letzter);
+      return h.slice(0, h.length - 1);
+    });
+  }
+
   function bumpField(
     row: Tk04GegenstandPerson,
     field: "ausgewaehlt" | "hergerichtet" | "eingepackt" | "verwendet",
     direction: 1 | -1
   ) {
-    setData((prev) => {
-      if (!prev) return prev;
+    // Sobald an einer frisch hinzugefügten Zeile etwas eingetragen wird, gilt sie
+    // nicht mehr als "neu" - verschwindet also aus dem "Neu hinzugefügt"-Filter.
+    setNeuHinzugefuegt((s) => {
+      if (!s.has(row.id)) return s;
+      const next = new Set(s);
+      next.delete(row.id);
+      return next;
+    });
+    updateData((prev) => {
       const updated = prev.tk04_tk03_t05.map((r) => {
         if (r.id !== row.id) return r;
 
@@ -263,8 +352,13 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     if (!editingQty) return;
     const { rowId, field } = editingQty;
     const trimmed = editingQtyValue.trim();
-    setData((prev) => {
-      if (!prev) return prev;
+    setNeuHinzugefuegt((s) => {
+      if (!s.has(rowId)) return s;
+      const next = new Set(s);
+      next.delete(rowId);
+      return next;
+    });
+    updateData((prev) => {
       return {
         ...prev,
         tk04_tk03_t05: prev.tk04_tk03_t05.map((r) => {
@@ -310,8 +404,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
 
   function erstelleNeueReise() {
     if (!data || !neuReiseName.trim()) return;
-    setData((prev) => {
-      if (!prev) return prev;
+    updateData((prev) => {
       const ids = collectAllIds(prev);
       const reiseId = newId("t01", ids);
       ids.add(reiseId);
@@ -347,10 +440,64 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return tk01Rows[0]?.id ?? null;
   }
 
+  // V01-20: Gegenstand für die aktuell ausgewählte Person zur Reise hinzufügen bzw.
+  // reaktivieren - der einzige Weg aus der kompakten Auswahl-Liste in "Liste
+  // bearbeiten". Löscht nie etwas, nur hinzufügen/reaktivieren:
+  // - Gegenstand noch nicht auf der Reise: tk03 (Reise-Zuordnung) + tk04 (für diese
+  //   Person, Menge "0 - unsicher") werden neu angelegt.
+  // - Gegenstand ist schon auf der Reise (z.B. bei einer anderen Person), aber diese
+  //   Person hat noch keine Zeile: nur eine neue tk04-Zeile für sie.
+  // - Diese Person hatte den Gegenstand schon mal (Strich, ausgewählt = -1): die
+  //   bestehende Zeile wird auf "0 - unsicher" zurückgesetzt statt eine zweite anzulegen.
+  function fuegeGegenstandHinzu(gegenstandId: string) {
+    if (!data || !reise || !personFilter) return;
+    let betroffeneZeileId: string | null = null;
+    updateData((prev) => {
+      const ids = collectAllIds(prev);
+      let tk03 = tk03FuerGegenstand(prev, reise.id, gegenstandId);
+      let tk03Rows = prev.tk03_tk01_t04;
+      if (!tk03) {
+        const anker = ankerTk01(prev, reise.id);
+        if (!anker) return prev;
+        const neuTk03Id = newId("tk03", ids);
+        ids.add(neuTk03Id);
+        tk03 = { id: neuTk03Id, id_tk01: anker, id_t04: gegenstandId, notiz: "manuell ausgewählt" };
+        tk03Rows = [...prev.tk03_tk01_t04, tk03];
+      }
+      const bestehendeZeile = prev.tk04_tk03_t05.find(
+        (r) => r.id_tk03 === tk03!.id && r.id_t05 === personFilter
+      );
+      let tk04Rows = prev.tk04_tk03_t05;
+      if (bestehendeZeile) {
+        betroffeneZeileId = bestehendeZeile.id;
+        tk04Rows = prev.tk04_tk03_t05.map((r) =>
+          r.id === bestehendeZeile.id ? { ...r, ausgewaehlt: 0 } : r
+        );
+      } else {
+        const neuId = newId("tk04", ids);
+        betroffeneZeileId = neuId;
+        const neu: Tk04GegenstandPerson = {
+          id: neuId,
+          id_tk03: tk03.id,
+          id_t05: personFilter,
+          ausgewaehlt: 0,
+          hergerichtet: null,
+          eingepackt: null,
+          verwendet: null,
+        };
+        tk04Rows = [...prev.tk04_tk03_t05, neu];
+      }
+      return { ...prev, tk03_tk01_t04: tk03Rows, tk04_tk03_t05: tk04Rows };
+    });
+    if (betroffeneZeileId) {
+      const zeileId = betroffeneZeileId;
+      setNeuHinzugefuegt((s) => new Set(s).add(zeileId));
+    }
+  }
+
   function toggleGegenstandInReise(gegenstandId: string) {
     if (!data || !reise) return;
-    setData((prev) => {
-      if (!prev) return prev;
+    updateData((prev) => {
       const bestehende = tk03FuerGegenstand(prev, reise.id, gegenstandId);
       if (bestehende) {
         return {
@@ -376,8 +523,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   // Person einem Gegenstand (tk03-Zeile) zuweisen (an) oder wieder entfernen (aus).
   // Entfernen löscht die tk04-Zeile komplett inkl. aller vier Mengenwerte.
   function togglePersonZuweisung(tk03Id: string, personId: string) {
-    setData((prev) => {
-      if (!prev) return prev;
+    updateData((prev) => {
       const bestehende = prev.tk04_tk03_t05.find(
         (r) => r.id_tk03 === tk03Id && r.id_t05 === personId
       );
@@ -405,8 +551,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   // Eine bestehende Personen-Zuordnung auf eine andere Person umhängen.
   // Alle vier Mengenwerte (A/H/E/V) bleiben dabei unverändert erhalten.
   function verschiebePersonZuweisung(tk04Id: string, neuePersonId: string) {
-    setData((prev) => {
-      if (!prev) return prev;
+    updateData((prev) => {
       return {
         ...prev,
         tk04_tk03_t05: prev.tk04_tk03_t05.map((r) =>
@@ -422,8 +567,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     if (!data || !neuGegenstandName.trim()) return;
     const neueKatName = neuGegenstandKatNeu.trim();
     if (!neuGegenstandKat && !neueKatName) return; // Kategorie fehlt
-    setData((prev) => {
-      if (!prev) return prev;
+    updateData((prev) => {
       const ids = collectAllIds(prev);
       let katId = neuGegenstandKat;
       let t03Neu = prev.t03_kathegorie;
@@ -660,9 +804,17 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         {reise && (
           <>
             <button className="pl-edit-toggle" onClick={createPdf}>Als PDF drucken</button>{" "}
-            <button className="pl-edit-toggle" onClick={createExcel}>Als Excel sichern</button>
+            <button className="pl-edit-toggle" onClick={createExcel}>Als Excel sichern</button>{" "}
           </>
         )}
+        <button
+          className="pl-edit-toggle"
+          onClick={undo}
+          disabled={history.length === 0}
+          title={history.length > 0 ? `${history.length} Schritt(e) verfügbar` : "Kein Verlauf vorhanden"}
+        >
+          ↩ Rückgängig{history.length > 0 ? ` (${history.length})` : ""}
+        </button>
       </div>
       {exportStatus && <p className="pl-save">{exportStatus}</p>}
 
@@ -731,6 +883,18 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                 }}
                 placeholder="z.B. Regenschutz"
               />
+              {(() => {
+                const name = neuGegenstandName.trim().toLowerCase();
+                if (!name) return null;
+                const treffer = data.t04_gegenstand.find((g) => g.gegenstand.trim().toLowerCase() === name);
+                if (!treffer) return null;
+                return (
+                  <p className="pl-save" style={{ color: "#7a5c21" }}>
+                    Gibt es schon in „{kathegorieName(data, treffer.id_kathegorie)}“ – lieber über die Auswahl-Liste
+                    unten hinzufügen statt doppelt anzulegen?
+                  </p>
+                );
+              })()}
               <button
                 onClick={erstelleNeuenGegenstand}
                 disabled={!neuGegenstandName.trim() || (!neuGegenstandKat && !neuGegenstandKatNeu.trim())}
@@ -739,105 +903,82 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
               </button>
             </div>
           )}
-          <div className="pl-body">
-            {(() => {
-              const byKat = new Map<string, T04Gegenstand[]>();
-              for (const g of data.t04_gegenstand) {
-                if (editSearch && !g.gegenstand.toLowerCase().includes(editSearch.toLowerCase())) continue;
-                const kat = kathegorieName(data, g.id_kathegorie);
-                if (!byKat.has(kat)) byKat.set(kat, []);
-                byKat.get(kat)!.push(g);
-              }
-              const sorted = Array.from(byKat.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
-              return sorted.map(([katName, items]) => (
-                <div className="pl-category" key={katName}>
-                  <div className="pl-category-head">
-                    <span className="pl-category-tag">{katName}</span>
-                    <span className="pl-category-count">{items.length}</span>
-                  </div>
-                  {items.map((g) => {
+          {!personFilter && <p className="pl-save">Bitte zuerst oben eine Person auswählen.</p>}
+          {personFilter && (
+            <>
+              <div className="pl-add-legend">
+                <span><i className="rot"></i>wieder aufnehmen</span>
+                <span><i className="blau"></i>andere Person</span>
+                <span><i className="gruen"></i>neu hinzufügen</span>
+              </div>
+              <div className="pl-body">
+                {(() => {
+                  type Prio = "rot" | "blau" | "gruen";
+                  type Eintrag = { g: T04Gegenstand; prio: Prio; hint: string | null };
+                  const byKat = new Map<string, Eintrag[]>();
+                  for (const g of data.t04_gegenstand) {
+                    if (editSearch && !g.gegenstand.toLowerCase().includes(editSearch.toLowerCase())) continue;
                     const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
-                    const drin = !!tk03;
-                    const zugewiesen = tk03
-                      ? data.tk04_tk03_t05.filter((r) => r.id_tk03 === tk03.id)
-                      : [];
+                    const meineZeile = tk03
+                      ? data.tk04_tk03_t05.find((r) => r.id_tk03 === tk03.id && r.id_t05 === personFilter)
+                      : undefined;
+                    if (meineZeile && meineZeile.ausgewaehlt !== -1) continue; // hab ich schon aktiv - nicht nochmal anzeigen
+
+                    let prio: Prio;
+                    let hint: string | null = null;
+                    if (meineZeile && meineZeile.ausgewaehlt === -1) {
+                      prio = "rot"; // war bei mir, ist rausgefallen
+                    } else {
+                      const andere = tk03
+                        ? data.tk04_tk03_t05.filter(
+                            (r) => r.id_tk03 === tk03!.id && r.id_t05 !== personFilter && r.ausgewaehlt !== -1
+                          )
+                        : [];
+                      if (andere.length > 0) {
+                        prio = "blau";
+                        hint = andere
+                          .map((r) => data.t05_namen.find((p) => p.id === r.id_t05)?.namen ?? "?")
+                          .join(", ");
+                      } else {
+                        prio = "gruen";
+                      }
+                    }
+                    const kat = kathegorieName(data, g.id_kathegorie);
+                    if (!byKat.has(kat)) byKat.set(kat, []);
+                    byKat.get(kat)!.push({ g, prio, hint });
+                  }
+                  const prioRang: Record<Prio, number> = { rot: 0, blau: 1, gruen: 2 };
+                  const sorted = Array.from(byKat.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
+                  return sorted.map(([katName, items]) => {
+                    items.sort(
+                      (a, b) => prioRang[a.prio] - prioRang[b.prio] || a.g.gegenstand.localeCompare(b.g.gegenstand, "de")
+                    );
                     return (
-                      <div className="pl-edit-item-block" key={g.id}>
-                        <div className="pl-edit-item">
-                          <span className="pl-edit-item-name">{g.gegenstand}</span>
-                          <button
-                            className={"pl-edit-check" + (drin ? " on" : "")}
-                            onClick={() => {
-                              if (drin && moveFor?.tk03Id === tk03?.id) setMoveFor(null);
-                              toggleGegenstandInReise(g.id);
-                            }}
-                          >
-                            {drin ? "1" : "0"}
-                          </button>
+                      <div className="pl-category" key={katName}>
+                        <div className="pl-category-head">
+                          <span className="pl-category-tag">{katName}</span>
+                          <span className="pl-category-count">{items.length}</span>
                         </div>
-                        {drin && tk03 && (
-                          <div className="pl-person-chips">
-                            {data.t05_namen.map((p) => {
-                              const zRow = zugewiesen.find((z) => z.id_t05 === p.id);
-                              const assigned = !!zRow;
-                              return (
-                                <span className="pl-person-chip-wrap" key={p.id}>
-                                  <button
-                                    className={"pl-person-chip" + (assigned ? " on" : "")}
-                                    onClick={() => togglePersonZuweisung(tk03.id, p.id)}
-                                  >
-                                    {p.namen}
-                                  </button>
-                                  {assigned && (
-                                    <button
-                                      className="pl-person-move"
-                                      title={`${p.namen} zu anderer Person verschieben`}
-                                      onClick={() =>
-                                        setMoveFor(
-                                          moveFor?.tk04Id === zRow!.id
-                                            ? null
-                                            : { tk03Id: tk03.id, tk04Id: zRow!.id, vonPerson: p.id }
-                                        )
-                                      }
-                                    >
-                                      ⇄
-                                    </button>
-                                  )}
-                                </span>
-                              );
-                            })}
+                        {items.map(({ g, prio, hint }) => (
+                          <div className={"pl-add-item pri-" + prio} key={g.id}>
+                            <div className="pl-add-item-row">
+                              <div className="pl-add-item-text">
+                                <span className="pl-add-item-name">{g.gegenstand}</span>
+                                {hint && <span className="pl-add-item-hint">{hint}</span>}
+                              </div>
+                              <button className="pl-add-btn" onClick={() => fuegeGegenstandHinzu(g.id)}>
+                                +
+                              </button>
+                            </div>
                           </div>
-                        )}
-                        {moveFor && tk03 && moveFor.tk03Id === tk03.id && (
-                          <div className="pl-move-panel">
-                            <span>Verschieben zu:</span>
-                            {data.t05_namen
-                              .filter(
-                                (p) =>
-                                  p.id !== moveFor.vonPerson &&
-                                  !zugewiesen.some((z) => z.id_t05 === p.id)
-                              )
-                              .map((p) => (
-                                <button
-                                  key={p.id}
-                                  className="pl-move-target"
-                                  onClick={() => verschiebePersonZuweisung(moveFor.tk04Id, p.id)}
-                                >
-                                  {p.namen}
-                                </button>
-                              ))}
-                            <button className="pl-move-cancel" onClick={() => setMoveFor(null)}>
-                              Abbrechen
-                            </button>
-                          </div>
-                        )}
+                        ))}
                       </div>
                     );
-                  })}
-                </div>
-              ));
-            })()}
-          </div>
+                  });
+                })()}
+              </div>
+            </>
+          )}
         </>
       )}
 
@@ -878,6 +1019,14 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         >
           Einpacken offen
         </button>
+        {neuCount > 0 && (
+          <button
+            className={"pl-filter-chip pl-offen-chip" + (offenFilter === "neu" ? " active" : "")}
+            onClick={() => setOffenFilter(offenFilter === "neu" ? null : "neu")}
+          >
+            Neu hinzugefügt ({neuCount})
+          </button>
+        )}
       </div>
 
       <div className="pl-legend">
