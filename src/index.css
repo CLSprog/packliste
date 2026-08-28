@@ -41,7 +41,13 @@ svg { width:24px; height:24px; }
 
 /* ---- Schema-App (neue Packlisten-Ansicht) ---- */
 .pl-shell { max-width: 640px; margin: 0 auto; padding-bottom: 90px; background: var(--paper); min-height: 100vh; }
-.pl-header { position: sticky; top: 0; z-index: 15; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: white; padding: 14px 16px 16px; box-shadow: 0 4px 14px rgba(8,45,73,0.25); }
+/* Fixiert alle Kopf-/Filter-/Legenden-Zeilen oberhalb der eigentlichen
+   Gegenstands-Liste beim Scrollen - wie eingefrorene Zeilen in Excel.
+   Ein einziger sticky-Container statt einzelner sticky-Elemente mit
+   fest verdrahteten top-Werten, damit sich die Höhe (z.B. Reisetitel
+   über 1 Zeile, Speicher-Hinweis ein-/ausgeblendet) nicht verschiebt. */
+.pl-sticky-top { position: sticky; top: 0; z-index: 15; background: var(--paper); box-shadow: 0 4px 10px rgba(8,45,73,0.12); }
+.pl-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: white; padding: 14px 16px 16px; }
 .pl-header-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .pl-header-top h1 { font-size: 17px; margin: 0; font-weight: 700; letter-spacing: -.01em; }
 .pl-header-sub { font-size: 11px; opacity: .8; margin: 2px 0 0; }
@@ -52,10 +58,10 @@ svg { width:24px; height:24px; }
 .pl-progress-fill { height: 100%; background: #8fc49b; border-radius: 999px; transition: width .25s ease; }
 .pl-logout { margin-top: 10px; font-size: 11px; background: rgba(255,255,255,0.14); color: white; border: none; border-radius: 999px; padding: 5px 12px; }
 
-.pl-filterbar { display: flex; gap: 6px; padding: 10px 14px; overflow-x: auto; background: var(--paper); position: sticky; top: 96px; z-index: 14; border-bottom: 1px solid var(--line); }
+.pl-filterbar { display: flex; gap: 6px; padding: 10px 14px; overflow-x: auto; background: var(--paper); border-bottom: 1px solid var(--line); }
 .pl-filter-chip { flex: none; font-size: 12.5px; padding: 6px 13px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); color: var(--muted); white-space: nowrap; }
 .pl-filter-chip.active { background: var(--navy); border-color: var(--navy); color: white; font-weight: 700; }
-.pl-offenbar { position: static; padding-top: 0; }
+.pl-offenbar { padding-top: 0; }
 .pl-offen-chip.active { background: var(--amber-soft); border-color: #e2cfa8; color: #7a5c21; }
 
 .pl-select-row { padding: 10px 14px 0; }
@@ -67,8 +73,8 @@ svg { width:24px; height:24px; }
 .pl-category-tag { font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); background: var(--blue-soft); padding: 2px 8px; border-radius: 5px; border: 1px solid #cddcee; }
 .pl-category-count { font-size: 10.5px; color: var(--muted); }
 
-.pl-legend { display: flex; gap: 4px; padding: 4px 12px 2px; font-size: 9px; color: var(--muted); }
-.pl-legend span { width: 22px; text-align: center; }
+.pl-legend { display: flex; justify-content: flex-end; gap: 4px; padding: 4px 12px 4px; font-size: 9px; color: var(--muted); background: var(--paper); border-bottom: 1px solid var(--line); }
+.pl-legend span { width: 30px; text-align: center; }
 
 .pl-item { background: var(--card); border-bottom: 1px solid var(--line); padding: 6px 2px; margin-bottom: 0; }
 .pl-item-name { font-size: 12.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }

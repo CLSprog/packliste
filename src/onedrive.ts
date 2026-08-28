@@ -11,6 +11,7 @@ const FOLDER = "OneDrive_KI/ThinkTank/P03_Packliste/07_Database";
 // bereits laufendes Gerät seine Daten nicht verliert, wenn diese ZIP-Version
 // zum ersten Mal geladen wird - siehe loadStateMitFallback in SchemaApp.tsx.
 export const LEGACY_FOLDER = "P03_Packliste";
+
 const FILE = "P03_Packliste_Zustand_AI.json";
 const GRAPH_BASE = "https://graph.microsoft.com/v1.0";
 

@@ -230,12 +230,6 @@
       "notiz": ""
     },
     {
-      "id": "G-77359",
-      "gegenstand": "Blasenpflaster (Compeed)",
-      "id_kathegorie": "K-13774",
-      "notiz": ""
-    },
-    {
       "id": "G-54290",
       "gegenstand": "Boardingpässe",
       "id_kathegorie": "K-70131",
@@ -251,12 +245,6 @@
       "id": "G-28826",
       "gegenstand": "Deostift",
       "id_kathegorie": "K-98911",
-      "notiz": ""
-    },
-    {
-      "id": "G-79526",
-      "gegenstand": "Desinfektionsmittel",
-      "id_kathegorie": "K-13774",
       "notiz": ""
     },
     {
@@ -394,18 +382,6 @@
     {
       "id": "G-33682",
       "gegenstand": "Imodium / Loperamid",
-      "id_kathegorie": "K-13774",
-      "notiz": ""
-    },
-    {
-      "id": "G-48546",
-      "gegenstand": "Impfpaß",
-      "id_kathegorie": "K-42296",
-      "notiz": ""
-    },
-    {
-      "id": "G-19758",
-      "gegenstand": "Insektenschutzmittel",
       "id_kathegorie": "K-13774",
       "notiz": ""
     },
@@ -560,12 +536,6 @@
       "notiz": ""
     },
     {
-      "id": "G-24912",
-      "gegenstand": "Pflaster (verschiedene Größen)",
-      "id_kathegorie": "K-13774",
-      "notiz": ""
-    },
-    {
       "id": "G-58150",
       "gegenstand": "Powerbank",
       "id_kathegorie": "K-31915",
@@ -641,12 +611,6 @@
       "id": "G-88104",
       "gegenstand": "Schlafbekleidung",
       "id_kathegorie": "K-19415",
-      "notiz": ""
-    },
-    {
-      "id": "G-41299",
-      "gegenstand": "Schmerzmittel (Ibuprofen / Paracetamol)",
-      "id_kathegorie": "K-13774",
       "notiz": ""
     },
     {
@@ -788,12 +752,6 @@
       "notiz": ""
     },
     {
-      "id": "G-33464",
-      "gegenstand": "Verteilersteckdose",
-      "id_kathegorie": "K-31915",
-      "notiz": ""
-    },
-    {
       "id": "G-72975",
       "gegenstand": "Wanderhose zum Abzippen",
       "id_kathegorie": "K-55530",
@@ -874,12 +832,6 @@
     {
       "id": "G-15027",
       "gegenstand": "Lauf-Funktionsshirts",
-      "id_kathegorie": "K-19415",
-      "notiz": ""
-    },
-    {
-      "id": "G-75179",
-      "gegenstand": "Laufsocken",
       "id_kathegorie": "K-19415",
       "notiz": ""
     },
@@ -1220,20 +1172,8 @@
       "notiz": ""
     },
     {
-      "id": "G-73863",
-      "gegenstand": "Versicherung",
-      "id_kathegorie": "K-42296",
-      "notiz": ""
-    },
-    {
       "id": "G-41398",
       "gegenstand": "Impfpass",
-      "id_kathegorie": "K-42296",
-      "notiz": ""
-    },
-    {
-      "id": "G-89258",
-      "gegenstand": "Creditkarten",
       "id_kathegorie": "K-42296",
       "notiz": ""
     },
@@ -1292,12 +1232,6 @@
       "notiz": ""
     },
     {
-      "id": "G-95235",
-      "gegenstand": "Nasensprey",
-      "id_kathegorie": "K-98911",
-      "notiz": ""
-    },
-    {
       "id": "G-19264",
       "gegenstand": "Barttrimmer + Ladegerät",
       "id_kathegorie": "K-98911",
@@ -1310,32 +1244,8 @@
       "notiz": ""
     },
     {
-      "id": "G-14609",
-      "gegenstand": "Unterwäsche",
-      "id_kathegorie": "K-19415",
-      "notiz": ""
-    },
-    {
-      "id": "G-80281",
-      "gegenstand": "Unterwäsche transtex",
-      "id_kathegorie": "K-19415",
-      "notiz": ""
-    },
-    {
       "id": "G-89050",
       "gegenstand": "Socken Sport",
-      "id_kathegorie": "K-19415",
-      "notiz": ""
-    },
-    {
-      "id": "G-35101",
-      "gegenstand": "Leiber transtex kurz",
-      "id_kathegorie": "K-19415",
-      "notiz": ""
-    },
-    {
-      "id": "G-29857",
-      "gegenstand": "Leiberl transtex Lang",
       "id_kathegorie": "K-19415",
       "notiz": ""
     },
@@ -1361,12 +1271,6 @@
       "id": "G-45745",
       "gegenstand": "FlipFlo",
       "id_kathegorie": "K-79836",
-      "notiz": ""
-    },
-    {
-      "id": "G-65694",
-      "gegenstand": "Handtücher klein",
-      "id_kathegorie": "K-98911",
       "notiz": ""
     },
     {
@@ -1448,12 +1352,6 @@
       "notiz": ""
     },
     {
-      "id": "G-76453",
-      "gegenstand": "Schreibzeug",
-      "id_kathegorie": "K-31912",
-      "notiz": ""
-    },
-    {
       "id": "G-20833",
       "gegenstand": "Block",
       "id_kathegorie": "K-31912",
@@ -1462,12 +1360,6 @@
     {
       "id": "G-98875",
       "gegenstand": "Kluppen",
-      "id_kathegorie": "K-31912",
-      "notiz": ""
-    },
-    {
-      "id": "G-65221",
-      "gegenstand": "Sonnenbrillen",
       "id_kathegorie": "K-31912",
       "notiz": ""
     },
@@ -1493,12 +1385,6 @@
       "id": "G-16964",
       "gegenstand": "Tascherl",
       "id_kathegorie": "K-31912",
-      "notiz": ""
-    },
-    {
-      "id": "G-35272",
-      "gegenstand": "Stirnlampe + Batterien",
-      "id_kathegorie": "K-89603",
       "notiz": ""
     },
     {
@@ -1588,12 +1474,6 @@
     {
       "id": "G-54282",
       "gegenstand": "Ladestecker",
-      "id_kathegorie": "K-31915",
-      "notiz": ""
-    },
-    {
-      "id": "G-62247",
-      "gegenstand": "Verteiler",
       "id_kathegorie": "K-31915",
       "notiz": ""
     },
@@ -1953,12 +1833,7 @@
     {
       "id": "V2-67985",
       "id_t02": "A-81840",
-      "id_t04": "G-77359"
-    },
-    {
-      "id": "V2-96427",
-      "id_t02": "A-38817",
-      "id_t04": "G-77359"
+      "id_t04": "G-33798"
     },
     {
       "id": "V2-82690",
@@ -1974,11 +1849,6 @@
       "id": "V2-19962",
       "id_t02": "A-38817",
       "id_t04": "G-28826"
-    },
-    {
-      "id": "V2-67549",
-      "id_t02": "A-38817",
-      "id_t04": "G-79526"
     },
     {
       "id": "V2-13884",
@@ -2138,27 +2008,17 @@
     {
       "id": "V2-93081",
       "id_t02": "A-12038",
-      "id_t04": "G-48546"
-    },
-    {
-      "id": "V2-34884",
-      "id_t02": "A-38817",
-      "id_t04": "G-48546"
+      "id_t04": "G-41398"
     },
     {
       "id": "V2-49264",
       "id_t02": "A-81840",
-      "id_t04": "G-19758"
-    },
-    {
-      "id": "V2-16935",
-      "id_t02": "A-38817",
-      "id_t04": "G-19758"
+      "id_t04": "G-35951"
     },
     {
       "id": "V2-25487",
       "id_t02": "A-77819",
-      "id_t04": "G-19758"
+      "id_t04": "G-35951"
     },
     {
       "id": "V2-27210",
@@ -2376,11 +2236,6 @@
       "id_t04": "G-77591"
     },
     {
-      "id": "V2-53678",
-      "id_t02": "A-38817",
-      "id_t04": "G-24912"
-    },
-    {
       "id": "V2-52537",
       "id_t02": "A-38817",
       "id_t04": "G-58150"
@@ -2526,14 +2381,9 @@
       "id_t04": "G-88104"
     },
     {
-      "id": "V2-29104",
-      "id_t02": "A-38817",
-      "id_t04": "G-41299"
-    },
-    {
       "id": "V2-91545",
       "id_t02": "A-81840",
-      "id_t04": "G-41299"
+      "id_t04": "G-61745"
     },
     {
       "id": "V2-67595",
@@ -2741,11 +2591,6 @@
       "id_t04": "G-44279"
     },
     {
-      "id": "V2-53734",
-      "id_t02": "A-38817",
-      "id_t04": "G-33464"
-    },
-    {
       "id": "V2-68544",
       "id_t02": "A-81840",
       "id_t04": "G-72975"
@@ -2833,7 +2678,7 @@
     {
       "id": "V2-60934",
       "id_t02": "A-92418",
-      "id_t04": "G-75179"
+      "id_t04": "G-89050"
     },
     {
       "id": "V2-45627",
@@ -3193,7 +3038,7 @@
     {
       "id": "V2-24854",
       "id_t02": "A-46982",
-      "id_t04": "G-77359"
+      "id_t04": "G-33798"
     },
     {
       "id": "V2-13995",
@@ -3201,19 +3046,9 @@
       "id_t04": "G-98205"
     },
     {
-      "id": "V2-23016",
-      "id_t02": "A-38817",
-      "id_t04": "G-73863"
-    },
-    {
       "id": "V2-79519",
       "id_t02": "A-38817",
       "id_t04": "G-41398"
-    },
-    {
-      "id": "V2-20711",
-      "id_t02": "A-38817",
-      "id_t04": "G-89258"
     },
     {
       "id": "V2-40018",
@@ -3261,11 +3096,6 @@
       "id_t04": "G-15760"
     },
     {
-      "id": "V2-27640",
-      "id_t02": "A-38817",
-      "id_t04": "G-95235"
-    },
-    {
       "id": "V2-86217",
       "id_t02": "A-38817",
       "id_t04": "G-19264"
@@ -3276,14 +3106,9 @@
       "id_t04": "G-21403"
     },
     {
-      "id": "V2-33655",
-      "id_t02": "A-38817",
-      "id_t04": "G-14609"
-    },
-    {
       "id": "V2-30785",
       "id_t02": "A-38817",
-      "id_t04": "G-80281"
+      "id_t04": "G-87523"
     },
     {
       "id": "V2-51967",
@@ -3293,12 +3118,12 @@
     {
       "id": "V2-16445",
       "id_t02": "A-38817",
-      "id_t04": "G-35101"
+      "id_t04": "G-33533"
     },
     {
       "id": "V2-76815",
       "id_t02": "A-38817",
-      "id_t04": "G-29857"
+      "id_t04": "G-20410"
     },
     {
       "id": "V2-42865",
@@ -3319,11 +3144,6 @@
       "id": "V2-69756",
       "id_t02": "A-38817",
       "id_t04": "G-45745"
-    },
-    {
-      "id": "V2-53900",
-      "id_t02": "A-38817",
-      "id_t04": "G-65694"
     },
     {
       "id": "V2-27297",
@@ -3401,11 +3221,6 @@
       "id_t04": "G-69497"
     },
     {
-      "id": "V2-29822",
-      "id_t02": "A-38817",
-      "id_t04": "G-76453"
-    },
-    {
       "id": "V2-71036",
       "id_t02": "A-38817",
       "id_t04": "G-20833"
@@ -3414,11 +3229,6 @@
       "id": "V2-74325",
       "id_t02": "A-38817",
       "id_t04": "G-98875"
-    },
-    {
-      "id": "V2-13282",
-      "id_t02": "A-38817",
-      "id_t04": "G-65221"
     },
     {
       "id": "V2-42699",
@@ -3443,7 +3253,7 @@
     {
       "id": "V2-82834",
       "id_t02": "A-38817",
-      "id_t04": "G-35272"
+      "id_t04": "G-30857"
     },
     {
       "id": "V2-60944",
@@ -3534,11 +3344,6 @@
       "id": "V2-46777",
       "id_t02": "A-38817",
       "id_t04": "G-54282"
-    },
-    {
-      "id": "V2-30425",
-      "id_t02": "A-38817",
-      "id_t04": "G-62247"
     },
     {
       "id": "V2-78665",
@@ -3740,7 +3545,7 @@
     {
       "id": "V3-97226",
       "id_tk01": "V1-10658",
-      "id_t04": "G-77359",
+      "id_t04": "G-33798",
       "notiz": ""
     },
     {
@@ -3764,7 +3569,7 @@
     {
       "id": "V3-43927",
       "id_tk01": "V1-55417",
-      "id_t04": "G-79526",
+      "id_t04": "G-26042",
       "notiz": ""
     },
     {
@@ -3908,13 +3713,13 @@
     {
       "id": "V3-84262",
       "id_tk01": "V1-56092",
-      "id_t04": "G-48546",
+      "id_t04": "G-41398",
       "notiz": ""
     },
     {
       "id": "V3-47702",
       "id_tk01": "V1-10658",
-      "id_t04": "G-19758",
+      "id_t04": "G-35951",
       "notiz": ""
     },
     {
@@ -4058,7 +3863,7 @@
     {
       "id": "V3-25800",
       "id_tk01": "V1-55417",
-      "id_t04": "G-24912",
+      "id_t04": "G-86224",
       "notiz": ""
     },
     {
@@ -4142,7 +3947,7 @@
     {
       "id": "V3-86476",
       "id_tk01": "V1-10658",
-      "id_t04": "G-41299",
+      "id_t04": "G-61745",
       "notiz": ""
     },
     {
@@ -4278,12 +4083,6 @@
       "notiz": ""
     },
     {
-      "id": "V3-15401",
-      "id_tk01": "V1-55417",
-      "id_t04": "G-33464",
-      "notiz": ""
-    },
-    {
       "id": "V3-12910",
       "id_tk01": "V1-10658",
       "id_t04": "G-72975",
@@ -4388,7 +4187,7 @@
     {
       "id": "V3-33796",
       "id_tk01": "V1-12676",
-      "id_t04": "G-75179",
+      "id_t04": "G-89050",
       "notiz": ""
     },
     {
@@ -4868,13 +4667,13 @@
     {
       "id": "V3-95865",
       "id_tk01": "V1-83888",
-      "id_t04": "G-24912",
+      "id_t04": "G-86224",
       "notiz": ""
     },
     {
       "id": "V3-50492",
       "id_tk01": "V1-83888",
-      "id_t04": "G-79526",
+      "id_t04": "G-26042",
       "notiz": ""
     },
     {
@@ -4982,25 +4781,25 @@
     {
       "id": "V3-66592",
       "id_tk01": "V1-62958",
-      "id_t04": "G-77359",
+      "id_t04": "G-33798",
       "notiz": ""
     },
     {
       "id": "V3-40567",
       "id_tk01": "V1-99482",
-      "id_t04": "G-77359",
+      "id_t04": "G-33798",
       "notiz": ""
     },
     {
       "id": "V3-41216",
       "id_tk01": "V1-83888",
-      "id_t04": "G-77359",
+      "id_t04": "G-33798",
       "notiz": ""
     },
     {
       "id": "V3-12997",
       "id_tk01": "V1-83888",
-      "id_t04": "G-19758",
+      "id_t04": "G-35951",
       "notiz": ""
     },
     {
@@ -5024,7 +4823,7 @@
     {
       "id": "V3-67272",
       "id_tk01": "V1-79160",
-      "id_t04": "G-73863",
+      "id_t04": "G-65765",
       "notiz": "2024 vorhanden: 1; Rückhol etc."
     },
     {
@@ -5042,7 +4841,7 @@
     {
       "id": "V3-34747",
       "id_tk01": "V1-79160",
-      "id_t04": "G-89258",
+      "id_t04": "G-54458",
       "notiz": "2024 vorhanden: 2; eingepackt: 2"
     },
     {
@@ -5126,7 +4925,7 @@
     {
       "id": "V3-36360",
       "id_tk01": "V1-79160",
-      "id_t04": "G-95235",
+      "id_t04": "G-42101",
       "notiz": "2024 vorhanden: 1; eingepackt: 1; Bad"
     },
     {
@@ -5156,13 +4955,13 @@
     {
       "id": "V3-86702",
       "id_tk01": "V1-79160",
-      "id_t04": "G-14609",
+      "id_t04": "G-50001",
       "notiz": "2024 vorhanden: 20; eingepackt: 10"
     },
     {
       "id": "V3-45359",
       "id_tk01": "V1-79160",
-      "id_t04": "G-80281",
+      "id_t04": "G-87523",
       "notiz": "2024 vorhanden: 18; eingepackt: 18; Amzine 9 stk fr  +3 weiß +2* lang"
     },
     {
@@ -5186,7 +4985,7 @@
     {
       "id": "V3-27405",
       "id_tk01": "V1-79160",
-      "id_t04": "G-35101",
+      "id_t04": "G-33533",
       "notiz": "2024 vorhanden: 29; eingepackt: 12"
     },
     {
@@ -5198,7 +4997,7 @@
     {
       "id": "V3-35055",
       "id_tk01": "V1-79160",
-      "id_t04": "G-29857",
+      "id_t04": "G-20410",
       "notiz": "2024 vorhanden: 8; eingepackt: 3"
     },
     {
@@ -5252,7 +5051,7 @@
     {
       "id": "V3-37784",
       "id_tk01": "V1-79160",
-      "id_t04": "G-65694",
+      "id_t04": "G-76793",
       "notiz": "2024 vorhanden: 5; eingepackt: 6"
     },
     {
@@ -5348,7 +5147,7 @@
     {
       "id": "V3-55420",
       "id_tk01": "V1-79160",
-      "id_t04": "G-76453",
+      "id_t04": "G-84274",
       "notiz": "2024 vorhanden: 4; eingepackt: 4"
     },
     {
@@ -5366,7 +5165,7 @@
     {
       "id": "V3-35399",
       "id_tk01": "V1-79160",
-      "id_t04": "G-65221",
+      "id_t04": "G-95141",
       "notiz": "2024 vorhanden: 3; eingepackt: 1"
     },
     {
@@ -5408,7 +5207,7 @@
     {
       "id": "V3-93209",
       "id_tk01": "V1-79160",
-      "id_t04": "G-35272",
+      "id_t04": "G-30857",
       "notiz": "2024 vorhanden: 1; eingepackt: 1; ???"
     },
     {
@@ -5552,7 +5351,7 @@
     {
       "id": "V3-73466",
       "id_tk01": "V1-79160",
-      "id_t04": "G-62247",
+      "id_t04": "G-84483",
       "notiz": "2024 vorhanden: 1; eingepackt: 1"
     },
     {
@@ -7456,15 +7255,6 @@
     {
       "id": "V4-80767",
       "id_tk03": "V3-62898",
-      "id_t05": "N-98284",
-      "ausgewaehlt": 1,
-      "hergerichtet": null,
-      "eingepackt": null,
-      "verwendet": null
-    },
-    {
-      "id": "V4-26902",
-      "id_tk03": "V3-15401",
       "id_t05": "N-98284",
       "ausgewaehlt": 1,
       "hergerichtet": null,

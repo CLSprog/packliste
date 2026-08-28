@@ -764,59 +764,201 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
 
   return (
     <div className="pl-shell">
-      <header className="pl-header">
-        <div className="pl-header-top">
-          <h1>{reise?.reise ?? "P03 Packliste"}</h1>
-          <button className="pl-logout" onClick={() => logout()}>Abmelden</button>
-        </div>
-        <p className="pl-header-sub">
-          {reise?.von && reise?.bis
-            ? `${new Date(reise.von).toLocaleDateString("de-AT")} – ${new Date(reise.bis).toLocaleDateString("de-AT")}`
-            : "Zeitraum noch offen"}
-          {" · "}
-          {account.name ?? account.username}
-        </p>
-        <div className="pl-progress-wrap">
-          <div className="pl-progress-labels">
-            <span>Eingepackt</span>
-            <span>{fortschritt.done} / {fortschritt.total}</span>
+      {/* Fixierter Kopfbereich: bleibt beim Scrollen der Gegenstands-Liste
+          oben stehen (Excel-artige "eingefrorene Zeilen"), siehe .pl-sticky-top. */}
+      <div className="pl-sticky-top">
+        <header className="pl-header">
+          <div className="pl-header-top">
+            <h1>{reise?.reise ?? "P03 Packliste"}</h1>
+            <button className="pl-logout" onClick={() => logout()}>Abmelden</button>
           </div>
-          <div className="pl-progress-track">
-            <div className="pl-progress-fill" style={{ width: `${pct}%` }} />
+          <p className="pl-header-sub">
+            {reise?.von && reise?.bis
+              ? `${new Date(reise.von).toLocaleDateString("de-AT")} – ${new Date(reise.bis).toLocaleDateString("de-AT")}`
+              : "Zeitraum noch offen"}
+            {" · "}
+            {account.name ?? account.username}
+          </p>
+          <div className="pl-progress-wrap">
+            <div className="pl-progress-labels">
+              <span>Eingepackt</span>
+              <span>{fortschritt.done} / {fortschritt.total}</span>
+            </div>
+            <div className="pl-progress-track">
+              <div className="pl-progress-fill" style={{ width: `${pct}%` }} />
+            </div>
           </div>
-        </div>
-        <p className="pl-save">{saveStatus}</p>
-      </header>
+          <p className="pl-save">{saveStatus}</p>
+        </header>
 
-      <div className="pl-editbar">
-        <button
-          className={"pl-edit-toggle" + (mode === "neueReise" ? " active" : "")}
-          onClick={() => setMode("neueReise")}
-        >
-          + Neue Reise
-        </button>{" "}
-        <button
-          className={"pl-edit-toggle" + (mode === "bearbeiten" ? " active" : "")}
-          onClick={() => setMode(mode === "bearbeiten" ? "liste" : "bearbeiten")}
-        >
-          {mode === "bearbeiten" ? "Fertig" : "Liste bearbeiten"}
-        </button>{" "}
-        {reise && (
+        <div className="pl-editbar">
+          <button
+            className={"pl-edit-toggle" + (mode === "neueReise" ? " active" : "")}
+            onClick={() => setMode("neueReise")}
+          >
+            + Neue Reise
+          </button>{" "}
+          <button
+            className={"pl-edit-toggle" + (mode === "bearbeiten" ? " active" : "")}
+            onClick={() => setMode(mode === "bearbeiten" ? "liste" : "bearbeiten")}
+          >
+            {mode === "bearbeiten" ? "Fertig" : "Liste bearbeiten"}
+          </button>{" "}
+          {reise && (
+            <>
+              <button className="pl-edit-toggle" onClick={createPdf}>Als PDF drucken</button>{" "}
+              <button className="pl-edit-toggle" onClick={createExcel}>Als Excel sichern</button>{" "}
+            </>
+          )}
+          <button
+            className="pl-edit-toggle"
+            onClick={undo}
+            disabled={history.length === 0}
+            title={history.length > 0 ? `${history.length} Schritt(e) verfügbar` : "Kein Verlauf vorhanden"}
+          >
+            ↩ Rückgängig{history.length > 0 ? ` (${history.length})` : ""}
+          </button>
+        </div>
+        {exportStatus && <p className="pl-save">{exportStatus}</p>}
+
+        {mode === "bearbeiten" && reise && (
           <>
-            <button className="pl-edit-toggle" onClick={createPdf}>Als PDF drucken</button>{" "}
-            <button className="pl-edit-toggle" onClick={createExcel}>Als Excel sichern</button>{" "}
+            <div className="pl-select-row">
+              <input
+                value={editSearch}
+                onChange={(e) => setEditSearch(e.target.value)}
+                placeholder="Gegenstand suchen…"
+                style={{ width: "100%", padding: 9, borderRadius: 9, border: "1px solid var(--line)", fontSize: 14 }}
+              />
+            </div>
+            <div className="pl-select-row">
+              <button
+                className={"pl-edit-toggle" + (showNeuGegenstand ? " active" : "")}
+                onClick={() => setShowNeuGegenstand((v) => !v)}
+              >
+                {showNeuGegenstand ? "Abbrechen" : "+ Neuer Gegenstand"}
+              </button>
+            </div>
+            {showNeuGegenstand && (
+              <div className="pl-newreise">
+                <label>Name des Gegenstands</label>
+                <input
+                  value={neuGegenstandName}
+                  onChange={(e) => setNeuGegenstandName(e.target.value)}
+                  placeholder="z.B. Regenjacke"
+                />
+                <label>Kategorie (bestehende wählen)</label>
+                <select
+                  value={neuGegenstandKat}
+                  onChange={(e) => {
+                    setNeuGegenstandKat(e.target.value);
+                    if (e.target.value) setNeuGegenstandKatNeu("");
+                  }}
+                >
+                  <option value="">– bitte wählen –</option>
+                  {data.t03_kathegorie
+                    .slice()
+                    .sort((a, b) => a.kathegorie.localeCompare(b.kathegorie, "de"))
+                    .map((k) => (
+                      <option key={k.id} value={k.id}>{k.kathegorie}</option>
+                    ))}
+                </select>
+                <label>… oder neue Kategorie eintippen</label>
+                <input
+                  value={neuGegenstandKatNeu}
+                  onChange={(e) => {
+                    setNeuGegenstandKatNeu(e.target.value);
+                    if (e.target.value) setNeuGegenstandKat("");
+                  }}
+                  placeholder="z.B. Regenschutz"
+                />
+                {(() => {
+                  const name = neuGegenstandName.trim().toLowerCase();
+                  if (!name) return null;
+                  const treffer = data.t04_gegenstand.find((g) => g.gegenstand.trim().toLowerCase() === name);
+                  if (!treffer) return null;
+                  return (
+                    <p className="pl-save" style={{ color: "#7a5c21" }}>
+                      Gibt es schon in „{kathegorieName(data, treffer.id_kathegorie)}“ – lieber über die Auswahl-Liste
+                      unten hinzufügen statt doppelt anzulegen?
+                    </p>
+                  );
+                })()}
+                <button
+                  onClick={erstelleNeuenGegenstand}
+                  disabled={!neuGegenstandName.trim() || (!neuGegenstandKat && !neuGegenstandKatNeu.trim())}
+                >
+                  Gegenstand anlegen
+                </button>
+              </div>
+            )}
+            {!personFilter && <p className="pl-save">Bitte zuerst oben eine Person auswählen.</p>}
+            {personFilter && (
+              <div className="pl-add-legend">
+                <span><i className="rot"></i>wieder aufnehmen</span>
+                <span><i className="blau"></i>andere Person</span>
+                <span><i className="gruen"></i>neu hinzufügen</span>
+              </div>
+            )}
           </>
         )}
-        <button
-          className="pl-edit-toggle"
-          onClick={undo}
-          disabled={history.length === 0}
-          title={history.length > 0 ? `${history.length} Schritt(e) verfügbar` : "Kein Verlauf vorhanden"}
-        >
-          ↩ Rückgängig{history.length > 0 ? ` (${history.length})` : ""}
-        </button>
+
+        {mode === "liste" && (
+          <>
+            {data.t01_reise.length > 1 && (
+              <div className="pl-select-row">
+                <select value={selectedReiseId ?? ""} onChange={(e) => setSelectedReiseId(e.target.value)}>
+                  {data.t01_reise.map((r) => (
+                    <option key={r.id} value={r.id}>{r.reise}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            <div className="pl-filterbar">
+              {beteiligtePersonen.map((p) => (
+                <button
+                  key={p.id}
+                  className={"pl-filter-chip" + (personFilter === p.id ? " active" : "")}
+                  onClick={() => setPersonFilter(p.id)}
+                >
+                  {p.namen}
+                </button>
+              ))}
+            </div>
+
+            <div className="pl-filterbar pl-offenbar">
+              <button
+                className={"pl-filter-chip pl-offen-chip" + (offenFilter === "hergerichtet" ? " active" : "")}
+                onClick={() => setOffenFilter(offenFilter === "hergerichtet" ? null : "hergerichtet")}
+              >
+                Herrichten offen
+              </button>
+              <button
+                className={"pl-filter-chip pl-offen-chip" + (offenFilter === "eingepackt" ? " active" : "")}
+                onClick={() => setOffenFilter(offenFilter === "eingepackt" ? null : "eingepackt")}
+              >
+                Einpacken offen
+              </button>
+              {neuCount > 0 && (
+                <button
+                  className={"pl-filter-chip pl-offen-chip" + (offenFilter === "neu" ? " active" : "")}
+                  onClick={() => setOffenFilter(offenFilter === "neu" ? null : "neu")}
+                >
+                  Neu hinzugefügt ({neuCount})
+                </button>
+              )}
+            </div>
+
+            <div className="pl-legend">
+              <span title="Ausgewählt (geplant)">A</span>
+              <span title="Hergerichtet">H</span>
+              <span title="Eingepackt">E</span>
+              <span title="Verwendet">V</span>
+            </div>
+          </>
+        )}
       </div>
-      {exportStatus && <p className="pl-save">{exportStatus}</p>}
 
       {mode === "neueReise" && (
         <div className="pl-newreise">
@@ -832,211 +974,76 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         </div>
       )}
 
-      {mode === "bearbeiten" && reise && (
-        <>
-          <div className="pl-select-row">
-            <input
-              value={editSearch}
-              onChange={(e) => setEditSearch(e.target.value)}
-              placeholder="Gegenstand suchen…"
-              style={{ width: "100%", padding: 9, borderRadius: 9, border: "1px solid var(--line)", fontSize: 14 }}
-            />
-          </div>
-          <div className="pl-select-row">
-            <button
-              className={"pl-edit-toggle" + (showNeuGegenstand ? " active" : "")}
-              onClick={() => setShowNeuGegenstand((v) => !v)}
-            >
-              {showNeuGegenstand ? "Abbrechen" : "+ Neuer Gegenstand"}
-            </button>
-          </div>
-          {showNeuGegenstand && (
-            <div className="pl-newreise">
-              <label>Name des Gegenstands</label>
-              <input
-                value={neuGegenstandName}
-                onChange={(e) => setNeuGegenstandName(e.target.value)}
-                placeholder="z.B. Regenjacke"
-              />
-              <label>Kategorie (bestehende wählen)</label>
-              <select
-                value={neuGegenstandKat}
-                onChange={(e) => {
-                  setNeuGegenstandKat(e.target.value);
-                  if (e.target.value) setNeuGegenstandKatNeu("");
-                }}
-              >
-                <option value="">– bitte wählen –</option>
-                {data.t03_kathegorie
-                  .slice()
-                  .sort((a, b) => a.kathegorie.localeCompare(b.kathegorie, "de"))
-                  .map((k) => (
-                    <option key={k.id} value={k.id}>{k.kathegorie}</option>
-                  ))}
-              </select>
-              <label>… oder neue Kategorie eintippen</label>
-              <input
-                value={neuGegenstandKatNeu}
-                onChange={(e) => {
-                  setNeuGegenstandKatNeu(e.target.value);
-                  if (e.target.value) setNeuGegenstandKat("");
-                }}
-                placeholder="z.B. Regenschutz"
-              />
-              {(() => {
-                const name = neuGegenstandName.trim().toLowerCase();
-                if (!name) return null;
-                const treffer = data.t04_gegenstand.find((g) => g.gegenstand.trim().toLowerCase() === name);
-                if (!treffer) return null;
-                return (
-                  <p className="pl-save" style={{ color: "#7a5c21" }}>
-                    Gibt es schon in „{kathegorieName(data, treffer.id_kathegorie)}“ – lieber über die Auswahl-Liste
-                    unten hinzufügen statt doppelt anzulegen?
-                  </p>
-                );
-              })()}
-              <button
-                onClick={erstelleNeuenGegenstand}
-                disabled={!neuGegenstandName.trim() || (!neuGegenstandKat && !neuGegenstandKatNeu.trim())}
-              >
-                Gegenstand anlegen
-              </button>
-            </div>
-          )}
-          {!personFilter && <p className="pl-save">Bitte zuerst oben eine Person auswählen.</p>}
-          {personFilter && (
-            <>
-              <div className="pl-add-legend">
-                <span><i className="rot"></i>wieder aufnehmen</span>
-                <span><i className="blau"></i>andere Person</span>
-                <span><i className="gruen"></i>neu hinzufügen</span>
-              </div>
-              <div className="pl-body">
-                {(() => {
-                  type Prio = "rot" | "blau" | "gruen";
-                  type Eintrag = { g: T04Gegenstand; prio: Prio; hint: string | null };
-                  const byKat = new Map<string, Eintrag[]>();
-                  for (const g of data.t04_gegenstand) {
-                    if (editSearch && !g.gegenstand.toLowerCase().includes(editSearch.toLowerCase())) continue;
-                    const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
-                    const meineZeile = tk03
-                      ? data.tk04_tk03_t05.find((r) => r.id_tk03 === tk03.id && r.id_t05 === personFilter)
-                      : undefined;
-                    if (meineZeile && meineZeile.ausgewaehlt !== -1) continue; // hab ich schon aktiv - nicht nochmal anzeigen
+      {mode === "bearbeiten" && reise && personFilter && (
+        <div className="pl-body">
+          {(() => {
+            type Prio = "rot" | "blau" | "gruen";
+            type Eintrag = { g: T04Gegenstand; prio: Prio; hint: string | null };
+            const byKat = new Map<string, Eintrag[]>();
+            for (const g of data.t04_gegenstand) {
+              if (editSearch && !g.gegenstand.toLowerCase().includes(editSearch.toLowerCase())) continue;
+              const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
+              const meineZeile = tk03
+                ? data.tk04_tk03_t05.find((r) => r.id_tk03 === tk03.id && r.id_t05 === personFilter)
+                : undefined;
+              if (meineZeile && meineZeile.ausgewaehlt !== -1) continue; // hab ich schon aktiv - nicht nochmal anzeigen
 
-                    let prio: Prio;
-                    let hint: string | null = null;
-                    if (meineZeile && meineZeile.ausgewaehlt === -1) {
-                      prio = "rot"; // war bei mir, ist rausgefallen
-                    } else {
-                      const andere = tk03
-                        ? data.tk04_tk03_t05.filter(
-                            (r) => r.id_tk03 === tk03!.id && r.id_t05 !== personFilter && r.ausgewaehlt !== -1
-                          )
-                        : [];
-                      if (andere.length > 0) {
-                        prio = "blau";
-                        hint = andere
-                          .map((r) => data.t05_namen.find((p) => p.id === r.id_t05)?.namen ?? "?")
-                          .join(", ");
-                      } else {
-                        prio = "gruen";
-                      }
-                    }
-                    const kat = kathegorieName(data, g.id_kathegorie);
-                    if (!byKat.has(kat)) byKat.set(kat, []);
-                    byKat.get(kat)!.push({ g, prio, hint });
-                  }
-                  const prioRang: Record<Prio, number> = { rot: 0, blau: 1, gruen: 2 };
-                  const sorted = Array.from(byKat.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
-                  return sorted.map(([katName, items]) => {
-                    items.sort(
-                      (a, b) => prioRang[a.prio] - prioRang[b.prio] || a.g.gegenstand.localeCompare(b.g.gegenstand, "de")
-                    );
-                    return (
-                      <div className="pl-category" key={katName}>
-                        <div className="pl-category-head">
-                          <span className="pl-category-tag">{katName}</span>
-                          <span className="pl-category-count">{items.length}</span>
+              let prio: Prio;
+              let hint: string | null = null;
+              if (meineZeile && meineZeile.ausgewaehlt === -1) {
+                prio = "rot"; // war bei mir, ist rausgefallen
+              } else {
+                const andere = tk03
+                  ? data.tk04_tk03_t05.filter(
+                      (r) => r.id_tk03 === tk03!.id && r.id_t05 !== personFilter && r.ausgewaehlt !== -1
+                    )
+                  : [];
+                if (andere.length > 0) {
+                  prio = "blau";
+                  hint = andere
+                    .map((r) => data.t05_namen.find((p) => p.id === r.id_t05)?.namen ?? "?")
+                    .join(", ");
+                } else {
+                  prio = "gruen";
+                }
+              }
+              const kat = kathegorieName(data, g.id_kathegorie);
+              if (!byKat.has(kat)) byKat.set(kat, []);
+              byKat.get(kat)!.push({ g, prio, hint });
+            }
+            const prioRang: Record<Prio, number> = { rot: 0, blau: 1, gruen: 2 };
+            const sorted = Array.from(byKat.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
+            return sorted.map(([katName, items]) => {
+              items.sort(
+                (a, b) => prioRang[a.prio] - prioRang[b.prio] || a.g.gegenstand.localeCompare(b.g.gegenstand, "de")
+              );
+              return (
+                <div className="pl-category" key={katName}>
+                  <div className="pl-category-head">
+                    <span className="pl-category-tag">{katName}</span>
+                    <span className="pl-category-count">{items.length}</span>
+                  </div>
+                  {items.map(({ g, prio, hint }) => (
+                    <div className={"pl-add-item pri-" + prio} key={g.id}>
+                      <div className="pl-add-item-row">
+                        <div className="pl-add-item-text">
+                          <span className="pl-add-item-name">{g.gegenstand}</span>
+                          {hint && <span className="pl-add-item-hint">{hint}</span>}
                         </div>
-                        {items.map(({ g, prio, hint }) => (
-                          <div className={"pl-add-item pri-" + prio} key={g.id}>
-                            <div className="pl-add-item-row">
-                              <div className="pl-add-item-text">
-                                <span className="pl-add-item-name">{g.gegenstand}</span>
-                                {hint && <span className="pl-add-item-hint">{hint}</span>}
-                              </div>
-                              <button className="pl-add-btn" onClick={() => fuegeGegenstandHinzu(g.id)}>
-                                +
-                              </button>
-                            </div>
-                          </div>
-                        ))}
+                        <button className="pl-add-btn" onClick={() => fuegeGegenstandHinzu(g.id)}>
+                          +
+                        </button>
                       </div>
-                    );
-                  });
-                })()}
-              </div>
-            </>
-          )}
-        </>
-      )}
-
-      {mode === "liste" && (
-        <>
-      {data.t01_reise.length > 1 && (
-        <div className="pl-select-row">
-          <select value={selectedReiseId ?? ""} onChange={(e) => setSelectedReiseId(e.target.value)}>
-            {data.t01_reise.map((r) => (
-              <option key={r.id} value={r.id}>{r.reise}</option>
-            ))}
-          </select>
+                    </div>
+                  ))}
+                </div>
+              );
+            });
+          })()}
         </div>
       )}
 
-      <div className="pl-filterbar">
-        {beteiligtePersonen.map((p) => (
-          <button
-            key={p.id}
-            className={"pl-filter-chip" + (personFilter === p.id ? " active" : "")}
-            onClick={() => setPersonFilter(p.id)}
-          >
-            {p.namen}
-          </button>
-        ))}
-      </div>
-
-      <div className="pl-filterbar pl-offenbar">
-        <button
-          className={"pl-filter-chip pl-offen-chip" + (offenFilter === "hergerichtet" ? " active" : "")}
-          onClick={() => setOffenFilter(offenFilter === "hergerichtet" ? null : "hergerichtet")}
-        >
-          Herrichten offen
-        </button>
-        <button
-          className={"pl-filter-chip pl-offen-chip" + (offenFilter === "eingepackt" ? " active" : "")}
-          onClick={() => setOffenFilter(offenFilter === "eingepackt" ? null : "eingepackt")}
-        >
-          Einpacken offen
-        </button>
-        {neuCount > 0 && (
-          <button
-            className={"pl-filter-chip pl-offen-chip" + (offenFilter === "neu" ? " active" : "")}
-            onClick={() => setOffenFilter(offenFilter === "neu" ? null : "neu")}
-          >
-            Neu hinzugefügt ({neuCount})
-          </button>
-        )}
-      </div>
-
-      <div className="pl-legend">
-        <span style={{ width: 16 }}></span>
-        <span title="Ausgewählt (geplant)">A</span>
-        <span title="Hergerichtet">H</span>
-        <span title="Eingepackt">E</span>
-        <span title="Verwendet">V</span>
-      </div>
-
+      {mode === "liste" && (
       <div className="pl-body">
         {gruppiert.map(([katName, entries]) => (
           <div className="pl-category" key={katName}>
@@ -1119,7 +1126,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           </div>
         ))}
       </div>
-        </>
       )}
     </div>
   );
