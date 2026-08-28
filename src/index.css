@@ -573,3 +573,26 @@ select,.settings-page input,.detail-fields input { min-height:48px; padding:0 12
 .auth-card h1 { margin:0 0 12px; color:var(--navy); }
 .auth-card p { color:var(--muted); margin:0 0 20px; }
 .auth-error { color:#b3261e; font-weight:600; }
+
+/* ---- Sync/Offline/Konflikte (Multiuser-Synchronisation, Phase 1+2) ---- */
+.pl-save.offline { color: #ffd9c9; font-weight: 700; }
+.pl-automerge-banner { margin: 8px 14px 0; padding: 9px 12px; border-radius: 10px; background: var(--blue-soft); color: var(--navy); font-size: 12.5px; }
+.pl-automerge-banner ul { margin: 6px 0 0; padding-left: 18px; }
+.pl-automerge-banner button { margin-top: 8px; font-size: 11.5px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; color: var(--navy); font-weight: 700; }
+
+.pl-conflict-backdrop { position: fixed; inset: 0; z-index: 60; background: #051c2d85; backdrop-filter: blur(2px); display: flex; align-items: flex-end; justify-content: center; }
+.pl-conflict-panel { width: 100%; max-width: 640px; max-height: 88vh; overflow-y: auto; background: var(--paper); border-radius: 18px 18px 0 0; padding: 18px 16px 22px; box-shadow: 0 -10px 30px #0b29401a; }
+.pl-conflict-panel h2 { margin: 0 0 6px; font-size: 17px; color: var(--navy); }
+.pl-conflict-intro { margin: 0 0 14px; font-size: 12.5px; color: var(--muted); }
+.pl-conflict-list { display: grid; gap: 12px; }
+.pl-conflict-row { border: 1px solid var(--line); border-radius: 12px; padding: 10px; background: var(--card); }
+.pl-conflict-label { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.pl-conflict-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pl-conflict-side { text-align: left; border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 9px; background: var(--paper); }
+.pl-conflict-side.chosen { border-color: var(--green); background: var(--green-soft); }
+.pl-conflict-side-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); margin-bottom: 5px; }
+.pl-conflict-field { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; padding: 2px 0; }
+.pl-conflict-field span { color: var(--muted); }
+.pl-conflict-actions { position: sticky; bottom: 0; margin-top: 16px; padding-top: 10px; background: var(--paper); }
+.pl-conflict-submit { width: 100%; padding: 12px; border: none; border-radius: 12px; background: var(--navy); color: white; font-weight: 700; font-size: 14px; }
+.pl-conflict-submit:disabled { opacity: .4; }

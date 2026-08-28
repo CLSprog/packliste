@@ -11,11 +11,14 @@ import {
   kathegorieName,
   newId,
 } from "./data/schema";
+import { diffAndMerge, applyConflictResolutions, hashData, type RowConflict, type AutoMergedChange, type SyncResult } from "./sync";
+import { readBaseline, writeBaseline, readPending, writePending, clearPending, istVerbindungsfehler } from "./syncStore";
+import ConflictModal from "./ConflictModal";
 
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V02-00";
+const APP_VERSION = "V02-01";
 
 // Einziger Speicherort/Dateiname (von Clemens am 2026-08-28 bestätigt: kein
 // Fallback mehr auf alte Ordner/Dateinamen, die werden von ihm manuell aus
@@ -177,68 +180,248 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const longPressFired = useRef(false);
 
+  // ---- Sync/Offline (Multiuser-Synchronisation, Phase 1+2) ----
+  // "baseline" = der letzte Stand, der nachweislich mit dem Server abgeglichen wurde -
+  // Grundlage für den Zeilen-für-Zeile-Vergleich in sync.ts. In einem Ref, weil er sich
+  // unabhängig von React-Re-Renders sofort nach jedem erfolgreichen Sync ändern muss.
+  const baselineRef = useRef<SchemaData | null>(null);
+  // Der volle Vergleichs-Vorschlag (inkl. der noch offenen Konflikt-Zeilen), solange der
+  // Nutzer über das Konflikt-Fenster noch nicht entschieden hat.
+  const pendingSyncResultRef = useRef<SyncResult | null>(null);
+  const [conflicts, setConflicts] = useState<RowConflict[]>([]);
+  const [autoMerged, setAutoMerged] = useState<AutoMergedChange[]>([]);
+  const [showAutoMerged, setShowAutoMerged] = useState(false);
+  const [offline, setOffline] = useState(false);
+  const [retryTick, setRetryTick] = useState(0);
+
+  function alsServerstand(remote: unknown): SchemaData {
+    const merged = remote
+      ? mergeSeedInto(remote as SchemaData, seedData as unknown as SchemaData)
+      : (seedData as unknown as SchemaData);
+    return backfillPersonenOhneMenge(merged, "Grimming 2026", ["Clemens", "Sonja"]);
+  }
+
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
         // Einziger Speicherort, kein Fallback mehr auf alte Ordner/Dateinamen
         // (siehe onedrive.ts / Projektstand, ab V01-27 auf Clemens' Wunsch entfernt).
-        let remote = await loadState(SCHEMA_FILE);
-        let remoteHistory = await loadState(HISTORY_FILE);
+        const remote = await loadState(SCHEMA_FILE);
+        const remoteHistory = await loadState(HISTORY_FILE);
         if (cancelled) return;
-        // Fehlende Reisen/Kategorien/Gegenstände (z.B. China 2024, Grimming), die
-        // per ZIP-Import nur in der mitgelieferten Seed-Datei stecken, weil OneDrive
-        // zum Zeitpunkt des Imports schon eigene Daten hatte: beim Laden ergänzen,
-        // ohne bereits vorhandene (live gepflegte) Zeilen zu verändern.
-        let initial = remote
-          ? mergeSeedInto(remote as SchemaData, seedData as unknown as SchemaData)
-          : (seedData as unknown as SchemaData);
-        // Einmaliger Nachtrag: Grimming 2026 hatte nie persönliche Mengen (siehe
-        // backfillPersonenOhneMenge oben) - legt sie für Clemens/Sonja an, falls
-        // noch nicht vorhanden. Wirkt sich nicht aus, sobald das erledigt ist.
-        initial = backfillPersonenOhneMenge(initial, "Grimming 2026", ["Clemens", "Sonja"]);
-        setData(initial);
+        const server = alsServerstand(remote);
+
+        // Prüfen, ob von einer früheren Offline-Sitzung noch ein nicht synchronisierter
+        // Stand im Browser liegt (z.B. App wurde ohne Verbindung geschlossen, bevor die
+        // Änderung nach OneDrive geschrieben werden konnte).
+        const pending = readPending(SCHEMA_FILE);
+        const storedBaseline = readBaseline(SCHEMA_FILE);
+        const pendingIstNeu = pending && (!storedBaseline || JSON.stringify(pending) !== JSON.stringify(storedBaseline));
+
+        if (pendingIstNeu && pending) {
+          const result = diffAndMerge(storedBaseline ?? server, pending, server);
+          if (result.conflicts.length > 0) {
+            pendingSyncResultRef.current = result;
+            setConflicts(result.conflicts);
+            setAutoMerged(result.autoMerged);
+            setData(result.merged);
+            setSelectedReiseId(result.merged.t01_reise[0]?.id ?? null);
+          } else {
+            await saveState(result.merged, SCHEMA_FILE);
+            baselineRef.current = result.merged;
+            writeBaseline(SCHEMA_FILE, result.merged);
+            clearPending(SCHEMA_FILE);
+            setData(result.merged);
+            setSelectedReiseId(result.merged.t01_reise[0]?.id ?? null);
+            if (result.autoMerged.length > 0) {
+              setAutoMerged(result.autoMerged);
+              setShowAutoMerged(true);
+            }
+          }
+        } else {
+          baselineRef.current = server;
+          writeBaseline(SCHEMA_FILE, server);
+          clearPending(SCHEMA_FILE);
+          setData(server);
+          setSelectedReiseId(server.t01_reise[0]?.id ?? null);
+        }
         setHistory((remoteHistory as SchemaData[]) ?? []);
-        setSelectedReiseId(initial.t01_reise[0]?.id ?? null);
+        setOffline(false);
         setLoadStatus("ready");
       } catch (error) {
         if (cancelled) return;
         console.error(error);
+        if (istVerbindungsfehler(error)) {
+          // Ohne Verbindung: mit dem letzten lokal gemerkten Stand weiterarbeiten,
+          // falls vorhanden (offline gemachte Änderungen zuerst, sonst der letzte
+          // erfolgreich synchronisierte Stand).
+          const lokal = readPending(SCHEMA_FILE) ?? readBaseline(SCHEMA_FILE);
+          if (lokal) {
+            baselineRef.current = readBaseline(SCHEMA_FILE) ?? lokal;
+            setData(lokal);
+            setSelectedReiseId(lokal.t01_reise[0]?.id ?? null);
+            setHistory([]);
+            setOffline(true);
+            setLoadStatus("ready");
+            return;
+          }
+        }
         setLoadStatus("error");
       }
     })();
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Verbindung kommt zurück (Browser-Ereignis) bzw. fällt aus - Sync-Versuch anstoßen bzw.
+  // Status setzen. Zusätzlich alle 30s ein erneuter Versuch, solange offline, für den Fall,
+  // dass das Browser-Ereignis nicht zuverlässig feuert (z.B. WLAN ohne echtes Internet).
+  useEffect(() => {
+    function handleOnline() {
+      setOffline(false);
+      setRetryTick((t) => t + 1);
+    }
+    function handleOffline() {
+      setOffline(true);
+    }
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
   }, []);
 
   useEffect(() => {
+    if (!offline) return;
+    const interval = setInterval(() => setRetryTick((t) => t + 1), 30000);
+    return () => clearInterval(interval);
+  }, [offline]);
+
+  // Speichert die aktuelle Änderung nach OneDrive - aber erst, nachdem geprüft wurde, ob
+  // sich der Server-Stand seit dem letzten eigenen Sync verändert hat (anderes Gerät hat
+  // gespeichert). Ist das der Fall, wird Zeile für Zeile abgeglichen (sync.ts): eindeutige
+  // fremde Änderungen werden automatisch übernommen und angezeigt, echte Konflikte (gleiche
+  // Zeile beidseitig unterschiedlich geändert) werden dem Nutzer einzeln vorgelegt (Konflikt-
+  // Fenster) - erst danach wird tatsächlich gespeichert. Dieselbe Logik greift unverändert,
+  // wenn die Änderung offline gemacht wurde und erst jetzt synchronisiert werden kann.
+  useEffect(() => {
     if (!data) return;
-    setSaveStatus("Änderungen werden gespeichert …");
+    if (conflicts.length > 0) return; // erst entscheiden lassen, bevor weitergespeichert wird
+    setSaveStatus(offline ? "Offline – Änderung wird lokal gemerkt …" : "Änderungen werden gespeichert …");
     const t = setTimeout(async () => {
+      // Immer zuerst lokal merken, damit bei einem Absturz/Schließen mitten im Offline-
+      // Betrieb nichts verloren geht (siehe syncStore.ts) - unabhängig davon, ob der
+      // anschließende Speicherversuch klappt.
+      writePending(SCHEMA_FILE, data);
       try {
-        await saveState(data, SCHEMA_FILE);
-        const now = new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-        setSaveStatus(`Gespeichert um ${now}`);
+        const remote = await loadState(SCHEMA_FILE);
+        const remoteData = remote ? alsServerstand(remote) : data;
+        const baseline = baselineRef.current ?? remoteData;
+        const remoteHash = await hashData(remoteData);
+        const baselineHash = await hashData(baseline);
+        const jetzt = () =>
+          new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+
+        if (remoteHash === baselineHash) {
+          // Niemand sonst hat seit unserem letzten Sync gespeichert - direkt übernehmen.
+          await saveState(data, SCHEMA_FILE);
+          baselineRef.current = data;
+          writeBaseline(SCHEMA_FILE, data);
+          clearPending(SCHEMA_FILE);
+          setOffline(false);
+          setSaveStatus(`Gespeichert um ${jetzt()}`);
+          return;
+        }
+
+        // Es gibt fremde Änderungen seit unserem letzten Sync - Zeilen-für-Zeile abgleichen.
+        const result = diffAndMerge(baseline, data, remoteData);
+        if (result.conflicts.length > 0) {
+          pendingSyncResultRef.current = result;
+          setConflicts(result.conflicts);
+          setAutoMerged(result.autoMerged);
+          setData(result.merged);
+          setSaveStatus("Es gibt widersprüchliche Änderungen von einem anderen Gerät – bitte entscheiden.");
+          return;
+        }
+        await saveState(result.merged, SCHEMA_FILE);
+        baselineRef.current = result.merged;
+        writeBaseline(SCHEMA_FILE, result.merged);
+        clearPending(SCHEMA_FILE);
+        setOffline(false);
+        setData(result.merged);
+        if (result.autoMerged.length > 0) {
+          setAutoMerged(result.autoMerged);
+          setShowAutoMerged(true);
+        }
+        setSaveStatus(`Gespeichert um ${jetzt()}`);
       } catch (error) {
         console.error(error);
-        setSaveStatus("Speichern fehlgeschlagen – bitte Verbindung prüfen.");
+        if (istVerbindungsfehler(error)) {
+          setOffline(true);
+          setSaveStatus("Offline – Änderungen werden gespeichert, sobald wieder online.");
+        } else {
+          setSaveStatus("Speichern fehlgeschlagen – bitte Verbindung prüfen.");
+        }
       }
     }, 600);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, conflicts.length, offline, retryTick]);
 
   // Rückgängig-Verlauf separat in OneDrive sichern, damit er auch nach einem
   // Neuladen der Seite (z.B. App am Handy zwischendurch geschlossen) erhalten bleibt.
+  // Unkritisch genug (reine Komfortfunktion), um offline einfach ausgesetzt zu werden,
+  // statt dieselbe Konflikt-Logik wie beim eigentlichen Datenstand zu durchlaufen - wird
+  // beim nächsten Online-Speichern automatisch nachgezogen.
   useEffect(() => {
-    if (loadStatus !== "ready") return;
+    if (loadStatus !== "ready" || offline) return;
     const t = setTimeout(() => {
-      saveState(history, HISTORY_FILE).catch((error) => console.error(error));
+      saveState(history, HISTORY_FILE).catch((error) => {
+        console.error(error);
+        if (istVerbindungsfehler(error)) setOffline(true);
+      });
     }, 600);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history, loadStatus]);
+  }, [history, loadStatus, offline, retryTick]);
+
+  // Nutzer hat für jede Konflikt-Zeile einzeln entschieden (Konflikt-Fenster) - Ergebnis
+  // einarbeiten und speichern.
+  async function konflikteEntschieden(resolutions: Map<string, "local" | "remote">) {
+    const result = pendingSyncResultRef.current;
+    if (!result) return;
+    const finalData = applyConflictResolutions(result, resolutions);
+    try {
+      await saveState(finalData, SCHEMA_FILE);
+      pendingSyncResultRef.current = null;
+      baselineRef.current = finalData;
+      writeBaseline(SCHEMA_FILE, finalData);
+      clearPending(SCHEMA_FILE);
+      setConflicts([]);
+      setOffline(false);
+      setData(finalData);
+      const now = new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      setSaveStatus(`Gespeichert um ${now}`);
+      if (result.autoMerged.length > 0) setShowAutoMerged(true);
+    } catch (error) {
+      console.error(error);
+      if (istVerbindungsfehler(error)) {
+        // Entscheidung lokal übernehmen und merken, wird gespeichert sobald wieder online.
+        pendingSyncResultRef.current = null;
+        setConflicts([]);
+        setOffline(true);
+        setData(finalData);
+        writePending(SCHEMA_FILE, finalData);
+        setSaveStatus("Offline – Entscheidung gemerkt, wird gespeichert sobald wieder online.");
+      } else {
+        setSaveStatus("Speichern fehlgeschlagen – bitte Verbindung prüfen, dann erneut versuchen.");
+      }
+    }
+  }
 
   const reise = useMemo(
     () => data?.t01_reise.find((r) => r.id === selectedReiseId) ?? null,
@@ -905,8 +1088,20 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
               <div className="pl-progress-fill" style={{ width: `${pct}%` }} />
             </div>
           </div>
-          <p className="pl-save">{saveStatus}</p>
+          <p className={"pl-save" + (offline ? " offline" : "")}>{offline ? "🔌 " : ""}{saveStatus}</p>
         </header>
+
+        {showAutoMerged && autoMerged.length > 0 && (
+          <div className="pl-automerge-banner">
+            Ein anderes Gerät hat inzwischen ebenfalls gespeichert. Automatisch übernommen:
+            <ul>
+              {autoMerged.map((c, i) => (
+                <li key={`${c.table}-${c.id}-${i}`}>{c.label} ({c.art})</li>
+              ))}
+            </ul>
+            <button type="button" onClick={() => setShowAutoMerged(false)}>Verstanden</button>
+          </div>
+        )}
 
         <div className="pl-editbar">
           <button
@@ -1246,6 +1441,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         ))}
       </div>
       )}
+      {conflicts.length > 0 && <ConflictModal conflicts={conflicts} onResolve={konflikteEntschieden} />}
     </div>
   );
 }
