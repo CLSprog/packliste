@@ -15,7 +15,7 @@ import {
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V01-28";
+const APP_VERSION = "V02-00";
 
 // Einziger Speicherort/Dateiname (von Clemens am 2026-08-28 bestätigt: kein
 // Fallback mehr auf alte Ordner/Dateinamen, die werden von ihm manuell aus
@@ -45,6 +45,10 @@ function mergeSeedInto(remote: SchemaData, seed: SchemaData): SchemaData {
     tk02_t02_t04: ergaenzt(remote.tk02_t02_t04, seed.tk02_t02_t04),
     tk03_tk01_t04: ergaenzt(remote.tk03_tk01_t04, seed.tk03_tk01_t04),
     tk04_tk03_t05: ergaenzt(remote.tk04_tk03_t05, seed.tk04_tk03_t05),
+    // "Neu hinzugefügt"-Markierungen kommen nur aus den echten Live-Daten, nie aus der
+    // Seed-Datei (die kennt dieses Feld nicht) - sonst blieben alte ZIP-Importe für immer
+    // fälschlich als "neu" markiert.
+    neu_hinzugefuegt: remote.neu_hinzugefuegt ?? [],
   };
 }
 
@@ -146,11 +150,15 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   const [selectedReiseId, setSelectedReiseId] = useState<string | null>(null);
   const [personFilter, setPersonFilter] = useState<string | null>(null);
   const [offenFilter, setOffenFilter] = useState<"hergerichtet" | "eingepackt" | "neu" | null>(null);
-  // Merkt sich, welche tk04-Zeilen in dieser Sitzung frisch über "Liste bearbeiten"
-  // hinzugefügt/reaktiviert wurden, fuer den Filter "Neu hinzugefügt". Bewusst nur
-  // im Speicher (nicht in OneDrive gesichert) - nach einem Neuladen der App ist der
-  // Filter wieder leer, die Gegenstände selbst bleiben natürlich erhalten.
-  const [neuHinzugefuegt, setNeuHinzugefuegt] = useState<Set<string>>(new Set());
+  // Welche tk04-Zeilen über "Liste bearbeiten" hinzugefügt/reaktiviert wurden und noch
+  // nicht angetippt sind, für den Filter "Neu hinzugefügt". Seit V01-29 Teil von `data`
+  // (Feld `neu_hinzugefuegt`) und damit in OneDrive gesichert - bleibt also über ein
+  // Neuladen und über Geräte hinweg erhalten, bis der jeweilige Eintrag angetippt wird
+  // (von Clemens am 2026-08-28 so gewünscht: "nicht nur lokal gespeichert").
+  const neuHinzugefuegt = useMemo(
+    () => new Set(data?.neu_hinzugefuegt ?? []),
+    [data?.neu_hinzugefuegt]
+  );
   const [mode, setMode] = useState<"liste" | "bearbeiten" | "neueReise">("liste");
   const [editSearch, setEditSearch] = useState("");
   const [neuReiseName, setNeuReiseName] = useState("");
@@ -366,14 +374,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     field: "ausgewaehlt" | "hergerichtet" | "eingepackt" | "verwendet",
     direction: 1 | -1
   ) {
-    // Sobald an einer frisch hinzugefügten Zeile etwas eingetragen wird, gilt sie
-    // nicht mehr als "neu" - verschwindet also aus dem "Neu hinzugefügt"-Filter.
-    setNeuHinzugefuegt((s) => {
-      if (!s.has(row.id)) return s;
-      const next = new Set(s);
-      next.delete(row.id);
-      return next;
-    });
     updateData((prev) => {
       const updated = prev.tk04_tk03_t05.map((r) => {
         if (r.id !== row.id) return r;
@@ -408,7 +408,12 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         const next = Math.max(-1, current + direction);
         return { ...r, [field]: next };
       });
-      return { ...prev, tk04_tk03_t05: updated };
+      // Sobald an einer frisch hinzugefügten Zeile etwas eingetragen wird, gilt sie
+      // nicht mehr als "neu" - verschwindet also aus dem "Neu hinzugefügt"-Filter.
+      // Im selben updateData-Aufruf wie die eigentliche Änderung, damit es nur einen
+      // Rückgängig-Schritt gibt und beides zusammen gespeichert wird.
+      const neuNeuHinzugefuegt = (prev.neu_hinzugefuegt ?? []).filter((id) => id !== row.id);
+      return { ...prev, tk04_tk03_t05: updated, neu_hinzugefuegt: neuNeuHinzugefuegt };
     });
   }
 
@@ -457,12 +462,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     if (!editingQty) return;
     const { rowId, field } = editingQty;
     const trimmed = editingQtyValue.trim();
-    setNeuHinzugefuegt((s) => {
-      if (!s.has(rowId)) return s;
-      const next = new Set(s);
-      next.delete(rowId);
-      return next;
-    });
     updateData((prev) => {
       return {
         ...prev,
@@ -486,6 +485,8 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           }
           return { ...r, [field]: n };
         }),
+        // Wie bei bumpField: Zeile verliert die "neu"-Markierung, sobald sie bearbeitet wird.
+        neu_hinzugefuegt: (prev.neu_hinzugefuegt ?? []).filter((id) => id !== rowId),
       };
     });
     setEditingQty(null);
@@ -556,7 +557,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   //   bestehende Zeile wird auf "0 - unsicher" zurückgesetzt statt eine zweite anzulegen.
   function fuegeGegenstandHinzu(gegenstandId: string) {
     if (!data || !reise || !personFilter) return;
-    let betroffeneZeileId: string | null = null;
     updateData((prev) => {
       const ids = collectAllIds(prev);
       let tk03 = tk03FuerGegenstand(prev, reise.id, gegenstandId);
@@ -573,6 +573,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         (r) => r.id_tk03 === tk03!.id && r.id_t05 === personFilter
       );
       let tk04Rows = prev.tk04_tk03_t05;
+      let betroffeneZeileId: string;
       if (bestehendeZeile) {
         betroffeneZeileId = bestehendeZeile.id;
         tk04Rows = prev.tk04_tk03_t05.map((r) =>
@@ -592,12 +593,20 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         };
         tk04Rows = [...prev.tk04_tk03_t05, neu];
       }
-      return { ...prev, tk03_tk01_t04: tk03Rows, tk04_tk03_t05: tk04Rows };
+      // Als "neu" markieren, im selben updateData-Aufruf wie das eigentliche Anlegen/
+      // Reaktivieren, damit beides zusammen (ein Rückgängig-Schritt) gespeichert wird.
+      // Seit V01-29 Teil von `data` -> übersteht Neuladen und Geräte-Wechsel.
+      const bisherige = prev.neu_hinzugefuegt ?? [];
+      const neuHinzugefuegtNext = bisherige.includes(betroffeneZeileId)
+        ? bisherige
+        : [...bisherige, betroffeneZeileId];
+      return {
+        ...prev,
+        tk03_tk01_t04: tk03Rows,
+        tk04_tk03_t05: tk04Rows,
+        neu_hinzugefuegt: neuHinzugefuegtNext,
+      };
     });
-    if (betroffeneZeileId) {
-      const zeileId = betroffeneZeileId;
-      setNeuHinzugefuegt((s) => new Set(s).add(zeileId));
-    }
   }
 
   function toggleGegenstandInReise(gegenstandId: string) {

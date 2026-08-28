@@ -85,6 +85,12 @@ export interface SchemaData {
   tk02_t02_t04: Tk02AktivitaetGegenstand[];
   tk03_tk01_t04: Tk03ReiseaktivitaetGegenstand[];
   tk04_tk03_t05: Tk04GegenstandPerson[];
+  // IDs von tk04-Zeilen, die über "Liste bearbeiten" hinzugefügt/reaktiviert wurden und
+  // noch nicht angetippt sind (Filter "Neu hinzugefügt"). Optional, weil ältere
+  // gespeicherte Dateien dieses Feld noch nicht kennen - dann als leer behandeln.
+  // Seit V01-29 fix in OneDrive gespeichert (geräte-/sitzungsübergreifend), vorher nur
+  // im Arbeitsspeicher der laufenden Sitzung.
+  neu_hinzugefuegt?: ID[];
 }
 
 // ---- Zufalls-ID-Erzeugung (Präfix + 5-stellige Zahl), wie abgestimmt ----
