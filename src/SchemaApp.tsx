@@ -12,7 +12,53 @@ import {
   newId,
 } from "./data/schema";
 
-const SCHEMA_FILE = "P03_Packliste_Schema_AI.json";
+const SCHEMA_FILE = "P03_Packliste_AI.json";
+// Alter Dateiname vor der Umbenennung ("Schema" war verwirrend, da es auch
+// noch einen älteren, nie benutzten Namen "Zustand" gab). Wird beim Laden
+// nur noch als Fallback verwendet, damit bereits gespeicherte Geräte ihre
+// Daten nicht verlieren.
+const SCHEMA_FILE_LEGACY = "P03_Packliste_Schema_AI.json";
+
+// Lädt eine Datei über mehrere mögliche (Dateiname, Ordner)-Kombinationen,
+// von der aktuell richtigen bis zur ältesten – für Geräte, die die App seit
+// verschiedenen früheren Versionen (alter Ordner, alter Dateiname) nicht
+// mehr neu geöffnet haben. Die erste Kombination, unter der etwas gefunden
+// wird, gewinnt.
+async function loadStateMitFallback(dateien: string[], ordner: (string | undefined)[]): Promise<unknown | null> {
+  for (const folder of ordner) {
+    for (const file of dateien) {
+      const result = folder === undefined ? await loadState(file) : await loadState(file, folder);
+      if (result !== null) return result;
+    }
+  }
+  return null;
+}
+
+// Ergänzt in "remote" (den echten, live gespeicherten Daten eines Nutzers)
+// alle Zeilen aus "seed" (der im ZIP mitgelieferten, ggf. neuer importierten
+// Katalog-/Reise-Daten), die anhand ihrer ID dort noch fehlen. Bereits
+// vorhandene Zeilen in remote werden nie verändert oder überschrieben –
+// so gehen keine bereits eingetragenen Packzustände verloren, aber neu
+// importierte Reisen/Gegenstände (die sonst nur in der ZIP-Seed-Datei
+// stecken würden, weil OneDrive schon vorher Daten hatte) kommen trotzdem an.
+function mergeSeedInto(remote: SchemaData, seed: SchemaData): SchemaData {
+  function ergaenzt<T extends { id: string }>(remoteZeilen: T[], seedZeilen: T[]): T[] {
+    const vorhandeneIds = new Set(remoteZeilen.map((zeile) => zeile.id));
+    const fehlende = seedZeilen.filter((zeile) => !vorhandeneIds.has(zeile.id));
+    return fehlende.length > 0 ? [...remoteZeilen, ...fehlende] : remoteZeilen;
+  }
+  return {
+    t01_reise: ergaenzt(remote.t01_reise, seed.t01_reise),
+    t02_aktivitaet: ergaenzt(remote.t02_aktivitaet, seed.t02_aktivitaet),
+    t03_kathegorie: ergaenzt(remote.t03_kathegorie, seed.t03_kathegorie),
+    t04_gegenstand: ergaenzt(remote.t04_gegenstand, seed.t04_gegenstand),
+    t05_namen: ergaenzt(remote.t05_namen, seed.t05_namen),
+    tk01_t01_t02: ergaenzt(remote.tk01_t01_t02, seed.tk01_t01_t02),
+    tk02_t02_t04: ergaenzt(remote.tk02_t02_t04, seed.tk02_t02_t04),
+    tk03_tk01_t04: ergaenzt(remote.tk03_tk01_t04, seed.tk03_tk01_t04),
+    tk04_tk03_t05: ergaenzt(remote.tk04_tk03_t05, seed.tk04_tk03_t05),
+  };
+}
 
 function safeFilename(value: string) {
   return value.trim().replace(/[<>:"/\\|?*\u0000-\u001F]/g, "-").replace(/\s+/g, "_").replace(/_+/g, "_") || "Packliste";
@@ -87,22 +133,25 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     let cancelled = false;
     (async () => {
       try {
-        let [remote, remoteHistory] = await Promise.all([
-          loadState(SCHEMA_FILE),
-          loadState(HISTORY_FILE),
-        ]);
-        // Ordner-Umstellung V01-19: falls im neuen Ordner noch nichts liegt (z.B. weil
-        // dieses Gerät die App zuletzt vor der Umstellung geöffnet hat), im alten Ordner
-        // nachsehen. Wird gefunden, speichert der normale Auto-Save gleich danach eine
-        // Kopie im neuen Ordner - die alte Datei bleibt dabei unangetastet liegen.
-        if (remote === null) {
-          remote = await loadState(SCHEMA_FILE, LEGACY_FOLDER);
-        }
+        // Kaskade über (Dateiname, Ordner)-Kombinationen: neuer Name/neuer Ordner
+        // zuerst, dann rückwärts durch alle früheren Zwischenstände (Umbenennung
+        // "Schema" -> ohne Zusatz, Ordner-Umstellung V01-19), damit ein Gerät seine
+        // Daten unabhängig davon findet, wie lange es die App nicht mehr geöffnet
+        // hat. Der normale Auto-Save schreibt danach automatisch eine Kopie unter
+        // dem aktuellen Namen/Ordner - die ältere Datei bleibt unangetastet liegen.
+        let remote = await loadStateMitFallback([SCHEMA_FILE, SCHEMA_FILE_LEGACY], [undefined, LEGACY_FOLDER]);
+        let remoteHistory = await loadState(HISTORY_FILE);
         if (remoteHistory === null) {
           remoteHistory = await loadState(HISTORY_FILE, LEGACY_FOLDER);
         }
         if (cancelled) return;
-        const initial = (remote as SchemaData) ?? (seedData as unknown as SchemaData);
+        // Fehlende Reisen/Kategorien/Gegenstände (z.B. China 2024, Grimming), die
+        // per ZIP-Import nur in der mitgelieferten Seed-Datei stecken, weil OneDrive
+        // zum Zeitpunkt des Imports schon eigene Daten hatte: beim Laden ergänzen,
+        // ohne bereits vorhandene (live gepflegte) Zeilen zu verändern.
+        const initial = remote
+          ? mergeSeedInto(remote as SchemaData, seedData as unknown as SchemaData)
+          : (seedData as unknown as SchemaData);
         setData(initial);
         setHistory((remoteHistory as SchemaData[]) ?? []);
         setSelectedReiseId(initial.t01_reise[0]?.id ?? null);
