@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
 import seedData from "./data/schema-data.json";
 import { logout } from "./auth";
-import { loadState, saveState, LEGACY_FOLDER, WRONG_FOLDER_V24 } from "./onedrive";
+import { loadState, saveState } from "./onedrive";
 import type { SchemaData, Tk04GegenstandPerson, T01Reise, T04Gegenstand } from "./data/schema";
 import {
   gegenstaendeFuerReise,
@@ -15,29 +15,12 @@ import {
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V01-26";
+const APP_VERSION = "V01-27";
 
+// Einziger Speicherort/Dateiname (von Clemens am 2026-08-28 bestätigt: kein
+// Fallback mehr auf alte Ordner/Dateinamen, die werden von ihm manuell aus
+// OneDrive gelöscht). Siehe onedrive.ts für den Ordnerpfad.
 const SCHEMA_FILE = "P03_Packliste_AI.json";
-// Alter Dateiname vor der Umbenennung ("Schema" war verwirrend, da es auch
-// noch einen älteren, nie benutzten Namen "Zustand" gab). Wird beim Laden
-// nur noch als Fallback verwendet, damit bereits gespeicherte Geräte ihre
-// Daten nicht verlieren.
-const SCHEMA_FILE_LEGACY = "P03_Packliste_Schema_AI.json";
-
-// Lädt eine Datei über mehrere mögliche (Dateiname, Ordner)-Kombinationen,
-// von der aktuell richtigen bis zur ältesten – für Geräte, die die App seit
-// verschiedenen früheren Versionen (alter Ordner, alter Dateiname) nicht
-// mehr neu geöffnet haben. Die erste Kombination, unter der etwas gefunden
-// wird, gewinnt.
-async function loadStateMitFallback(dateien: string[], ordner: (string | undefined)[]): Promise<unknown | null> {
-  for (const folder of ordner) {
-    for (const file of dateien) {
-      const result = folder === undefined ? await loadState(file) : await loadState(file, folder);
-      if (result !== null) return result;
-    }
-  }
-  return null;
-}
 
 // Ergänzt in "remote" (den echten, live gespeicherten Daten eines Nutzers)
 // alle Zeilen aus "seed" (der im ZIP mitgelieferten, ggf. neuer importierten
@@ -63,6 +46,58 @@ function mergeSeedInto(remote: SchemaData, seed: SchemaData): SchemaData {
     tk03_tk01_t04: ergaenzt(remote.tk03_tk01_t04, seed.tk03_tk01_t04),
     tk04_tk03_t05: ergaenzt(remote.tk04_tk03_t05, seed.tk04_tk03_t05),
   };
+}
+
+// Einmaliger, gezielter Nachtrag für Grimming 2026 (2026-08-28): Die 114 Gegenstände
+// waren korrekt mit der Reise verknüpft (tk03), aber für niemanden gab es je eine
+// persönliche Mengen-Zeile (tk04) - anders als bei China 2024 (siehe V01-17). Dadurch
+// gab es keinen anklickbaren Personen-Tab und die Reise wirkte fälschlich leer (Bug,
+// siehe Fix bei der Personen-Tab-Leiste weiter unten). Legt für Clemens und Sonja
+// (von Clemens am 2026-08-28 bestätigt) je eine tk04-Zeile mit demselben Standardwert
+// an, den auch der "+"-Knopf in "Liste bearbeiten" verwendet ("0 – unsicher"). Läuft
+// bei jedem Laden, legt aber wegen der Vorhanden-Prüfung nie doppelte Zeilen an -
+// sobald echte Mengen eingetragen sind, passiert hier nichts mehr.
+function backfillPersonenOhneMenge(data: SchemaData, reiseName: string, personenNamen: string[]): SchemaData {
+  const reise = data.t01_reise.find((r) => r.reise === reiseName);
+  if (!reise) return data;
+  const personen = data.t05_namen.filter((n) => personenNamen.includes(n.namen));
+  if (personen.length === 0) return data;
+  const tk01Ids = new Set(data.tk01_t01_t02.filter((r) => r.id_t01 === reise.id).map((r) => r.id));
+  const tk03Rows = data.tk03_tk01_t04.filter((r) => tk01Ids.has(r.id_tk01));
+  if (tk03Rows.length === 0) return data;
+
+  const existingIds = new Set<string>();
+  const addIds = (arr: { id: string }[]) => arr.forEach((r) => existingIds.add(r.id));
+  addIds(data.t01_reise);
+  addIds(data.t02_aktivitaet);
+  addIds(data.t03_kathegorie);
+  addIds(data.t04_gegenstand);
+  addIds(data.t05_namen);
+  addIds(data.tk01_t01_t02);
+  addIds(data.tk02_t02_t04);
+  addIds(data.tk03_tk01_t04);
+  addIds(data.tk04_tk03_t05);
+
+  const neueZeilen: Tk04GegenstandPerson[] = [];
+  for (const tk03 of tk03Rows) {
+    for (const person of personen) {
+      const vorhanden = data.tk04_tk03_t05.some((r) => r.id_tk03 === tk03.id && r.id_t05 === person.id);
+      if (vorhanden) continue;
+      const neuId = newId("tk04", existingIds);
+      existingIds.add(neuId);
+      neueZeilen.push({
+        id: neuId,
+        id_tk03: tk03.id,
+        id_t05: person.id,
+        ausgewaehlt: 0,
+        hergerichtet: null,
+        eingepackt: null,
+        verwendet: null,
+      });
+    }
+  }
+  if (neueZeilen.length === 0) return data;
+  return { ...data, tk04_tk03_t05: [...data.tk04_tk03_t05, ...neueZeilen] };
 }
 
 function safeFilename(value: string) {
@@ -138,31 +173,22 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     let cancelled = false;
     (async () => {
       try {
-        // Kaskade über (Dateiname, Ordner)-Kombinationen: neuer Name/neuer Ordner
-        // zuerst, dann rückwärts durch alle früheren Zwischenstände (Umbenennung
-        // "Schema" -> ohne Zusatz, Ordner-Umstellung V01-19), damit ein Gerät seine
-        // Daten unabhängig davon findet, wie lange es die App nicht mehr geöffnet
-        // hat. Der normale Auto-Save schreibt danach automatisch eine Kopie unter
-        // dem aktuellen Namen/Ordner - die ältere Datei bleibt unangetastet liegen.
-        let remote = await loadStateMitFallback(
-          [SCHEMA_FILE, SCHEMA_FILE_LEGACY],
-          [undefined, WRONG_FOLDER_V24, LEGACY_FOLDER]
-        );
+        // Einziger Speicherort, kein Fallback mehr auf alte Ordner/Dateinamen
+        // (siehe onedrive.ts / Projektstand, ab V01-27 auf Clemens' Wunsch entfernt).
+        let remote = await loadState(SCHEMA_FILE);
         let remoteHistory = await loadState(HISTORY_FILE);
-        if (remoteHistory === null) {
-          remoteHistory = await loadState(HISTORY_FILE, WRONG_FOLDER_V24);
-        }
-        if (remoteHistory === null) {
-          remoteHistory = await loadState(HISTORY_FILE, LEGACY_FOLDER);
-        }
         if (cancelled) return;
         // Fehlende Reisen/Kategorien/Gegenstände (z.B. China 2024, Grimming), die
         // per ZIP-Import nur in der mitgelieferten Seed-Datei stecken, weil OneDrive
         // zum Zeitpunkt des Imports schon eigene Daten hatte: beim Laden ergänzen,
         // ohne bereits vorhandene (live gepflegte) Zeilen zu verändern.
-        const initial = remote
+        let initial = remote
           ? mergeSeedInto(remote as SchemaData, seedData as unknown as SchemaData)
           : (seedData as unknown as SchemaData);
+        // Einmaliger Nachtrag: Grimming 2026 hatte nie persönliche Mengen (siehe
+        // backfillPersonenOhneMenge oben) - legt sie für Clemens/Sonja an, falls
+        // noch nicht vorhanden. Wirkt sich nicht aus, sobald das erledigt ist.
+        initial = backfillPersonenOhneMenge(initial, "Grimming 2026", ["Clemens", "Sonja"]);
         setData(initial);
         setHistory((remoteHistory as SchemaData[]) ?? []);
         setSelectedReiseId(initial.t01_reise[0]?.id ?? null);
@@ -227,11 +253,20 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return data.t05_namen.filter((n) => ids.has(n.id));
   }, [data, reise, gegenstaende]);
 
+  // Vorbelegung der ausgewählten Person: bevorzugt jemand, der für diese Reise
+  // schon Gegenstände hat - sonst (z.B. frisch importierte Reise wie Grimming
+  // 2026, bei der noch niemand persönliche Mengen eingetragen hat) die erste
+  // bekannte Person überhaupt, damit man nicht in einer Reise ohne wählbare
+  // Person-Tabs "gefangen" ist (Bug gefunden 2026-08-28: vorher blieb die
+  // Tab-Leiste dann komplett leer und die Reise wirkte fälschlich "leer").
   useEffect(() => {
-    if (personFilter === null && beteiligtePersonen.length > 0) {
+    if (personFilter !== null || !data) return;
+    if (beteiligtePersonen.length > 0) {
       setPersonFilter(beteiligtePersonen[0].id);
+    } else if (data.t05_namen.length > 0) {
+      setPersonFilter(data.t05_namen[0].id);
     }
-  }, [personFilter, beteiligtePersonen]);
+  }, [personFilter, beteiligtePersonen, data]);
 
   const gruppiert = useMemo(() => {
     if (!data || !reise || !personFilter) return [];
@@ -979,7 +1014,10 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             )}
 
             <div className="pl-filterbar">
-              {beteiligtePersonen.map((p) => (
+              {/* Bewusst ALLE Personen (data.t05_namen), nicht nur "beteiligtePersonen":
+                  sonst gibt es für eine Reise, in der noch niemand etwas hat (z.B. frisch
+                  importiert), gar keinen Tab zum Anklicken - Sackgasse, siehe Fix 2026-08-28. */}
+              {data.t05_namen.map((p) => (
                 <button
                   key={p.id}
                   className={"pl-filter-chip" + (personFilter === p.id ? " active" : "")}

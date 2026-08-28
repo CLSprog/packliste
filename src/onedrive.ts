@@ -3,19 +3,11 @@ import { getAccessToken } from "./auth";
 // Die Datei liegt sichtbar im OneDrive des Nutzers unter diesem Pfad -
 // nicht in einem versteckten App-Ordner, damit sie bei Bedarf auch manuell
 // eingesehen, verschoben oder gesichert werden kann.
-// Ab V01-19: richtiger, von Clemens vorgesehener Ordner (vorher lag die Datei
-// direkt unter "P03_Packliste" auf der OneDrive-Wurzel, siehe LEGACY_FOLDER).
+// Einziger gültiger Speicherort (von Clemens am 2026-08-28 bestätigt).
+// Ab V01-27 bewusst OHNE Fallback auf frühere/falsche Ordnernamen - Clemens
+// löscht die alten Dateien manuell selbst aus OneDrive. Siehe Projektstand
+// für die Historie (LEGACY_FOLDER, WRONG_FOLDER_V24 gab es bis V01-26).
 const FOLDER = "_KI/ThinkTank/P03_Packliste/07_Database";
-// Alter Speicherort vor der Ordner-Umstellung. Wird beim Laden nur noch als
-// Fallback verwendet (falls im neuen Ordner noch nichts existiert), damit ein
-// bereits laufendes Gerät seine Daten nicht verliert, wenn diese ZIP-Version
-// zum ersten Mal geladen wird - siehe loadStateMitFallback in SchemaApp.tsx.
-export const LEGACY_FOLDER = "P03_Packliste";
-// Fälschlich verwendeter Ordnername vor V01-25 ("OneDrive_KI" statt korrekt "_KI").
-// Da dort inzwischen tatsächlich Daten gespeichert wurden (V01-23/24 haben mit
-// diesem falschen Namen funktioniert), wird er beim Laden weiterhin als
-// zusätzlicher Fallback geprüft, damit dabei nichts verloren geht.
-export const WRONG_FOLDER_V24 = "OneDrive_KI/ThinkTank/P03_Packliste/07_Database";
 
 const FILE = "P03_Packliste_Zustand_AI.json";
 const GRAPH_BASE = "https://graph.microsoft.com/v1.0";
