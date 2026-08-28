@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
 import seedData from "./data/schema-data.json";
 import { logout } from "./auth";
-import { loadState, saveState, LEGACY_FOLDER } from "./onedrive";
+import { loadState, saveState, LEGACY_FOLDER, WRONG_FOLDER_V24 } from "./onedrive";
 import type { SchemaData, Tk04GegenstandPerson, T01Reise, T04Gegenstand } from "./data/schema";
 import {
   gegenstaendeFuerReise,
@@ -11,6 +11,11 @@ import {
   kathegorieName,
   newId,
 } from "./data/schema";
+
+// Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
+// damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
+// ausliefert. Bei jeder Auslieferung hier mitziehen.
+const APP_VERSION = "V01-26";
 
 const SCHEMA_FILE = "P03_Packliste_AI.json";
 // Alter Dateiname vor der Umbenennung ("Schema" war verwirrend, da es auch
@@ -139,8 +144,14 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         // Daten unabhängig davon findet, wie lange es die App nicht mehr geöffnet
         // hat. Der normale Auto-Save schreibt danach automatisch eine Kopie unter
         // dem aktuellen Namen/Ordner - die ältere Datei bleibt unangetastet liegen.
-        let remote = await loadStateMitFallback([SCHEMA_FILE, SCHEMA_FILE_LEGACY], [undefined, LEGACY_FOLDER]);
+        let remote = await loadStateMitFallback(
+          [SCHEMA_FILE, SCHEMA_FILE_LEGACY],
+          [undefined, WRONG_FOLDER_V24, LEGACY_FOLDER]
+        );
         let remoteHistory = await loadState(HISTORY_FILE);
+        if (remoteHistory === null) {
+          remoteHistory = await loadState(HISTORY_FILE, WRONG_FOLDER_V24);
+        }
         if (remoteHistory === null) {
           remoteHistory = await loadState(HISTORY_FILE, LEGACY_FOLDER);
         }
@@ -819,7 +830,10 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         <header className="pl-header">
           <div className="pl-header-top">
             <h1>{reise?.reise ?? "P03 Packliste"}</h1>
-            <button className="pl-logout" onClick={() => logout()}>Abmelden</button>
+            <div className="pl-header-actions">
+              <span className="pl-version">{APP_VERSION}</span>
+              <button className="pl-logout" onClick={() => logout()}>Abmelden</button>
+            </div>
           </div>
           <p className="pl-header-sub">
             {reise?.von && reise?.bis

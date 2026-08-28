@@ -56,6 +56,8 @@ svg { width:24px; height:24px; }
 .pl-progress-labels { display: flex; justify-content: space-between; font-size: 11px; opacity: .85; margin-bottom: 4px; }
 .pl-progress-track { height: 7px; border-radius: 999px; background: rgba(255,255,255,0.18); overflow: hidden; }
 .pl-progress-fill { height: 100%; background: #8fc49b; border-radius: 999px; transition: width .25s ease; }
+.pl-header-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+.pl-version { font-size: 10px; opacity: .6; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .pl-logout { margin-top: 10px; font-size: 11px; background: rgba(255,255,255,0.14); color: white; border: none; border-radius: 999px; padding: 5px 12px; }
 
 .pl-filterbar { display: flex; gap: 6px; padding: 10px 14px; overflow-x: auto; background: var(--paper); border-bottom: 1px solid var(--line); }
