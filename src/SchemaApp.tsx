@@ -15,7 +15,7 @@ import {
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V01-27";
+const APP_VERSION = "V01-28";
 
 // Einziger Speicherort/Dateiname (von Clemens am 2026-08-28 bestätigt: kein
 // Fallback mehr auf alte Ordner/Dateinamen, die werden von ihm manuell aus
@@ -253,20 +253,30 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return data.t05_namen.filter((n) => ids.has(n.id));
   }, [data, reise, gegenstaende]);
 
-  // Vorbelegung der ausgewählten Person: bevorzugt jemand, der für diese Reise
-  // schon Gegenstände hat - sonst (z.B. frisch importierte Reise wie Grimming
-  // 2026, bei der noch niemand persönliche Mengen eingetragen hat) die erste
-  // bekannte Person überhaupt, damit man nicht in einer Reise ohne wählbare
-  // Person-Tabs "gefangen" ist (Bug gefunden 2026-08-28: vorher blieb die
-  // Tab-Leiste dann komplett leer und die Reise wirkte fälschlich "leer").
+  // Personen-Tabs: normalerweise nur die, die für DIESE Reise tatsächlich schon
+  // Gegenstände/Mengen haben (beteiligtePersonen) - von Clemens ausdrücklich so
+  // gewünscht (2026-08-28), z.B. bei Schottland nur Clemens/Florian/Carina/Allgemein,
+  // bei Grimming nur Clemens/Sonja, nicht alle bekannten Personen. Fällt NUR dann auf
+  // alle bekannten Personen zurück, wenn eine Reise wirklich noch niemanden hat (frisch
+  // importiert, noch nie bearbeitet) - sonst wäre man wieder in der Sackgasse von vorher
+  // gefangen (siehe Grimming-Fix V01-27).
+  const sichtbarePersonen = useMemo(() => {
+    if (!data) return [];
+    return beteiligtePersonen.length > 0 ? beteiligtePersonen : data.t05_namen;
+  }, [data, beteiligtePersonen]);
+
+  // Vorbelegung/Umschalten der ausgewählten Person: beim Laden UND beim Wechsel der
+  // Reise wird geprüft, ob die aktuell gewählte Person für die neue Reise überhaupt
+  // sichtbar ist - wenn nicht (z.B. Sonja war bei Grimming gewählt, jetzt wechselt man
+  // zu China 2024, wo nur Clemens sichtbar ist), wird automatisch auf die erste
+  // sichtbare Person umgeschaltet, statt eine unsichtbare Person aktiv zu lassen.
   useEffect(() => {
-    if (personFilter !== null || !data) return;
-    if (beteiligtePersonen.length > 0) {
-      setPersonFilter(beteiligtePersonen[0].id);
-    } else if (data.t05_namen.length > 0) {
-      setPersonFilter(data.t05_namen[0].id);
+    if (sichtbarePersonen.length === 0) return;
+    if (personFilter === null || !sichtbarePersonen.some((p) => p.id === personFilter)) {
+      setPersonFilter(sichtbarePersonen[0].id);
     }
-  }, [personFilter, beteiligtePersonen, data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reise?.id, sichtbarePersonen]);
 
   const gruppiert = useMemo(() => {
     if (!data || !reise || !personFilter) return [];
@@ -1014,10 +1024,9 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             )}
 
             <div className="pl-filterbar">
-              {/* Bewusst ALLE Personen (data.t05_namen), nicht nur "beteiligtePersonen":
-                  sonst gibt es für eine Reise, in der noch niemand etwas hat (z.B. frisch
-                  importiert), gar keinen Tab zum Anklicken - Sackgasse, siehe Fix 2026-08-28. */}
-              {data.t05_namen.map((p) => (
+              {/* Nur die für DIESE Reise tatsächlich beteiligten Personen (siehe
+                  sichtbarePersonen oben) - nicht mehr immer alle, das war zu viel. */}
+              {sichtbarePersonen.map((p) => (
                 <button
                   key={p.id}
                   className={"pl-filter-chip" + (personFilter === p.id ? " active" : "")}
