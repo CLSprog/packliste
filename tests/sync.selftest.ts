@@ -1,6 +1,6 @@
 // Kleiner Selbsttest der Sync-/Konfliktlogik (sync.ts) - kein Teil der App, nur zur
 // Verifikation während der Entwicklung. Läuft mit: npx tsx tests/sync.selftest.ts
-import { diffAndMerge, applyConflictResolutions } from "../src/sync";
+import { diffAndMerge, applyConflictResolutions, schemaEqual } from "../src/sync";
 import type { SchemaData } from "../src/data/schema";
 
 function basis(): SchemaData {
@@ -116,6 +116,17 @@ function check(name: string, bedingung: boolean) {
   const res = diffAndMerge(b, l, r);
   check("Test7: kein Konflikt", res.conflicts.length === 0);
   check("Test7: beide neuen Zeilen vorhanden", res.merged.t04_gegenstand.some((g) => g.id === "G-3") && res.merged.t04_gegenstand.some((g) => g.id === "G-4"));
+}
+
+// Test 8: schemaEqual - Grundlage für "gibt es überhaupt eine eigene Änderung zu
+// speichern" (V02-02: verhindert unnötige Schreibvorgänge bei rein periodischen
+// Pull-Checks, siehe SchemaApp.tsx "habenWirWasZuSpeichern").
+{
+  const a = basis();
+  const b = basis();
+  check("Test8: identische Stände gleich", schemaEqual(a, b));
+  b.tk04_tk03_t05[0].ausgewaehlt = 9;
+  check("Test8: geänderter Stand ungleich", !schemaEqual(a, b));
 }
 
 console.log(fehler === 0 ? "\nAlle Tests bestanden." : `\n${fehler} Test(s) fehlgeschlagen.`);

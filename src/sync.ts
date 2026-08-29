@@ -83,6 +83,13 @@ export async function hashData(data: SchemaData): Promise<string> {
     .join("");
 }
 
+/** Schneller, synchroner Inhaltsvergleich (ohne Hash) - z.B. um zu prüfen, ob es
+ *  überhaupt eine lokale, noch nicht gesicherte Änderung gibt, bevor unnötig
+ *  nach OneDrive geschrieben wird. */
+export function schemaEqual(a: SchemaData, b: SchemaData): boolean {
+  return stableStringify(a) === stableStringify(b);
+}
+
 // ---- Menschentaugliche Beschreibung einer Zeile, für Konflikt-/Info-Anzeige ----
 
 interface NameIndex {

@@ -11,14 +11,14 @@ import {
   kathegorieName,
   newId,
 } from "./data/schema";
-import { diffAndMerge, applyConflictResolutions, hashData, type RowConflict, type AutoMergedChange, type SyncResult } from "./sync";
+import { diffAndMerge, applyConflictResolutions, hashData, schemaEqual, type RowConflict, type AutoMergedChange, type SyncResult } from "./sync";
 import { readBaseline, writeBaseline, readPending, writePending, clearPending, istVerbindungsfehler } from "./syncStore";
 import ConflictModal from "./ConflictModal";
 
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V02-01";
+const APP_VERSION = "V02-02";
 
 // Einziger Speicherort/Dateiname (von Clemens am 2026-08-28 bestätigt: kein
 // Fallback mehr auf alte Ordner/Dateinamen, die werden von ihm manuell aus
@@ -141,6 +141,22 @@ type ExportZeile = {
 const HISTORY_FILE = "P03_Packliste_Verlauf_AI.json";
 const MAX_HISTORY = 20;
 
+// Von Clemens gemeldet (2026-08-28): nach jedem Aktualisieren/Neuladen sprang die App
+// immer auf die erste Reise (Schottland) zurück, statt bei der zuletzt angesehenen zu
+// bleiben (z.B. Grimming). Rein pro Gerät im Browser gemerkt, nicht Teil der in OneDrive
+// gespeicherten Reise-Daten - jedes Gerät merkt sich seine eigene zuletzt offene Reise.
+const LETZTE_REISE_KEY = "p03_letzte_reise_id";
+
+function ermittleStartReise(data: SchemaData): string | null {
+  try {
+    const gespeichert = localStorage.getItem(LETZTE_REISE_KEY);
+    if (gespeichert && data.t01_reise.some((r) => r.id === gespeichert)) return gespeichert;
+  } catch {
+    // z.B. privates Fenster ohne Speicherzugriff - dann einfach die erste Reise
+  }
+  return data.t01_reise[0]?.id ?? null;
+}
+
 export default function SchemaApp({ account }: { account: AccountInfo }) {
   const [data, setData] = useState<SchemaData | null>(null);
   // Rückgängig-Verlauf: die letzten Datenstände VOR jeder Änderung, älteste zuerst.
@@ -226,14 +242,14 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             setConflicts(result.conflicts);
             setAutoMerged(result.autoMerged);
             setData(result.merged);
-            setSelectedReiseId(result.merged.t01_reise[0]?.id ?? null);
+            setSelectedReiseId(ermittleStartReise(result.merged));
           } else {
             await saveState(result.merged, SCHEMA_FILE);
             baselineRef.current = result.merged;
             writeBaseline(SCHEMA_FILE, result.merged);
             clearPending(SCHEMA_FILE);
             setData(result.merged);
-            setSelectedReiseId(result.merged.t01_reise[0]?.id ?? null);
+            setSelectedReiseId(ermittleStartReise(result.merged));
             if (result.autoMerged.length > 0) {
               setAutoMerged(result.autoMerged);
               setShowAutoMerged(true);
@@ -244,7 +260,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           writeBaseline(SCHEMA_FILE, server);
           clearPending(SCHEMA_FILE);
           setData(server);
-          setSelectedReiseId(server.t01_reise[0]?.id ?? null);
+          setSelectedReiseId(ermittleStartReise(server));
         }
         setHistory((remoteHistory as SchemaData[]) ?? []);
         setOffline(false);
@@ -260,7 +276,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           if (lokal) {
             baselineRef.current = readBaseline(SCHEMA_FILE) ?? lokal;
             setData(lokal);
-            setSelectedReiseId(lokal.t01_reise[0]?.id ?? null);
+            setSelectedReiseId(ermittleStartReise(lokal));
             setHistory([]);
             setOffline(true);
             setLoadStatus("ready");
@@ -295,11 +311,15 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     };
   }, []);
 
+  // Läuft immer (nicht nur offline): stößt regelmäßig einen Sync-Check an, damit ein
+  // Gerät, an dem gerade NICHT selbst getippt wird, fremde Änderungen auch ohne eigenes
+  // Antippen oder manuelles Neuladen mitbekommt (von Clemens gemeldet: Änderung am Laptop
+  // erschien am Handy erst nach manuellem Aktualisieren). Offline richtet das nichts an -
+  // der Versuch schlägt einfach mit einem Verbindungsfehler fehl (siehe unten).
   useEffect(() => {
-    if (!offline) return;
-    const interval = setInterval(() => setRetryTick((t) => t + 1), 30000);
+    const interval = setInterval(() => setRetryTick((t) => t + 1), 20000);
     return () => clearInterval(interval);
-  }, [offline]);
+  }, []);
 
   // Speichert die aktuelle Änderung nach OneDrive - aber erst, nachdem geprüft wurde, ob
   // sich der Server-Stand seit dem letzten eigenen Sync verändert hat (anderes Gerät hat
@@ -311,12 +331,19 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   useEffect(() => {
     if (!data) return;
     if (conflicts.length > 0) return; // erst entscheiden lassen, bevor weitergespeichert wird
-    setSaveStatus(offline ? "Offline – Änderung wird lokal gemerkt …" : "Änderungen werden gespeichert …");
+    // Gibt es überhaupt eine eigene, noch nicht gesicherte Änderung? Bei einem rein
+    // periodischen Check (retryTick, alle 20s bzw. beim Wiederverbinden, siehe oben) ist
+    // das meist nicht der Fall - dann wird nur "gepullt" (fremde Änderungen übernommen),
+    // ohne unnötig nach OneDrive zu schreiben.
+    const habenWirWasZuSpeichern = !baselineRef.current || !schemaEqual(data, baselineRef.current);
+    if (habenWirWasZuSpeichern) {
+      setSaveStatus(offline ? "Offline – Änderung wird lokal gemerkt …" : "Änderungen werden gespeichert …");
+    }
     const t = setTimeout(async () => {
       // Immer zuerst lokal merken, damit bei einem Absturz/Schließen mitten im Offline-
       // Betrieb nichts verloren geht (siehe syncStore.ts) - unabhängig davon, ob der
       // anschließende Speicherversuch klappt.
-      writePending(SCHEMA_FILE, data);
+      if (habenWirWasZuSpeichern) writePending(SCHEMA_FILE, data);
       try {
         const remote = await loadState(SCHEMA_FILE);
         const remoteData = remote ? alsServerstand(remote) : data;
@@ -327,17 +354,21 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
         if (remoteHash === baselineHash) {
-          // Niemand sonst hat seit unserem letzten Sync gespeichert - direkt übernehmen.
+          // Niemand sonst hat seit unserem letzten Sync gespeichert.
+          setOffline(false);
+          if (!habenWirWasZuSpeichern) return; // reiner Pull-Check, nichts zu tun
           await saveState(data, SCHEMA_FILE);
           baselineRef.current = data;
           writeBaseline(SCHEMA_FILE, data);
           clearPending(SCHEMA_FILE);
-          setOffline(false);
           setSaveStatus(`Gespeichert um ${jetzt()}`);
           return;
         }
 
-        // Es gibt fremde Änderungen seit unserem letzten Sync - Zeilen-für-Zeile abgleichen.
+        // Es gibt fremde Änderungen seit unserem letzten Sync - Zeilen-für-Zeile abgleichen
+        // (auch relevant, wenn wir selbst gerade nichts zu speichern haben - dann sind es
+        // reine "Pull"-Änderungen eines anderen Geräts, die wir trotzdem übernehmen wollen,
+        // ohne selbst etwas zurückzuschreiben).
         const result = diffAndMerge(baseline, data, remoteData);
         if (result.conflicts.length > 0) {
           pendingSyncResultRef.current = result;
@@ -347,23 +378,25 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           setSaveStatus("Es gibt widersprüchliche Änderungen von einem anderen Gerät – bitte entscheiden.");
           return;
         }
-        await saveState(result.merged, SCHEMA_FILE);
+        if (habenWirWasZuSpeichern) await saveState(result.merged, SCHEMA_FILE);
         baselineRef.current = result.merged;
         writeBaseline(SCHEMA_FILE, result.merged);
-        clearPending(SCHEMA_FILE);
+        if (habenWirWasZuSpeichern) clearPending(SCHEMA_FILE);
         setOffline(false);
         setData(result.merged);
         if (result.autoMerged.length > 0) {
           setAutoMerged(result.autoMerged);
           setShowAutoMerged(true);
         }
-        setSaveStatus(`Gespeichert um ${jetzt()}`);
+        if (habenWirWasZuSpeichern) setSaveStatus(`Gespeichert um ${jetzt()}`);
       } catch (error) {
         console.error(error);
         if (istVerbindungsfehler(error)) {
           setOffline(true);
-          setSaveStatus("Offline – Änderungen werden gespeichert, sobald wieder online.");
-        } else {
+          if (habenWirWasZuSpeichern) {
+            setSaveStatus("Offline – Änderungen werden gespeichert, sobald wieder online.");
+          }
+        } else if (habenWirWasZuSpeichern) {
           setSaveStatus("Speichern fehlgeschlagen – bitte Verbindung prüfen.");
         }
       }
@@ -468,6 +501,17 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reise?.id, sichtbarePersonen]);
+
+  // Zuletzt angesehene Reise pro Gerät merken (siehe ermittleStartReise oben), damit ein
+  // Neuladen/Aktualisieren nicht mehr auf die erste Reise zurückspringt.
+  useEffect(() => {
+    if (!selectedReiseId) return;
+    try {
+      localStorage.setItem(LETZTE_REISE_KEY, selectedReiseId);
+    } catch {
+      // ignorieren - reiner Komfort, kein Muss
+    }
+  }, [selectedReiseId]);
 
   const gruppiert = useMemo(() => {
     if (!data || !reise || !personFilter) return [];
