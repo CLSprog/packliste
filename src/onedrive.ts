@@ -47,6 +47,23 @@ export async function saveState(state: unknown, file: string = FILE, folder: str
   if (!response.ok) throw new Error(`OneDrive-Speicherfehler (${response.status})`);
 }
 
+// Listet die Dateinamen im Datenordner auf - seit Paket A (Aufteilung in Stammdaten- +
+// Reise-Einzeldateien, 2026-08-29) nötig, um beim Start herauszufinden, welche Reise-
+// Dateien überhaupt existieren (die App kennt ihre Namen sonst nicht im Voraus, jede neue
+// Reise bekommt ihre eigene Datei). Einfache Einzelseiten-Abfrage ohne Pagination - für
+// die überschaubare Dateimenge dieses Ordners (Stammdaten + eine Handvoll Reisen)
+// ausreichend; sollten es sehr viele Reisen werden, müsste hier @odata.nextLink
+// nachgezogen werden.
+export async function listFiles(folder: string = FOLDER): Promise<string[]> {
+  const response = await graphFetch(
+    `/me/drive/root:/${folder}:/children?$select=name&$top=200`
+  );
+  if (response.status === 404) return []; // Ordner existiert noch nicht
+  if (!response.ok) throw new Error(`OneDrive-Listungsfehler (${response.status})`);
+  const body = (await response.json()) as { value?: { name?: string }[] };
+  return (body.value ?? []).map((item) => item.name).filter((name): name is string => !!name);
+}
+
 export async function deleteState(file: string = FILE, folder: string = FOLDER): Promise<void> {
   const response = await graphFetch(itemPath(file, folder));
   if (response.status === 404) return;

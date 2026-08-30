@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
 import seedData from "./data/schema-data.json";
 import { logout } from "./auth";
-import { loadState, saveState } from "./onedrive";
-import type { SchemaData, Tk04GegenstandPerson, T01Reise, T04Gegenstand } from "./data/schema";
+import { loadState, saveState, listFiles } from "./onedrive";
+import type { SchemaData, Tk04GegenstandPerson, T01Reise, T04Gegenstand, ID } from "./data/schema";
 import {
   gegenstaendeFuerReise,
   tk03FuerGegenstand,
@@ -11,6 +11,25 @@ import {
   kathegorieName,
   newId,
 } from "./data/schema";
+import {
+  STAMMDATEN_DATEI,
+  reiseDateiname,
+  reiseIdAusDateiname,
+  splitSchemaData,
+  mergeSplitData,
+  stammdatenSnapshotFuerReise,
+  stammdatenAusSnapshotsRekonstruieren,
+  stammdatenAlsSchemaData,
+  schemaDataAlsStammdatenKern,
+  reiseAlsSchemaData,
+  schemaDataAlsReiseKern,
+  verlaufAufteilen,
+  historyRekonstruieren,
+  type StammdatenKern,
+  type ReiseKern,
+  type StammdatenDatei,
+  type ReiseDatei,
+} from "./data/splitSchema";
 import { diffAndMerge, applyConflictResolutions, hashData, schemaEqual, type RowConflict, type AutoMergedChange, type SyncResult } from "./sync";
 import { readBaseline, writeBaseline, readPending, writePending, clearPending, istVerbindungsfehler } from "./syncStore";
 import ConflictModal from "./ConflictModal";
@@ -18,12 +37,19 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V02-02";
+const APP_VERSION = "V03-00";
 
-// Einziger Speicherort/Dateiname (von Clemens am 2026-08-28 bestätigt: kein
-// Fallback mehr auf alte Ordner/Dateinamen, die werden von ihm manuell aus
-// OneDrive gelöscht). Siehe onedrive.ts für den Ordnerpfad.
-const SCHEMA_FILE = "P03_Packliste_AI.json";
+// Bis V02-02 einziger Speicherort/Dateiname. Seit Paket A (Aufteilung in Stammdaten- +
+// Reise-Einzeldateien, siehe splitSchema.ts) nur noch als LESE-Quelle für die einmalige
+// Migration beim ersten Start mit dem neuen Code relevant - wird danach nicht mehr
+// beschrieben. Bleibt unangetastet in OneDrive liegen, Clemens löscht sie bei Gelegenheit
+// selbst (so mit ihm abgestimmt, 2026-08-29), der Code greift nicht mehr automatisch
+// darauf zu.
+const LEGACY_SCHEMA_FILE = "P03_Packliste_AI.json";
+// Lokaler Cache-Schlüssel (localStorage, siehe syncStore.ts) für den zusammengeführten
+// Gesamtstand - bewusst derselbe String wie früher der Dateiname, damit ein evtl. noch
+// nicht synchronisierter Offline-Stand aus einer Sitzung vor Paket A nicht verloren geht.
+const LOKALER_CACHE_SCHLUESSEL = "P03_Packliste_AI.json";
 
 // Ergänzt in "remote" (den echten, live gespeicherten Daten eines Nutzers)
 // alle Zeilen aus "seed" (der im ZIP mitgelieferten, ggf. neuer importierten
@@ -138,8 +164,196 @@ type ExportZeile = {
   verwendet: number | null;
 };
 
-const HISTORY_FILE = "P03_Packliste_Verlauf_AI.json";
 const MAX_HISTORY = 20;
+
+// ---- Paket A: Aufteilung in Stammdaten- + Reise-Einzeldateien ----
+// Die folgenden Funktionen brauchen keinen Komponenten-Zustand und stehen deshalb auf
+// Modul-Ebene. Grundidee (siehe splitSchema.ts und Konzeptdokument): Innerhalb der
+// laufenden Sitzung arbeitet die Komponente weiterhin mit EINEM zusammengeführten
+// `SchemaData`-Objekt wie bisher (siehe `data`/`updateData`/`undo` unten, unverändert) -
+// nur beim Laden/Speichern wird das in mehrere OneDrive-Dateien auseinandergenommen bzw.
+// wieder zusammengesetzt.
+
+type OffenerFileSync =
+  | { art: "stammdaten"; result: SyncResult }
+  | { art: "reise"; reiseId: ID; result: SyncResult };
+
+function stammdatenGleich(a: StammdatenKern, b: StammdatenKern): boolean {
+  return schemaEqual(stammdatenAlsSchemaData(a), stammdatenAlsSchemaData(b));
+}
+function reiseGleich(a: ReiseKern, b: ReiseKern): boolean {
+  return schemaEqual(reiseAlsSchemaData(a), reiseAlsSchemaData(b));
+}
+
+async function schreibeStammdatenDatei(kern: StammdatenKern, verlauf: StammdatenKern[]): Promise<void> {
+  const datei: StammdatenDatei = { ...kern, verlauf };
+  await saveState(datei, STAMMDATEN_DATEI);
+}
+
+async function schreibeReiseDatei(
+  reiseId: ID,
+  kern: ReiseKern,
+  stammdaten: StammdatenKern,
+  verlauf: ReiseKern[]
+): Promise<void> {
+  const datei: ReiseDatei = {
+    ...kern,
+    stammdaten_snapshot: stammdatenSnapshotFuerReise(stammdaten, kern),
+    verlauf,
+  };
+  await saveState(datei, reiseDateiname(reiseId));
+}
+
+/** Schreibt einen kompletten Datenstand erstmalig/komplett neu als aufgeteilte Dateien
+ *  (Migration von der alten Kombi-Datei, oder Wiederherstellung nach einem Offline-
+ *  Konflikt beim allerersten Laden - siehe ladeAufgeteiltenStand/Ladeeffekt unten). */
+async function schreibeGesamtenStandNeu(
+  merged: SchemaData,
+  historyFuerAufteilung: SchemaData[]
+): Promise<{ stammdaten: StammdatenKern; reisen: Map<ID, ReiseKern> }> {
+  const { stammdaten, reisen } = splitSchemaData(merged);
+  const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(historyFuerAufteilung);
+  await schreibeStammdatenDatei(stammdaten, stammdatenVerlauf);
+  await Promise.all(
+    Array.from(reisen.entries()).map(([reiseId, kern]) =>
+      schreibeReiseDatei(reiseId, kern, stammdaten, reiseVerlaufMap.get(reiseId) ?? [])
+    )
+  );
+  return { stammdaten, reisen };
+}
+
+/** Lädt den aktuellen Stand aus den aufgeteilten Dateien. Existiert die zentrale
+ *  Stammdaten-Datei noch nicht, wird einmalig aus der alten Kombi-Datei (LEGACY_SCHEMA_FILE,
+ *  falls vorhanden, sonst der mitgelieferten Seed-Datei) migriert und sofort als neue
+ *  Dateien geschrieben - die alte Datei bleibt dabei unangetastet liegen (Clemens löscht
+ *  sie bei Gelegenheit selbst, siehe LEGACY_SCHEMA_FILE oben). */
+async function ladeAufgeteiltenStand(alsServerstand: (remote: unknown) => SchemaData): Promise<{
+  stammdaten: StammdatenKern;
+  reisen: Map<ID, ReiseKern>;
+  stammdatenVerlauf: StammdatenKern[];
+  reiseVerlaufMap: Map<ID, ReiseKern[]>;
+}> {
+  const dateien = await listFiles();
+
+  if (dateien.includes(STAMMDATEN_DATEI)) {
+    const stammdatenDatei = (await loadState(STAMMDATEN_DATEI)) as StammdatenDatei;
+    const reiseDateinamen = dateien.filter((name) => reiseIdAusDateiname(name) !== null);
+    const geladeneReisen = await Promise.all(
+      reiseDateinamen.map(async (name) => ({
+        reiseId: reiseIdAusDateiname(name)!,
+        roh: (await loadState(name)) as ReiseDatei | null,
+      }))
+    );
+    const reisen = new Map<ID, ReiseKern>();
+    const reiseVerlaufMap = new Map<ID, ReiseKern[]>();
+    const snapshotsAlsFallback: StammdatenKern[] = [];
+    for (const { reiseId, roh } of geladeneReisen) {
+      if (!roh) continue;
+      reisen.set(reiseId, {
+        reise: roh.reise,
+        tk01_t01_t02: roh.tk01_t01_t02,
+        tk03_tk01_t04: roh.tk03_tk01_t04,
+        tk04_tk03_t05: roh.tk04_tk03_t05,
+        neu_hinzugefuegt: roh.neu_hinzugefuegt ?? [],
+      });
+      reiseVerlaufMap.set(reiseId, roh.verlauf ?? []);
+      if (roh.stammdaten_snapshot) snapshotsAlsFallback.push(roh.stammdaten_snapshot);
+    }
+    // Normalfall: Stammdaten-Datei ist da und wird verwendet. Nur falls sie ausnahmsweise
+    // leer/kaputt wäre, aber Reise-Dateien mit Snapshots existieren, aus denen
+    // notdürftig rekonstruieren (siehe splitSchema.ts) statt mit leeren Stammdaten zu starten.
+    const stammdatenLeer =
+      stammdatenDatei.t02_aktivitaet.length === 0 &&
+      stammdatenDatei.t03_kathegorie.length === 0 &&
+      stammdatenDatei.t04_gegenstand.length === 0 &&
+      stammdatenDatei.t05_namen.length === 0;
+    const stammdaten: StammdatenKern =
+      stammdatenLeer && snapshotsAlsFallback.length > 0
+        ? stammdatenAusSnapshotsRekonstruieren(snapshotsAlsFallback)
+        : {
+            t02_aktivitaet: stammdatenDatei.t02_aktivitaet,
+            t03_kathegorie: stammdatenDatei.t03_kathegorie,
+            t04_gegenstand: stammdatenDatei.t04_gegenstand,
+            t05_namen: stammdatenDatei.t05_namen,
+            tk02_t02_t04: stammdatenDatei.tk02_t02_t04,
+          };
+    return { stammdaten, reisen, stammdatenVerlauf: stammdatenDatei.verlauf ?? [], reiseVerlaufMap };
+  }
+
+  // Noch nicht aufgeteilt: alte Kombi-Datei (bzw. beim allerersten Start die Seed-Datei)
+  // lesen, einmalig aufteilen und sofort als neue Dateien schreiben.
+  const alt = await loadState(LEGACY_SCHEMA_FILE);
+  const server = alsServerstand(alt);
+  // Bisherige Array-Reihenfolge der Reisen als explizite `reihenfolge` übernehmen (siehe
+  // schema.ts), damit die Reise-Reiter nach der Migration nicht plötzlich anders sortiert
+  // erscheinen.
+  const serverMitReihenfolge: SchemaData = {
+    ...server,
+    t01_reise: server.t01_reise.map((r, i) => (r.reihenfolge === undefined ? { ...r, reihenfolge: i } : r)),
+  };
+  // Der alte, globale Rückgängig-Verlauf wird bewusst NICHT mit übernommen (mit Clemens
+  // abgestimmt, 2026-08-29: die bisherigen Schritte werden nicht mehr gebraucht) - jede
+  // neue Datei startet mit einem leeren eigenen Verlauf.
+  const { stammdaten, reisen } = await schreibeGesamtenStandNeu(serverMitReihenfolge, []);
+  return { stammdaten, reisen, stammdatenVerlauf: [], reiseVerlaufMap: new Map() };
+}
+
+/** Vergleicht Stammdaten + alle Reisen je einzeln (baseline/lokal/remote) und liefert den
+ *  Merge-Vorschlag - reine Vergleichslogik ohne Netzwerkzugriff, wiederverwendet sowohl
+ *  beim allerersten Laden (Abgleich eines evtl. noch nicht synchronisierten Offline-
+ *  Stands) als auch beim periodischen Sync-Tick weiter unten. */
+function vergleicheAlleDateien(
+  baselineStammdaten: StammdatenKern,
+  lokalStammdaten: StammdatenKern,
+  remoteStammdaten: StammdatenKern,
+  baselineReisen: Map<ID, ReiseKern>,
+  lokalReisen: Map<ID, ReiseKern>,
+  remoteReisen: Map<ID, ReiseKern>
+): {
+  offeneSyncs: OffenerFileSync[];
+  neueStammdaten: StammdatenKern;
+  neueReisen: Map<ID, ReiseKern>;
+  autoMerged: AutoMergedChange[];
+} {
+  const offeneSyncs: OffenerFileSync[] = [];
+  const autoMerged: AutoMergedChange[] = [];
+
+  let neueStammdaten = lokalStammdaten;
+  if (!stammdatenGleich(remoteStammdaten, baselineStammdaten)) {
+    const result = diffAndMerge(
+      stammdatenAlsSchemaData(baselineStammdaten),
+      stammdatenAlsSchemaData(lokalStammdaten),
+      stammdatenAlsSchemaData(remoteStammdaten)
+    );
+    if (result.conflicts.length > 0) {
+      offeneSyncs.push({ art: "stammdaten", result });
+    } else {
+      neueStammdaten = schemaDataAlsStammdatenKern(result.merged);
+      autoMerged.push(...result.autoMerged);
+    }
+  }
+
+  const neueReisen = new Map<ID, ReiseKern>();
+  const alleReiseIds = new Set<ID>([...baselineReisen.keys(), ...lokalReisen.keys(), ...remoteReisen.keys()]);
+  for (const reiseId of alleReiseIds) {
+    const lokal = lokalReisen.get(reiseId) ?? baselineReisen.get(reiseId) ?? remoteReisen.get(reiseId)!;
+    const baseline = baselineReisen.get(reiseId) ?? lokal;
+    const remote = remoteReisen.get(reiseId) ?? lokal;
+    if (reiseGleich(remote, baseline)) {
+      neueReisen.set(reiseId, lokal);
+      continue;
+    }
+    const result = diffAndMerge(reiseAlsSchemaData(baseline), reiseAlsSchemaData(lokal), reiseAlsSchemaData(remote));
+    if (result.conflicts.length > 0) {
+      offeneSyncs.push({ art: "reise", reiseId, result });
+      neueReisen.set(reiseId, lokal); // vorläufig, bis der Nutzer entschieden hat
+    } else {
+      neueReisen.set(reiseId, schemaDataAlsReiseKern(result.merged));
+      autoMerged.push(...result.autoMerged);
+    }
+  }
+  return { offeneSyncs, neueStammdaten, neueReisen, autoMerged };
+}
 
 // Von Clemens gemeldet (2026-08-28): nach jedem Aktualisieren/Neuladen sprang die App
 // immer auf die erste Reise (Schottland) zurück, statt bei der zuletzt angesehenen zu
@@ -201,9 +415,17 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   // Grundlage für den Zeilen-für-Zeile-Vergleich in sync.ts. In einem Ref, weil er sich
   // unabhängig von React-Re-Renders sofort nach jedem erfolgreichen Sync ändern muss.
   const baselineRef = useRef<SchemaData | null>(null);
-  // Der volle Vergleichs-Vorschlag (inkl. der noch offenen Konflikt-Zeilen), solange der
-  // Nutzer über das Konflikt-Fenster noch nicht entschieden hat.
-  const pendingSyncResultRef = useRef<SyncResult | null>(null);
+  // Seit Paket A zusätzlich: der letzte je Datei mit dem Server abgeglichene Stand
+  // (Stammdaten-Datei bzw. je eine Reise-Datei) - Grundlage für den Zeilen-für-Zeile-
+  // Vergleich pro Datei (siehe vergleicheAlleDateien oben). `baselineRef` bleibt daneben
+  // bestehen und wirkt weiterhin auf den zusammengeführten Gesamtstand, damit der
+  // schnelle "habe ich überhaupt etwas geändert"-Check unten unverändert bleibt.
+  const stammdatenBaselineRef = useRef<StammdatenKern | null>(null);
+  const reiseBaselinesRef = useRef<Map<ID, ReiseKern>>(new Map());
+  // Die noch offenen Konflikt-Abgleiche (kann mehrere Dateien gleichzeitig betreffen,
+  // z.B. Stammdaten UND eine Reise), solange der Nutzer über das Konflikt-Fenster noch
+  // nicht entschieden hat.
+  const pendingSyncResultsRef = useRef<OffenerFileSync[]>([]);
   const [conflicts, setConflicts] = useState<RowConflict[]>([]);
   const [autoMerged, setAutoMerged] = useState<AutoMergedChange[]>([]);
   const [showAutoMerged, setShowAutoMerged] = useState(false);
@@ -221,60 +443,83 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     let cancelled = false;
     (async () => {
       try {
-        // Einziger Speicherort, kein Fallback mehr auf alte Ordner/Dateinamen
-        // (siehe onedrive.ts / Projektstand, ab V01-27 auf Clemens' Wunsch entfernt).
-        const remote = await loadState(SCHEMA_FILE);
-        const remoteHistory = await loadState(HISTORY_FILE);
+        // Lädt bzw. migriert einmalig die Stammdaten-Datei + je eine Reise-Datei (Paket A,
+        // siehe ladeAufgeteiltenStand oben). Kein Fallback mehr auf die alte Kombi-Datei
+        // danach - die bleibt nur noch als einmalige Migrationsquelle relevant.
+        const geladen = await ladeAufgeteiltenStand(alsServerstand);
         if (cancelled) return;
-        const server = alsServerstand(remote);
+        const server = mergeSplitData(geladen.stammdaten, Array.from(geladen.reisen.values()));
 
         // Prüfen, ob von einer früheren Offline-Sitzung noch ein nicht synchronisierter
         // Stand im Browser liegt (z.B. App wurde ohne Verbindung geschlossen, bevor die
-        // Änderung nach OneDrive geschrieben werden konnte).
-        const pending = readPending(SCHEMA_FILE);
-        const storedBaseline = readBaseline(SCHEMA_FILE);
+        // Änderung nach OneDrive geschrieben werden konnte). Arbeitet weiterhin auf dem
+        // zusammengeführten Gesamtstand (unverändert, wie vor Paket A).
+        const pending = readPending(LOKALER_CACHE_SCHLUESSEL);
+        const storedBaseline = readBaseline(LOKALER_CACHE_SCHLUESSEL);
         const pendingIstNeu = pending && (!storedBaseline || JSON.stringify(pending) !== JSON.stringify(storedBaseline));
 
         if (pendingIstNeu && pending) {
-          const result = diffAndMerge(storedBaseline ?? server, pending, server);
-          if (result.conflicts.length > 0) {
-            pendingSyncResultRef.current = result;
-            setConflicts(result.conflicts);
-            setAutoMerged(result.autoMerged);
-            setData(result.merged);
-            setSelectedReiseId(ermittleStartReise(result.merged));
+          const { stammdaten: pendingStammdaten, reisen: pendingReisen } = splitSchemaData(pending);
+          const baselineVoll = storedBaseline ?? server;
+          const { stammdaten: baselineStammdaten, reisen: baselineReisen } = splitSchemaData(baselineVoll);
+          const { offeneSyncs, neueStammdaten, neueReisen, autoMerged } = vergleicheAlleDateien(
+            baselineStammdaten,
+            pendingStammdaten,
+            geladen.stammdaten,
+            baselineReisen,
+            pendingReisen,
+            geladen.reisen
+          );
+          if (offeneSyncs.length > 0) {
+            pendingSyncResultsRef.current = offeneSyncs;
+            setConflicts(offeneSyncs.flatMap((s) => s.result.conflicts));
+            setAutoMerged(offeneSyncs.flatMap((s) => s.result.autoMerged));
+            const vorlaeufig = mergeSplitData(neueStammdaten, Array.from(neueReisen.values()));
+            setData(vorlaeufig);
+            setSelectedReiseId(ermittleStartReise(vorlaeufig));
           } else {
-            await saveState(result.merged, SCHEMA_FILE);
-            baselineRef.current = result.merged;
-            writeBaseline(SCHEMA_FILE, result.merged);
-            clearPending(SCHEMA_FILE);
-            setData(result.merged);
-            setSelectedReiseId(ermittleStartReise(result.merged));
-            if (result.autoMerged.length > 0) {
-              setAutoMerged(result.autoMerged);
+            // Kein Konflikt - Offline-Stand ist jetzt maßgeblich, wird gleich als
+            // aufgeteilte Dateien geschrieben (frischer eigener Verlauf je Datei, siehe
+            // ladeAufgeteiltenStand oben).
+            const merged = mergeSplitData(neueStammdaten, Array.from(neueReisen.values()));
+            const geschrieben = await schreibeGesamtenStandNeu(merged, []);
+            stammdatenBaselineRef.current = geschrieben.stammdaten;
+            reiseBaselinesRef.current = geschrieben.reisen;
+            baselineRef.current = merged;
+            writeBaseline(LOKALER_CACHE_SCHLUESSEL, merged);
+            clearPending(LOKALER_CACHE_SCHLUESSEL);
+            setData(merged);
+            setSelectedReiseId(ermittleStartReise(merged));
+            if (autoMerged.length > 0) {
+              setAutoMerged(autoMerged);
               setShowAutoMerged(true);
             }
           }
         } else {
+          stammdatenBaselineRef.current = geladen.stammdaten;
+          reiseBaselinesRef.current = geladen.reisen;
           baselineRef.current = server;
-          writeBaseline(SCHEMA_FILE, server);
-          clearPending(SCHEMA_FILE);
+          writeBaseline(LOKALER_CACHE_SCHLUESSEL, server);
+          clearPending(LOKALER_CACHE_SCHLUESSEL);
           setData(server);
           setSelectedReiseId(ermittleStartReise(server));
         }
-        setHistory((remoteHistory as SchemaData[]) ?? []);
+        setHistory(
+          historyRekonstruieren(geladen.stammdatenVerlauf, geladen.reiseVerlaufMap, Array.from(geladen.reisen.values()))
+        );
         setOffline(false);
         setLoadStatus("ready");
       } catch (error) {
         if (cancelled) return;
         console.error(error);
         if (istVerbindungsfehler(error)) {
-          // Ohne Verbindung: mit dem letzten lokal gemerkten Stand weiterarbeiten,
-          // falls vorhanden (offline gemachte Änderungen zuerst, sonst der letzte
-          // erfolgreich synchronisierte Stand).
-          const lokal = readPending(SCHEMA_FILE) ?? readBaseline(SCHEMA_FILE);
+          // Ohne Verbindung: mit dem letzten lokal gemerkten (zusammengeführten) Stand
+          // weiterarbeiten, falls vorhanden (offline gemachte Änderungen zuerst, sonst der
+          // letzte erfolgreich synchronisierte Stand). Die Datei-Baselines bleiben in
+          // diesem Fall leer - der nächste erfolgreiche Sync-Tick holt sie automatisch nach.
+          const lokal = readPending(LOKALER_CACHE_SCHLUESSEL) ?? readBaseline(LOKALER_CACHE_SCHLUESSEL);
           if (lokal) {
-            baselineRef.current = readBaseline(SCHEMA_FILE) ?? lokal;
+            baselineRef.current = readBaseline(LOKALER_CACHE_SCHLUESSEL) ?? lokal;
             setData(lokal);
             setSelectedReiseId(ermittleStartReise(lokal));
             setHistory([]);
@@ -334,7 +579,9 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     // Gibt es überhaupt eine eigene, noch nicht gesicherte Änderung? Bei einem rein
     // periodischen Check (retryTick, alle 20s bzw. beim Wiederverbinden, siehe oben) ist
     // das meist nicht der Fall - dann wird nur "gepullt" (fremde Änderungen übernommen),
-    // ohne unnötig nach OneDrive zu schreiben.
+    // ohne unnötig nach OneDrive zu schreiben. Bleibt unverändert auf dem zusammen-
+    // geführten Gesamtstand - der eigentliche Abgleich läuft seit Paket A darunter je
+    // Datei (Stammdaten + jede Reise einzeln, siehe vergleicheAlleDateien oben).
     const habenWirWasZuSpeichern = !baselineRef.current || !schemaEqual(data, baselineRef.current);
     if (habenWirWasZuSpeichern) {
       setSaveStatus(offline ? "Offline – Änderung wird lokal gemerkt …" : "Änderungen werden gespeichert …");
@@ -343,52 +590,90 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       // Immer zuerst lokal merken, damit bei einem Absturz/Schließen mitten im Offline-
       // Betrieb nichts verloren geht (siehe syncStore.ts) - unabhängig davon, ob der
       // anschließende Speicherversuch klappt.
-      if (habenWirWasZuSpeichern) writePending(SCHEMA_FILE, data);
+      if (habenWirWasZuSpeichern) writePending(LOKALER_CACHE_SCHLUESSEL, data);
       try {
-        const remote = await loadState(SCHEMA_FILE);
-        const remoteData = remote ? alsServerstand(remote) : data;
-        const baseline = baselineRef.current ?? remoteData;
-        const remoteHash = await hashData(remoteData);
-        const baselineHash = await hashData(baseline);
         const jetzt = () =>
           new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
-        if (remoteHash === baselineHash) {
-          // Niemand sonst hat seit unserem letzten Sync gespeichert.
-          setOffline(false);
-          if (!habenWirWasZuSpeichern) return; // reiner Pull-Check, nichts zu tun
-          await saveState(data, SCHEMA_FILE);
-          baselineRef.current = data;
-          writeBaseline(SCHEMA_FILE, data);
-          clearPending(SCHEMA_FILE);
-          setSaveStatus(`Gespeichert um ${jetzt()}`);
-          return;
-        }
+        const { stammdaten: lokalStammdaten, reisen: lokalReisenMap } = splitSchemaData(data);
+        const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(history);
 
-        // Es gibt fremde Änderungen seit unserem letzten Sync - Zeilen-für-Zeile abgleichen
-        // (auch relevant, wenn wir selbst gerade nichts zu speichern haben - dann sind es
-        // reine "Pull"-Änderungen eines anderen Geräts, die wir trotzdem übernehmen wollen,
-        // ohne selbst etwas zurückzuschreiben).
-        const result = diffAndMerge(baseline, data, remoteData);
-        if (result.conflicts.length > 0) {
-          pendingSyncResultRef.current = result;
-          setConflicts(result.conflicts);
-          setAutoMerged(result.autoMerged);
-          setData(result.merged);
+        const stammdatenRemoteRoh = (await loadState(STAMMDATEN_DATEI)) as StammdatenDatei | null;
+        const remoteStammdaten: StammdatenKern = stammdatenRemoteRoh ?? lokalStammdaten;
+
+        const alleReiseIds = new Set<ID>([...reiseBaselinesRef.current.keys(), ...lokalReisenMap.keys()]);
+        const remoteReisenEintraege = await Promise.all(
+          Array.from(alleReiseIds).map(async (reiseId) => {
+            const roh = (await loadState(reiseDateiname(reiseId))) as ReiseDatei | null;
+            return [reiseId, roh] as const;
+          })
+        );
+        const remoteReisenMap = new Map<ID, ReiseKern>();
+        for (const [reiseId, roh] of remoteReisenEintraege) if (roh) remoteReisenMap.set(reiseId, roh);
+
+        const { offeneSyncs, neueStammdaten, neueReisen, autoMerged } = vergleicheAlleDateien(
+          stammdatenBaselineRef.current ?? lokalStammdaten,
+          lokalStammdaten,
+          remoteStammdaten,
+          reiseBaselinesRef.current,
+          lokalReisenMap,
+          remoteReisenMap
+        );
+
+        if (offeneSyncs.length > 0) {
+          pendingSyncResultsRef.current = offeneSyncs;
+          setConflicts(offeneSyncs.flatMap((s) => s.result.conflicts));
+          setAutoMerged(offeneSyncs.flatMap((s) => s.result.autoMerged));
+          setData(mergeSplitData(neueStammdaten, Array.from(neueReisen.values())));
           setSaveStatus("Es gibt widersprüchliche Änderungen von einem anderen Gerät – bitte entscheiden.");
           return;
         }
-        if (habenWirWasZuSpeichern) await saveState(result.merged, SCHEMA_FILE);
-        baselineRef.current = result.merged;
-        writeBaseline(SCHEMA_FILE, result.merged);
-        if (habenWirWasZuSpeichern) clearPending(SCHEMA_FILE);
+
+        // Welche Dateien tatsächlich geschrieben werden müssen: entweder weil sie remote
+        // noch gar nicht existieren (z.B. gerade erst angelegte Reise) oder weil sich der
+        // lokale Stand gegenüber der letzten eigenen Baseline geändert hat.
+        const stammdatenSchreiben =
+          !stammdatenRemoteRoh || !stammdatenGleich(neueStammdaten, stammdatenBaselineRef.current ?? lokalStammdaten);
+        const reisenSchreiben = Array.from(alleReiseIds).filter((reiseId) => {
+          const neuerKern = neueReisen.get(reiseId);
+          if (!neuerKern) return false;
+          const baselineKern = reiseBaselinesRef.current.get(reiseId);
+          return !remoteReisenMap.has(reiseId) || !baselineKern || !reiseGleich(neuerKern, baselineKern);
+        });
+
+        if (stammdatenSchreiben) await schreibeStammdatenDatei(neueStammdaten, stammdatenVerlauf);
+        await Promise.all(
+          reisenSchreiben.map((reiseId) =>
+            schreibeReiseDatei(reiseId, neueReisen.get(reiseId)!, neueStammdaten, reiseVerlaufMap.get(reiseId) ?? [])
+          )
+        );
+        const irgendwasGeschrieben = stammdatenSchreiben || reisenSchreiben.length > 0;
+
+        stammdatenBaselineRef.current = neueStammdaten;
+        reiseBaselinesRef.current = neueReisen;
         setOffline(false);
-        setData(result.merged);
-        if (result.autoMerged.length > 0) {
-          setAutoMerged(result.autoMerged);
+
+        if (!irgendwasGeschrieben && autoMerged.length === 0) return; // reiner Leerlauf-Tick
+
+        if (habenWirWasZuSpeichern) clearPending(LOKALER_CACHE_SCHLUESSEL);
+
+        if (autoMerged.length > 0) {
+          // Es ist etwas von einem anderen Gerät dazugekommen - `data` muss das jetzt
+          // widerspiegeln.
+          const neuerGesamtstand = mergeSplitData(neueStammdaten, Array.from(neueReisen.values()));
+          baselineRef.current = neuerGesamtstand;
+          writeBaseline(LOKALER_CACHE_SCHLUESSEL, neuerGesamtstand);
+          setData(neuerGesamtstand);
+          setAutoMerged(autoMerged);
           setShowAutoMerged(true);
+        } else {
+          // Nur die eigene(n) Änderung(en) geschrieben, kein fremder Inhalt dazugekommen -
+          // `data` entspricht bereits dem geschriebenen Stand, kein setData nötig (würde
+          // sonst unnötig einen Re-Render/erneuten Effekt-Durchlauf auslösen).
+          baselineRef.current = data;
+          writeBaseline(LOKALER_CACHE_SCHLUESSEL, data);
         }
-        if (habenWirWasZuSpeichern) setSaveStatus(`Gespeichert um ${jetzt()}`);
+        if (irgendwasGeschrieben) setSaveStatus(`Gespeichert um ${jetzt()}`);
       } catch (error) {
         console.error(error);
         if (istVerbindungsfehler(error)) {
@@ -403,52 +688,60 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     }, 600);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, conflicts.length, offline, retryTick]);
-
-  // Rückgängig-Verlauf separat in OneDrive sichern, damit er auch nach einem
-  // Neuladen der Seite (z.B. App am Handy zwischendurch geschlossen) erhalten bleibt.
-  // Unkritisch genug (reine Komfortfunktion), um offline einfach ausgesetzt zu werden,
-  // statt dieselbe Konflikt-Logik wie beim eigentlichen Datenstand zu durchlaufen - wird
-  // beim nächsten Online-Speichern automatisch nachgezogen.
-  useEffect(() => {
-    if (loadStatus !== "ready" || offline) return;
-    const t = setTimeout(() => {
-      saveState(history, HISTORY_FILE).catch((error) => {
-        console.error(error);
-        if (istVerbindungsfehler(error)) setOffline(true);
-      });
-    }, 600);
-    return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history, loadStatus, offline, retryTick]);
+  }, [data, history, conflicts.length, offline, retryTick]);
 
   // Nutzer hat für jede Konflikt-Zeile einzeln entschieden (Konflikt-Fenster) - Ergebnis
-  // einarbeiten und speichern.
+  // einarbeiten und speichern. Kann seit Paket A mehrere Dateien gleichzeitig betreffen
+  // (z.B. ein Stammdaten- UND ein Reise-Konflikt) - alle in pendingSyncResultsRef
+  // gesammelten Abgleiche werden hier gemeinsam aufgelöst.
   async function konflikteEntschieden(resolutions: Map<string, "local" | "remote">) {
-    const result = pendingSyncResultRef.current;
-    if (!result) return;
-    const finalData = applyConflictResolutions(result, resolutions);
+    const offeneSyncs = pendingSyncResultsRef.current;
+    if (offeneSyncs.length === 0 || !data) return;
+    const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(history);
+    let neueStammdaten = stammdatenBaselineRef.current ?? schemaDataAlsStammdatenKern(data);
+    const neueReisen = new Map<ID, ReiseKern>(reiseBaselinesRef.current);
+    const irgendeinAutoMerge = offeneSyncs.some((s) => s.result.autoMerged.length > 0);
     try {
-      await saveState(finalData, SCHEMA_FILE);
-      pendingSyncResultRef.current = null;
-      baselineRef.current = finalData;
-      writeBaseline(SCHEMA_FILE, finalData);
-      clearPending(SCHEMA_FILE);
+      for (const sync of offeneSyncs) {
+        const finalData = applyConflictResolutions(sync.result, resolutions);
+        if (sync.art === "stammdaten") {
+          neueStammdaten = schemaDataAlsStammdatenKern(finalData);
+        } else {
+          neueReisen.set(sync.reiseId, schemaDataAlsReiseKern(finalData));
+        }
+      }
+      await schreibeStammdatenDatei(neueStammdaten, stammdatenVerlauf);
+      await Promise.all(
+        offeneSyncs
+          .filter((s): s is { art: "reise"; reiseId: ID; result: SyncResult } => s.art === "reise")
+          .map((s) =>
+            schreibeReiseDatei(s.reiseId, neueReisen.get(s.reiseId)!, neueStammdaten, reiseVerlaufMap.get(s.reiseId) ?? [])
+          )
+      );
+
+      pendingSyncResultsRef.current = [];
+      stammdatenBaselineRef.current = neueStammdaten;
+      reiseBaselinesRef.current = neueReisen;
+      const finalDataGesamt = mergeSplitData(neueStammdaten, Array.from(neueReisen.values()));
+      baselineRef.current = finalDataGesamt;
+      writeBaseline(LOKALER_CACHE_SCHLUESSEL, finalDataGesamt);
+      clearPending(LOKALER_CACHE_SCHLUESSEL);
       setConflicts([]);
       setOffline(false);
-      setData(finalData);
+      setData(finalDataGesamt);
       const now = new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
       setSaveStatus(`Gespeichert um ${now}`);
-      if (result.autoMerged.length > 0) setShowAutoMerged(true);
+      if (irgendeinAutoMerge) setShowAutoMerged(true);
     } catch (error) {
       console.error(error);
       if (istVerbindungsfehler(error)) {
         // Entscheidung lokal übernehmen und merken, wird gespeichert sobald wieder online.
-        pendingSyncResultRef.current = null;
+        pendingSyncResultsRef.current = [];
         setConflicts([]);
         setOffline(true);
-        setData(finalData);
-        writePending(SCHEMA_FILE, finalData);
+        const finalDataGesamt = mergeSplitData(neueStammdaten, Array.from(neueReisen.values()));
+        setData(finalDataGesamt);
+        writePending(LOKALER_CACHE_SCHLUESSEL, finalDataGesamt);
         setSaveStatus("Offline – Entscheidung gemerkt, wird gespeichert sobald wieder online.");
       } else {
         setSaveStatus("Speichern fehlgeschlagen – bitte Verbindung prüfen, dann erneut versuchen.");
@@ -741,12 +1034,17 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       const ids = collectAllIds(prev);
       const reiseId = newId("t01", ids);
       ids.add(reiseId);
+      // Reihenfolge der Reise-Reiter (seit Paket A, siehe schema.ts/splitSchema.ts) -
+      // neue Reise kommt hinten an.
+      const naechsteReihenfolge =
+        prev.t01_reise.reduce((max, r) => Math.max(max, r.reihenfolge ?? 0), 0) + 1;
       const neu: T01Reise = {
         id: reiseId,
         reise: neuReiseName.trim(),
         von: neuReiseVon || null,
         bis: neuReiseBis || null,
         notiz: "",
+        reihenfolge: naechsteReihenfolge,
       };
       const basics = prev.t02_aktivitaet.find((a) => a.aktivitaet === "Basics");
       let tk01Neu = prev.tk01_t01_t02;
