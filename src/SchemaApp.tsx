@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
 import seedData from "./data/schema-data.json";
 import { logout } from "./auth";
-import { loadState, saveState, listFiles } from "./onedrive";
+import { loadState, saveState, listFiles, deleteState } from "./onedrive";
 import type { SchemaData, Tk04GegenstandPerson, T01Reise, T04Gegenstand, ID } from "./data/schema";
 import {
   gegenstaendeFuerReise,
@@ -37,7 +37,7 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V03-00";
+const APP_VERSION = "V03-02";
 
 // Bis V02-02 einziger Speicherort/Dateiname. Seit Paket A (Aufteilung in Stammdaten- +
 // Reise-Einzeldateien, siehe splitSchema.ts) nur noch als LESE-Quelle für die einmalige
@@ -133,6 +133,80 @@ function backfillPersonenOhneMenge(data: SchemaData, reiseName: string, personen
   return { ...data, tk04_tk03_t05: [...data.tk04_tk03_t05, ...neueZeilen] };
 }
 
+// Allgemeiner Nachtrag (gefunden 2026-08-30 beim Testen von "China 2025", siehe
+// Projektstand): Jede Reise braucht mindestens eine tk01-Zeile (Verknüpfung zu einer
+// Aktivität, meist "Basics"), sonst hat "Liste bearbeiten"/"Gegenstand hinzufügen"
+// keinen Anker-Punkt zum Anlegen neuer Zuordnungen und tut buchstäblich gar nichts
+// (siehe ankerTk01 weiter unten - lieferte für so eine Reise `null`, "+"-Knopf blieb
+// wirkungslos). "China 2025" wurde offenbar angelegt, ohne dass ihr je die "Basics"-
+// Aktivität zugeordnet wurde (0 tk01-Zeilen, anders als bei den anderen drei Reisen -
+// vermutlich noch nie richtig benutzt). Legt wie bei backfillPersonenOhneMenge nie
+// doppelte Zeilen an, sobald einmal eine tk01-Zeile existiert passiert hier nichts mehr.
+export function backfillReisenOhneAnker(data: SchemaData): SchemaData {
+  const basics = data.t02_aktivitaet.find((a) => a.aktivitaet === "Basics");
+  if (!basics) return data;
+  const reisenOhneAnker = data.t01_reise.filter(
+    (r) => !data.tk01_t01_t02.some((tk01) => tk01.id_t01 === r.id)
+  );
+  if (reisenOhneAnker.length === 0) return data;
+
+  const existingIds = new Set<string>();
+  const addIds = (arr: { id: string }[]) => arr.forEach((r) => existingIds.add(r.id));
+  addIds(data.t01_reise);
+  addIds(data.t02_aktivitaet);
+  addIds(data.t03_kathegorie);
+  addIds(data.t04_gegenstand);
+  addIds(data.t05_namen);
+  addIds(data.tk01_t01_t02);
+  addIds(data.tk02_t02_t04);
+  addIds(data.tk03_tk01_t04);
+  addIds(data.tk04_tk03_t05);
+
+  const neueZeilen = reisenOhneAnker.map((reise) => {
+    const neuId = newId("tk01", existingIds);
+    existingIds.add(neuId);
+    return { id: neuId, id_t01: reise.id, id_t02: basics.id };
+  });
+  return { ...data, tk01_t01_t02: [...data.tk01_t01_t02, ...neueZeilen] };
+}
+
+// Nachtrag für bestehende Reisen ohne explizite Teilnehmerliste (V03-02, siehe
+// T01Reise.teilnehmer in schema.ts): leitet sie einmalig aus den tatsächlich
+// vorhandenen Personen-Zuordnungen ab, damit Schottland/China 2024/Grimming & Co. nach
+// dem Update genau dieselben Personen-Reiter zeigen wie bisher - keine sichtbare
+// Änderung für bestehende Reisen. Neu angelegte Reisen bekommen ihre Teilnehmerliste ab
+// V03-02 immer schon beim Anlegen explizit mit (siehe erstelleNeueReise), brauchen
+// diesen Nachtrag also nicht. Läuft nie doppelt (nur Reisen ohne das Feld betroffen).
+export function backfillFehlendeTeilnehmer(data: SchemaData): SchemaData {
+  let geaendert = false;
+  const neueReisen = data.t01_reise.map((reise) => {
+    if (reise.teilnehmer !== undefined) return reise;
+    const ids = new Set<ID>();
+    for (const g of gegenstaendeFuerReise(data, reise.id)) {
+      const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
+      if (!tk03) continue;
+      for (const p of personenFuerTk03(data, tk03.id)) ids.add(p.id_t05);
+    }
+    geaendert = true;
+    return { ...reise, teilnehmer: Array.from(ids) };
+  });
+  if (!geaendert) return data;
+  return { ...data, t01_reise: neueReisen };
+}
+
+// Bündelt alle "Nachträge" (Selbstheilung von historisch unvollständigen Daten) an
+// einer Stelle. Bis V03-00 liefen diese nur einmalig während der Migration von der
+// alten Kombi-Datei (über alsServerstand) - seit Paket A wird diese Funktion beim
+// normalen Laden aus den aufgeteilten Dateien aber nicht mehr automatisch durchlaufen,
+// weil es dafür keine alte Kombi-Datei mehr zu lesen gibt. Deshalb wird
+// wendeNachtraegeAn jetzt zusätzlich direkt im Ladeeffekt aufgerufen (siehe unten),
+// damit die Selbstheilung wie beabsichtigt bei jedem Laden greift, nicht nur einmalig.
+export function wendeNachtraegeAn(data: SchemaData): SchemaData {
+  return backfillFehlendeTeilnehmer(
+    backfillPersonenOhneMenge(backfillReisenOhneAnker(data), "Grimming 2026", ["Clemens", "Sonja"])
+  );
+}
+
 function safeFilename(value: string) {
   return value.trim().replace(/[<>:"/\\|?*\u0000-\u001F]/g, "-").replace(/\s+/g, "_").replace(/_+/g, "_") || "Packliste";
 }
@@ -178,19 +252,19 @@ type OffenerFileSync =
   | { art: "stammdaten"; result: SyncResult }
   | { art: "reise"; reiseId: ID; result: SyncResult };
 
-function stammdatenGleich(a: StammdatenKern, b: StammdatenKern): boolean {
+export function stammdatenGleich(a: StammdatenKern, b: StammdatenKern): boolean {
   return schemaEqual(stammdatenAlsSchemaData(a), stammdatenAlsSchemaData(b));
 }
-function reiseGleich(a: ReiseKern, b: ReiseKern): boolean {
+export function reiseGleich(a: ReiseKern, b: ReiseKern): boolean {
   return schemaEqual(reiseAlsSchemaData(a), reiseAlsSchemaData(b));
 }
 
-async function schreibeStammdatenDatei(kern: StammdatenKern, verlauf: StammdatenKern[]): Promise<void> {
+export async function schreibeStammdatenDatei(kern: StammdatenKern, verlauf: StammdatenKern[]): Promise<void> {
   const datei: StammdatenDatei = { ...kern, verlauf };
   await saveState(datei, STAMMDATEN_DATEI);
 }
 
-async function schreibeReiseDatei(
+export async function schreibeReiseDatei(
   reiseId: ID,
   kern: ReiseKern,
   stammdaten: StammdatenKern,
@@ -207,7 +281,7 @@ async function schreibeReiseDatei(
 /** Schreibt einen kompletten Datenstand erstmalig/komplett neu als aufgeteilte Dateien
  *  (Migration von der alten Kombi-Datei, oder Wiederherstellung nach einem Offline-
  *  Konflikt beim allerersten Laden - siehe ladeAufgeteiltenStand/Ladeeffekt unten). */
-async function schreibeGesamtenStandNeu(
+export async function schreibeGesamtenStandNeu(
   merged: SchemaData,
   historyFuerAufteilung: SchemaData[]
 ): Promise<{ stammdaten: StammdatenKern; reisen: Map<ID, ReiseKern> }> {
@@ -227,7 +301,7 @@ async function schreibeGesamtenStandNeu(
  *  falls vorhanden, sonst der mitgelieferten Seed-Datei) migriert und sofort als neue
  *  Dateien geschrieben - die alte Datei bleibt dabei unangetastet liegen (Clemens löscht
  *  sie bei Gelegenheit selbst, siehe LEGACY_SCHEMA_FILE oben). */
-async function ladeAufgeteiltenStand(alsServerstand: (remote: unknown) => SchemaData): Promise<{
+export async function ladeAufgeteiltenStand(alsServerstand: (remote: unknown) => SchemaData): Promise<{
   stammdaten: StammdatenKern;
   reisen: Map<ID, ReiseKern>;
   stammdatenVerlauf: StammdatenKern[];
@@ -302,7 +376,7 @@ async function ladeAufgeteiltenStand(alsServerstand: (remote: unknown) => Schema
  *  Merge-Vorschlag - reine Vergleichslogik ohne Netzwerkzugriff, wiederverwendet sowohl
  *  beim allerersten Laden (Abgleich eines evtl. noch nicht synchronisierten Offline-
  *  Stands) als auch beim periodischen Sync-Tick weiter unten. */
-function vergleicheAlleDateien(
+export function vergleicheAlleDateien(
   baselineStammdaten: StammdatenKern,
   lokalStammdaten: StammdatenKern,
   remoteStammdaten: StammdatenKern,
@@ -378,6 +452,11 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   // Neuladen der Seite noch funktioniert (z.B. wenn man die App zwischendurch schließt).
   const [history, setHistory] = useState<SchemaData[]>([]);
   const [loadStatus, setLoadStatus] = useState<"loading" | "ready" | "error">("loading");
+  // Konkreter Fehlertext beim Laden - seit V03-01 sichtbar in der Fehleranzeige, damit
+  // Clemens uns die genaue Meldung mitteilen kann, statt nur "Fehler beim Laden" zu sehen
+  // (siehe istVerbindungsfehler in syncStore.ts: TypeErrors werden nicht mehr pauschal
+  // als "offline" verschluckt, sondern hier sichtbar gemacht).
+  const [loadErrorMessage, setLoadErrorMessage] = useState<string>("");
   const [saveStatus, setSaveStatus] = useState<string>("");
   const [exportStatus, setExportStatus] = useState<string>("");
   const [selectedReiseId, setSelectedReiseId] = useState<string | null>(null);
@@ -392,11 +471,20 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     () => new Set(data?.neu_hinzugefuegt ?? []),
     [data?.neu_hinzugefuegt]
   );
-  const [mode, setMode] = useState<"liste" | "bearbeiten" | "neueReise">("liste");
+  const [mode, setMode] = useState<
+    "liste" | "bearbeiten" | "neueReise" | "neueReiseTeilnehmer" | "teilnehmerBearbeiten"
+  >("liste");
   const [editSearch, setEditSearch] = useState("");
   const [neuReiseName, setNeuReiseName] = useState("");
   const [neuReiseVon, setNeuReiseVon] = useState("");
   const [neuReiseBis, setNeuReiseBis] = useState("");
+  // Teilnehmer-Auswahl (V03-02, von Clemens gewünscht 2026-08-30): wird sowohl beim
+  // Anlegen einer neuen Reise (Modus "neueReiseTeilnehmer") als auch beim nachträglichen
+  // Ändern einer bestehenden Reise (Modus "teilnehmerBearbeiten") wiederverwendet.
+  const [teilnehmerAuswahl, setTeilnehmerAuswahl] = useState<Set<ID>>(new Set());
+  // Sicherheitsabfrage für "Reise löschen" (V03-02) - eigener Bestätigungsschritt statt
+  // eines nativen Browser-Dialogs, damit es sich in den Rest der Oberfläche einfügt.
+  const [reiseLoeschenBestaetigen, setReiseLoeschenBestaetigen] = useState(false);
   const [moveFor, setMoveFor] = useState<{ tk03Id: string; tk04Id: string; vonPerson: string } | null>(null);
   const [showNeuGegenstand, setShowNeuGegenstand] = useState(false);
   const [neuGegenstandName, setNeuGegenstandName] = useState("");
@@ -436,7 +524,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     const merged = remote
       ? mergeSeedInto(remote as SchemaData, seedData as unknown as SchemaData)
       : (seedData as unknown as SchemaData);
-    return backfillPersonenOhneMenge(merged, "Grimming 2026", ["Clemens", "Sonja"]);
+    return wendeNachtraegeAn(merged);
   }
 
   useEffect(() => {
@@ -449,6 +537,11 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         const geladen = await ladeAufgeteiltenStand(alsServerstand);
         if (cancelled) return;
         const server = mergeSplitData(geladen.stammdaten, Array.from(geladen.reisen.values()));
+        const historyGeladen = historyRekonstruieren(
+          geladen.stammdatenVerlauf,
+          geladen.reiseVerlaufMap,
+          Array.from(geladen.reisen.values())
+        );
 
         // Prüfen, ob von einer früheren Offline-Sitzung noch ein nicht synchronisierter
         // Stand im Browser liegt (z.B. App wurde ohne Verbindung geschlossen, bevor die
@@ -496,17 +589,30 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             }
           }
         } else {
-          stammdatenBaselineRef.current = geladen.stammdaten;
-          reiseBaselinesRef.current = geladen.reisen;
-          baselineRef.current = server;
-          writeBaseline(LOKALER_CACHE_SCHLUESSEL, server);
+          // Nachträge (Selbstheilung historisch unvollständiger Daten, siehe
+          // wendeNachtraegeAn oben) laufen seit V03-01 bei JEDEM normalen Laden, nicht
+          // nur einmalig bei der Migration - sonst würde z.B. eine Reise ohne "Basics"-
+          // Anker (siehe China 2025) für immer kaputt bleiben, weil die alte Kombi-Datei
+          // nach der Migration nie wieder gelesen wird.
+          const serverMitNachtraegen = wendeNachtraegeAn(server);
+          if (!schemaEqual(serverMitNachtraegen, server)) {
+            // Ein Nachtrag hat tatsächlich etwas ergänzt - gleich mitschreiben, sonst
+            // würde die Ergänzung nur lokal existieren und beim nächsten Laden auf einem
+            // anderen Gerät wieder fehlen.
+            const geschrieben = await schreibeGesamtenStandNeu(serverMitNachtraegen, historyGeladen);
+            stammdatenBaselineRef.current = geschrieben.stammdaten;
+            reiseBaselinesRef.current = geschrieben.reisen;
+          } else {
+            stammdatenBaselineRef.current = geladen.stammdaten;
+            reiseBaselinesRef.current = geladen.reisen;
+          }
+          baselineRef.current = serverMitNachtraegen;
+          writeBaseline(LOKALER_CACHE_SCHLUESSEL, serverMitNachtraegen);
           clearPending(LOKALER_CACHE_SCHLUESSEL);
-          setData(server);
-          setSelectedReiseId(ermittleStartReise(server));
+          setData(serverMitNachtraegen);
+          setSelectedReiseId(ermittleStartReise(serverMitNachtraegen));
         }
-        setHistory(
-          historyRekonstruieren(geladen.stammdatenVerlauf, geladen.reiseVerlaufMap, Array.from(geladen.reisen.values()))
-        );
+        setHistory(historyGeladen);
         setOffline(false);
         setLoadStatus("ready");
       } catch (error) {
@@ -528,6 +634,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             return;
           }
         }
+        setLoadErrorMessage(error instanceof Error ? error.message : String(error));
         setLoadStatus("error");
       }
     })();
@@ -682,7 +789,8 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             setSaveStatus("Offline – Änderungen werden gespeichert, sobald wieder online.");
           }
         } else if (habenWirWasZuSpeichern) {
-          setSaveStatus("Speichern fehlgeschlagen – bitte Verbindung prüfen.");
+          const meldung = error instanceof Error ? error.message : String(error);
+          setSaveStatus(`Speichern fehlgeschlagen: ${meldung}`);
         }
       }
     }, 600);
@@ -744,7 +852,8 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         writePending(LOKALER_CACHE_SCHLUESSEL, finalDataGesamt);
         setSaveStatus("Offline – Entscheidung gemerkt, wird gespeichert sobald wieder online.");
       } else {
-        setSaveStatus("Speichern fehlgeschlagen – bitte Verbindung prüfen, dann erneut versuchen.");
+        const meldung = error instanceof Error ? error.message : String(error);
+        setSaveStatus(`Speichern fehlgeschlagen: ${meldung} – bitte erneut versuchen.`);
       }
     }
   }
@@ -770,17 +879,22 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return data.t05_namen.filter((n) => ids.has(n.id));
   }, [data, reise, gegenstaende]);
 
-  // Personen-Tabs: normalerweise nur die, die für DIESE Reise tatsächlich schon
-  // Gegenstände/Mengen haben (beteiligtePersonen) - von Clemens ausdrücklich so
-  // gewünscht (2026-08-28), z.B. bei Schottland nur Clemens/Florian/Carina/Allgemein,
-  // bei Grimming nur Clemens/Sonja, nicht alle bekannten Personen. Fällt NUR dann auf
-  // alle bekannten Personen zurück, wenn eine Reise wirklich noch niemanden hat (frisch
-  // importiert, noch nie bearbeitet) - sonst wäre man wieder in der Sackgasse von vorher
-  // gefangen (siehe Grimming-Fix V01-27).
+  // Personen-Tabs: seit V03-02 primär aus reise.teilnehmer (explizite Auswahl beim
+  // Anlegen der Reise bzw. über "Teilnehmer" bearbeitet) - das ist jetzt die
+  // maßgebliche Liste, unabhängig davon, ob schon Mengen eingetragen sind. Nur wenn
+  // eine Reise (noch) kein teilnehmer-Feld hat oder es leer ist (alte Reise vor
+  // V03-02, noch nicht durch backfillFehlendeTeilnehmer abgedeckt, oder eine ganz neue
+  // Reise ohne jede Zuordnung), wird auf die alte Logik zurückgefallen: erst
+  // beteiligtePersonen (wer tatsächlich schon Gegenstände/Mengen hat), sonst alle
+  // bekannten Personen (siehe Grimming-Fix V01-27).
   const sichtbarePersonen = useMemo(() => {
-    if (!data) return [];
+    if (!data || !reise) return [];
+    if (reise.teilnehmer && reise.teilnehmer.length > 0) {
+      const ids = new Set(reise.teilnehmer);
+      return data.t05_namen.filter((n) => ids.has(n.id));
+    }
     return beteiligtePersonen.length > 0 ? beteiligtePersonen : data.t05_namen;
-  }, [data, beteiligtePersonen]);
+  }, [data, reise, beteiligtePersonen]);
 
   // Vorbelegung/Umschalten der ausgewählten Person: beim Laden UND beim Wechsel der
   // Reise wird geprüft, ob die aktuell gewählte Person für die neue Reise überhaupt
@@ -804,6 +918,13 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     } catch {
       // ignorieren - reiner Komfort, kein Muss
     }
+  }, [selectedReiseId]);
+
+  // Sicherheitsabfrage für "Reise löschen" beim Wechsel der Reise wieder zurücksetzen -
+  // sonst könnte man sich versehentlich auf einer anderen Reise befinden, während die
+  // Bestätigung noch "scharf" ist (V03-02).
+  useEffect(() => {
+    setReiseLoeschenBestaetigen(false);
   }, [selectedReiseId]);
 
   const gruppiert = useMemo(() => {
@@ -1028,29 +1149,37 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return ids;
   }
 
-  function erstelleNeueReise() {
+  // Teilnehmer werden seit V03-02 als eigener Schritt VOR dem Anlegen abgefragt (siehe
+  // Modus "neueReiseTeilnehmer" unten) - die ID wird deshalb schon hier (außerhalb von
+  // updateData) erzeugt, damit sie direkt danach synchron für setSelectedReiseId
+  // verwendet werden kann (updateData selbst gibt nichts zurück).
+  function erstelleNeueReise(teilnehmerIds: ID[]) {
     if (!data || !neuReiseName.trim()) return;
+    const ids = collectAllIds(data);
+    const reiseId = newId("t01", ids);
+    ids.add(reiseId);
+    // Reihenfolge der Reise-Reiter (seit Paket A, siehe schema.ts/splitSchema.ts) -
+    // neue Reise kommt hinten an.
+    const naechsteReihenfolge =
+      data.t01_reise.reduce((max, r) => Math.max(max, r.reihenfolge ?? 0), 0) + 1;
+    const basics = data.t02_aktivitaet.find((a) => a.aktivitaet === "Basics");
+    const tk01Id = basics ? newId("tk01", ids) : null;
+    if (tk01Id) ids.add(tk01Id);
+    const neu: T01Reise = {
+      id: reiseId,
+      reise: neuReiseName.trim(),
+      von: neuReiseVon || null,
+      bis: neuReiseBis || null,
+      notiz: "",
+      reihenfolge: naechsteReihenfolge,
+      // Explizit gewählte Teilnehmer (V03-02) - von Clemens ausdrücklich als erster
+      // Schritt gewünscht (2026-08-30), damit nicht mehr automatisch alle bekannten
+      // Personen angeboten werden.
+      teilnehmer: teilnehmerIds,
+    };
     updateData((prev) => {
-      const ids = collectAllIds(prev);
-      const reiseId = newId("t01", ids);
-      ids.add(reiseId);
-      // Reihenfolge der Reise-Reiter (seit Paket A, siehe schema.ts/splitSchema.ts) -
-      // neue Reise kommt hinten an.
-      const naechsteReihenfolge =
-        prev.t01_reise.reduce((max, r) => Math.max(max, r.reihenfolge ?? 0), 0) + 1;
-      const neu: T01Reise = {
-        id: reiseId,
-        reise: neuReiseName.trim(),
-        von: neuReiseVon || null,
-        bis: neuReiseBis || null,
-        notiz: "",
-        reihenfolge: naechsteReihenfolge,
-      };
-      const basics = prev.t02_aktivitaet.find((a) => a.aktivitaet === "Basics");
       let tk01Neu = prev.tk01_t01_t02;
-      if (basics) {
-        const tk01Id = newId("tk01", ids);
-        ids.add(tk01Id);
+      if (basics && tk01Id) {
         tk01Neu = [...prev.tk01_t01_t02, { id: tk01Id, id_t01: reiseId, id_t02: basics.id }];
       }
       return { ...prev, t01_reise: [...prev.t01_reise, neu], tk01_t01_t02: tk01Neu };
@@ -1058,7 +1187,78 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     setNeuReiseName("");
     setNeuReiseVon("");
     setNeuReiseBis("");
+    setTeilnehmerAuswahl(new Set());
+    setSelectedReiseId(reiseId);
     setMode("bearbeiten");
+  }
+
+  function toggleTeilnehmer(personId: ID) {
+    setTeilnehmerAuswahl((prev) => {
+      const next = new Set(prev);
+      if (next.has(personId)) next.delete(personId);
+      else next.add(personId);
+      return next;
+    });
+  }
+
+  // Teilnehmerliste einer bestehenden Reise übernehmen (Modus "teilnehmerBearbeiten",
+  // vorbelegt über den "Teilnehmer"-Button in der Werkzeugleiste unten). Entfernte
+  // Personen verlieren dadurch NICHT ihre bereits eingetragenen Mengen/Zuordnungen (auf
+  // Wunsch von Clemens, 2026-08-30) - sie werden nur ausgeblendet, weil sichtbarePersonen
+  // oben ausschließlich reise.teilnehmer zeigt. Die Daten bleiben in tk04 erhalten und
+  // erscheinen sofort wieder, sobald die Person erneut hinzugefügt wird.
+  function speichereTeilnehmer() {
+    if (!data || !reise) return;
+    const teilnehmerIds = Array.from(teilnehmerAuswahl);
+    const reiseId = reise.id;
+    updateData((prev) => ({
+      ...prev,
+      t01_reise: prev.t01_reise.map((r) => (r.id === reiseId ? { ...r, teilnehmer: teilnehmerIds } : r)),
+    }));
+    setMode("liste");
+  }
+
+  // Reise unwiderruflich löschen (V03-02, von Clemens ausdrücklich als echte Löschung
+  // gewünscht - bewusst eine Ausnahme vom sonstigen "nie löschen, nur ausblenden"-Prinzip
+  // dieser App). Wird erst nach der Sicherheitsabfrage (reiseLoeschenBestaetigen) über den
+  // Button unten aufgerufen.
+  async function loescheReise() {
+    if (!data || !reise) return;
+    const reiseId = reise.id;
+    const dateiname = reiseDateiname(reiseId);
+    setReiseLoeschenBestaetigen(false);
+    // Baseline sofort (synchron) entfernen, damit der Autospeicher-Effekt oben diese
+    // Reise-Datei nicht versehentlich wiederherstellt, falls er zwischendurch mit noch
+    // altem Stand anläuft, während das Löschen in OneDrive noch unterwegs ist.
+    reiseBaselinesRef.current.delete(reiseId);
+    const verbleibendeReisen = data.t01_reise.filter((r) => r.id !== reiseId);
+    const naechsteReiseId = verbleibendeReisen[0]?.id ?? null;
+    updateData((prev) => {
+      const tk01Ids = new Set(
+        prev.tk01_t01_t02.filter((r) => r.id_t01 === reiseId).map((r) => r.id)
+      );
+      const tk03Ids = new Set(
+        prev.tk03_tk01_t04.filter((r) => tk01Ids.has(r.id_tk01)).map((r) => r.id)
+      );
+      return {
+        ...prev,
+        t01_reise: prev.t01_reise.filter((r) => r.id !== reiseId),
+        tk01_t01_t02: prev.tk01_t01_t02.filter((r) => r.id_t01 !== reiseId),
+        tk03_tk01_t04: prev.tk03_tk01_t04.filter((r) => !tk01Ids.has(r.id_tk01)),
+        tk04_tk03_t05: prev.tk04_tk03_t05.filter((r) => !tk03Ids.has(r.id_tk03)),
+      };
+    });
+    setSelectedReiseId(naechsteReiseId);
+    setMode("liste");
+    setSaveStatus("Reise wird gelöscht …");
+    try {
+      await deleteState(dateiname);
+      setSaveStatus("Reise gelöscht.");
+    } catch (error) {
+      console.error(error);
+      const meldung = error instanceof Error ? error.message : String(error);
+      setSaveStatus(`Löschen der Reise-Datei fehlgeschlagen: ${meldung}`);
+    }
   }
 
   function ankerTk01(d: SchemaData, reiseId: string): string | null {
@@ -1396,7 +1596,17 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return <div className="pl-loading">Packliste wird geladen …</div>;
   }
   if (loadStatus === "error" || !data) {
-    return <div className="pl-loading">Fehler beim Laden der Packliste. Bitte Seite neu laden.</div>;
+    return (
+      <div className="pl-loading">
+        Fehler beim Laden der Packliste. Bitte Seite neu laden.
+        {loadErrorMessage && (
+          <>
+            <br />
+            <span style={{ fontSize: "0.85em", opacity: 0.8 }}>({loadErrorMessage})</span>
+          </>
+        )}
+      </div>
+    );
   }
 
   const pct = fortschritt.total > 0 ? Math.round((fortschritt.done / fortschritt.total) * 100) : 0;
@@ -1448,13 +1658,28 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         <div className="pl-editbar">
           <button
             className={"pl-edit-toggle" + (mode === "neueReise" ? " active" : "")}
-            onClick={() => setMode("neueReise")}
+            onClick={() => {
+              // Frisch beginnen - falls zuvor noch eine Teilnehmer-Auswahl einer anderen
+              // Reise "hängen geblieben" ist (z.B. Abbrechen bei "Teilnehmer bearbeiten"),
+              // soll die nicht ungewollt in die neue Reise übernommen werden.
+              setTeilnehmerAuswahl(new Set());
+              setMode("neueReise");
+            }}
           >
             + Neue Reise
           </button>{" "}
           <button
             className={"pl-edit-toggle" + (mode === "bearbeiten" ? " active" : "")}
-            onClick={() => setMode(mode === "bearbeiten" ? "liste" : "bearbeiten")}
+            onClick={() => {
+              const wechseltZurListe = mode === "bearbeiten";
+              setMode(wechseltZurListe ? "liste" : "bearbeiten");
+              // Von Clemens gemeldet (2026-08-30): nach dem Zuordnen fand er die frisch
+              // hinzugefügten Gegenstände in der Liste nicht wieder, weil der "Neu
+              // hinzugefügt"-Filter erst manuell angetippt werden musste. Beim
+              // Zurückwechseln aus "Liste bearbeiten" jetzt automatisch aktivieren,
+              // wenn es für die aktuelle Person welche gibt.
+              if (wechseltZurListe && neuCount > 0) setOffenFilter("neu");
+            }}
           >
             {mode === "bearbeiten" ? "Fertig" : "Liste bearbeiten"}
           </button>{" "}
@@ -1462,6 +1687,22 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             <>
               <button className="pl-edit-toggle" onClick={createPdf}>Als PDF drucken</button>{" "}
               <button className="pl-edit-toggle" onClick={createExcel}>Als Excel sichern</button>{" "}
+              <button
+                className={"pl-edit-toggle" + (mode === "teilnehmerBearbeiten" ? " active" : "")}
+                onClick={() => {
+                  if (mode === "teilnehmerBearbeiten") {
+                    setMode("liste");
+                    return;
+                  }
+                  // Vorbelegung mit den aktuell sichtbaren Personen (siehe
+                  // sichtbarePersonen oben), nicht einfach leer - sonst sähe es so aus,
+                  // als würden gerade alle abgewählt.
+                  setTeilnehmerAuswahl(new Set(sichtbarePersonen.map((p) => p.id)));
+                  setMode("teilnehmerBearbeiten");
+                }}
+              >
+                Teilnehmer
+              </button>{" "}
             </>
           )}
           <button
@@ -1471,7 +1712,26 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             title={history.length > 0 ? `${history.length} Schritt(e) verfügbar` : "Kein Verlauf vorhanden"}
           >
             ↩ Rückgängig{history.length > 0 ? ` (${history.length})` : ""}
-          </button>
+          </button>{" "}
+          {reise && !reiseLoeschenBestaetigen && (
+            <button
+              className="pl-edit-toggle pl-danger"
+              onClick={() => setReiseLoeschenBestaetigen(true)}
+            >
+              Reise löschen
+            </button>
+          )}
+          {reise && reiseLoeschenBestaetigen && (
+            <span className="pl-loeschen-bestaetigen">
+              „{reise.reise}“ wirklich unwiderruflich löschen?{" "}
+              <button className="pl-edit-toggle pl-danger" onClick={loescheReise}>
+                Ja, löschen
+              </button>{" "}
+              <button className="pl-edit-toggle" onClick={() => setReiseLoeschenBestaetigen(false)}>
+                Abbrechen
+              </button>
+            </span>
+          )}
         </div>
         {exportStatus && <p className="pl-save">{exportStatus}</p>}
 
@@ -1624,8 +1884,62 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           <input type="date" value={neuReiseVon} onChange={(e) => setNeuReiseVon(e.target.value)} />
           <label>Bis</label>
           <input type="date" value={neuReiseBis} onChange={(e) => setNeuReiseBis(e.target.value)} />
-          <button onClick={erstelleNeueReise} disabled={!neuReiseName.trim()}>
+          {/* Seit V03-02 zunächst nur Weiter zur Teilnehmer-Auswahl (von Clemens
+              ausdrücklich als erster Schritt gewünscht, 2026-08-30) - die Reise selbst
+              wird erst danach in erstelleNeueReise() angelegt. */}
+          <button onClick={() => setMode("neueReiseTeilnehmer")} disabled={!neuReiseName.trim()}>
+            Weiter: Teilnehmer auswählen
+          </button>
+        </div>
+      )}
+
+      {mode === "neueReiseTeilnehmer" && data && (
+        <div className="pl-newreise">
+          <label>Wer ist bei „{neuReiseName.trim() || "dieser Reise"}“ dabei?</label>
+          <div className="pl-teilnehmer-liste">
+            {data.t05_namen.map((p) => (
+              <label key={p.id} className="pl-teilnehmer-check">
+                <input
+                  type="checkbox"
+                  checked={teilnehmerAuswahl.has(p.id)}
+                  onChange={() => toggleTeilnehmer(p.id)}
+                />
+                {p.namen}
+              </label>
+            ))}
+          </div>
+          <button onClick={() => setMode("neueReise")}>Zurück</button>{" "}
+          <button
+            onClick={() => erstelleNeueReise(Array.from(teilnehmerAuswahl))}
+            disabled={teilnehmerAuswahl.size === 0}
+          >
             Reise anlegen &amp; Gegenstände auswählen
+          </button>
+        </div>
+      )}
+
+      {mode === "teilnehmerBearbeiten" && reise && data && (
+        <div className="pl-newreise">
+          <label>Wer ist bei „{reise.reise}“ dabei?</label>
+          <div className="pl-teilnehmer-liste">
+            {data.t05_namen.map((p) => (
+              <label key={p.id} className="pl-teilnehmer-check">
+                <input
+                  type="checkbox"
+                  checked={teilnehmerAuswahl.has(p.id)}
+                  onChange={() => toggleTeilnehmer(p.id)}
+                />
+                {p.namen}
+              </label>
+            ))}
+          </div>
+          <p className="pl-save">
+            Entfernte Personen verlieren nichts – ihre Einträge bleiben erhalten und werden
+            nur ausgeblendet, bis sie wieder hinzugefügt werden.
+          </p>
+          <button onClick={() => setMode("liste")}>Abbrechen</button>{" "}
+          <button onClick={speichereTeilnehmer} disabled={teilnehmerAuswahl.size === 0}>
+            Speichern
           </button>
         </div>
       )}

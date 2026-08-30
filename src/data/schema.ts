@@ -19,6 +19,14 @@ export interface T01Reise {
   // Reihenfolge hier explizit mitgespeichert. Optional, damit ältere/unvollständige Daten
   // nicht brechen - fehlt der Wert, landet die Reise beim Sortieren ganz hinten.
   reihenfolge?: number;
+  // Explizite Teilnehmerliste (V03-02, von Clemens gewünscht 2026-08-30): wer bei dieser
+  // Reise überhaupt dabei ist, steuert die Personen-Reiter - unabhängig davon, ob schon
+  // Gegenstände/Mengen für diese Person eingetragen sind. Wird beim Anlegen einer neuen
+  // Reise als eigener Schritt abgefragt, danach über "Teilnehmer" jederzeit änderbar.
+  // Optional, damit ältere Reisen ohne dieses Feld nicht brechen - siehe
+  // backfillFehlendeTeilnehmer in SchemaApp.tsx (leitet es einmalig aus den tatsächlich
+  // vorhandenen Personen-Zuordnungen ab, keine sichtbare Änderung für bestehende Reisen).
+  teilnehmer?: ID[];
 }
 
 export interface T02Aktivitaet {

@@ -98,15 +98,26 @@ svg { width:24px; height:24px; }
 .pl-qbox.q-eingepackt.q-set { background-color: var(--blue-soft); border-color: #b9cfe8; color: #1F4E78; }
 .pl-qbox.q-verwendet.q-set { background-color: var(--green); border-color: var(--green); color: white; }
 
-.pl-editbar { display: flex; justify-content: flex-end; padding: 8px 14px 0; }
+.pl-editbar { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px 0; padding: 8px 14px 0; }
 .pl-edit-toggle { font-size: 12px; background: var(--card); border: 1px solid var(--line); color: var(--navy); border-radius: 999px; padding: 6px 12px; font-weight: 600; }
 .pl-edit-toggle.active { background: var(--navy); color: white; border-color: var(--navy); }
 .pl-edit-toggle:disabled { opacity: 0.4; }
+/* "Reise löschen" - bewusste Ausnahme vom sonstigen "nie löschen, nur ausblenden"-Prinzip
+   dieser App (V03-02, von Clemens ausdrücklich so gewünscht) - deshalb in Warnfarbe. */
+.pl-edit-toggle.pl-danger { color: var(--red); border-color: #e6bdb7; background: var(--red-soft); }
+.pl-edit-toggle.pl-danger.active { background: var(--red); color: white; border-color: var(--red); }
+.pl-loeschen-bestaetigen { font-size: 12px; color: var(--red); display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
 .pl-newreise { padding: 14px; background: var(--card); margin: 10px 14px; border-radius: 10px; border: 1px solid var(--line); }
 .pl-newreise label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin: 8px 0 3px; }
 .pl-newreise input { width: 100%; padding: 8px 9px; border-radius: 7px; border: 1px solid var(--line); font-size: 14px; }
-.pl-newreise button { margin-top: 12px; background: var(--navy); color: white; border: none; border-radius: 8px; padding: 9px 16px; font-size: 14px; font-weight: 600; }
+.pl-newreise button { margin-top: 12px; margin-right: 8px; background: var(--navy); color: white; border: none; border-radius: 8px; padding: 9px 16px; font-size: 14px; font-weight: 600; }
+.pl-newreise button:disabled { opacity: 0.4; }
+/* Teilnehmer-Auswahl beim Anlegen einer neuen Reise bzw. beim Bearbeiten bestehender
+   Teilnehmer (V03-02) - Checkbox-Liste aller bekannten Personen. */
+.pl-teilnehmer-liste { display: grid; gap: 2px; margin-top: 4px; }
+.pl-teilnehmer-check { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 7px 2px; border-bottom: 1px solid var(--line); font-weight: 400; }
+.pl-teilnehmer-check input { width: auto; margin: 0; }
 
 .pl-edit-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 2px; border-bottom: 1px solid var(--line); }
 .pl-edit-item-name { font-size: 12.5px; color: var(--ink); flex: 1; }

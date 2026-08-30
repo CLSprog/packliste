@@ -58,9 +58,25 @@ export function clearPending(file: string) {
 }
 
 /** Netzwerkfehler (keine Verbindung) von echten Serverfehlern (z.B. abgelaufener
- *  Login, Berechtigungsfehler) unterscheiden - nur bei echten Netzwerkfehlern soll
- *  die App still in den Offline-Modus wechseln statt einen Fehler zu zeigen. */
+ *  Login, Berechtigungsfehler) UND von echten Programmierfehlern unterscheiden - nur
+ *  bei echten Netzwerkfehlern soll die App still in den Offline-Modus wechseln statt
+ *  einen Fehler zu zeigen.
+ *  Bis V03-00 wurde hier JEDER TypeError als "keine Verbindung" gewertet - das kann
+ *  aber auch ein echter Programmierfehler sein (z.B. Zugriff auf ein Feld, das doch
+ *  fehlt), der dadurch verschluckt und fälschlich als "offline" angezeigt wurde, statt
+ *  den eigentlichen Fehler sichtbar zu machen (Ursache für die Fehlersuche 2026-08-30
+ *  "es wird nichts gespeichert", siehe Projektstand). Ein `fetch()`-Netzwerkausfall
+ *  wirft einen TypeError mit einer der folgenden Meldungen (Chrome/Edge/Firefox/
+ *  Safari) - alles andere ist jetzt ein echter Fehler und wird nicht mehr als
+ *  "offline" verschluckt, sondern angezeigt. */
 export function istVerbindungsfehler(error: unknown): boolean {
   if (!navigator.onLine) return true;
-  return error instanceof TypeError; // Browser werfen bei Netzwerkausfall ein TypeError aus fetch()
+  if (!(error instanceof TypeError)) return false;
+  const meldung = error.message.toLowerCase();
+  return (
+    meldung.includes("failed to fetch") || // Chrome/Edge
+    meldung.includes("networkerror") || // Firefox
+    meldung.includes("load failed") || // Safari
+    meldung.includes("network request failed")
+  );
 }
