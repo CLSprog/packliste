@@ -12,6 +12,13 @@ export interface T01Reise {
   von: string | null; // ISO-Datum
   bis: string | null;
   notiz: string;
+  // Seit der Aufteilung in Stammdaten-/Reise-Einzeldateien (Paket A, 2026-08-29) hat jede
+  // Reise keinen gemeinsamen Datensatz mehr, aus dem sich eine Reihenfolge automatisch
+  // ergibt (jede liegt in ihrer eigenen Datei). Damit die Reise-Reiter trotzdem in der
+  // gewohnten Reihenfolge erscheinen (nicht z.B. alphabetisch nach Dateiname), wird die
+  // Reihenfolge hier explizit mitgespeichert. Optional, damit ältere/unvollständige Daten
+  // nicht brechen - fehlt der Wert, landet die Reise beim Sortieren ganz hinten.
+  reihenfolge?: number;
 }
 
 export interface T02Aktivitaet {
