@@ -46,7 +46,7 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V03-03";
+const APP_VERSION = "V03-04";
 
 // Bis V02-02 einziger Speicherort/Dateiname. Seit Paket A (Aufteilung in Stammdaten- +
 // Reise-Einzeldateien, siehe splitSchema.ts) nur noch als LESE-Quelle für die einmalige
@@ -1078,12 +1078,14 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         const next = Math.max(-1, current + direction);
         return { ...r, [field]: next };
       });
-      // Sobald an einer frisch hinzugefügten Zeile etwas eingetragen wird, gilt sie
-      // nicht mehr als "neu" - verschwindet also aus dem "Neu hinzugefügt"-Filter.
-      // Im selben updateData-Aufruf wie die eigentliche Änderung, damit es nur einen
-      // Rückgängig-Schritt gibt und beides zusammen gespeichert wird.
-      const neuNeuHinzugefuegt = (prev.neu_hinzugefuegt ?? []).filter((id) => id !== row.id);
-      return { ...prev, tk04_tk03_t05: updated, neu_hinzugefuegt: neuNeuHinzugefuegt };
+      // Bis V03-03: Sobald an einer frisch hinzugefügten Zeile etwas eingetragen wurde,
+      // verschwand sie sofort aus dem "Neu hinzugefügt"-Filter. Clemens meldete (2026-09-03):
+      // genau beim Anpassen der Menge in dieser Ansicht ist das verwirrend - man sieht nicht
+      // mehr, ob der Klick richtig war, und kann nicht mehr mehrere Positionen hintereinander
+      // in Ruhe korrigieren. Seit V03-04 bleibt die "neu"-Markierung deshalb beim Antippen
+      // bestehen und fällt erst gesammelt über den "Fertig"-Knopf weg (siehe
+      // bestaetigeNeuHinzugefuegt()).
+      return { ...prev, tk04_tk03_t05: updated };
     });
   }
 
@@ -1155,12 +1157,33 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           }
           return { ...r, [field]: n };
         }),
-        // Wie bei bumpField: Zeile verliert die "neu"-Markierung, sobald sie bearbeitet wird.
-        neu_hinzugefuegt: (prev.neu_hinzugefuegt ?? []).filter((id) => id !== rowId),
+        // Seit V03-04 wie bei bumpField: Die "neu"-Markierung bleibt beim Bearbeiten
+        // bestehen, fällt erst gesammelt über den "Fertig"-Knopf weg.
       };
     });
     setEditingQty(null);
     setEditingQtyValue("");
+  }
+
+  // Schließt die "Neu hinzugefügt"-Ansicht der aktuellen Person bewusst ab: alle dort
+  // gerade sichtbaren (also noch als "neu" markierten) Zeilen verlieren gemeinsam die
+  // Markierung, die Ansicht springt danach zurück zur normalen Liste. Ersetzt seit V03-04
+  // das automatische, sofortige Verschwinden einzelner Zeilen beim bloßen Antippen einer
+  // Menge (siehe bumpField/speichereQtyEingabe) - auf ausdrücklichen Wunsch von Clemens
+  // (2026-09-03): "nicht gleich aus der Liste nehmen, sondern einen Fertig-Knopf dazugeben,
+  // so kann man die Liste auch noch korrigieren, bis alles fertig ist".
+  function bestaetigeNeuHinzugefuegt() {
+    if (!data) return;
+    const idsInAnsicht = new Set<string>();
+    for (const [, entries] of gruppiert) {
+      for (const { row } of entries) idsInAnsicht.add(row.id);
+    }
+    if (idsInAnsicht.size === 0) return;
+    updateData((prev) => ({
+      ...prev,
+      neu_hinzugefuegt: (prev.neu_hinzugefuegt ?? []).filter((id) => !idsInAnsicht.has(id)),
+    }));
+    setOffenFilter(null);
   }
 
   function collectAllIds(d: SchemaData): Set<string> {
@@ -2081,6 +2104,14 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                   Neu hinzugefügt ({neuCount})
                 </button>
               )}
+              {/* V03-04: eigener "Fertig"-Knopf statt automatischem Verschwinden beim
+                  ersten Antippen einer Menge - siehe bestaetigeNeuHinzugefuegt(). Nur
+                  sichtbar, während man sich diese Ansicht wirklich anschaut. */}
+              {offenFilter === "neu" && (
+                <button className="pl-fertig-btn" onClick={bestaetigeNeuHinzugefuegt}>
+                  Fertig
+                </button>
+              )}
             </div>
 
             <div className="pl-legend">
@@ -2316,8 +2347,16 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         <div className="pl-body">
           {(() => {
             type Prio = "rot" | "blau" | "gruen";
-            type Eintrag = { g: T04Gegenstand; prio: Prio; hint: string | null };
+            type Eintrag = { g: T04Gegenstand; prio: Prio; hint: string | null; allgemeinAktiv: boolean };
             const byKat = new Map<string, Eintrag[]>();
+            // V03-04, auf Wunsch von Clemens (2026-09-03): rein informative "A"-Markierung,
+            // zeigt bei jedem Gegenstand, den "Allgemein" für diese Reise schon aktiv hat -
+            // unabhängig von rot/blau/grün. Bisher war das z.B. bei roten Gegenständen (ich
+            // hatte es, hab's rausgenommen) gar nicht sichtbar, weil dort kein "andere
+            // Person"-Hinweis berechnet wird. Keine Verwechslung mit der "A"-Spalte
+            // (Ausgewählt) im Kopfbereich beabsichtigt - andere Bildschirmstelle, andere
+            // Optik (Badge statt Spaltenkopf).
+            const allgemeinId = data.t05_namen.find((p) => p.namen === "Allgemein")?.id ?? null;
             for (const g of data.t04_gegenstand) {
               if (editSearch && !g.gegenstand.toLowerCase().includes(editSearch.toLowerCase())) continue;
               const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
@@ -2345,9 +2384,15 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                   prio = "gruen";
                 }
               }
+              let allgemeinAktiv = false;
+              if (allgemeinId && personFilter !== allgemeinId && tk03) {
+                allgemeinAktiv = data.tk04_tk03_t05.some(
+                  (r) => r.id_tk03 === tk03!.id && r.id_t05 === allgemeinId && r.ausgewaehlt !== -1
+                );
+              }
               const kat = kathegorieName(data, g.id_kathegorie);
               if (!byKat.has(kat)) byKat.set(kat, []);
-              byKat.get(kat)!.push({ g, prio, hint });
+              byKat.get(kat)!.push({ g, prio, hint, allgemeinAktiv });
             }
             const prioRang: Record<Prio, number> = { rot: 0, blau: 1, gruen: 2 };
             const sorted = Array.from(byKat.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
@@ -2361,13 +2406,18 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
                     <span className="pl-category-tag">{katName}</span>
                     <span className="pl-category-count">{items.length}</span>
                   </div>
-                  {items.map(({ g, prio, hint }) => (
+                  {items.map(({ g, prio, hint, allgemeinAktiv }) => (
                     <div className={"pl-add-item pri-" + prio} key={g.id}>
                       <div className="pl-add-item-row">
                         <div className="pl-add-item-text">
                           <span className="pl-add-item-name">{g.gegenstand}</span>
                           {hint && <span className="pl-add-item-hint">{hint}</span>}
                         </div>
+                        {allgemeinAktiv && (
+                          <span className="pl-allgemein-badge" title="„Allgemein“ hat diesen Gegenstand bei dieser Reise schon">
+                            A
+                          </span>
+                        )}
                         <button className="pl-add-btn" onClick={() => fuegeGegenstandHinzu(g.id)}>
                           +
                         </button>

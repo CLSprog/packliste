@@ -65,6 +65,10 @@ svg { width:24px; height:24px; }
 .pl-filter-chip.active { background: var(--navy); border-color: var(--navy); color: white; font-weight: 700; }
 .pl-offenbar { padding-top: 0; }
 .pl-offen-chip.active { background: var(--amber-soft); border-color: #e2cfa8; color: #7a5c21; }
+/* V03-04: eigener "Fertig"-Knopf, um die "Neu hinzugefügt"-Ansicht bewusst abzuschließen
+   (siehe bestaetigeNeuHinzugefuegt in SchemaApp.tsx) statt automatisch beim ersten Antippen
+   einer Menge - auf Wunsch von Clemens (2026-09-03). */
+.pl-fertig-btn { flex: none; font-size: 12.5px; padding: 6px 13px; border-radius: 999px; border: 1.5px solid var(--green); background: var(--green); color: white; font-weight: 700; white-space: nowrap; }
 
 .pl-select-row { padding: 10px 14px 0; }
 .pl-select-row select { width: 100%; padding: 9px 10px; border-radius: 9px; border: 1px solid var(--line); font-size: 14px; background: var(--card); color: var(--ink); }
@@ -146,6 +150,10 @@ svg { width:24px; height:24px; }
 .pri-rot .pl-add-btn { background: var(--red); }
 .pri-blau .pl-add-btn { background: var(--blue); }
 .pri-gruen .pl-add-btn { background: var(--green); }
+/* V03-04: rein informative "A"-Markierung für Allgemein-Gegenstände (Clemens, 2026-09-03),
+   links vom "+"-Button. Bewusst als Badge statt Klartextbuchstabe gestaltet, damit sie sich
+   von der "A"-Spalte (Ausgewählt) im Kopfbereich (.pl-legend) klar unterscheidet. */
+.pl-allgemein-badge { flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1px solid var(--line); background: var(--card); color: var(--navy); font-size: 10.5px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
 .pl-add-legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--ink); padding: 4px 4px 8px; }
 .pl-add-legend span { display: inline-flex; align-items: center; gap: 5px; }
 .pl-add-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
