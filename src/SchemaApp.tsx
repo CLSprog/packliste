@@ -46,7 +46,7 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V03-04";
+const APP_VERSION = "V03-05";
 
 // Bis V02-02 einziger Speicherort/Dateiname. Seit Paket A (Aufteilung in Stammdaten- +
 // Reise-Einzeldateien, siehe splitSchema.ts) nur noch als LESE-Quelle für die einmalige
@@ -965,7 +965,15 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       const personen = personenFuerTk03(data, tk03.id);
       const row = personen.find((p) => p.id_t05 === personFilter);
       if (!row) continue; // diese Person braucht den Gegenstand nicht
-      if (row.ausgewaehlt === -1) continue; // Strich = sicher nicht mitgenommen, aus der Liste raus
+      // V03-05 (Clemens, 2026-09-03): Beim Ändern auf "–" (Strich) in der "Neu
+      // hinzugefügt"-Ansicht verschwand der Gegenstand trotz V03-04 sofort - die
+      // allgemeine Strich-Ausblendung griff hier noch VOR der "neu"-Prüfung. Solange ein
+      // noch nicht per "Fertig" bestätigter Gegenstand in dieser Ansicht offen ist, zählt
+      // die Strich-Ausblendung deshalb nicht - man soll auch einen versehentlichen Strich
+      // noch sehen und korrigieren können. Außerhalb dieser Ansicht bleibt "Strich = raus
+      // aus der Liste" unverändert.
+      const nochOffenAlsNeu = offenFilter === "neu" && neuHinzugefuegt.has(row.id);
+      if (row.ausgewaehlt === -1 && !nochOffenAlsNeu) continue; // Strich = sicher nicht mitgenommen, aus der Liste raus
       if (offenFilter === "neu") {
         if (!neuHinzugefuegt.has(row.id)) continue;
       } else if (offenFilter) {
@@ -989,7 +997,10 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
       if (!tk03) continue;
       const row = data.tk04_tk03_t05.find((r) => r.id_tk03 === tk03.id && r.id_t05 === personFilter);
-      if (row && neuHinzugefuegt.has(row.id) && row.ausgewaehlt !== -1) n++;
+      // V03-05: nicht mehr row.ausgewaehlt !== -1 ausschließen - ein auf "Strich" gesetzter,
+      // aber noch nicht per "Fertig" bestätigter Gegenstand zählt jetzt mit (siehe gruppiert
+      // oben), damit die Zahl am Chip zur tatsächlich angezeigten Liste passt.
+      if (row && neuHinzugefuegt.has(row.id)) n++;
     }
     return n;
   }, [data, reise, gegenstaende, personFilter, neuHinzugefuegt]);
