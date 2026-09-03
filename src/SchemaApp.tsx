@@ -3,7 +3,16 @@ import type { AccountInfo } from "@azure/msal-browser";
 import seedData from "./data/schema-data.json";
 import { logout } from "./auth";
 import { loadState, saveState, listFiles, deleteState } from "./onedrive";
-import type { SchemaData, Tk04GegenstandPerson, T01Reise, T04Gegenstand, ID } from "./data/schema";
+import type {
+  SchemaData,
+  Tk04GegenstandPerson,
+  Tk01ReiseAktivitaet,
+  Tk03ReiseaktivitaetGegenstand,
+  T01Reise,
+  T02Aktivitaet,
+  T04Gegenstand,
+  ID,
+} from "./data/schema";
 import {
   gegenstaendeFuerReise,
   tk03FuerGegenstand,
@@ -37,7 +46,7 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V03-02";
+const APP_VERSION = "V03-03";
 
 // Bis V02-02 einziger Speicherort/Dateiname. Seit Paket A (Aufteilung in Stammdaten- +
 // Reise-Einzeldateien, siehe splitSchema.ts) nur noch als LESE-Quelle für die einmalige
@@ -472,7 +481,13 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     [data?.neu_hinzugefuegt]
   );
   const [mode, setMode] = useState<
-    "liste" | "bearbeiten" | "neueReise" | "neueReiseTeilnehmer" | "teilnehmerBearbeiten"
+    | "liste"
+    | "bearbeiten"
+    | "neueReise"
+    | "neueReiseTeilnehmer"
+    | "neueReiseAktivitaeten"
+    | "teilnehmerBearbeiten"
+    | "aktivitaetenVerwalten"
   >("liste");
   const [editSearch, setEditSearch] = useState("");
   const [neuReiseName, setNeuReiseName] = useState("");
@@ -482,9 +497,23 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   // Anlegen einer neuen Reise (Modus "neueReiseTeilnehmer") als auch beim nachträglichen
   // Ändern einer bestehenden Reise (Modus "teilnehmerBearbeiten") wiederverwendet.
   const [teilnehmerAuswahl, setTeilnehmerAuswahl] = useState<Set<ID>>(new Set());
+  // Name-Eingabe für "+ neue Person" (V03-03, von Clemens gewünscht 2026-08-31) - direkt
+  // in der Teilnehmer-Auswahl nutzbar, egal ob beim Anlegen oder beim Bearbeiten.
+  const [neuPersonName, setNeuPersonName] = useState("");
   // Sicherheitsabfrage für "Reise löschen" (V03-02) - eigener Bestätigungsschritt statt
   // eines nativen Browser-Dialogs, damit es sich in den Rest der Oberfläche einfügt.
   const [reiseLoeschenBestaetigen, setReiseLoeschenBestaetigen] = useState(false);
+  // Aktivitäten-Auswahl beim Anlegen einer neuen Reise (V03-03, dritter Schritt nach
+  // Teilnehmern) - steuert, welche Standard-Gegenstände automatisch vorgeschlagen werden
+  // (siehe erstelleNeueReise unten). "Basics" ist immer automatisch dabei und taucht
+  // deshalb hier nicht als Auswahlmöglichkeit auf.
+  const [aktivitaetenAuswahl, setAktivitaetenAuswahl] = useState<Set<ID>>(new Set());
+  // Verwaltung "Standard-Gegenstände je Aktivität" (V03-03, eigener Bereich, reiseunabhängig
+  // wie die übrigen Stammdaten) - welche Aktivität gerade bearbeitet wird, plus Suchfeld und
+  // Eingabe für eine neu anzulegende Aktivität.
+  const [verwaltungAktivitaetId, setVerwaltungAktivitaetId] = useState<ID | null>(null);
+  const [verwaltungSearch, setVerwaltungSearch] = useState("");
+  const [neuAktivitaetName, setNeuAktivitaetName] = useState("");
   const [moveFor, setMoveFor] = useState<{ tk03Id: string; tk04Id: string; vonPerson: string } | null>(null);
   const [showNeuGegenstand, setShowNeuGegenstand] = useState(false);
   const [neuGegenstandName, setNeuGegenstandName] = useState("");
@@ -1149,11 +1178,22 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     return ids;
   }
 
-  // Teilnehmer werden seit V03-02 als eigener Schritt VOR dem Anlegen abgefragt (siehe
-  // Modus "neueReiseTeilnehmer" unten) - die ID wird deshalb schon hier (außerhalb von
-  // updateData) erzeugt, damit sie direkt danach synchron für setSelectedReiseId
-  // verwendet werden kann (updateData selbst gibt nichts zurück).
-  function erstelleNeueReise(teilnehmerIds: ID[]) {
+  // Zu welcher Reise eine tk03-Zeile gehört (Umkehrung von gegenstaendeFuerReise) - seit
+  // V03-03 gebraucht, um beim Hinzufügen einer neuen Teilnehmerin nur Clemens' Zeilen
+  // DIESER Reise zu kopieren, nicht die aus anderen Reisen.
+  function reiseIdFuerTk03(d: SchemaData, tk03Id: ID): ID | null {
+    const tk03 = d.tk03_tk01_t04.find((r) => r.id === tk03Id);
+    if (!tk03) return null;
+    const tk01 = d.tk01_t01_t02.find((r) => r.id === tk03.id_tk01);
+    return tk01?.id_t01 ?? null;
+  }
+
+  // Teilnehmer und Aktivitäten werden seit V03-02/V03-03 als eigene Schritte VOR dem
+  // Anlegen abgefragt (siehe Modi "neueReiseTeilnehmer"/"neueReiseAktivitaeten" unten) -
+  // die ID wird deshalb schon hier (außerhalb von updateData) erzeugt, damit sie direkt
+  // danach synchron für setSelectedReiseId verwendet werden kann (updateData selbst gibt
+  // nichts zurück).
+  function erstelleNeueReise(teilnehmerIds: ID[], aktivitaetIds: ID[]) {
     if (!data || !neuReiseName.trim()) return;
     const ids = collectAllIds(data);
     const reiseId = newId("t01", ids);
@@ -1163,8 +1203,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     const naechsteReihenfolge =
       data.t01_reise.reduce((max, r) => Math.max(max, r.reihenfolge ?? 0), 0) + 1;
     const basics = data.t02_aktivitaet.find((a) => a.aktivitaet === "Basics");
-    const tk01Id = basics ? newId("tk01", ids) : null;
-    if (tk01Id) ids.add(tk01Id);
     const neu: T01Reise = {
       id: reiseId,
       reise: neuReiseName.trim(),
@@ -1177,17 +1215,69 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       // Personen angeboten werden.
       teilnehmer: teilnehmerIds,
     };
-    updateData((prev) => {
-      let tk01Neu = prev.tk01_t01_t02;
-      if (basics && tk01Id) {
-        tk01Neu = [...prev.tk01_t01_t02, { id: tk01Id, id_t01: reiseId, id_t02: basics.id }];
-      }
-      return { ...prev, t01_reise: [...prev.t01_reise, neu], tk01_t01_t02: tk01Neu };
+
+    // Aktivitäten (V03-03): "Basics" ist wie bisher immer automatisch dabei, dazu alle im
+    // dritten Schritt ausgewählten Aktivitäten - jede bekommt eine eigene tk01-Zeile.
+    const aktivitaetenFuerReise = [
+      ...(basics ? [basics.id] : []),
+      ...aktivitaetIds.filter((id) => id !== basics?.id),
+    ];
+    const tk01Neu: Tk01ReiseAktivitaet[] = aktivitaetenFuerReise.map((aktId) => {
+      const tk01Id = newId("tk01", ids);
+      ids.add(tk01Id);
+      return { id: tk01Id, id_t01: reiseId, id_t02: aktId };
     });
+
+    // Standard-Gegenstände der gewählten Aktivitäten automatisch zur Liste hinzufügen und
+    // den anfänglichen Teilnehmern zuweisen (Status "0 - unsicher", genau wie beim
+    // manuellen "+" in "Liste bearbeiten") - von Clemens ausdrücklich gewünscht
+    // (2026-08-31), siehe tk02_t02_t04 / "Standard-Gegenstände verwalten" unten. Ein
+    // Gegenstand, der in mehreren gewählten Aktivitäten Standard ist, wird trotzdem nur
+    // einmal auf die Liste gesetzt (bereitsTk03-Prüfung).
+    const tk03Neu: Tk03ReiseaktivitaetGegenstand[] = [];
+    const tk04Neu: Tk04GegenstandPerson[] = [];
+    const neuHinzugefuegtNeu: ID[] = [];
+    const bereitsTk03 = new Set<ID>();
+    for (const tk01 of tk01Neu) {
+      const standardItems = data.tk02_t02_t04
+        .filter((r) => r.id_t02 === tk01.id_t02)
+        .map((r) => r.id_t04);
+      for (const gegenstandId of standardItems) {
+        if (bereitsTk03.has(gegenstandId)) continue;
+        bereitsTk03.add(gegenstandId);
+        const tk03Id = newId("tk03", ids);
+        ids.add(tk03Id);
+        tk03Neu.push({ id: tk03Id, id_tk01: tk01.id, id_t04: gegenstandId, notiz: "Vorschlag aus Aktivität" });
+        for (const personId of teilnehmerIds) {
+          const tk04Id = newId("tk04", ids);
+          ids.add(tk04Id);
+          tk04Neu.push({
+            id: tk04Id,
+            id_tk03: tk03Id,
+            id_t05: personId,
+            ausgewaehlt: 0,
+            hergerichtet: null,
+            eingepackt: null,
+            verwendet: null,
+          });
+          neuHinzugefuegtNeu.push(tk04Id);
+        }
+      }
+    }
+
+    updateData((prev) => ({
+      ...prev,
+      t01_reise: [...prev.t01_reise, neu],
+      tk01_t01_t02: [...prev.tk01_t01_t02, ...tk01Neu],
+      tk03_tk01_t04: [...prev.tk03_tk01_t04, ...tk03Neu],
+      tk04_tk03_t05: [...prev.tk04_tk03_t05, ...tk04Neu],
+      neu_hinzugefuegt: [...(prev.neu_hinzugefuegt ?? []), ...neuHinzugefuegtNeu],
+    }));
     setNeuReiseName("");
     setNeuReiseVon("");
     setNeuReiseBis("");
     setTeilnehmerAuswahl(new Set());
+    setAktivitaetenAuswahl(new Set());
     setSelectedReiseId(reiseId);
     setMode("bearbeiten");
   }
@@ -1201,21 +1291,126 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     });
   }
 
+  function toggleAktivitaet(aktivitaetId: ID) {
+    setAktivitaetenAuswahl((prev) => {
+      const next = new Set(prev);
+      if (next.has(aktivitaetId)) next.delete(aktivitaetId);
+      else next.add(aktivitaetId);
+      return next;
+    });
+  }
+
+  // Neue Person anlegen (V03-03, von Clemens gewünscht 2026-08-31) - direkt aus der
+  // Teilnehmer-Auswahl heraus nutzbar (Anlegen einer Reise wie auch nachträgliches
+  // Bearbeiten). Gibt die neue ID zurück, damit der Aufrufer sie sofort ankreuzen kann.
+  function erstelleNeuePerson(name: string): ID | null {
+    if (!data || !name.trim()) return null;
+    const ids = collectAllIds(data);
+    const neuId = newId("t05", ids);
+    updateData((prev) => ({
+      ...prev,
+      t05_namen: [...prev.t05_namen, { id: neuId, namen: name.trim(), notiz: "" }],
+    }));
+    return neuId;
+  }
+
   // Teilnehmerliste einer bestehenden Reise übernehmen (Modus "teilnehmerBearbeiten",
   // vorbelegt über den "Teilnehmer"-Button in der Werkzeugleiste unten). Entfernte
   // Personen verlieren dadurch NICHT ihre bereits eingetragenen Mengen/Zuordnungen (auf
   // Wunsch von Clemens, 2026-08-30) - sie werden nur ausgeblendet, weil sichtbarePersonen
   // oben ausschließlich reise.teilnehmer zeigt. Die Daten bleiben in tk04 erhalten und
   // erscheinen sofort wieder, sobald die Person erneut hinzugefügt wird.
+  //
+  // Seit V03-03 zusätzlich: Wer hier wirklich NEU zur Reise dazukommt (noch nie eine
+  // eigene tk04-Zeile in dieser Reise hatte, also nicht nur wieder sichtbar gemacht wird),
+  // bekommt automatisch Clemens' aktuelle Gegenstände dieser Reise einmalig zugewiesen
+  // (gleiche Menge wie bei Clemens, aber ohne dessen Herrichten/Einpacken/Verwendet-
+  // Fortschritt) - von Clemens ausdrücklich so gewünscht (2026-08-31), damit die neue
+  // Person nicht bei null anfängt, sondern nur noch anpasst, was sie mehr oder weniger
+  // braucht.
   function speichereTeilnehmer() {
     if (!data || !reise) return;
     const teilnehmerIds = Array.from(teilnehmerAuswahl);
     const reiseId = reise.id;
+    const vorherigeIds = new Set(reise.teilnehmer ?? []);
+    const neuHinzugekommen = teilnehmerIds.filter((id) => !vorherigeIds.has(id));
+
+    const ids = collectAllIds(data);
+    const clemens = data.t05_namen.find((p) => p.namen === "Clemens");
+    const tk04Kopien: Tk04GegenstandPerson[] = [];
+    const neuHinzugefuegtKopien: ID[] = [];
+    if (clemens && neuHinzugekommen.length > 0) {
+      const clemensZeilenDieserReise = data.tk04_tk03_t05.filter(
+        (r) => r.id_t05 === clemens.id && r.ausgewaehlt !== -1 && reiseIdFuerTk03(data, r.id_tk03) === reiseId
+      );
+      for (const personId of neuHinzugekommen) {
+        if (personId === clemens.id) continue;
+        // Nur kopieren, wenn diese Person für diese Reise wirklich noch nie etwas hatte -
+        // sonst würde eine wieder hinzugefügte (nur ausgeblendete) Person ihre bisherigen
+        // Einträge doppelt bzw. überschrieben bekommen.
+        const hatSchonEintraege = data.tk04_tk03_t05.some(
+          (r) => r.id_t05 === personId && reiseIdFuerTk03(data, r.id_tk03) === reiseId
+        );
+        if (hatSchonEintraege) continue;
+        for (const z of clemensZeilenDieserReise) {
+          const tk04Id = newId("tk04", ids);
+          ids.add(tk04Id);
+          tk04Kopien.push({
+            id: tk04Id,
+            id_tk03: z.id_tk03,
+            id_t05: personId,
+            ausgewaehlt: z.ausgewaehlt,
+            hergerichtet: null,
+            eingepackt: null,
+            verwendet: null,
+          });
+          neuHinzugefuegtKopien.push(tk04Id);
+        }
+      }
+    }
+
     updateData((prev) => ({
       ...prev,
       t01_reise: prev.t01_reise.map((r) => (r.id === reiseId ? { ...r, teilnehmer: teilnehmerIds } : r)),
+      tk04_tk03_t05: [...prev.tk04_tk03_t05, ...tk04Kopien],
+      neu_hinzugefuegt: [...(prev.neu_hinzugefuegt ?? []), ...neuHinzugefuegtKopien],
     }));
     setMode("liste");
+  }
+
+  // Neue Aktivität anlegen (V03-03) - z.B. "SUP", wie von Clemens erwähnt. Nutzbar sowohl
+  // im dritten Schritt beim Anlegen einer Reise als auch im Verwaltungsbereich "Standard-
+  // Gegenstände" unten.
+  function erstelleNeueAktivitaet() {
+    if (!data || !neuAktivitaetName.trim()) return;
+    const ids = collectAllIds(data);
+    const neuId = newId("t02", ids);
+    updateData((prev) => ({
+      ...prev,
+      t02_aktivitaet: [...prev.t02_aktivitaet, { id: neuId, aktivitaet: neuAktivitaetName.trim(), notiz: "" }],
+    }));
+    setNeuAktivitaetName("");
+    setVerwaltungAktivitaetId(neuId);
+  }
+
+  // Standard-Gegenstand für eine Aktivität an-/abwählen (V03-03, Verwaltungsbereich
+  // "Standard-Gegenstände") - steuert, was beim Anlegen einer neuen Reise mit dieser
+  // Aktivität automatisch vorgeschlagen wird (siehe erstelleNeueReise oben).
+  function toggleStandardGegenstand(aktivitaetId: ID, gegenstandId: ID) {
+    updateData((prev) => {
+      const bestehende = prev.tk02_t02_t04.find(
+        (r) => r.id_t02 === aktivitaetId && r.id_t04 === gegenstandId
+      );
+      if (bestehende) {
+        return { ...prev, tk02_t02_t04: prev.tk02_t02_t04.filter((r) => r.id !== bestehende.id) };
+      }
+      const ids = collectAllIds(prev);
+      const neuId = newId("tk02", ids);
+      return {
+        ...prev,
+        tk02_t02_t04: [...prev.tk02_t02_t04, { id: neuId, id_t02: aktivitaetId, id_t04: gegenstandId }],
+      };
+    });
   }
 
   // Reise unwiderruflich löschen (V03-02, von Clemens ausdrücklich als echte Löschung
@@ -1659,10 +1854,19 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           <button
             className={"pl-edit-toggle" + (mode === "neueReise" ? " active" : "")}
             onClick={() => {
-              // Frisch beginnen - falls zuvor noch eine Teilnehmer-Auswahl einer anderen
-              // Reise "hängen geblieben" ist (z.B. Abbrechen bei "Teilnehmer bearbeiten"),
-              // soll die nicht ungewollt in die neue Reise übernommen werden.
-              setTeilnehmerAuswahl(new Set());
+              // Frisch beginnen - falls zuvor noch eine Teilnehmer-/Aktivitäten-Auswahl
+              // einer anderen Reise "hängen geblieben" ist (z.B. Abbrechen bei "Teilnehmer
+              // bearbeiten"), soll die nicht ungewollt in die neue Reise übernommen werden.
+              // Seit V03-03 (von Clemens gewünscht, 2026-08-31): Clemens und Allgemein sind
+              // von Anfang an vorausgewählt, statt dass man bei null anfängt.
+              const vorbelegung = new Set<ID>();
+              const clemens = data?.t05_namen.find((p) => p.namen === "Clemens");
+              const allgemein = data?.t05_namen.find((p) => p.namen === "Allgemein");
+              if (clemens) vorbelegung.add(clemens.id);
+              if (allgemein) vorbelegung.add(allgemein.id);
+              setTeilnehmerAuswahl(vorbelegung);
+              setAktivitaetenAuswahl(new Set());
+              setNeuPersonName("");
               setMode("neueReise");
             }}
           >
@@ -1682,6 +1886,19 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             }}
           >
             {mode === "bearbeiten" ? "Fertig" : "Liste bearbeiten"}
+          </button>{" "}
+          <button
+            className={"pl-edit-toggle" + (mode === "aktivitaetenVerwalten" ? " active" : "")}
+            onClick={() => {
+              if (mode === "aktivitaetenVerwalten") {
+                setMode("liste");
+                return;
+              }
+              setVerwaltungSearch("");
+              setMode("aktivitaetenVerwalten");
+            }}
+          >
+            Standard-Gegenstände
           </button>{" "}
           {reise && (
             <>
@@ -1908,11 +2125,59 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
               </label>
             ))}
           </div>
-          <button onClick={() => setMode("neueReise")}>Zurück</button>{" "}
+          {/* "+ neue Person" (V03-03, von Clemens gewünscht 2026-08-31) - z.B. für einen
+              Gast, der noch gar nicht in der Namensliste steht. Wird direkt angekreuzt. */}
+          <label>… oder neue Person</label>
+          <input
+            value={neuPersonName}
+            onChange={(e) => setNeuPersonName(e.target.value)}
+            placeholder="Name eingeben"
+          />
           <button
-            onClick={() => erstelleNeueReise(Array.from(teilnehmerAuswahl))}
-            disabled={teilnehmerAuswahl.size === 0}
+            onClick={() => {
+              const id = erstelleNeuePerson(neuPersonName);
+              if (id) {
+                setTeilnehmerAuswahl((prev) => new Set(prev).add(id));
+                setNeuPersonName("");
+              }
+            }}
+            disabled={!neuPersonName.trim()}
           >
+            + Person anlegen
+          </button>
+          <div style={{ marginTop: 12 }}>
+            <button onClick={() => setMode("neueReise")}>Zurück</button>{" "}
+            <button onClick={() => setMode("neueReiseAktivitaeten")} disabled={teilnehmerAuswahl.size === 0}>
+              Weiter: Aktivitäten auswählen
+            </button>
+          </div>
+        </div>
+      )}
+
+      {mode === "neueReiseAktivitaeten" && data && (
+        <div className="pl-newreise">
+          <label>Welche Aktivitäten sind bei „{neuReiseName.trim() || "dieser Reise"}“ dabei?</label>
+          <p className="pl-save">
+            „Basics" ist immer automatisch dabei. Zu jeder ausgewählten Aktivität werden die
+            hinterlegten Standard-Gegenstände (siehe „Standard-Gegenstände" in der
+            Werkzeugleiste) automatisch zur Liste hinzugefügt.
+          </p>
+          <div className="pl-teilnehmer-liste">
+            {data.t02_aktivitaet
+              .filter((a) => a.aktivitaet !== "Basics")
+              .map((a) => (
+                <label key={a.id} className="pl-teilnehmer-check">
+                  <input
+                    type="checkbox"
+                    checked={aktivitaetenAuswahl.has(a.id)}
+                    onChange={() => toggleAktivitaet(a.id)}
+                  />
+                  {a.aktivitaet}
+                </label>
+              ))}
+          </div>
+          <button onClick={() => setMode("neueReiseTeilnehmer")}>Zurück</button>{" "}
+          <button onClick={() => erstelleNeueReise(Array.from(teilnehmerAuswahl), Array.from(aktivitaetenAuswahl))}>
             Reise anlegen &amp; Gegenstände auswählen
           </button>
         </div>
@@ -1933,14 +2198,117 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
               </label>
             ))}
           </div>
+          <label>… oder neue Person</label>
+          <input
+            value={neuPersonName}
+            onChange={(e) => setNeuPersonName(e.target.value)}
+            placeholder="Name eingeben"
+          />
+          <button
+            onClick={() => {
+              const id = erstelleNeuePerson(neuPersonName);
+              if (id) {
+                setTeilnehmerAuswahl((prev) => new Set(prev).add(id));
+                setNeuPersonName("");
+              }
+            }}
+            disabled={!neuPersonName.trim()}
+          >
+            + Person anlegen
+          </button>
           <p className="pl-save">
             Entfernte Personen verlieren nichts – ihre Einträge bleiben erhalten und werden
-            nur ausgeblendet, bis sie wieder hinzugefügt werden.
+            nur ausgeblendet, bis sie wieder hinzugefügt werden. Wer neu dazukommt, bekommt
+            automatisch Clemens' aktuelle Gegenstände dieser Reise als Ausgangspunkt.
           </p>
           <button onClick={() => setMode("liste")}>Abbrechen</button>{" "}
           <button onClick={speichereTeilnehmer} disabled={teilnehmerAuswahl.size === 0}>
             Speichern
           </button>
+        </div>
+      )}
+
+      {mode === "aktivitaetenVerwalten" && data && (
+        <div className="pl-newreise">
+          <label>Standard-Gegenstände je Aktivität</label>
+          <p className="pl-save">
+            Hier legst du fest, welche Gegenstände beim Anlegen einer neuen Reise
+            automatisch vorgeschlagen werden, sobald du eine Aktivität dabei auswählst.
+            Änderungen hier wirken sich nicht auf bereits angelegte Reisen aus.
+          </p>
+          <div className="pl-teilnehmer-liste" style={{ marginBottom: 10 }}>
+            {data.t02_aktivitaet.map((a) => (
+              <button
+                key={a.id}
+                className={"pl-edit-toggle" + (verwaltungAktivitaetId === a.id ? " active" : "")}
+                onClick={() => setVerwaltungAktivitaetId(a.id)}
+                style={{ marginRight: 6, marginBottom: 6 }}
+              >
+                {a.aktivitaet}
+              </button>
+            ))}
+          </div>
+          <label>… oder neue Aktivität</label>
+          <input
+            value={neuAktivitaetName}
+            onChange={(e) => setNeuAktivitaetName(e.target.value)}
+            placeholder="z.B. SUP"
+          />
+          <button onClick={erstelleNeueAktivitaet} disabled={!neuAktivitaetName.trim()}>
+            + Aktivität anlegen
+          </button>
+
+          {verwaltungAktivitaetId && (() => {
+            const aktivitaet = data.t02_aktivitaet.find((a) => a.id === verwaltungAktivitaetId);
+            if (!aktivitaet) return null;
+            const standardIds = new Set(
+              data.tk02_t02_t04.filter((r) => r.id_t02 === verwaltungAktivitaetId).map((r) => r.id_t04)
+            );
+            const gefiltert = data.t04_gegenstand.filter(
+              (g) =>
+                !verwaltungSearch || g.gegenstand.toLowerCase().includes(verwaltungSearch.toLowerCase())
+            );
+            const byKat = new Map<string, T04Gegenstand[]>();
+            for (const g of gefiltert) {
+              const kat = kathegorieName(data, g.id_kathegorie);
+              if (!byKat.has(kat)) byKat.set(kat, []);
+              byKat.get(kat)!.push(g);
+            }
+            const sortiert = Array.from(byKat.entries()).sort((a, b) => a[0].localeCompare(b[0], "de"));
+            return (
+              <div style={{ marginTop: 16 }}>
+                <label>Standard-Gegenstände für „{aktivitaet.aktivitaet}“</label>
+                <input
+                  value={verwaltungSearch}
+                  onChange={(e) => setVerwaltungSearch(e.target.value)}
+                  placeholder="Gegenstand suchen…"
+                />
+                {sortiert.map(([katName, items]) => (
+                  <div className="pl-category" key={katName}>
+                    <div className="pl-category-head">
+                      <span className="pl-category-tag">{katName}</span>
+                      <span className="pl-category-count">{items.length}</span>
+                    </div>
+                    <div className="pl-teilnehmer-liste">
+                      {items
+                        .slice()
+                        .sort((a, b) => a.gegenstand.localeCompare(b.gegenstand, "de"))
+                        .map((g) => (
+                          <label key={g.id} className="pl-teilnehmer-check">
+                            <input
+                              type="checkbox"
+                              checked={standardIds.has(g.id)}
+                              onChange={() => toggleStandardGegenstand(verwaltungAktivitaetId, g.id)}
+                            />
+                            {g.gegenstand}
+                          </label>
+                        ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       )}
 
