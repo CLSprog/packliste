@@ -46,7 +46,7 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V03-05";
+const APP_VERSION = "V04-00";
 
 // Bis V02-02 einziger Speicherort/Dateiname. Seit Paket A (Aufteilung in Stammdaten- +
 // Reise-Einzeldateien, siehe splitSchema.ts) nur noch als LESE-Quelle für die einmalige
