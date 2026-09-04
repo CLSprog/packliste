@@ -3,7 +3,7 @@
 // Grundidee (siehe Projekt-Konzeptdokument "Konzept Multiuser-Synchronisation"):
 // - Jedes Gerät merkt sich den zuletzt erfolgreich synchronisierten Datenstand ("baseline").
 // - Beim Speichern wird geprüft, ob sich der Stand auf dem Server seit der eigenen baseline
-//   verändert hat (Hash-Vergleich über den gesamten Dateiinhalt).
+//   verändert hat (Inhaltsvergleich über den gesamten Dateiinhalt, siehe schemaEqual).
 // - Falls ja: Zeilen-für-Zeile-Vergleich (3-Wege: baseline / eigener Stand / Server-Stand).
 //   - Zeile nur lokal geändert -> eigene Änderung bleibt.
 //   - Zeile nur remote geändert -> wird automatisch übernommen, aber zur Info gemeldet.
@@ -58,7 +58,7 @@ export interface SyncResult {
   autoMerged: AutoMergedChange[];
 }
 
-// ---- Stabiler Vergleich/Hash, unabhängig von Objekt-Key-Reihenfolge ----
+// ---- Stabiler Vergleich, unabhängig von Objekt-Key-Reihenfolge ----
 
 function stableStringify(value: unknown): string {
   if (value === null || typeof value !== "object") return JSON.stringify(value);
@@ -72,18 +72,7 @@ function rowEqual(a: unknown, b: unknown): boolean {
   return stableStringify(a) === stableStringify(b);
 }
 
-/** SHA-256-Hash über den gesamten Datenstand, für den schnellen "hat sich überhaupt
- *  etwas verändert"-Vorab-Check vor dem aufwändigeren Zeilen-Vergleich. */
-export async function hashData(data: SchemaData): Promise<string> {
-  const text = stableStringify(data);
-  const bytes = new TextEncoder().encode(text);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-/** Schneller, synchroner Inhaltsvergleich (ohne Hash) - z.B. um zu prüfen, ob es
+/** Schneller, synchroner Inhaltsvergleich - z.B. um zu prüfen, ob es
  *  überhaupt eine lokale, noch nicht gesicherte Änderung gibt, bevor unnötig
  *  nach OneDrive geschrieben wird. */
 export function schemaEqual(a: SchemaData, b: SchemaData): boolean {

@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
-import seedData from "./data/schema-data.json";
 import { logout } from "./auth";
 import { loadState, saveState, listFiles, deleteState } from "./onedrive";
 import type {
@@ -9,7 +8,6 @@ import type {
   Tk01ReiseAktivitaet,
   Tk03ReiseaktivitaetGegenstand,
   T01Reise,
-  T02Aktivitaet,
   T04Gegenstand,
   ID,
 } from "./data/schema";
@@ -39,22 +37,15 @@ import {
   type StammdatenDatei,
   type ReiseDatei,
 } from "./data/splitSchema";
-import { diffAndMerge, applyConflictResolutions, hashData, schemaEqual, type RowConflict, type AutoMergedChange, type SyncResult } from "./sync";
+import { diffAndMerge, applyConflictResolutions, schemaEqual, type RowConflict, type AutoMergedChange, type SyncResult } from "./sync";
 import { readBaseline, writeBaseline, readPending, writePending, clearPending, istVerbindungsfehler } from "./syncStore";
 import ConflictModal from "./ConflictModal";
 
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V04-00";
+const APP_VERSION = "V04-01";
 
-// Bis V02-02 einziger Speicherort/Dateiname. Seit Paket A (Aufteilung in Stammdaten- +
-// Reise-Einzeldateien, siehe splitSchema.ts) nur noch als LESE-Quelle für die einmalige
-// Migration beim ersten Start mit dem neuen Code relevant - wird danach nicht mehr
-// beschrieben. Bleibt unangetastet in OneDrive liegen, Clemens löscht sie bei Gelegenheit
-// selbst (so mit ihm abgestimmt, 2026-08-29), der Code greift nicht mehr automatisch
-// darauf zu.
-const LEGACY_SCHEMA_FILE = "P03_Packliste_AI.json";
 // Lokaler Cache-Schlüssel (localStorage, siehe syncStore.ts) für den zusammengeführten
 // Gesamtstand - bewusst derselbe String wie früher der Dateiname, damit ein evtl. noch
 // nicht synchronisierter Offline-Stand aus einer Sitzung vor Paket A nicht verloren geht.
@@ -67,28 +58,6 @@ const LOKALER_CACHE_SCHLUESSEL = "P03_Packliste_AI.json";
 // so gehen keine bereits eingetragenen Packzustände verloren, aber neu
 // importierte Reisen/Gegenstände (die sonst nur in der ZIP-Seed-Datei
 // stecken würden, weil OneDrive schon vorher Daten hatte) kommen trotzdem an.
-function mergeSeedInto(remote: SchemaData, seed: SchemaData): SchemaData {
-  function ergaenzt<T extends { id: string }>(remoteZeilen: T[], seedZeilen: T[]): T[] {
-    const vorhandeneIds = new Set(remoteZeilen.map((zeile) => zeile.id));
-    const fehlende = seedZeilen.filter((zeile) => !vorhandeneIds.has(zeile.id));
-    return fehlende.length > 0 ? [...remoteZeilen, ...fehlende] : remoteZeilen;
-  }
-  return {
-    t01_reise: ergaenzt(remote.t01_reise, seed.t01_reise),
-    t02_aktivitaet: ergaenzt(remote.t02_aktivitaet, seed.t02_aktivitaet),
-    t03_kathegorie: ergaenzt(remote.t03_kathegorie, seed.t03_kathegorie),
-    t04_gegenstand: ergaenzt(remote.t04_gegenstand, seed.t04_gegenstand),
-    t05_namen: ergaenzt(remote.t05_namen, seed.t05_namen),
-    tk01_t01_t02: ergaenzt(remote.tk01_t01_t02, seed.tk01_t01_t02),
-    tk02_t02_t04: ergaenzt(remote.tk02_t02_t04, seed.tk02_t02_t04),
-    tk03_tk01_t04: ergaenzt(remote.tk03_tk01_t04, seed.tk03_tk01_t04),
-    tk04_tk03_t05: ergaenzt(remote.tk04_tk03_t05, seed.tk04_tk03_t05),
-    // "Neu hinzugefügt"-Markierungen kommen nur aus den echten Live-Daten, nie aus der
-    // Seed-Datei (die kennt dieses Feld nicht) - sonst blieben alte ZIP-Importe für immer
-    // fälschlich als "neu" markiert.
-    neu_hinzugefuegt: remote.neu_hinzugefuegt ?? [],
-  };
-}
 
 // Einmaliger, gezielter Nachtrag für Grimming 2026 (2026-08-28): Die 114 Gegenstände
 // waren korrekt mit der Reise verknüpft (tk03), aber für niemanden gab es je eine
@@ -99,48 +68,6 @@ function mergeSeedInto(remote: SchemaData, seed: SchemaData): SchemaData {
 // an, den auch der "+"-Knopf in "Liste bearbeiten" verwendet ("0 – unsicher"). Läuft
 // bei jedem Laden, legt aber wegen der Vorhanden-Prüfung nie doppelte Zeilen an -
 // sobald echte Mengen eingetragen sind, passiert hier nichts mehr.
-function backfillPersonenOhneMenge(data: SchemaData, reiseName: string, personenNamen: string[]): SchemaData {
-  const reise = data.t01_reise.find((r) => r.reise === reiseName);
-  if (!reise) return data;
-  const personen = data.t05_namen.filter((n) => personenNamen.includes(n.namen));
-  if (personen.length === 0) return data;
-  const tk01Ids = new Set(data.tk01_t01_t02.filter((r) => r.id_t01 === reise.id).map((r) => r.id));
-  const tk03Rows = data.tk03_tk01_t04.filter((r) => tk01Ids.has(r.id_tk01));
-  if (tk03Rows.length === 0) return data;
-
-  const existingIds = new Set<string>();
-  const addIds = (arr: { id: string }[]) => arr.forEach((r) => existingIds.add(r.id));
-  addIds(data.t01_reise);
-  addIds(data.t02_aktivitaet);
-  addIds(data.t03_kathegorie);
-  addIds(data.t04_gegenstand);
-  addIds(data.t05_namen);
-  addIds(data.tk01_t01_t02);
-  addIds(data.tk02_t02_t04);
-  addIds(data.tk03_tk01_t04);
-  addIds(data.tk04_tk03_t05);
-
-  const neueZeilen: Tk04GegenstandPerson[] = [];
-  for (const tk03 of tk03Rows) {
-    for (const person of personen) {
-      const vorhanden = data.tk04_tk03_t05.some((r) => r.id_tk03 === tk03.id && r.id_t05 === person.id);
-      if (vorhanden) continue;
-      const neuId = newId("tk04", existingIds);
-      existingIds.add(neuId);
-      neueZeilen.push({
-        id: neuId,
-        id_tk03: tk03.id,
-        id_t05: person.id,
-        ausgewaehlt: 0,
-        hergerichtet: null,
-        eingepackt: null,
-        verwendet: null,
-      });
-    }
-  }
-  if (neueZeilen.length === 0) return data;
-  return { ...data, tk04_tk03_t05: [...data.tk04_tk03_t05, ...neueZeilen] };
-}
 
 // Allgemeiner Nachtrag (gefunden 2026-08-30 beim Testen von "China 2025", siehe
 // Projektstand): Jede Reise braucht mindestens eine tk01-Zeile (Verknüpfung zu einer
@@ -149,8 +76,8 @@ function backfillPersonenOhneMenge(data: SchemaData, reiseName: string, personen
 // (siehe ankerTk01 weiter unten - lieferte für so eine Reise `null`, "+"-Knopf blieb
 // wirkungslos). "China 2025" wurde offenbar angelegt, ohne dass ihr je die "Basics"-
 // Aktivität zugeordnet wurde (0 tk01-Zeilen, anders als bei den anderen drei Reisen -
-// vermutlich noch nie richtig benutzt). Legt wie bei backfillPersonenOhneMenge nie
-// doppelte Zeilen an, sobald einmal eine tk01-Zeile existiert passiert hier nichts mehr.
+// vermutlich noch nie richtig benutzt). Legt nie doppelte Zeilen an - sobald einmal eine
+// tk01-Zeile existiert, passiert hier nichts mehr.
 export function backfillReisenOhneAnker(data: SchemaData): SchemaData {
   const basics = data.t02_aktivitaet.find((a) => a.aktivitaet === "Basics");
   if (!basics) return data;
@@ -186,34 +113,12 @@ export function backfillReisenOhneAnker(data: SchemaData): SchemaData {
 // Änderung für bestehende Reisen. Neu angelegte Reisen bekommen ihre Teilnehmerliste ab
 // V03-02 immer schon beim Anlegen explizit mit (siehe erstelleNeueReise), brauchen
 // diesen Nachtrag also nicht. Läuft nie doppelt (nur Reisen ohne das Feld betroffen).
-export function backfillFehlendeTeilnehmer(data: SchemaData): SchemaData {
-  let geaendert = false;
-  const neueReisen = data.t01_reise.map((reise) => {
-    if (reise.teilnehmer !== undefined) return reise;
-    const ids = new Set<ID>();
-    for (const g of gegenstaendeFuerReise(data, reise.id)) {
-      const tk03 = tk03FuerGegenstand(data, reise.id, g.id);
-      if (!tk03) continue;
-      for (const p of personenFuerTk03(data, tk03.id)) ids.add(p.id_t05);
-    }
-    geaendert = true;
-    return { ...reise, teilnehmer: Array.from(ids) };
-  });
-  if (!geaendert) return data;
-  return { ...data, t01_reise: neueReisen };
-}
 
-// Bündelt alle "Nachträge" (Selbstheilung von historisch unvollständigen Daten) an
-// einer Stelle. Bis V03-00 liefen diese nur einmalig während der Migration von der
-// alten Kombi-Datei (über alsServerstand) - seit Paket A wird diese Funktion beim
-// normalen Laden aus den aufgeteilten Dateien aber nicht mehr automatisch durchlaufen,
-// weil es dafür keine alte Kombi-Datei mehr zu lesen gibt. Deshalb wird
-// wendeNachtraegeAn jetzt zusätzlich direkt im Ladeeffekt aufgerufen (siehe unten),
-// damit die Selbstheilung wie beabsichtigt bei jedem Laden greift, nicht nur einmalig.
+// Selbstheilung historisch/technisch unvollständiger Daten, gebündelt an einer Stelle.
+// Läuft bei JEDEM Laden (nicht nur einmalig), damit ein künftiger Datenfehler dieser Art
+// automatisch geheilt wird - siehe Aufruf im Ladeeffekt weiter unten.
 export function wendeNachtraegeAn(data: SchemaData): SchemaData {
-  return backfillFehlendeTeilnehmer(
-    backfillPersonenOhneMenge(backfillReisenOhneAnker(data), "Grimming 2026", ["Clemens", "Sonja"])
-  );
+  return backfillReisenOhneAnker(data);
 }
 
 function safeFilename(value: string) {
@@ -305,12 +210,17 @@ export async function schreibeGesamtenStandNeu(
   return { stammdaten, reisen };
 }
 
-/** Lädt den aktuellen Stand aus den aufgeteilten Dateien. Existiert die zentrale
- *  Stammdaten-Datei noch nicht, wird einmalig aus der alten Kombi-Datei (LEGACY_SCHEMA_FILE,
- *  falls vorhanden, sonst der mitgelieferten Seed-Datei) migriert und sofort als neue
- *  Dateien geschrieben - die alte Datei bleibt dabei unangetastet liegen (Clemens löscht
- *  sie bei Gelegenheit selbst, siehe LEGACY_SCHEMA_FILE oben). */
-export async function ladeAufgeteiltenStand(alsServerstand: (remote: unknown) => SchemaData): Promise<{
+/** Lädt den aktuellen Stand aus den aufgeteilten Dateien (Stammdaten-Datei + je eine
+ *  Datei pro Reise, siehe splitSchema.ts).
+ *
+ *  Fehlt die zentrale Stammdaten-Datei, wird bewusst NICHT geraten und auch nichts
+ *  geschrieben: Bis V04-00 wurde in diesem Fall die alte Kombi-Datei (bzw. die im ZIP
+ *  mitgelieferte Seed-Datei) eingelesen, aufgeteilt und sofort gespeichert - das hätte
+ *  bei einem bloßen Aussetzer (Datei kurz nicht auffindbar, umbenannt, verschoben) still
+ *  einen alten Datenstand über den aktuellen geschrieben. Seit V04-01 bricht das Laden
+ *  stattdessen mit einer klaren Meldung ab (siehe Ladebildschirm), damit nichts
+ *  überschrieben wird und die Ursache sichtbar bleibt. */
+export async function ladeAufgeteiltenStand(): Promise<{
   stammdaten: StammdatenKern;
   reisen: Map<ID, ReiseKern>;
   stammdatenVerlauf: StammdatenKern[];
@@ -363,22 +273,12 @@ export async function ladeAufgeteiltenStand(alsServerstand: (remote: unknown) =>
     return { stammdaten, reisen, stammdatenVerlauf: stammdatenDatei.verlauf ?? [], reiseVerlaufMap };
   }
 
-  // Noch nicht aufgeteilt: alte Kombi-Datei (bzw. beim allerersten Start die Seed-Datei)
-  // lesen, einmalig aufteilen und sofort als neue Dateien schreiben.
-  const alt = await loadState(LEGACY_SCHEMA_FILE);
-  const server = alsServerstand(alt);
-  // Bisherige Array-Reihenfolge der Reisen als explizite `reihenfolge` übernehmen (siehe
-  // schema.ts), damit die Reise-Reiter nach der Migration nicht plötzlich anders sortiert
-  // erscheinen.
-  const serverMitReihenfolge: SchemaData = {
-    ...server,
-    t01_reise: server.t01_reise.map((r, i) => (r.reihenfolge === undefined ? { ...r, reihenfolge: i } : r)),
-  };
-  // Der alte, globale Rückgängig-Verlauf wird bewusst NICHT mit übernommen (mit Clemens
-  // abgestimmt, 2026-08-29: die bisherigen Schritte werden nicht mehr gebraucht) - jede
-  // neue Datei startet mit einem leeren eigenen Verlauf.
-  const { stammdaten, reisen } = await schreibeGesamtenStandNeu(serverMitReihenfolge, []);
-  return { stammdaten, reisen, stammdatenVerlauf: [], reiseVerlaufMap: new Map() };
+  // Stammdaten-Datei nicht gefunden: nicht raten, nicht schreiben - siehe Kopf-Kommentar.
+  throw new Error(
+    `Die Stammdaten-Datei "${STAMMDATEN_DATEI}" wurde im OneDrive-Ordner nicht gefunden. ` +
+      "Es wurde nichts gespeichert. Bitte prüfen, ob die Datei noch am richtigen Ort liegt, " +
+      "und die Seite danach neu laden."
+  );
 }
 
 /** Vergleicht Stammdaten + alle Reisen je einzeln (baseline/lokal/remote) und liefert den
@@ -514,7 +414,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   const [verwaltungAktivitaetId, setVerwaltungAktivitaetId] = useState<ID | null>(null);
   const [verwaltungSearch, setVerwaltungSearch] = useState("");
   const [neuAktivitaetName, setNeuAktivitaetName] = useState("");
-  const [moveFor, setMoveFor] = useState<{ tk03Id: string; tk04Id: string; vonPerson: string } | null>(null);
   const [showNeuGegenstand, setShowNeuGegenstand] = useState(false);
   const [neuGegenstandName, setNeuGegenstandName] = useState("");
   const [neuGegenstandKat, setNeuGegenstandKat] = useState("");
@@ -549,21 +448,14 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   const [offline, setOffline] = useState(false);
   const [retryTick, setRetryTick] = useState(0);
 
-  function alsServerstand(remote: unknown): SchemaData {
-    const merged = remote
-      ? mergeSeedInto(remote as SchemaData, seedData as unknown as SchemaData)
-      : (seedData as unknown as SchemaData);
-    return wendeNachtraegeAn(merged);
-  }
-
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        // Lädt bzw. migriert einmalig die Stammdaten-Datei + je eine Reise-Datei (Paket A,
-        // siehe ladeAufgeteiltenStand oben). Kein Fallback mehr auf die alte Kombi-Datei
-        // danach - die bleibt nur noch als einmalige Migrationsquelle relevant.
-        const geladen = await ladeAufgeteiltenStand(alsServerstand);
+        // Lädt die Stammdaten-Datei + je eine Reise-Datei (Paket A, siehe
+        // ladeAufgeteiltenStand oben). Fehlt die Stammdaten-Datei, bricht das Laden dort
+        // mit einer klaren Meldung ab, statt einen alten Stand zu rekonstruieren.
+        const geladen = await ladeAufgeteiltenStand();
         if (cancelled) return;
         const server = mergeSplitData(geladen.stammdaten, Array.from(geladen.reisen.values()));
         const historyGeladen = historyRekonstruieren(
@@ -912,8 +804,8 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   // Anlegen der Reise bzw. über "Teilnehmer" bearbeitet) - das ist jetzt die
   // maßgebliche Liste, unabhängig davon, ob schon Mengen eingetragen sind. Nur wenn
   // eine Reise (noch) kein teilnehmer-Feld hat oder es leer ist (alte Reise vor
-  // V03-02, noch nicht durch backfillFehlendeTeilnehmer abgedeckt, oder eine ganz neue
-  // Reise ohne jede Zuordnung), wird auf die alte Logik zurückgefallen: erst
+  // V03-02, oder eine ganz neue Reise ohne jede Zuordnung), wird auf die alte Logik
+  // zurückgefallen: erst
   // beteiligtePersonen (wer tatsächlich schon Gegenstände/Mengen hat), sonst alle
   // bekannten Personen (siehe Grimming-Fix V01-27).
   const sichtbarePersonen = useMemo(() => {
@@ -1563,72 +1455,12 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     });
   }
 
-  function toggleGegenstandInReise(gegenstandId: string) {
-    if (!data || !reise) return;
-    updateData((prev) => {
-      const bestehende = tk03FuerGegenstand(prev, reise.id, gegenstandId);
-      if (bestehende) {
-        return {
-          ...prev,
-          tk03_tk01_t04: prev.tk03_tk01_t04.filter((r) => r.id !== bestehende.id),
-          tk04_tk03_t05: prev.tk04_tk03_t05.filter((r) => r.id_tk03 !== bestehende.id),
-        };
-      }
-      const anker = ankerTk01(prev, reise.id);
-      if (!anker) return prev;
-      const ids = collectAllIds(prev);
-      const neuId = newId("tk03", ids);
-      return {
-        ...prev,
-        tk03_tk01_t04: [
-          ...prev.tk03_tk01_t04,
-          { id: neuId, id_tk01: anker, id_t04: gegenstandId, notiz: "manuell ausgewählt" },
-        ],
-      };
-    });
-  }
 
   // Person einem Gegenstand (tk03-Zeile) zuweisen (an) oder wieder entfernen (aus).
   // Entfernen löscht die tk04-Zeile komplett inkl. aller vier Mengenwerte.
-  function togglePersonZuweisung(tk03Id: string, personId: string) {
-    updateData((prev) => {
-      const bestehende = prev.tk04_tk03_t05.find(
-        (r) => r.id_tk03 === tk03Id && r.id_t05 === personId
-      );
-      if (bestehende) {
-        return {
-          ...prev,
-          tk04_tk03_t05: prev.tk04_tk03_t05.filter((r) => r.id !== bestehende.id),
-        };
-      }
-      const ids = collectAllIds(prev);
-      const neuId = newId("tk04", ids);
-      const neu: Tk04GegenstandPerson = {
-        id: neuId,
-        id_tk03: tk03Id,
-        id_t05: personId,
-        ausgewaehlt: null,
-        hergerichtet: null,
-        eingepackt: null,
-        verwendet: null,
-      };
-      return { ...prev, tk04_tk03_t05: [...prev.tk04_tk03_t05, neu] };
-    });
-  }
 
   // Eine bestehende Personen-Zuordnung auf eine andere Person umhängen.
   // Alle vier Mengenwerte (A/H/E/V) bleiben dabei unverändert erhalten.
-  function verschiebePersonZuweisung(tk04Id: string, neuePersonId: string) {
-    updateData((prev) => {
-      return {
-        ...prev,
-        tk04_tk03_t05: prev.tk04_tk03_t05.map((r) =>
-          r.id === tk04Id ? { ...r, id_t05: neuePersonId } : r
-        ),
-      };
-    });
-    setMoveFor(null);
-  }
 
   // Komplett neuen Gegenstand im Katalog (t04) anlegen, ggf. mit neuer Kategorie (t03).
   function erstelleNeuenGegenstand() {
