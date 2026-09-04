@@ -23,9 +23,9 @@ export interface T01Reise {
   // Reise überhaupt dabei ist, steuert die Personen-Reiter - unabhängig davon, ob schon
   // Gegenstände/Mengen für diese Person eingetragen sind. Wird beim Anlegen einer neuen
   // Reise als eigener Schritt abgefragt, danach über "Teilnehmer" jederzeit änderbar.
-  // Optional, damit ältere Reisen ohne dieses Feld nicht brechen - siehe
-  // backfillFehlendeTeilnehmer in SchemaApp.tsx (leitet es einmalig aus den tatsächlich
-  // vorhandenen Personen-Zuordnungen ab, keine sichtbare Änderung für bestehende Reisen).
+  // Optional, damit ältere Reisen ohne dieses Feld nicht brechen - fehlt es, greift die
+  // Rückfallebene in SchemaApp.tsx (sichtbarePersonen: wer tatsächlich schon Zuordnungen
+  // hat, sonst alle bekannten Personen).
   teilnehmer?: ID[];
 }
 

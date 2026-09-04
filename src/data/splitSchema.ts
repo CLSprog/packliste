@@ -181,8 +181,8 @@ export function stammdatenAusSnapshotsRekonstruieren(snapshots: StammdatenKern[]
   };
 }
 
-// ---- Einbetten in die volle SchemaData-Form, um sync.ts (diffAndMerge/hashData/
-// schemaEqual) unverändert pro Datei wiederverwenden zu können - nicht betroffene
+// ---- Einbetten in die volle SchemaData-Form, um sync.ts (diffAndMerge/schemaEqual)
+// unverändert pro Datei wiederverwenden zu können - nicht betroffene
 // Tabellen bleiben schlicht leer. ----
 
 export function stammdatenAlsSchemaData(k: StammdatenKern): SchemaData {
