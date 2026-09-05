@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { AccountInfo } from "@azure/msal-browser";
 import { logout } from "./auth";
-import { loadState, saveState, listFiles, deleteState } from "./onedrive";
+import { loadState, saveState, listFiles, deleteState, ensureFolder } from "./onedrive";
 import type {
   SchemaData,
   Tk04GegenstandPerson,
@@ -44,12 +44,56 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V04-01";
+const APP_VERSION = "V04-02";
 
 // Lokaler Cache-Schlüssel (localStorage, siehe syncStore.ts) für den zusammengeführten
 // Gesamtstand - bewusst derselbe String wie früher der Dateiname, damit ein evtl. noch
 // nicht synchronisierter Offline-Stand aus einer Sitzung vor Paket A nicht verloren geht.
 const LOKALER_CACHE_SCHLUESSEL = "P03_Packliste_AI.json";
+
+// ---- Sicherungskopien (V04-02, von Clemens gewünscht 2026-09-05) ----
+//
+// Zweck: Die Arbeitsdateien in 07_Database sind bewusst aus Clemens' Synchronisation
+// (OneDrive <-> Synology <-> Google Drive) ausgenommen, damit sie niemals von einer
+// älteren Kopie überschrieben werden können. Dadurch liegen sie aber auch nirgends
+// sonst. Die App schreibt deshalb zusätzlich Sicherungskopien in einen NACHBARORDNER,
+// der ganz normal mitsynchronisiert wird - die App liest ihn nie, sie schreibt nur
+// hinein. Geht dort etwas schief, sind die Arbeitsdaten davon unberührt.
+//
+// Format und Aufbau der Kopien sind identisch mit den Arbeitsdateien: Im Ernstfall
+// genügt es, eine Kopie zurück nach 07_Database zu legen und passend umzubenennen.
+const SICHERUNG_ORDNER = "_KI/ThinkTank/P03_Packliste/06_Daten/Sicherung";
+
+// Zeitstempel für den Dateinamen. Automatische Sicherungen werden auf die laufende
+// VIERTELSTUNDE abgerundet - dadurch überschreibt sich die Kopie innerhalb derselben
+// Viertelstunde selbst (der Stand ist also nie älter als der letzte Klick), und es
+// entstehen trotzdem nur wenige Dateien statt einer pro Speichervorgang. Manuelle
+// Sicherungen bekommen die tatsächliche Minute und bleiben dadurch immer stehen.
+function sicherungsZeitstempel(manuell: boolean): string {
+  const jetzt = new Date();
+  const zwei = (wert: number) => String(wert).padStart(2, "0");
+  const minute = manuell ? jetzt.getMinutes() : Math.floor(jetzt.getMinutes() / 15) * 15;
+  return (
+    `${jetzt.getFullYear()}${zwei(jetzt.getMonth() + 1)}${zwei(jetzt.getDate())}` +
+    `-${zwei(jetzt.getHours())}${zwei(minute)}`
+  );
+}
+
+// Reisename für den Dateinamen: nur die in OneDrive verbotenen Zeichen ersetzen,
+// Leerzeichen bleiben bewusst erhalten (Clemens' Namenskonvention).
+function sicherungsBezeichnung(wert: string): string {
+  return wert.trim().replace(/[<>:"/\\|?*\u0000-\u001F]/g, "-") || "Ohne Namen";
+}
+
+function sicherungsDateiname(bezeichnung: string, manuell: boolean): string {
+  const stempel = sicherungsZeitstempel(manuell);
+  const zusatz = manuell ? "_manuell" : "";
+  return `P03_Sicherung_${sicherungsBezeichnung(bezeichnung)}_${stempel}${zusatz}_AI.json`;
+}
+
+// Merkt sich, ob der Sicherungsordner in dieser Sitzung schon geprüft/angelegt wurde -
+// spart bei jedem Speichern eine unnötige Abfrage.
+let sicherungsOrdnerGeprueft = false;
 
 // Ergänzt in "remote" (den echten, live gespeicherten Daten eines Nutzers)
 // alle Zeilen aus "seed" (der im ZIP mitgelieferten, ggf. neuer importierten
@@ -190,6 +234,36 @@ export async function schreibeReiseDatei(
     verlauf,
   };
   await saveState(datei, reiseDateiname(reiseId));
+}
+
+/** Schreibt eine vollständige Sicherungskopie (Stammdaten + jede Reise) in den
+ *  Sicherungsordner - inhaltlich identisch mit den Arbeitsdateien, nur unter anderem
+ *  Namen und an anderem Ort. Siehe SICHERUNG_ORDNER oben. */
+export async function schreibeSicherung(
+  stammdaten: StammdatenKern,
+  reisen: Map<ID, ReiseKern>,
+  stammdatenVerlauf: StammdatenKern[],
+  reiseVerlaufMap: Map<ID, ReiseKern[]>,
+  manuell: boolean
+): Promise<void> {
+  if (!sicherungsOrdnerGeprueft) {
+    await ensureFolder(SICHERUNG_ORDNER);
+    sicherungsOrdnerGeprueft = true;
+  }
+
+  const stammdatenDatei: StammdatenDatei = { ...stammdaten, verlauf: stammdatenVerlauf };
+  await saveState(stammdatenDatei, sicherungsDateiname("Stammdaten", manuell), SICHERUNG_ORDNER);
+
+  await Promise.all(
+    Array.from(reisen.entries()).map(([reiseId, kern]) => {
+      const datei: ReiseDatei = {
+        ...kern,
+        stammdaten_snapshot: stammdatenSnapshotFuerReise(stammdaten, kern),
+        verlauf: reiseVerlaufMap.get(reiseId) ?? [],
+      };
+      return saveState(datei, sicherungsDateiname(kern.reise.reise, manuell), SICHERUNG_ORDNER);
+    })
+  );
 }
 
 /** Schreibt einen kompletten Datenstand erstmalig/komplett neu als aufgeteilte Dateien
@@ -701,7 +775,19 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           baselineRef.current = data;
           writeBaseline(LOKALER_CACHE_SCHLUESSEL, data);
         }
-        if (irgendwasGeschrieben) setSaveStatus(`Gespeichert um ${jetzt()}`);
+        if (irgendwasGeschrieben) {
+          setSaveStatus(`Gespeichert um ${jetzt()}`);
+          // Sicherungskopie (V04-02): läuft NACH dem eigentlichen Speichern und darf das
+          // Arbeiten nie blockieren - die Arbeitsdatei ist zu diesem Zeitpunkt bereits
+          // sicher geschrieben. Ein Fehler wird deshalb nur gemeldet, nicht weitergeworfen.
+          try {
+            await schreibeSicherung(neueStammdaten, neueReisen, stammdatenVerlauf, reiseVerlaufMap, false);
+          } catch (fehler) {
+            console.error(fehler);
+            const meldung = fehler instanceof Error ? fehler.message : String(fehler);
+            setSaveStatus(`Gespeichert um ${jetzt()} – Sicherungskopie fehlgeschlagen: ${meldung}`);
+          }
+        }
       } catch (error) {
         console.error(error);
         if (istVerbindungsfehler(error)) {
@@ -1339,6 +1425,26 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     });
   }
 
+  // Manuelle Sicherungskopie (V04-02, von Clemens gewünscht 2026-09-05): schreibt sofort
+  // eine vollständige Kopie mit der TATSÄCHLICHEN Uhrzeit im Namen plus dem Zusatz
+  // "manuell". Dadurch kann sie von den automatischen Viertelstunden-Kopien nie
+  // überschrieben werden und bleibt stehen, bis Clemens sie selbst löscht.
+  async function sicherungJetzt() {
+    if (!data) return;
+    setSaveStatus("Sicherungskopie wird geschrieben …");
+    try {
+      const { stammdaten, reisen } = splitSchemaData(data);
+      const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(history);
+      await schreibeSicherung(stammdaten, reisen, stammdatenVerlauf, reiseVerlaufMap, true);
+      const zeit = new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" });
+      setSaveStatus(`Sicherungskopie erstellt um ${zeit}`);
+    } catch (error) {
+      console.error(error);
+      const meldung = error instanceof Error ? error.message : String(error);
+      setSaveStatus(`Sicherungskopie fehlgeschlagen: ${meldung}`);
+    }
+  }
+
   // Reise unwiderruflich löschen (V03-02, von Clemens ausdrücklich als echte Löschung
   // gewünscht - bewusst eine Ausnahme vom sonstigen "nie löschen, nur ausblenden"-Prinzip
   // dieser App). Wird erst nach der Sicherheitsabfrage (reiseLoeschenBestaetigen) über den
@@ -1788,6 +1894,9 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
               </button>{" "}
             </>
           )}
+          <button className="pl-edit-toggle" onClick={sicherungJetzt}>
+            Sicherungskopie
+          </button>{" "}
           <button
             className="pl-edit-toggle"
             onClick={undo}

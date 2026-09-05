@@ -73,3 +73,26 @@ export async function deleteState(file: string = FILE, folder: string = FOLDER):
     throw new Error(`OneDrive-Löschfehler (${deleteResponse.status})`);
   }
 }
+
+// Legt einen Ordner an, falls er noch nicht existiert (nur die letzte Ebene - der
+// übergeordnete Ordner muss vorhanden sein). Gebraucht seit V04-02 für den
+// Sicherungsordner: Microsoft Graph legt beim Schreiben einer Datei keine fehlenden
+// Ordner mit an, ein Schreibversuch in einen nicht existierenden Ordner scheitert also
+// mit 404. Ein bereits vorhandener Ordner (409) ist kein Fehler.
+export async function ensureFolder(folder: string): Promise<void> {
+  const vorhanden = await graphFetch(`/me/drive/root:/${folder}`);
+  if (vorhanden.ok) return;
+  if (vorhanden.status !== 404) throw new Error(`OneDrive-Ordnerprüfung fehlgeschlagen (${vorhanden.status})`);
+
+  const trenner = folder.lastIndexOf("/");
+  const eltern = folder.slice(0, trenner);
+  const name = folder.slice(trenner + 1);
+  const angelegt = await graphFetch(`/me/drive/root:/${eltern}:/children`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, folder: {}, "@microsoft.graph.conflictBehavior": "fail" }),
+  });
+  if (!angelegt.ok && angelegt.status !== 409) {
+    throw new Error(`OneDrive-Ordner "${name}" konnte nicht angelegt werden (${angelegt.status})`);
+  }
+}
