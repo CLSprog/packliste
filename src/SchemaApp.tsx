@@ -42,7 +42,7 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V04-03";
+const APP_VERSION = "V04-04";
 
 // Lokaler Cache-Schlüssel (localStorage, siehe syncStore.ts) für den zusammengeführten
 // Gesamtstand - bewusst derselbe String wie früher der Dateiname, damit ein evtl. noch
@@ -1449,15 +1449,22 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   }
 
   // Manuelle Sicherungskopie (V04-02, von Clemens gewünscht 2026-09-05): schreibt sofort
-  // eine vollständige Kopie mit der TATSÄCHLICHEN Uhrzeit im Namen plus dem Zusatz
+  // eine Kopie der GERADE GEÖFFNETEN Reise mit der TATSÄCHLICHEN Uhrzeit im Namen plus dem Zusatz
   // "manuell". Dadurch kann sie von den automatischen Viertelstunden-Kopien nie
   // überschrieben werden und bleibt stehen, bis Clemens sie selbst löscht.
   async function sicherungJetzt() {
     if (!data) return;
+    if (!reise) {
+      setSaveStatus("Keine Reise ausgewählt – es gibt nichts zu sichern.");
+      return;
+    }
     setSaveStatus("Sicherungskopie wird geschrieben …");
     try {
       const { stammdaten, reisen } = splitSchemaData(data);
-      await schreibeSicherung(stammdaten, reisen, true);
+      // Seit V04-04 (Clemens, 2026-09-05) nur die gerade geöffnete Reise, nicht mehr alle.
+      // Das genügt für eine Wiederherstellung: Jede Reise-Datei trägt eine
+      // Momentaufnahme der von ihr benutzten Stammdaten mit sich (stammdaten_snapshot).
+      await schreibeSicherung(stammdaten, reisen, true, { stammdaten: false, reiseIds: [reise.id] });
       const zeit = new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" });
       setSaveStatus(`Sicherungskopie erstellt um ${zeit}`);
     } catch (error) {
