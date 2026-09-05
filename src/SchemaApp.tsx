@@ -30,8 +30,6 @@ import {
   schemaDataAlsStammdatenKern,
   reiseAlsSchemaData,
   schemaDataAlsReiseKern,
-  verlaufAufteilen,
-  historyRekonstruieren,
   type StammdatenKern,
   type ReiseKern,
   type StammdatenDatei,
@@ -44,7 +42,7 @@ import ConflictModal from "./ConflictModal";
 // Von Clemens gewünscht (2026-08-27): sichtbare Versionsnummer im Kopfbereich,
 // damit jederzeit erkennbar ist, ob GitHub Pages wirklich den aktuellsten Stand
 // ausliefert. Bei jeder Auslieferung hier mitziehen.
-const APP_VERSION = "V04-02";
+const APP_VERSION = "V04-03";
 
 // Lokaler Cache-Schlüssel (localStorage, siehe syncStore.ts) für den zusammengeführten
 // Gesamtstand - bewusst derselbe String wie früher der Dateiname, damit ein evtl. noch
@@ -217,49 +215,66 @@ export function reiseGleich(a: ReiseKern, b: ReiseKern): boolean {
   return schemaEqual(reiseAlsSchemaData(a), reiseAlsSchemaData(b));
 }
 
-export async function schreibeStammdatenDatei(kern: StammdatenKern, verlauf: StammdatenKern[]): Promise<void> {
-  const datei: StammdatenDatei = { ...kern, verlauf };
+// Der Rückgängig-Verlauf wird seit V04-03 NICHT mehr mitgespeichert (Entscheidung von
+// Clemens, 2026-09-05): Er machte rund 95% jeder Datei aus - 20 vollständige Kopien des
+// Datenstands pro Datei. Dadurch wog eine Reise-Datei 1,6 MB statt gut 100 KB, jedes
+// Antippen einer Menge lud Megabytes hoch, und bei langsamer Leitung überholten sich
+// die Speichervorgänge (siehe Sperre im Speicher-Effekt weiter unten). Rückgängig
+// funktioniert unverändert, solange die App offen ist - nach einem Neuladen beginnt es
+// neu. Das Feld bleibt im Dateiformat erhalten, damit ältere Dateien weiter lesbar sind.
+export async function schreibeStammdatenDatei(kern: StammdatenKern): Promise<void> {
+  const datei: StammdatenDatei = { ...kern, verlauf: [] };
   await saveState(datei, STAMMDATEN_DATEI);
 }
 
 export async function schreibeReiseDatei(
   reiseId: ID,
   kern: ReiseKern,
-  stammdaten: StammdatenKern,
-  verlauf: ReiseKern[]
+  stammdaten: StammdatenKern
 ): Promise<void> {
   const datei: ReiseDatei = {
     ...kern,
     stammdaten_snapshot: stammdatenSnapshotFuerReise(stammdaten, kern),
-    verlauf,
+    verlauf: [],
   };
   await saveState(datei, reiseDateiname(reiseId));
 }
 
-/** Schreibt eine vollständige Sicherungskopie (Stammdaten + jede Reise) in den
- *  Sicherungsordner - inhaltlich identisch mit den Arbeitsdateien, nur unter anderem
- *  Namen und an anderem Ort. Siehe SICHERUNG_ORDNER oben. */
+/** Schreibt Sicherungskopien in den Sicherungsordner - inhaltlich identisch mit den
+ *  Arbeitsdateien, nur unter anderem Namen und an anderem Ort (siehe SICHERUNG_ORDNER).
+ *
+ *  `nur` schränkt auf die Dateien ein, die gerade tatsächlich gespeichert wurden - so
+ *  schreibt die automatische Sicherung seit V04-03 nicht mehr bei jedem Antippen ALLE
+ *  Reisen mit (das war der Fehler in V04-02). Ohne `nur` wird alles geschrieben, das ist
+ *  der Fall beim manuellen Knopf: dort will man bewusst einen vollständigen Stand. */
 export async function schreibeSicherung(
   stammdaten: StammdatenKern,
   reisen: Map<ID, ReiseKern>,
-  stammdatenVerlauf: StammdatenKern[],
-  reiseVerlaufMap: Map<ID, ReiseKern[]>,
-  manuell: boolean
+  manuell: boolean,
+  nur?: { stammdaten: boolean; reiseIds: ID[] }
 ): Promise<void> {
+  const stammdatenSchreiben = nur ? nur.stammdaten : true;
+  const zuSchreibendeReisen = nur
+    ? Array.from(reisen.entries()).filter(([reiseId]) => nur.reiseIds.includes(reiseId))
+    : Array.from(reisen.entries());
+  if (!stammdatenSchreiben && zuSchreibendeReisen.length === 0) return;
+
   if (!sicherungsOrdnerGeprueft) {
     await ensureFolder(SICHERUNG_ORDNER);
     sicherungsOrdnerGeprueft = true;
   }
 
-  const stammdatenDatei: StammdatenDatei = { ...stammdaten, verlauf: stammdatenVerlauf };
-  await saveState(stammdatenDatei, sicherungsDateiname("Stammdaten", manuell), SICHERUNG_ORDNER);
+  if (stammdatenSchreiben) {
+    const stammdatenDatei: StammdatenDatei = { ...stammdaten, verlauf: [] };
+    await saveState(stammdatenDatei, sicherungsDateiname("Stammdaten", manuell), SICHERUNG_ORDNER);
+  }
 
   await Promise.all(
-    Array.from(reisen.entries()).map(([reiseId, kern]) => {
+    zuSchreibendeReisen.map(([, kern]) => {
       const datei: ReiseDatei = {
         ...kern,
         stammdaten_snapshot: stammdatenSnapshotFuerReise(stammdaten, kern),
-        verlauf: reiseVerlaufMap.get(reiseId) ?? [],
+        verlauf: [],
       };
       return saveState(datei, sicherungsDateiname(kern.reise.reise, manuell), SICHERUNG_ORDNER);
     })
@@ -270,16 +285,12 @@ export async function schreibeSicherung(
  *  (Migration von der alten Kombi-Datei, oder Wiederherstellung nach einem Offline-
  *  Konflikt beim allerersten Laden - siehe ladeAufgeteiltenStand/Ladeeffekt unten). */
 export async function schreibeGesamtenStandNeu(
-  merged: SchemaData,
-  historyFuerAufteilung: SchemaData[]
+  merged: SchemaData
 ): Promise<{ stammdaten: StammdatenKern; reisen: Map<ID, ReiseKern> }> {
   const { stammdaten, reisen } = splitSchemaData(merged);
-  const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(historyFuerAufteilung);
-  await schreibeStammdatenDatei(stammdaten, stammdatenVerlauf);
+  await schreibeStammdatenDatei(stammdaten);
   await Promise.all(
-    Array.from(reisen.entries()).map(([reiseId, kern]) =>
-      schreibeReiseDatei(reiseId, kern, stammdaten, reiseVerlaufMap.get(reiseId) ?? [])
-    )
+    Array.from(reisen.entries()).map(([reiseId, kern]) => schreibeReiseDatei(reiseId, kern, stammdaten))
   );
   return { stammdaten, reisen };
 }
@@ -516,6 +527,15 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   // z.B. Stammdaten UND eine Reise), solange der Nutzer über das Konflikt-Fenster noch
   // nicht entschieden hat.
   const pendingSyncResultsRef = useRef<OffenerFileSync[]>([]);
+  // Läuft gerade ein Speicher-/Abgleichdurchgang? (V04-03) Der periodische Abgleich alle
+  // 20s konnte bisher einen zweiten Durchgang starten, während der erste noch schrieb.
+  // Bei langsamer Leitung und großen Dateien überholten sich die beiden dann: Die App las
+  // einen Serverstand, der ihren eigenen, noch nicht fertig geschriebenen Stand nicht
+  // enthielt, hielt ihn für die Änderung eines anderen Geräts und übernahm ihn - daher
+  // Clemens' Meldung "Ein anderes Gerät hat inzwischen ebenfalls gespeichert" (2026-09-05),
+  // obwohl kein zweites Gerät lief. Solange diese Sperre gesetzt ist, wird ein neuer
+  // Durchgang übersprungen; der nächste Tick holt ihn ohnehin nach.
+  const speichertGeradeRef = useRef(false);
   const [conflicts, setConflicts] = useState<RowConflict[]>([]);
   const [autoMerged, setAutoMerged] = useState<AutoMergedChange[]>([]);
   const [showAutoMerged, setShowAutoMerged] = useState(false);
@@ -532,11 +552,8 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
         const geladen = await ladeAufgeteiltenStand();
         if (cancelled) return;
         const server = mergeSplitData(geladen.stammdaten, Array.from(geladen.reisen.values()));
-        const historyGeladen = historyRekonstruieren(
-          geladen.stammdatenVerlauf,
-          geladen.reiseVerlaufMap,
-          Array.from(geladen.reisen.values())
-        );
+        // Rückgängig startet bei jedem Laden neu (V04-03, siehe schreibeStammdatenDatei).
+        const historyGeladen: SchemaData[] = [];
 
         // Prüfen, ob von einer früheren Offline-Sitzung noch ein nicht synchronisierter
         // Stand im Browser liegt (z.B. App wurde ohne Verbindung geschlossen, bevor die
@@ -570,7 +587,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             // aufgeteilte Dateien geschrieben (frischer eigener Verlauf je Datei, siehe
             // ladeAufgeteiltenStand oben).
             const merged = mergeSplitData(neueStammdaten, Array.from(neueReisen.values()));
-            const geschrieben = await schreibeGesamtenStandNeu(merged, []);
+            const geschrieben = await schreibeGesamtenStandNeu(merged);
             stammdatenBaselineRef.current = geschrieben.stammdaten;
             reiseBaselinesRef.current = geschrieben.reisen;
             baselineRef.current = merged;
@@ -594,7 +611,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
             // Ein Nachtrag hat tatsächlich etwas ergänzt - gleich mitschreiben, sonst
             // würde die Ergänzung nur lokal existieren und beim nächsten Laden auf einem
             // anderen Gerät wieder fehlen.
-            const geschrieben = await schreibeGesamtenStandNeu(serverMitNachtraegen, historyGeladen);
+            const geschrieben = await schreibeGesamtenStandNeu(serverMitNachtraegen);
             stammdatenBaselineRef.current = geschrieben.stammdaten;
             reiseBaselinesRef.current = geschrieben.reisen;
           } else {
@@ -689,6 +706,9 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
       setSaveStatus(offline ? "Offline – Änderung wird lokal gemerkt …" : "Änderungen werden gespeichert …");
     }
     const t = setTimeout(async () => {
+      // Ein Durchgang läuft noch (siehe speichertGeradeRef oben) - diesen überspringen.
+      if (speichertGeradeRef.current) return;
+      speichertGeradeRef.current = true;
       // Immer zuerst lokal merken, damit bei einem Absturz/Schließen mitten im Offline-
       // Betrieb nichts verloren geht (siehe syncStore.ts) - unabhängig davon, ob der
       // anschließende Speicherversuch klappt.
@@ -698,7 +718,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
         const { stammdaten: lokalStammdaten, reisen: lokalReisenMap } = splitSchemaData(data);
-        const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(history);
 
         const stammdatenRemoteRoh = (await loadState(STAMMDATEN_DATEI)) as StammdatenDatei | null;
         const remoteStammdaten: StammdatenKern = stammdatenRemoteRoh ?? lokalStammdaten;
@@ -743,10 +762,10 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           return !remoteReisenMap.has(reiseId) || !baselineKern || !reiseGleich(neuerKern, baselineKern);
         });
 
-        if (stammdatenSchreiben) await schreibeStammdatenDatei(neueStammdaten, stammdatenVerlauf);
+        if (stammdatenSchreiben) await schreibeStammdatenDatei(neueStammdaten);
         await Promise.all(
           reisenSchreiben.map((reiseId) =>
-            schreibeReiseDatei(reiseId, neueReisen.get(reiseId)!, neueStammdaten, reiseVerlaufMap.get(reiseId) ?? [])
+            schreibeReiseDatei(reiseId, neueReisen.get(reiseId)!, neueStammdaten)
           )
         );
         const irgendwasGeschrieben = stammdatenSchreiben || reisenSchreiben.length > 0;
@@ -781,7 +800,10 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           // Arbeiten nie blockieren - die Arbeitsdatei ist zu diesem Zeitpunkt bereits
           // sicher geschrieben. Ein Fehler wird deshalb nur gemeldet, nicht weitergeworfen.
           try {
-            await schreibeSicherung(neueStammdaten, neueReisen, stammdatenVerlauf, reiseVerlaufMap, false);
+            await schreibeSicherung(neueStammdaten, neueReisen, false, {
+              stammdaten: stammdatenSchreiben,
+              reiseIds: reisenSchreiben,
+            });
           } catch (fehler) {
             console.error(fehler);
             const meldung = fehler instanceof Error ? fehler.message : String(fehler);
@@ -799,6 +821,8 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           const meldung = error instanceof Error ? error.message : String(error);
           setSaveStatus(`Speichern fehlgeschlagen: ${meldung}`);
         }
+      } finally {
+        speichertGeradeRef.current = false;
       }
     }, 600);
     return () => clearTimeout(t);
@@ -812,7 +836,6 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
   async function konflikteEntschieden(resolutions: Map<string, "local" | "remote">) {
     const offeneSyncs = pendingSyncResultsRef.current;
     if (offeneSyncs.length === 0 || !data) return;
-    const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(history);
     let neueStammdaten = stammdatenBaselineRef.current ?? schemaDataAlsStammdatenKern(data);
     const neueReisen = new Map<ID, ReiseKern>(reiseBaselinesRef.current);
     const irgendeinAutoMerge = offeneSyncs.some((s) => s.result.autoMerged.length > 0);
@@ -825,12 +848,12 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
           neueReisen.set(sync.reiseId, schemaDataAlsReiseKern(finalData));
         }
       }
-      await schreibeStammdatenDatei(neueStammdaten, stammdatenVerlauf);
+      await schreibeStammdatenDatei(neueStammdaten);
       await Promise.all(
         offeneSyncs
           .filter((s): s is { art: "reise"; reiseId: ID; result: SyncResult } => s.art === "reise")
           .map((s) =>
-            schreibeReiseDatei(s.reiseId, neueReisen.get(s.reiseId)!, neueStammdaten, reiseVerlaufMap.get(s.reiseId) ?? [])
+            schreibeReiseDatei(s.reiseId, neueReisen.get(s.reiseId)!, neueStammdaten)
           )
       );
 
@@ -1434,8 +1457,7 @@ export default function SchemaApp({ account }: { account: AccountInfo }) {
     setSaveStatus("Sicherungskopie wird geschrieben …");
     try {
       const { stammdaten, reisen } = splitSchemaData(data);
-      const { stammdatenVerlauf, reiseVerlaufMap } = verlaufAufteilen(history);
-      await schreibeSicherung(stammdaten, reisen, stammdatenVerlauf, reiseVerlaufMap, true);
+      await schreibeSicherung(stammdaten, reisen, true);
       const zeit = new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" });
       setSaveStatus(`Sicherungskopie erstellt um ${zeit}`);
     } catch (error) {
